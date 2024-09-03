@@ -6,6 +6,7 @@
     <title>Home</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="shortcut icon" type="imagex/png" href="./img/favicon.png">
 </head>
 <body>
     
@@ -37,7 +38,7 @@
         <section id="about">
 
             <h2>Quem Somos?</h2>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quidem ut debitis doloremque provident eaque aspernatur cumque nihil obcaecati tempora excepturi. Magnam labore fuga consectetur eum ducimus quisquam temporibus, dolor harum?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quidem ut debitis doloremque provident eaque aspernatur cumque nihil obcaecati tempora excepturi. Magnam labore fuga consectetur eum ducimus quisquam temporibus, dolor harum.</p>
+            <p>Com mais de 6 anos sendo referência em Guarulhos, a barbearia Don' Vini oferece serviços de excelência pelo melhor preço da região. Em qualquer uma de nossas duas unidades, você terá acesso a uma equipe especializada em cortes, desenhos e colorações. Além disso, contamos com planos de assinaturas exclusivos feitos pensando especialmente em você. Aqui é o lugar para cuidar da sua aparência e renovar a autoestima. Clique no botão abaixo para se inscrever no nosso site e acessar todos nossos recursos aqui disponíveis.</p>
             <a href="#" class="button-generic">Inscreva-se</a>
 
         </section>
@@ -54,9 +55,9 @@
                         <img src="img/tesoura_e_pente.png" alt="Tesoura">
                         <h3>Cabelo</h3>
                         <div class="line"></div>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit, voluptatibus explicabo deserunt.</p>
+                        <p>Fazemos cortes personalizados que atendem o seu pedido e valorizam sua identidade.</p>
                         <div class="hidden-text">
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum quidem maxime voluptatum reprehenderit? At aspernatur aut facilis obcaecati nulla sunt modi consequuntur tempore perspiciatis hic placeat, consequatur ea ducimus magnam?</p>
+                            <p> Cada corte é pensado para atender às suas exigências, sempre buscando entregar os melhores resultados. Nossos profissionais contam com técnica e criatividade, respeitando seu formato de rosto e estilo para deixar você o mais confiante possível! </p>
                         </div>
                     </div>
                 </div>
@@ -65,9 +66,9 @@
                         <img src="img/navalha.png" alt="Navalha">
                         <h3>Barba</h3>
                         <div class="line sec-line"></div>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit, voluptatibus explicabo deserunt.</p>
+                        <p>Designs precisos e personalizados para uma barba que reflete seu estilo e revela todo seu potencial.</p>
                         <div class="hidden-text">
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum quidem maxime voluptatum reprehenderit? At aspernatur aut facilis obcaecati nulla sunt modi consequuntur tempore perspiciatis hic placeat, consequatur ea ducimus magnam?</p>
+                            <p> Cada barba é única e, por isso, nossa equipe está preparada para te oferecer uma design personalizado que respeite seu formato de rosto, textura dos fios e, principalmente, suas preferências. O resultado é uma barba bem cuidada e aparada, que combina com você. </p>
                         </div>
                     </div>
                 </div>
@@ -76,9 +77,9 @@
                         <img src="img/pincel.png" alt="Pincel">
                         <h3>Cuidados</h3>
                         <div class="line"></div>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit, voluptatibus explicabo deserunt.</p>
+                        <p>Tratamentos para cabelo e pele para trazer o melhor de você ao garantir um visual impecável.</p>
                         <div class="hidden-text">
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum quidem maxime voluptatum reprehenderit? At aspernatur aut facilis obcaecati nulla sunt modi consequuntur tempore perspiciatis hic placeat, consequatur ea ducimus magnam?</p>
+                            <p>Além de cortar seu cabelo e barba, nós também oferecemos cuidados que não somente turbinam sua aparência, mas também trazem saúde, hidratação e revitalização tanto para seu cabelo e barba quanto para a sua pele. Aqui usamos produtos de alta qualidade para manter seu visual impecável.</p>
                         </div>
                     </div>
                 </div>
@@ -101,6 +102,13 @@
                         <img src="img/image3.jpg" alt="" draggable="false">
                         <img src="img/image4.jpg" alt="" draggable="false">
                         <img src="img/image5.jpg" alt="" draggable="false">
+                        <img src="img/image6.jpg" alt="" draggable="false">
+                        <img src="img/image7.jpg" alt="" draggable="false">
+                        <img src="img/image8.jpg" alt="" draggable="false">
+                        <img src="img/image9.jpg" alt="" draggable="false">
+                        <img src="img/image10.jpg" alt="" draggable="false">
+                        <img src="img/image11.jpg" alt="" draggable="false">
+                        <img src="img/image12.jpg" alt="" draggable="false">
                     </div>
                     <i id="right" class="fa-solid fa-angle-right"></i>
                 </div>
@@ -122,29 +130,31 @@
                     <p id="p-italic">Nos contate</p>
                     <p id="p-top">Nossos Contatos</p>
                     <div class="icons">
-                        <i class="fa-solid fa-phone-volume"></i>
-                        <p>21 0000-0000</p>
-                    </div>
-                    <div class="icons">
                         <i class="fa-solid fa-envelope"></i>
-                        <p>teste123@gmail.com</p>
+                        <p>barbeariadonvini@hotmail.com</p>
                     </div>
                     <div class="icons">
                         <i class="fa-brands fa-whatsapp"></i>
-                        <p>21 0000-0000</p>
+                        <p>Unidade 1: 11 95863-8784
+                        </p>
+                    </div>
+                    <div class="icons">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        <p>Unidade 2: 11 95578-2837
+                        </p>
                     </div>
                     <div class="icons">
                         <i class="fa-solid fa-location-dot"></i>
-                        <p>Unidade 1: Rua Avenida Sei Lá Oque, 0000-000</p>
+                        <p>Unidade 1: R. São Geraldo, 446 - Jardim São Paulo, Guarulhos - SP, 07131-030</p>
                     </div>
                     <div class="icons">
                         <i class="fa-solid fa-location-dot"></i>
-                        <p>Unidade 2: Rua Avenida Sei Lá Oque, 0000-000</p>
+                        <p>Unidade 2: R. Joana Reche Reche, 12 - 2° piso - Jardim Adriana, Guarulhos - SP, 07135-040</p>
                     </div>
                     <div class="icons-social-media">
-                        <a href=""><i class="fa-brands fa-instagram fa-2x"></i></a>
-                        <a href=""><i class="fa-brands fa-facebook fa-2x"></i></a>
-                        <a href=""><i class="fa-brands fa-youtube fa-2x"></i></a>
+                        <a href="https://www.instagram.com/barbeariadonvinioficial/"><i class="fa-brands fa-instagram fa-2x"></i></a>
+                        <a href="https://www.facebook.com/barbeariadonvini/"><i class="fa-brands fa-facebook fa-2x"></i></a>
+                        <a href="https://www.youtube.com/channel/UCCRfZSrzWOCh8cM1vadsp5A"><i class="fa-brands fa-youtube fa-2x"></i></a>
                     </div>
                 </div>
             </div>
@@ -154,11 +164,11 @@
         <section class="map-container">
 
             <div class="maps">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d234337.73703207538!2d-46.557856270466!3d-23.405317633732594!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sInstituto%20Federal%20de%20Educa%C3%A7%C3%A3o%2C%20Ci%C3%AAncia%20e%20Tecnologia%20de%20S%C3%A3o%20Paulo!5e0!3m2!1spt-BR!2sbr!4v1716739406273!5m2!1spt-BR!2sbr" width="400" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d915.1359530924985!2d-46.53186845150258!3d-23.44084082425981!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cef526ca6da8e1%3A0x104d59622a0f2db1!2sBarbearia%20Don%20Vini!5e0!3m2!1spt-BR!2sbr!4v1725307982610!5m2!1spt-BR!2sbr" width="400" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 <p>Unidade 1</p>
             </div>
             <div class="maps">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d234337.73703207538!2d-46.557856270466!3d-23.405317633732594!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sInstituto%20Federal%20de%20Educa%C3%A7%C3%A3o%2C%20Ci%C3%AAncia%20e%20Tecnologia%20de%20S%C3%A3o%20Paulo!5e0!3m2!1spt-BR!2sbr!4v1716739406273!5m2!1spt-BR!2sbr" width="400" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3078.392184422543!2d-46.52990736558125!3d-23.429933598075035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cef5c31c994509%3A0x9222a55a585984ef!2sBarbearia%20Don%20Vini!5e0!3m2!1spt-BR!2sbr!4v1725308078029!5m2!1spt-BR!2sbr" width="400" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 <p>Unidade 2</p>
             </div>
 
