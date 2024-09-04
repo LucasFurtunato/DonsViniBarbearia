@@ -1,5 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+<?php 
+  session_start();
+
+  if (isset($_SESSION["cliente"])) {
+    $cliente = $_SESSION["cliente"];
+}
+
+include '.php/repositorio/conexao.php';
+?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
@@ -24,7 +33,17 @@
                 <li><a href="#services">Serviços</a></li>
                 <li><a href="#gallery">Galeria</a></li>
                 <li><a href="#contact">Contato</a></li>
-                <li><a href="#" class="login-button">Entrar</a></li>
+                <li>
+                <?php
+                if (isset($_SESSION["cliente"])) 
+                { ?>
+                    <a href="#" class="login-button"><?php echo $cliente; ?></a>
+                    <a href=".php/controlador/logout.php">Sair</a>
+                <?php } 
+                else{ ?>
+                    <a href="login-cadastro.php" class="login-button">Entrar</a>
+                <?php } ?>
+                </li>
             </ul>
         </nav>
     </header>
