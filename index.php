@@ -30,7 +30,7 @@ include '.php/repositorio/conexao.php';
             <ul class="nav-list">
                 <li><a href="#">Início</a></li>
                 <li><a href="#about">Sobre</a></li>
-                <li><a href="#services">Serviços</a></li>
+                <li><a href="#services">Contas</a></li>
                 <li><a href="#gallery">Galeria</a></li>
                 <li><a href="#contact">Contato</a></li>
                 <li>
