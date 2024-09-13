@@ -40,20 +40,20 @@
                 <div class="second-column">
                     <h2 class="title title-second">Login Admin</h2>
                     <p class="description description-second">insira os dados para acessar ao ambiente</p>
-                    <form class="form">
+                    <form method="post" role="form" class="form" action=".php/controlador/processar-login-gerente.php">
                         <label class="label-input" for="">
                             <i class="far fa-user icon-modify"></i> <!-- imagem usuario -->
-                            <input type="text" placeholder="Código" maxlength="50">
+                            <input type="text" placeholder="Código" maxlength="50" name="codigo" required>
                         </label>
                         
                         <label class="label-input" for="">
                             <i class="far fa-envelope icon-modify"></i> <!-- imagem email -->
-                            <input type="email" placeholder="Email" maxlength="50" id="email">
+                            <input type="email" placeholder="Email" maxlength="50" id="email" name="email" required>
                         </label>
                         
                         <label class="label-input" for="">
                             <i class="fas fa-lock icon-modify"></i> <!-- imagem senha -->
-                            <input type="password" placeholder="Senha" maxlength="50" id="password-1">
+                            <input type="password" placeholder="Senha" maxlength="50" id="password-1" name="senha" required>
                             <div class="btn-password">
                                 <i class="bi bi-eye" id="btn-password-1" onclick="mostrarSenha1()"></i>
                             </div>
@@ -61,11 +61,17 @@
     
                         <label class="label-input" for="">
                             <i class="fas fa-lock icon-modify"></i> <!-- imagem senha -->
-                            <input type="password" placeholder="Confirmar senha" maxlength="50" id="password-2">
+                            <input type="password" placeholder="Confirmar senha" maxlength="50" id="password-2" name="confirmarsenha" required>
                             <div class="btn-password">
                                 <i class="bi bi-eye" id="btn-password-2" onclick="mostrarSenha2()"></i>
                             </div> 
-                        </label>      
+                        </label>
+
+                        <?php 
+                        if (isset($_GET["erro"])){ ?>
+                            <label for="senha">Usuário ou senha inválidos</label>
+                        <?php }?>
+
                         <button class="btn btn-second">Entrar</button>        
                     </form>
                 </div><!-- second column -->

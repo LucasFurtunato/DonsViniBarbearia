@@ -7,6 +7,10 @@
     $cliente = $_SESSION["cliente"];
 }
 
+if (isset($_SESSION["gerente"])) {
+    $gerente = $_SESSION["gerente"];
+}
+
 include '.php/repositorio/conexao.php';
 ?>
 <head>
@@ -39,9 +43,15 @@ include '.php/repositorio/conexao.php';
                 { ?>
                     <a href="#" class="login-button"><?php echo $cliente; ?></a>
                     <a href=".php/controlador/logout.php">Sair</a>
-                <?php } 
+                <?php }
+                else if (isset($_SESSION["gerente"])) 
+                { ?>
+                    <a href="#" class="login-button"><?php echo $gerente; ?></a>
+                    <a href=".php/controlador/logout.php">Sair</a>
+                <?php }
                 else{ ?>
                     <a href="login-cadastro.php" class="login-button">Entrar</a>
+                    <a href="login_admin.php" class="login-button">Entrar Admin</a>
                 <?php } ?>
                 </li>
             </ul>
