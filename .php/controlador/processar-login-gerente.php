@@ -4,10 +4,12 @@ require "autenticacao.php";
 
 if ($_SERVER["REQUEST_METHOD"] =="POST"){
     $codigo = $_POST["codigo"];
+    $email = $_POST["email"];
     $senha = $_POST["senha"];
+    $confirmarsenha = $_POST["confirmarsenha"];
     
     $login = new autenticacao($conn);
-    $gerente = $login->verificarGerente($codigo, $senha);
+    $gerente = $login->verificarGerente($codigo, $email, $senha, $confirmarsenha);
     if ($gerente){
         session_start();
         $_SESSION["gerente"] = $gerente['NOME'];

@@ -19,15 +19,15 @@ class autenticacao {
         return false;  
     }
 
-    public function verificarGerente($codigo, $senha) {
-        $query = "SELECT * FROM gerente WHERE codigo = ?";
+    public function verificarGerente($codigo, $email, $senha, $confirmarsenha) {
+        $query = "SELECT * FROM gerente WHERE CODIGO = ? AND EMAIL = ? AND SENHA = ?";
         $stmt = $this->conexao->prepare($query);
-        $stmt->bind_param("s", $codigo);
+        $stmt->bind_param("sss", $codigo, $email, $senha);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows === 1) {
-            $gerente = $result->fetch_assoc();
-            if (password_verify($senha, $gerente['SENHA'])) {
+            if ($senha === $confirmarsenha){
+                $gerente = $result->fetch_assoc();
                 return $gerente;
             }
         }
