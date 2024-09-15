@@ -47,25 +47,13 @@
                         </label>
                         
                         <label class="label-input" for="">
-                            <i class="far fa-envelope icon-modify"></i> <!-- imagem email -->
-                            <input type="email" placeholder="Email" maxlength="50" id="email" name="email" required>
-                        </label>
-                        
-                        <label class="label-input" for="">
                             <i class="fas fa-lock icon-modify"></i> <!-- imagem senha -->
                             <input type="password" placeholder="Senha" maxlength="50" id="password-1" name="senha" required>
                             <div class="btn-password">
                                 <i class="bi bi-eye" id="btn-password-1" onclick="mostrarSenha1()"></i>
                             </div>
                         </label>
-    
-                        <label class="label-input" for="">
-                            <i class="fas fa-lock icon-modify"></i> <!-- imagem senha -->
-                            <input type="password" placeholder="Confirmar senha" maxlength="50" id="password-2" name="confirmarsenha" required>
-                            <div class="btn-password">
-                                <i class="bi bi-eye" id="btn-password-2" onclick="mostrarSenha2()"></i>
-                            </div> 
-                        </label>
+
 
                         <?php 
                         if (isset($_GET["erro"])){ ?>

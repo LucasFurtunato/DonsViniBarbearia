@@ -4,6 +4,7 @@
         private $nome;
         private $email;
         private $senha;
+        private $codigo;
 
         function __construct($conn){
             $this->conn = $conn;
