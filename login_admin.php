@@ -9,7 +9,8 @@
   <link rel="stylesheet" href="css/login_admin.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-</head>
+  <link rel="shortcut icon" type="imagex/png" href="./img/favicon.png">
+  </head>
 
 <body>
 
@@ -22,11 +23,7 @@
         <div class="line3"></div>
       </div>
       <ul class="nav-list">
-        <li><a href="#">Início</a></li>
-        <li><a href="#about">Sobre</a></li>
-        <li><a href="#services">Serviços</a></li>
-        <li><a href="#gallery">Galeria</a></li>
-        <li><a href="#contact">Contato</a></li>
+        <li><a href="index.php">Início</a></li>
         <li><a href="#" class="login-button">Entrar</a></li>
       </ul>
     </nav>
@@ -85,7 +82,7 @@
   </footer>
 
   <script src="js/mobile-navbar.js"></script>
-  <script src="js/login_admin.js"></script>
+  <script src="js/gerente.js"></script>
 
 </body>
 </html>

@@ -209,6 +209,7 @@ nav {
     display: flex; /* deixar um ao lado do outro */
     align-items: center; /* deixar a imafem centralizada com o nome */
     margin: 8px; /* espaçamento entre os campos do formulário */
+    position: relative;
 }
 
 .btn {
@@ -223,6 +224,11 @@ nav {
     align-self: center; /* alinhar todos os botões no centro */
     border: none; /* retirar borda do botão */
     margin-top: 1rem; /* distanciar do conteudo de cima */
+}
+.btn-password{
+    position: absolute;
+    right: 0;
+    z-index: 100;
 }
 
 .btn-second {

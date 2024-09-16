@@ -9,8 +9,22 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
         integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"> <!-- link das imagens do formulário -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"> <!-- link das imagens do formulário -->
+    <link rel="shortcut icon" type="imagex/png" href="./img/favicon.png">
+
 </head>
 <body>
+<nav>
+      <img src="img/logo.png" alt="Don' Vini logo" class="logo">
+      <div class="mobile-menu">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+      </div>
+      <ul class="nav-list">
+        <li><a href="index.php">Início</a></li>
+        <li><a href="#" class="login-button">Entrar</a></li>
+      </ul>
+    </nav>
     <div class="container"> 
         <div class="content first-content"> 
             <div class="first-column">
@@ -131,7 +145,14 @@
                 </form>
             </div><!-- second column -->
         </div><!-- second-content -->
-    </div> <!-- div pai --> 
+    </div> <!-- div pai -->
+    <footer>
+    <div class="footer-content">
+      <p>&copy; 2024 Barbearias Don' Vini. Todos os direitos reservados.</p>
+      <p>Por: RootingTI</p>
+    </div>
+    </footer> 
+    <script src="js/mobile-navbar.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>
