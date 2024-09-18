@@ -1,5 +1,5 @@
 <?php
-$servername = "localhost";
+$servername = "localhost:3306";
 $username = "donvinibarbearia";
 $password = "barbearia2024";
 $databasename = "ifhostgru_donvinibarbearia";
