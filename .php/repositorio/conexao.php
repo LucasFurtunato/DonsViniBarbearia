@@ -1,7 +1,7 @@
 <?php
 $servername = "144.217.39.54";
-$username = "hostdeprojetos";
-$password = "ifspgru@2022";
+$username = "ifhostgru";
+$password = "ifspgru@2024";
 $databasename = "ifhostgru_donvinibarbearia";
 
 //criação da conexão
