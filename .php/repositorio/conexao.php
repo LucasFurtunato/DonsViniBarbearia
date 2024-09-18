@@ -1,5 +1,5 @@
 <?php
-$servername = "server20.rapidcloud.com.br:2083";
+$servername = "144.217.39.54";
 $username = "donvinibarbearia";
 $password = "barbearia2024";
 $databasename = "ifhostgru_donvinibarbearia";
