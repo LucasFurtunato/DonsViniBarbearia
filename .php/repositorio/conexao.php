@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "donvinibarbearia";
 $password = "barbearia2024";
-$databasename = "hostdeprojetos_donvinibarbearia";
+$databasename = "ifhostgru_donvinibarbearia";
 
 //criação da conexão
 $conn = new mysqli($servername, $username, $password, $databasename);
