@@ -10,16 +10,7 @@ $respostaJson = array();
 if(isset($_REQUEST['email']) && isset($_REQUEST['senha'])){  
     $email = $_REQUEST['email'];
     $senha = $_REQUEST['senha'];
-
-    echo "$email, $senha";
-
-    $respostaJson["login"]  = "false";
-    $respostaJson["msg"]    = "Usuário ou Senha inválidos!";
-    $respostaJson["erro"]   = "1";
     
-    echo json_encode($respostaJson, JSON_UNESCAPED_UNICODE);
-    
-    /*
     $login = new autenticacao($conn);
     $cliente = $login->verificarCliente($email, $senha);
     if ($cliente){
@@ -38,6 +29,6 @@ if(isset($_REQUEST['email']) && isset($_REQUEST['senha'])){
         $respostaJson["msg"]    = "Usuário ou Senha inválidos!";
         $respostaJson["erro"]   = "1";
         echo json_encode($respostaJson, JSON_UNESCAPED_UNICODE);
-    }*/
+    }
 }
 ?>

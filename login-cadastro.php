@@ -148,6 +148,7 @@
 
                                     var objRetorno = JSON.parse(dados);
                                     $("#msgLogin").html(objRetorno.msg);
+                                    console.log( objRetorno.msg )
                                     
                                     if ( objRetorno.login == "false"){
                                         
