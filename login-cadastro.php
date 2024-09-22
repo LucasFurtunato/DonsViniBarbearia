@@ -57,7 +57,7 @@
                     </ul>
                 </div><!-- social media -->
                 <p class="description description-second">ou use seu e-mail para cadastro</p>
-                <form method="post" role="form" class="form" > <!-- action=".php/controlador/processar-cadastro.php" -->
+                <form class="form" id="frmCadastro"> <!-- action=".php/controlador/processar-cadastro.php" -->
                     <label class="label-input" for="">
                         <i class="far fa-user icon-modify"></i> <!-- imagem usuario -->
                         <input type="text" placeholder="Nome" name="nome" maxlength="50" required>
@@ -83,30 +83,37 @@
                             <i class="bi bi-eye" id="btn-password-2" onclick="mostrarSenha2()"></i>
                         </div> 
                     </label>
-                    <?php 
-                        if(isset($_GET["erro"])){
-                            //echo "erro! senha e confirmar senha não são iguais";
-                        ?>
-                            <label for="erro">Senha e confirmar senha não são iguais</label>
-                        <?php } ?>
-                    
-                    <button type="submit" class="btn btn-second">Criar</button>
+                    <label id="cUsrPassInvalid">Senha e confirmar senha não são iguais</label>
+                    <label id="cErroInvalid">Houve algum erro ao cadastrar</label>
+                    <label id="cUsrPassValid">Cadastrado</label> 
+                    <button type="button" class="btn btn-second" id="btnCadastro">Criar</button>
                     <script type="text/javascript">
                         $(document).ready(function(){
-                            $("#lUsrPassInvalid").hide();
-                            $("#btnLogin").click(function(){
-                                console.log("enviar login!");
-                                console.log( $("#frmLogin").serialize() );
+                            $("#cUsrPassInvalid").hide();
+                            $("#cUsrPassValid").hide();
+                            $("#cErroInvalid").hide();
 
-                                $.post(".php/controlador/processar-login.php", $("#frmLogin").serialize(), function( dados ){
+                            $("#btnCadastro").click(function(){
+                                console.log("enviar login!");
+                                console.log( $("#frmCadastro").serialize() );
+
+                                $.post(".php/controlador/processar-cadastro.php", $("#frmCadastro").serialize(), function( dados ){
 
                                     var objRetorno = JSON.parse(dados);
-                                    console.log( objRetorno.msg );
                                     
-                                    if ( objRetorno.login == "false"){
-                                        $("#lUsrPassInvalid").show();
-                                    }else{
-                                        window.location.href = 'index.php';
+                                    if (objRetorno.cadastro == "false" && objRetorno.erro == "1"){
+                                        $("#cUsrPassInvalid").show();
+                                        $("#cUsrPassValid").hide();
+                                        $("#cErroInvalid").hide();
+                                    }else if (objRetorno.cadastro == "false" && objRetorno.erro == "2"){
+                                        $("#cUsrPassInvalid").hide();
+                                        $("#cUsrPassValid").hide();
+                                        $("#cErroInvalid").show();
+                                    }
+                                    else{
+                                        $("#cUsrPassInvalid").hide();
+                                        $("#cUsrPassValid").show();
+                                        $("#cErroInvalid").hide();
                                     }
                                 });
                             });
@@ -157,7 +164,7 @@
                             <i class="bi bi-eye" id="btn-password-3" onclick="mostrarSenha3()"></i>
                         </div> 
                     </label>
-                    <label for="senha" id="lUsrPassInvalid">Usuário ou senha inválidos</label>
+                    <label id="lUsrPassInvalid">Usuário ou senha inválidos</label>
                     <a class="password" href="#">Esqueceu sua senha?</a>
                     <button type="button" class="btn btn-second" id="btnLogin">Entrar</button>
                     <script type="text/javascript">

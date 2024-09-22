@@ -2,12 +2,18 @@
 include '../repositorio/conexao.php';
 include '../tabelas/cliente.php';
 
-if (($_SERVER["REQUEST_METHOD"] == "POST")) 
-    {
-        $nome = $_POST["nome"];
-        $email = $_POST["email"];
-        $senha = $_POST["senha"];
-        $confirmarsenha = $_POST["confirmarsenha"];
+$nome = "";
+$email = "";
+$senha = "";
+$confirmarsenha = "";
+
+$respostaJson = array();
+
+if (isset($_REQUEST['nome']) && isset($_REQUEST['email']) && isset($_REQUEST['senha']) && isset($_REQUEST['confirmarsenha'])){
+        $nome = $_REQUEST["nome"];
+        $email = $_REQUEST['email'];
+        $senha = $_REQUEST["senha"];
+        $confirmarsenha = $_REQUEST["confirmarsenha"];
 
         if ($senha === $confirmarsenha) 
             {
@@ -16,18 +22,23 @@ if (($_SERVER["REQUEST_METHOD"] == "POST"))
                 //cadastrar o usuário
                 if ($usuario->cadastrar($nome, $email, $senha)) 
                     {
-                        // Redirecionar para a página de sucesso após o cadastro
-                        header("Location: ../../login-cadastro.php");
-                        exit();
+                        $respostaJson["cadastro"]  = "true";
+                        $respostaJson["erro"]  = "0";
+                        echo json_encode($respostaJson, JSON_UNESCAPED_UNICODE);
                     } 
                 else 
                     {
                         echo "erro! tente novamente!";
+                        $respostaJson["cadastro"]  = "false";
+                        $respostaJson["erro"]  = "2";
+                        echo json_encode($respostaJson, JSON_UNESCAPED_UNICODE);
                     }
             }
         else
         {
-            header("Location: ../../login-cadastro.php?erro=1");
+            $respostaJson["cadastro"]  = "false";
+            $respostaJson["erro"]  = "1";
+            echo json_encode($respostaJson, JSON_UNESCAPED_UNICODE);
         }
     }
 ?>
