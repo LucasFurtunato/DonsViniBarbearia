@@ -144,14 +144,13 @@
                                 console.log("enviar login!");
                                 console.log( $("#frmLogin").serialize() );
 
-                                $.post("processar-login.php", $("#frmLogin").serialize(), function( dados ){
+                                $.post(".php/controlador/processar-login.php", $("#frmLogin").serialize(), function( dados ){
 
                                     var objRetorno = JSON.parse(dados);
-                                    $("#msgLogin").html(objRetorno.msg);
                                     console.log( objRetorno.msg )
                                     
                                     if ( objRetorno.login == "false"){
-                                        
+                                        $("#msgLogin").html(objRetorno.msg)
                                     }
                                 });
                             });
