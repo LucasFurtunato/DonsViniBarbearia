@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="shortcut icon" type="imagex/png" href="./img/favicon.png">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </head>
 
 <body>
@@ -36,7 +38,7 @@
                 <div class="second-column">
                     <h2 class="title title-second">Login Admin</h2>
                     <p class="description description-second">insira os dados para acessar ao ambiente</p>
-                    <form method="post" role="form" class="form" action=".php/controlador/processar-login-gerente.php">
+                    <form class="form" id="frmLogin">
                         <label class="label-input" for="">
                             <i class="far fa-user icon-modify"></i> <!-- imagem usuario -->
                             <input type="text" placeholder="Código" name="codigo" maxlength="50" required>
@@ -62,11 +64,23 @@
                                 <i class="bi bi-eye" id="btn-password-2" onclick="mostrarSenha2()"></i>
                             </div> 
                         </label>
-                        <?php 
-                        if (isset($_GET["erro"])){ ?>
-                            <label for="senha">Usuário ou senha inválidos</label>
-                        <?php }?>
-                        <button type="submit" class="btn btn-second">Entrar</button>        
+                        <label id="lFunPassInvalid">Código, email ou senha inválidos</label>
+                        <button type="button" class="btn btn-second" id="btnLogin">Entrar</button>
+                        <script type="text/javascript">
+                          $(document).ready(function(){
+                              $("#lFunPassInvalid").hide();
+                              $("#btnLogin").click(function(){
+                                  $.post(".php/controlador/processar-login-gerente.php", $("#frmLogin").serialize(), function( dados ){
+                                      var objRetorno = JSON.parse(dados);
+                                      if ( objRetorno.login == "false"){
+                                          $("#lFunPassInvalid").show();
+                                      }else{
+                                          window.location.href = 'index.php';
+                                      }
+                                  });
+                              });
+                          });
+                        </script>
                     </form>
                 </div><!-- second column -->
             </div><!-- first content -->

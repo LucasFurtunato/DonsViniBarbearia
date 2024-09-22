@@ -2,11 +2,18 @@
 require "../repositorio/conexao.php";
 require "autenticacao.php";
 
-if ($_SERVER["REQUEST_METHOD"] =="POST"){
-    $codigo = $_POST["codigo"];
-    $email = $_POST["email"];
-    $senha = $_POST["senha"];
-    $confirmarsenha = $_POST["confirmarsenha"];
+$codigo = "";
+$email = "";
+$senha = "";
+$confirmarsenha = "";
+
+$respostaJson = array();
+
+if (isset($_REQUEST['codigo']) && isset($_REQUEST['email']) && isset($_REQUEST['senha']) && isset($_REQUEST['confirmarsenha'])){
+    $codigo = $_REQUEST["codigo"];
+    $email = $_REQUEST["email"];
+    $senha = $_REQUEST["senha"];
+    $confirmarsenha = $_REQUEST["confirmarsenha"];
     
     $login = new autenticacao($conn);
     $gerente = $login->verificarGerente($codigo, $email, $senha, $confirmarsenha);
@@ -14,11 +21,12 @@ if ($_SERVER["REQUEST_METHOD"] =="POST"){
         session_start();
         $_SESSION["gerente"] = $gerente['NOME'];
         $_SESSION["nomegerente"] = $gerente["NOME"];
-        header("Location: ../../index.php");
-        exit;
+        
+        $respostaJson["login"]  = "true";
+        echo json_encode($respostaJson, JSON_UNESCAPED_UNICODE);
     }else{
-
-        header("Location: ../../login_admin.php?erro=1");
+        $respostaJson["login"]  = "false";
+        echo json_encode($respostaJson, JSON_UNESCAPED_UNICODE);
     }
 }
 ?>
