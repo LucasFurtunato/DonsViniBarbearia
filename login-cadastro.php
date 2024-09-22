@@ -10,6 +10,8 @@
         integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"> <!-- link das imagens do formulário -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"> <!-- link das imagens do formulário -->
     <link rel="shortcut icon" type="imagex/png" href="./img/favicon.png">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </head>
 <body>
@@ -121,7 +123,7 @@
                     </ul>
                 </div><!-- social media -->
                 <p class="description description-second">ou use sua conta registrada:</p>
-                <form method="post" role="form" class="form" action=".php/controlador/processar-login.php">
+                <form method="post" role="form" class="form"> <!-- action=".php/controlador/processar-login.php" -->
                     <label class="label-input" for="">
                         <i class="far fa-envelope icon-modify"></i>
                         <input type="email" placeholder="Email" name="email" maxlength="50" required>
@@ -134,14 +136,25 @@
                             <i class="bi bi-eye" id="btn-password-3" onclick="mostrarSenha3()"></i>
                         </div> 
                     </label>
-
-                    <?php 
-                    if (isset($_GET["erro"])){ ?>
-                        <label for="senha">Usuário ou senha inválidos</label>
-                    <?php }?>
-                
                     <a class="password" href="#">Esqueceu sua senha?</a>
                     <button type="submit" class="btn btn-second">Entrar</button>
+                    <script type="text/javascript">
+                        $(document).ready(function(){
+                            $("#btnLogin").click(function(){
+                                console.log("enviar login!");
+                                console.log( $("#frmLogin").serialize() );
+
+                                $.post("controlLogin.php", $("#frmLogin").serialize(), function( dados ){
+
+                                    var objRetorno = JSON.parse(dados);
+                                    
+                                    if ( objRetorno.login == "false"){
+                                        $("#msgLogin").html(objRetorno.msg);
+                                    }
+                                });
+                            });
+                        });
+                    </script>
                 </form>
             </div><!-- second column -->
         </div><!-- second-content -->

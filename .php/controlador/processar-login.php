@@ -2,9 +2,12 @@
 require "../repositorio/conexao.php";
 require "autenticacao.php";
 
-if ($_SERVER["REQUEST_METHOD"] =="POST"){
-    $email = $_POST["email"];
-    $senha = $_POST["senha"];
+$email = "";
+$senha = "";
+
+if(isset($_REQUEST['email']) && isset($_REQUEST['senha'])){  
+    $email = $_REQUEST['email'];
+    $senha = $_REQUEST['senha'];
     
     $login = new autenticacao($conn);
     $cliente = $login->verificarCliente($email, $senha);
@@ -15,8 +18,17 @@ if ($_SERVER["REQUEST_METHOD"] =="POST"){
         header("Location: ../../index.php");
         exit;
     }else{
-
-        header("Location: ../../login-cadastro.php?erro=1");
+        $respostaJson["login"]  = "false";
+        $respostaJson["msg"]    = "Usuário ou Senha inválidos!";
+        $respostaJson["erro"]   = "1";
+        echo json_encode($respostaJson, JSON_UNESCAPED_UNICODE);
     }
 }
+
+$respostaJson = array();
+
+
+    
+    
+
 ?>
