@@ -147,9 +147,10 @@
                                 $.post("processar-login.php", $("#frmLogin").serialize(), function( dados ){
 
                                     var objRetorno = JSON.parse(dados);
+                                    $("#msgLogin").html(objRetorno.msg);
                                     
                                     if ( objRetorno.login == "false"){
-                                        $("#msgLogin").html(objRetorno.msg);
+                                        
                                     }
                                 });
                             });
