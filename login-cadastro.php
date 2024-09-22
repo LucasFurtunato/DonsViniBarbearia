@@ -91,6 +91,27 @@
                         <?php } ?>
                     
                     <button type="submit" class="btn btn-second">Criar</button>
+                    <script type="text/javascript">
+                        $(document).ready(function(){
+                            $("#lUsrPassInvalid").hide();
+                            $("#btnLogin").click(function(){
+                                console.log("enviar login!");
+                                console.log( $("#frmLogin").serialize() );
+
+                                $.post(".php/controlador/processar-login.php", $("#frmLogin").serialize(), function( dados ){
+
+                                    var objRetorno = JSON.parse(dados);
+                                    console.log( objRetorno.msg );
+                                    
+                                    if ( objRetorno.login == "false"){
+                                        $("#lUsrPassInvalid").show();
+                                    }else{
+                                        window.location.href = 'index.php';
+                                    }
+                                });
+                            });
+                        });
+                    </script>
                 </form>
             </div><!-- second column -->
         </div><!-- first content -->
@@ -136,21 +157,19 @@
                             <i class="bi bi-eye" id="btn-password-3" onclick="mostrarSenha3()"></i>
                         </div> 
                     </label>
+                    <label for="senha" id="lUsrPassInvalid">Usuário ou senha inválidos</label>
                     <a class="password" href="#">Esqueceu sua senha?</a>
                     <button type="button" class="btn btn-second" id="btnLogin">Entrar</button>
                     <script type="text/javascript">
                         $(document).ready(function(){
+                            $("#lUsrPassInvalid").hide();
                             $("#btnLogin").click(function(){
-                                console.log("enviar login!");
-                                console.log( $("#frmLogin").serialize() );
-
                                 $.post(".php/controlador/processar-login.php", $("#frmLogin").serialize(), function( dados ){
-
                                     var objRetorno = JSON.parse(dados);
-                                    console.log( objRetorno.msg )
-                                    
                                     if ( objRetorno.login == "false"){
-                                        $("#msgLogin").html(objRetorno.msg)
+                                        $("#lUsrPassInvalid").show();
+                                    }else{
+                                        window.location.href = 'index.php';
                                     }
                                 });
                             });

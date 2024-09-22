@@ -17,12 +17,12 @@ if(isset($_REQUEST['email']) && isset($_REQUEST['senha'])){
         session_start();
         $_SESSION["cliente"] = $cliente['NOME'];
         $_SESSION["nomecliente"] = $cliente["NOME"];
-        header("Location: ../../index.php");
-        exit;
+
+        $respostaJson["login"]  = "true";
+        echo json_encode($respostaJson, JSON_UNESCAPED_UNICODE);
+        
     }else{
         $respostaJson["login"]  = "false";
-        $respostaJson["msg"]    = "Usuário ou Senha inválidos!";
-        $respostaJson["erro"]   = "1";
         echo json_encode($respostaJson, JSON_UNESCAPED_UNICODE);
     }
 }
