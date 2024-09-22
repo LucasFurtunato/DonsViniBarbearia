@@ -57,7 +57,7 @@
                     </ul>
                 </div><!-- social media -->
                 <p class="description description-second">ou use seu e-mail para cadastro</p>
-                <form method="post" role="form" class="form" action=".php/controlador/processar-cadastro.php">
+                <form method="post" role="form" class="form" > <!-- action=".php/controlador/processar-cadastro.php" -->
                     <label class="label-input" for="">
                         <i class="far fa-user icon-modify"></i> <!-- imagem usuario -->
                         <input type="text" placeholder="Nome" name="nome" maxlength="50" required>
@@ -123,7 +123,7 @@
                     </ul>
                 </div><!-- social media -->
                 <p class="description description-second">ou use sua conta registrada:</p>
-                <form method="post" role="form" class="form"> <!-- action=".php/controlador/processar-login.php" -->
+                <form class="form" id="frmLogin"> <!-- action=".php/controlador/processar-login.php" -->
                     <label class="label-input" for="">
                         <i class="far fa-envelope icon-modify"></i>
                         <input type="email" placeholder="Email" name="email" maxlength="50" required>
@@ -137,14 +137,14 @@
                         </div> 
                     </label>
                     <a class="password" href="#">Esqueceu sua senha?</a>
-                    <button type="submit" class="btn btn-second">Entrar</button>
+                    <button type="button" class="btn btn-second" id="btnLogin">Entrar</button>
                     <script type="text/javascript">
                         $(document).ready(function(){
                             $("#btnLogin").click(function(){
                                 console.log("enviar login!");
                                 console.log( $("#frmLogin").serialize() );
 
-                                $.post("controlLogin.php", $("#frmLogin").serialize(), function( dados ){
+                                $.post("processar-login.php", $("#frmLogin").serialize(), function( dados ){
 
                                     var objRetorno = JSON.parse(dados);
                                     
