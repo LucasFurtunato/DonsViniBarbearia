@@ -1,18 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<?php 
-  session_start();
-
-  if (isset($_SESSION["cliente"])) {
-    $cliente = $_SESSION["cliente"];
-}
-
-if (isset($_SESSION["gerente"])) {
-    $gerente = $_SESSION["gerente"];
-}
-
-include '.php/repositorio/conexao.php';
-?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
@@ -20,6 +7,8 @@ include '.php/repositorio/conexao.php';
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="shortcut icon" type="imagex/png" href="./img/favicon.png">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
     
@@ -38,24 +27,45 @@ include '.php/repositorio/conexao.php';
                 <li><a href="#gallery">Galeria</a></li>
                 <li><a href="#contact">Contato</a></li>
                 <li>
-                <?php
-                if (isset($_SESSION["cliente"])) 
-                { ?>
-                    <a href="#" class="login-button"><?php echo $cliente; ?></a>
-                    <a href=".php/controlador/logout.php">Sair</a>
-                <?php }
-                else if (isset($_SESSION["gerente"])) 
-                { ?>
-                    <a href="#" class="login-button"><?php echo $gerente; ?></a>
-                    <a href=".php/controlador/logout.php">Sair</a>
-                <?php }
-                else{ ?>
-                    <a href="login-cadastro.php" class="login-button">Entrar</a>
-                    <a href="login_admin.php" class="login-button">Entrar Admin</a>
-                <?php } ?>
-                </li>
+                    <a href="#" class="login-button" id="aCliente"></a>
+                    <a href="#" class="login-button" id="aGerente"></a>
+                    <a href=".php/controlador/logout.php" id="aSair">Sair</a>
+
+                    <a href="login-cadastro.php" class="login-button" id="aEntrarUsr">Entrar</a>
+                    <a href="login_admin.php" class="login-button" id="aEntrarAdm">Entrar Admin</a>
             </ul>
         </nav>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $.get( '.php/controlador/verificacao-login.php', function(dados) {
+                    var objRetorno = JSON.parse(dados)
+
+                    if (objRetorno.usrType == "cliente"){
+                        $("#aCliente").text(objRetorno.name);
+
+                        $("#aCliente").show();
+                        $("#aGerente").hide();
+                        $("#aSair").show();
+                        $("#aEntrarUsr").hide();
+                        $("#aEntrarAdm").hide();
+                    } else if (objRetorno.usrType == "gerente"){
+                        $("#aGerente").text(objRetorno.name);
+
+                        $("#aCliente").hide();
+                        $("#aGerente").show();
+                        $("#aSair").show();
+                        $("#aEntrarUsr").hide();
+                        $("#aEntrarAdm").hide();
+                    } else {
+                        $("#aCliente").hide();
+                        $("#aGerente").hide();
+                        $("#aSair").hide();
+                        $("#aEntrarUsr").show();
+                        $("#aEntrarAdm").show();
+                    }
+                });
+            });
+        </script>
     </header>
     <main>
         <div class="background-container">
