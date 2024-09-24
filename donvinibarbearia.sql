@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 18-Set-2024 às 19:07
--- Versão do servidor: 10.4.24-MariaDB
--- versão do PHP: 8.0.19
+-- Tempo de geração: 24/09/2024 às 04:15
+-- Versão do servidor: 10.4.32-MariaDB
+-- Versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `agendamentos`
+-- Estrutura para tabela `agendamentos`
 --
 
 CREATE TABLE `agendamentos` (
@@ -35,31 +35,36 @@ CREATE TABLE `agendamentos` (
   `DIA` date NOT NULL,
   `HORARIO` time NOT NULL,
   `FK_EMAIL` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `cliente`
+-- Estrutura para tabela `cliente`
 --
 
 CREATE TABLE `cliente` (
   `NOME` varchar(255) NOT NULL,
   `EMAIL` varchar(255) NOT NULL,
   `SENHA` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `cliente`
+-- Despejando dados para a tabela `cliente`
 --
 
 INSERT INTO `cliente` (`NOME`, `EMAIL`, `SENHA`) VALUES
+('Homem-Aranha', 'caio@gmail.com', '$2y$10$J3ctZeUEUMyCoaRLAkrqLOEreG.jLvgZwpitqXlXvNOMJJnC6fygO'),
+('Eu', 'g@mail.com', '$2y$10$bXlxgiCAQv1Pz4MFmZsjkuSDGke8CVLoGT.3lUqB56DQsnB/mOo2C'),
+('gaby', 'gaby@gmail.com', '$2y$10$3DmxnEDa55xRLEiMFHJvBufFnyxFY4cHBS58ubEWig6/OwVxsLVNi'),
+('joão', 'joao@gmail.com', '$2y$10$e7HKpxISvYjYpAsLfHiML.YcgeAfgIXCHou7xuZfD.JrpPVCSKCGu'),
+('lucas', 'lucas@gmail.com', '$2y$10$lvg.3WwLHUQhs9vZKHgiGeW7uOWjaGRs4xDnV/ph5oIsuy.wvCcpG'),
 ('samuel', 's@gmail.com', '$2y$10$5xibOk2CwUS86BClfhdCpuGsuCi/IHamzfqxwAaSr.suoMDpwpM8W');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `funcionario`
+-- Estrutura para tabela `funcionario`
 --
 
 CREATE TABLE `funcionario` (
@@ -69,24 +74,24 @@ CREATE TABLE `funcionario` (
   `UNIDADE` int(2) NOT NULL,
   `SENHA` varchar(250) NOT NULL,
   `CONFIRMARSENHA` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `galeria`
+-- Estrutura para tabela `galeria`
 --
 
 CREATE TABLE `galeria` (
   `ID` int(100) NOT NULL,
   `LOCALIZACAO` int(3) NOT NULL,
   `IMAGEM` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `gerente`
+-- Estrutura para tabela `gerente`
 --
 
 CREATE TABLE `gerente` (
@@ -94,45 +99,52 @@ CREATE TABLE `gerente` (
   `EMAIL` varchar(250) NOT NULL,
   `SENHA` varchar(250) NOT NULL,
   `NOME` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `gerente`
+--
+
+INSERT INTO `gerente` (`CODIGO`, `EMAIL`, `SENHA`, `NOME`) VALUES
+('12345', 'gerente@gmail.com', '123', 'gerente');
 
 --
 -- Índices para tabelas despejadas
 --
 
 --
--- Índices para tabela `agendamentos`
+-- Índices de tabela `agendamentos`
 --
 ALTER TABLE `agendamentos`
   ADD PRIMARY KEY (`SVC_ID`),
   ADD KEY `FK_EMAIL` (`FK_EMAIL`);
 
 --
--- Índices para tabela `cliente`
+-- Índices de tabela `cliente`
 --
 ALTER TABLE `cliente`
   ADD PRIMARY KEY (`EMAIL`);
 
 --
--- Índices para tabela `funcionario`
+-- Índices de tabela `funcionario`
 --
 ALTER TABLE `funcionario`
   ADD PRIMARY KEY (`CODIGO`);
 
 --
--- Índices para tabela `galeria`
+-- Índices de tabela `galeria`
 --
 ALTER TABLE `galeria`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Índices para tabela `gerente`
+-- Índices de tabela `gerente`
 --
 ALTER TABLE `gerente`
   ADD PRIMARY KEY (`CODIGO`);
 
 --
--- AUTO_INCREMENT de tabelas despejadas
+-- AUTO_INCREMENT para tabelas despejadas
 --
 
 --
@@ -148,11 +160,11 @@ ALTER TABLE `galeria`
   MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT;
 
 --
--- Restrições para despejos de tabelas
+-- Restrições para tabelas despejadas
 --
 
 --
--- Limitadores para a tabela `agendamentos`
+-- Restrições para tabelas `agendamentos`
 --
 ALTER TABLE `agendamentos`
   ADD CONSTRAINT `agendamentos_ibfk_1` FOREIGN KEY (`FK_EMAIL`) REFERENCES `cliente` (`EMAIL`);
