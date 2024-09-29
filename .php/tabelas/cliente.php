@@ -44,7 +44,6 @@
 
         function cadastrar($nome, $email, $senha, $token, $emailVerified) {
             $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
-            $token = bin2hex(random_bytes(10));
             $sql = "INSERT INTO cliente (nome, email, senha, token, email_verified) VALUES 
                 (?, ?, ?, ?, ?)";
             $stmt = $this->conn->prepare($sql);

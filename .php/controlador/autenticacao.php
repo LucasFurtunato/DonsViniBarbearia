@@ -12,7 +12,10 @@ class autenticacao {
         $result = $stmt->get_result();
         if ($result->num_rows === 1) {
             $cliente = $result->fetch_assoc();
-            if (password_verify($senha, $cliente['SENHA'])) {
+            if ($cliente['EMAIL_VERIFIED'] == 0) {
+                return false;
+            }
+            else if (password_verify($senha, $cliente['SENHA'])) {
                 return $cliente;
             }
         }

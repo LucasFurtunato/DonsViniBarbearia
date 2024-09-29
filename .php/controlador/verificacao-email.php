@@ -30,7 +30,7 @@ function enviarEmailConfirmacao($email, $token){
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
         $mail->Subject = 'Comfirme seu Email';
-        $link = "localhost/dvinibarbearia/confirmar-email.php?token=" . urlencode($token);
+        $link = "localhost/dvinibarbearia/.php/controlador/confirmar-email.php?token=" . urlencode($token);
         $mail->Body    = "Olá,<br><br>Por favor, clique no link abaixo para confirmar seu e-mail:<br><br>
                           <a href='$link'>$link</a><br><br>Se você não solicitou isso, ignore este e-mail.";
         $mail->AltBody = 'Por favor, copie e cole este link no navegador para confirmar seu e-mail: $link';

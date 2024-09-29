@@ -84,7 +84,7 @@
                     </label>
                     <label id="cUsrPassInvalid">Senha e confirmar senha não são iguais</label>
                     <label id="cErroInvalid">Houve algum erro ao cadastrar</label>
-                    <label id="cUsrPassValid"></label> 
+                    <label id="cUsrPassValid">Enviamos um email para você confirmá-lo</label> 
                     <button type="button" class="btn btn-second" id="btnCadastro">Criar</button>
                     <script type="text/javascript">
                         $(document).ready(function(){
@@ -113,8 +113,6 @@
                                         $("#cUsrPassInvalid").hide();
                                         $("#cUsrPassValid").show();
                                         $("#cErroInvalid").hide();
-
-                                        $("#cUsrPassValid").text(objRetorno.erro);
                                     }
                                 });
                             });
