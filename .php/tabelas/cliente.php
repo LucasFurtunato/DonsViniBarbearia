@@ -4,6 +4,8 @@
         private $nome;
         private $email;
         private $senha;
+        private $token;
+        private $emailVerified;
 
         function __construct($conn){
             $this->conn = $conn;
@@ -27,12 +29,26 @@
         function set_senha($senha){
             $this->senha = $senha;
         }
-        function cadastrar($nome, $email, $senha) {
+        function get_token(){
+            return $this->token;
+        }
+        function set_token($token){
+            $this->token = $token;
+        }
+        function get_emailVerified(){
+            return $this->emailVerified;
+        }
+        function set_emailVerified($emailVerified){
+            $this->emailVerified = $emailVerified;
+        }
+
+        function cadastrar($nome, $email, $senha, $token, $emailVerified) {
             $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
-            $sql = "INSERT INTO cliente (nome, email, senha) VALUES 
-                (?, ?, ?)";
+            $token = bin2hex(random_bytes(10));
+            $sql = "INSERT INTO cliente (nome, email, senha, token, email_verified) VALUES 
+                (?, ?, ?, ?, ?)";
             $stmt = $this->conn->prepare($sql);
-            $stmt->bind_param("sss", $nome, $email, $senhaHash);
+            $stmt->bind_param("ssssi", $nome, $email, $senhaHash, $token, $emailVerified);
             
             if ($stmt->execute()) {
                 return true;
