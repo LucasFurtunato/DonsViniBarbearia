@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 24/09/2024 às 04:15
+-- Tempo de geração: 29/09/2024 às 17:28
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -46,20 +46,10 @@ CREATE TABLE `agendamentos` (
 CREATE TABLE `cliente` (
   `NOME` varchar(255) NOT NULL,
   `EMAIL` varchar(255) NOT NULL,
-  `SENHA` varchar(255) NOT NULL
+  `SENHA` varchar(255) NOT NULL,
+  `TOKEN` varchar(100) NOT NULL,
+  `EMAIL_VERIFIED` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `cliente`
---
-
-INSERT INTO `cliente` (`NOME`, `EMAIL`, `SENHA`) VALUES
-('Homem-Aranha', 'caio@gmail.com', '$2y$10$J3ctZeUEUMyCoaRLAkrqLOEreG.jLvgZwpitqXlXvNOMJJnC6fygO'),
-('Eu', 'g@mail.com', '$2y$10$bXlxgiCAQv1Pz4MFmZsjkuSDGke8CVLoGT.3lUqB56DQsnB/mOo2C'),
-('gaby', 'gaby@gmail.com', '$2y$10$3DmxnEDa55xRLEiMFHJvBufFnyxFY4cHBS58ubEWig6/OwVxsLVNi'),
-('joão', 'joao@gmail.com', '$2y$10$e7HKpxISvYjYpAsLfHiML.YcgeAfgIXCHou7xuZfD.JrpPVCSKCGu'),
-('lucas', 'lucas@gmail.com', '$2y$10$lvg.3WwLHUQhs9vZKHgiGeW7uOWjaGRs4xDnV/ph5oIsuy.wvCcpG'),
-('samuel', 's@gmail.com', '$2y$10$5xibOk2CwUS86BClfhdCpuGsuCi/IHamzfqxwAaSr.suoMDpwpM8W');
 
 -- --------------------------------------------------------
 

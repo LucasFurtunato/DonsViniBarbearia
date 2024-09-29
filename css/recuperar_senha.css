@@ -55,6 +55,7 @@ nav {
 .nav-list {
     list-style: none;
     display: flex;
+    z-index: 9999;
 }
 
 .nav-list li {
@@ -200,8 +201,7 @@ nav {
     height: 45px; /* altura dos imputs */
     width: 100%; /* largura dos imputs */
     border: none; /* retirar a borda */
-    background-color: #ecf0f1; /* cor de fundo dos imputs */
-    padding: 8px;
+    background-color: #ecf0f1 /* cor de fundo dos imputs */
 }
 
 
@@ -212,6 +212,8 @@ nav {
     margin: 8px; /* espaçamento entre os campos do formulário */
     position: relative;
 }
+
+
 
 .btn {
     border-radius: 15px; /* deixar arredondado o botão */
@@ -226,11 +228,13 @@ nav {
     border: none; /* retirar borda do botão */
     margin-top: 1rem; /* distanciar do conteudo de cima */
 }
+
 .btn-password{
     position: absolute;
     right: 0;
     z-index: 100;
 }
+
 
 .btn-second {
     background-color: #f8c66f; /* cor de fundo do botão */ 
@@ -298,8 +302,4 @@ nav {
     .footer-content {
         flex-direction: column;
     }
-}
-
-.space_icon{
-    margin: 10px;
 }

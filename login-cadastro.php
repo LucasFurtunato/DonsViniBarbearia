@@ -164,7 +164,7 @@
                         </div> 
                     </label>
                     <label id="lUsrPassInvalid">Usuário ou senha inválidos</label>
-                    <a class="password" href="#">Esqueceu sua senha?</a>
+                    <a class="password" href="recuperar-senha.html">Esqueceu sua senha?</a>
                     <button type="button" class="btn btn-second" id="btnLogin">Entrar</button>
                     <script type="text/javascript">
                         $(document).ready(function(){

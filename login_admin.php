@@ -1,4 +1,5 @@
 </html>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -9,10 +10,8 @@
   <link rel="stylesheet" href="css/login_admin.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <link rel="shortcut icon" type="imagex/png" href="./img/favicon.png">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  </head>
+</head>
 
 <body>
 
@@ -40,26 +39,34 @@
                     <p class="description description-second">insira os dados para acessar ao ambiente</p>
                     <form class="form" id="frmLogin">
                         <label class="label-input" for="">
+                          <div class="space_icon">
                             <i class="far fa-user icon-modify"></i> <!-- imagem usuario -->
-                            <input type="text" placeholder="Código" name="codigo" maxlength="50" required>
+                          </div>
+                            <input type="text" placeholder="Código" name="codigo" maxlength="50">
                         </label>
                         
                         <label class="label-input" for="">
+                          <div class="space_icon">
                             <i class="far fa-envelope icon-modify"></i> <!-- imagem email -->
-                            <input type="email" placeholder="Email" name="email" maxlength="50" id="email" required>
+                          </div>
+                            <input type="email" placeholder="Email" name="email" maxlength="50" id="email">
                         </label>
                         
                         <label class="label-input" for="">
+                          <div class="space_icon">
                             <i class="fas fa-lock icon-modify"></i> <!-- imagem senha -->
-                            <input type="password" placeholder="Senha" name="senha" maxlength="50" id="password-1" required>
+                          </div>
+                            <input type="password" placeholder="Senha" name="senha" maxlength="50" id="password-1">
                             <div class="btn-password">
                                 <i class="bi bi-eye" id="btn-password-1" onclick="mostrarSenha1()"></i>
                             </div>
                         </label>
     
                         <label class="label-input" for="">
-                            <i class="fas fa-lock icon-modify"></i> <!-- imagem senha -->
-                            <input type="password" placeholder="Confirmar senha" name="confirmarsenha" maxlength="50" id="password-2" required>
+                            <div class="space_icon">  
+                              <i class="fas fa-lock icon-modify"></i> <!-- imagem senha -->
+                            </div>
+                            <input type="password" placeholder="Confirmar senha" name="confirmarsenha" maxlength="50" id="password-2">
                             <div class="btn-password">
                                 <i class="bi bi-eye" id="btn-password-2" onclick="mostrarSenha2()"></i>
                             </div> 
@@ -80,7 +87,7 @@
                                   });
                               });
                           });
-                        </script>
+                        </script>       
                     </form>
                 </div><!-- second column -->
             </div><!-- first content -->
@@ -96,7 +103,8 @@
   </footer>
 
   <script src="js/mobile-navbar.js"></script>
-  <script src="js/gerente.js"></script>
+  <script src="js/login_admin.js"></script>
 
 </body>
+
 </html>

@@ -178,6 +178,7 @@ nav {
 
 .title-second {
     color: #f8c66f; /* cor para o título da segunda coluna */
+    margin-bottom: 5%;
 }
 
 .description {
@@ -213,6 +214,13 @@ nav {
     position: relative;
 }
 
+
+.btn-fig{
+    position: absolute;
+    right: 0;
+    z-index: 100;
+}
+
 .btn {
     border-radius: 15px; /* deixar arredondado o botão */
     text-transform: uppercase; /* deixar letra maiuscula */
@@ -221,15 +229,10 @@ nav {
     padding: 10px 50px; /* tamanho interno do botão */
     cursor: pointer; /* cursor para indicar click */
     font-weight: bold; /*negrito */
-    width: 150px; /* largura do botão */
+    width: 200px; /* largura do botão */
     align-self: center; /* alinhar todos os botões no centro */
     border: none; /* retirar borda do botão */
     margin-top: 1rem; /* distanciar do conteudo de cima */
-}
-.btn-password{
-    position: absolute;
-    right: 0;
-    z-index: 100;
 }
 
 .btn-second {
@@ -244,6 +247,9 @@ nav {
     color: #f8c66f; /* cor da letra */
 }
 
+.btn-second1, .btn-second2, .btn-second3{
+    margin-bottom: 4%;
+}
 
 /*VERSÃO MOBILE*/
 @media screen and (max-width: 1040px) {
@@ -300,6 +306,26 @@ nav {
     }
 }
 
+.btn-password{
+    position: absolute;
+    right: 0;
+    z-index: 100;
+}
+
 .space_icon{
     margin: 10px;
 }
+
+.cancel-btn {
+    background-color: #e74c3c; /* Cor para o botão cancelar */
+    border: 1px solid #e74c3c;
+    transition: background-color .5s;
+}
+
+.cancel-btn:hover {
+    background-color: #fff;
+    border: 1px solid #e74c3c;
+    color: #e74c3c;
+}
+
+
