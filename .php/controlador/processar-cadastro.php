@@ -18,7 +18,7 @@ if (isset($_REQUEST['nome']) && isset($_REQUEST['email']) && isset($_REQUEST['se
         $email = $_REQUEST['email'];
         $senha = $_REQUEST["senha"];
         $confirmarsenha = $_REQUEST["confirmarsenha"];
-        $token = bin2hex(random_bytes(10));
+        $token = bin2hex(random_bytes(50));
 
         if ($senha === $confirmarsenha) 
             {
