@@ -49,17 +49,9 @@
                         </label> 
                         <button type="button" class="btn btn-second" id="btn-second-1">Enviar</button>
                         <label id="lTeste">a</label>
-                        <script type="text/javascript">
-                            $(document).ready(function(){
-                                $("#btn-second-1").click(function(){
-                                    $.post(".php\controlador\processar-recuperar-senha.php", $("#frmAlter").serialize(), function(dados){
-                                        var objRetorno = JSON.parse(dados);
-                                        $("#lTeste").text(objRetorno.oi);
-                                    })
-                                })
-                            })
-                        </script>
-
+                    </form>
+                        
+                    <form class="form">
                         <br><div id="msgEmailInput"></div>
 
                         <label class="label-input" for="" id="input2">

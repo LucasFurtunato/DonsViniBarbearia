@@ -13,10 +13,16 @@ $(document).ready(function() {
     $('#btn-second-1').click(function(event) {
         event.preventDefault(); // Evita o comportamento padrão do botão de envio
         if(   ($("#email").val()).indexOf("@") >= 0 ){
+
             // Esconde o campo de email e o botão "Enviar"
             $('#email, #btn-second-1, #apagar_icon').hide();
             // Mostra os campos de código de verificação, nova senha e o botão "Entrar"
             $('#input2, #input3, #input4, #btn-second-2').show();
+
+            $.post(".php/controlador/processar-recuperar-senha.php", $("#frmAlter").serialize(), function(dados){
+                var objRetorno = JSON.parse(dados);
+               
+            })
 
         } else {
             $("#email").css('background-color', "#FFAAAA");
