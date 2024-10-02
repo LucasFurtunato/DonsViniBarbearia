@@ -63,7 +63,7 @@ function enviarCodRecuperacaoSenha($email, $token){
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
         $mail->Subject = 'Codigo de recuperação de senha';
-        $mail->Body    = "Olá,<br><br>Por favor, clique no link abaixo para recuperar sua senha:<br><br>
+        $mail->Body    = "Olá,<br><br>Por favor, use o código abaixo para recuperar sua senha:<br><br>
                           <h2>$token</h2><br><br>Se você não solicitou isso, ignore este e-mail.";
         $mail->AltBody = 'Por favor, copie e cole este link no navegador para recuperar sua senha: $link';
 

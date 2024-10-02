@@ -41,7 +41,7 @@
                 <div class="second-column">
                     <h2 class="title title-second ">Recuperar senha</h2>
                     <p class="description description-second"></p>
-                    <form class="form" id="frmAlter">
+                    <form class="form" id="frmEmail">
 
                         <label class="label-input" for="">
                             <i class="far fa-envelope icon-modify" id="apagar_icon"></i> <!-- imagem email -->
@@ -51,17 +51,17 @@
                         <label id="lStatus">Aguarde</label>
                     </form>
                         
-                    <form class="form">
+                    <form class="form" id="frmSenha">
                         <br><div id="msgEmailInput"></div>
 
                         <label class="label-input" for="" id="input2">
                             <i class="far fa-user icon-modify"></i> <!-- imagem usuario -->
-                            <input type="text" placeholder="Código de verificação" maxlength="50">
+                            <input type="text" placeholder="Código de verificação" name="token" maxlength="50">
                         </label>                                              
 
                         <label class="label-input" for="" id="input3">
                             <i class="fas fa-lock icon-modify"></i> <!-- imagem senha -->
-                            <input type="password" placeholder="Nova senha" maxlength="50" id="password-1">
+                            <input type="password" placeholder="Nova senha" name="senha" maxlength="50" id="password-1">
                             <div class="btn-password">
                                 <i class="bi bi-eye" id="btn-password-1" onclick="mostrarSenha1()"></i>
                             </div>
@@ -69,12 +69,12 @@
 
                         <label class="label-input" for="" id="input4">
                             <i class="fas fa-lock icon-modify"></i> <!-- imagem senha -->
-                            <input type="password" placeholder="Confirmar senha" maxlength="50" id="password-2">
+                            <input type="password" placeholder="Confirmar senha" name="confirmarsenha" maxlength="50" id="password-2">
                             <div class="btn-password">
                                 <i class="bi bi-eye" id="btn-password-2" onclick="mostrarSenha2()"></i>
                             </div> 
                         </label>      
-                        <button class="btn btn-second" id="btn-second-2">Entrar</button>        
+                        <button type="button" class="btn btn-second" id="btn-second-2">Entrar</button>        
                     </form>
                 </div><!-- second column -->
             </div><!-- first content -->

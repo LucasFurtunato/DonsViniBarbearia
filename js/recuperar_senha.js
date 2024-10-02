@@ -20,7 +20,7 @@ $(document).ready(function() {
             // Mostra os campos de código de verificação, nova senha e o botão "Entrar"
             $('#input2, #input3, #input4, #btn-second-2, #lStatus').show();
             
-            $.post(".php/controlador/processar-recuperar-senha.php", $("#frmAlter").serialize(), function( dados ){
+            $.post(".php/controlador/processar-recuperar-senha.php", $("#frmEmail").serialize(), function( dados ){
                 var objRetorno = JSON.parse(dados);
                 $("#lStatus").text(objRetorno.texto);
             })
@@ -38,7 +38,16 @@ $(document).ready(function() {
     // Ao clicar no botão "Entrar"
     $('#btn-second-2').click(function(event) {
         event.preventDefault(); // Evita o comportamento padrão do botão "Entrar"
+        $("#lStatus").text("Aguarde um momento novamente");
 
+        $.post(".php/controlador/processar-trocar-senha.php", $("#frmSenha").serialize(), function( dados ){
+            var objRetorno = JSON.parse(dados);
+            $("#lStatus").text(objRetorno.texto);
+
+            if (objRetorno.texto == "Nova senha cadastrada com sucesso"){
+                window.location.href = 'index.php';
+            }
+        })
     });
 
     // Função para alternar visibilidade da senha no campo 1
