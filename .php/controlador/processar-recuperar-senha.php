@@ -1,5 +1,6 @@
 <?php
 include "../repositorio/conexao.php";
+include "verificacao-email.php";
 
 $respostaJson = array();
 
@@ -7,7 +8,7 @@ $token = "";
 $email = "";
 
 if(isset($_REQUEST["email"])) {
-    $email=$_REQUEST["email"];
+    $email = $_REQUEST["email"];
     
     $sql="SELECT * FROM cliente WHERE EMAIL = ?";
     $stmt= $conn->prepare($sql);
@@ -25,5 +26,8 @@ if(isset($_REQUEST["email"])) {
         $stmt->execute();
 
         enviarCodRecuperacaoSenha($email, $token);
+
+        $respostaJson["texto"] = "código enviado para seu email";
+        echo json_encode($respostaJson, JSON_UNESCAPED_UNICODE);
     }
 }

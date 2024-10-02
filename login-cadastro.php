@@ -93,9 +93,6 @@
                             $("#cErroInvalid").hide();
 
                             $("#btnCadastro").click(function(){
-                                console.log("enviar login!");
-                                console.log( $("#frmCadastro").serialize() );
-
                                 $.post(".php/controlador/processar-cadastro.php", $("#frmCadastro").serialize(), function( dados ){
 
                                     var objRetorno = JSON.parse(dados);

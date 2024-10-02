@@ -7,7 +7,8 @@ function validateEmail(email) {
 
 $(document).ready(function() {
     // Esconde os campos de código de verificação, nova senha e botão "Entrar" no início
-    $('#input2, #input3, #input4, #btn-second-2').hide(); 
+    $('#input2, #input3, #input4, #btn-second-2').hide();
+    $("#lStatus").hide();
 
     // Ao clicar no botão "Enviar"
     $('#btn-second-1').click(function(event) {
@@ -17,11 +18,11 @@ $(document).ready(function() {
             // Esconde o campo de email e o botão "Enviar"
             $('#email, #btn-second-1, #apagar_icon').hide();
             // Mostra os campos de código de verificação, nova senha e o botão "Entrar"
-            $('#input2, #input3, #input4, #btn-second-2').show();
-
-            $.post(".php/controlador/processar-recuperar-senha.php", $("#frmAlter").serialize(), function(dados){
+            $('#input2, #input3, #input4, #btn-second-2, #lStatus').show();
+            
+            $.post(".php/controlador/processar-recuperar-senha.php", $("#frmAlter").serialize(), function( dados ){
                 var objRetorno = JSON.parse(dados);
-               
+                $("#lStatus").text(objRetorno.texto);
             })
 
         } else {
