@@ -29,7 +29,7 @@
                 <li>
                     <a href="#" class="login-button" id="aCliente"></a>
                     <a href="#" class="login-button" id="aGerente"></a>
-                    <a href=".php/controlador/logout.php" id="aSair">Sair</a>
+                    <a href="php/controlador/logout.php" id="aSair">Sair</a>
 
                     <a href="login-cadastro.php" class="login-button" id="aEntrarUsr">Entrar</a>
                     <a href="login_admin.php" class="login-button" id="aEntrarAdm">Entrar Admin</a>
@@ -37,7 +37,7 @@
         </nav>
         <script type="text/javascript">
             $(document).ready(function(){
-                $.get( '.php/controlador/verificacao-login.php', function(dados) {
+                $.get( 'php/controlador/verificacao-login.php', function(dados) {
                     var objRetorno = JSON.parse(dados)
 
                     if (objRetorno.usrType == "cliente"){

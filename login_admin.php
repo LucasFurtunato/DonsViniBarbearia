@@ -77,7 +77,7 @@
                           $(document).ready(function(){
                               $("#lFunPassInvalid").hide();
                               $("#btnLogin").click(function(){
-                                  $.post(".php/controlador/processar-login-gerente.php", $("#frmLogin").serialize(), function( dados ){
+                                  $.post("php/controlador/processar-login-gerente.php", $("#frmLogin").serialize(), function( dados ){
                                       var objRetorno = JSON.parse(dados);
                                       if ( objRetorno.login == "false"){
                                           $("#lFunPassInvalid").show();

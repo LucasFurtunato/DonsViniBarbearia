@@ -56,7 +56,7 @@
                     </ul>
                 </div><!-- social media -->
                 <p class="description description-second">ou use seu e-mail para cadastro</p>
-                <form class="form" id="frmCadastro"> <!-- action=".php/controlador/processar-cadastro.php" -->
+                <form class="form" id="frmCadastro">
                     <label class="label-input" for="">
                         <i class="far fa-user icon-modify"></i> <!-- imagem usuario -->
                         <input type="text" placeholder="Nome" name="nome" maxlength="50" required>
@@ -93,7 +93,7 @@
                             $("#cErroInvalid").hide();
 
                             $("#btnCadastro").click(function(){
-                                $.post(".php/controlador/processar-cadastro.php", $("#frmCadastro").serialize(), function( dados ){
+                                $.post("php/controlador/processar-cadastro.php", $("#frmCadastro").serialize(), function( dados ){
 
                                     var objRetorno = JSON.parse(dados);
                                     
@@ -147,7 +147,7 @@
                     </ul>
                 </div><!-- social media -->
                 <p class="description description-second">ou use sua conta registrada:</p>
-                <form class="form" id="frmLogin"> <!-- action=".php/controlador/processar-login.php" -->
+                <form class="form" id="frmLogin">
                     <label class="label-input" for="">
                         <i class="far fa-envelope icon-modify"></i>
                         <input type="email" placeholder="Email" name="email" maxlength="50" required>
@@ -167,7 +167,7 @@
                         $(document).ready(function(){
                             $("#lUsrPassInvalid").hide();
                             $("#btnLogin").click(function(){
-                                $.post(".php/controlador/processar-login.php", $("#frmLogin").serialize(), function( dados ){
+                                $.post("php/controlador/processar-login.php", $("#frmLogin").serialize(), function( dados ){
                                     var objRetorno = JSON.parse(dados);
                                     if ( objRetorno.login == "false"){
                                         $("#lUsrPassInvalid").show();

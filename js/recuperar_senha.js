@@ -20,7 +20,7 @@ $(document).ready(function() {
             // Mostra os campos de código de verificação, nova senha e o botão "Entrar"
             $('#input2, #input3, #input4, #btn-second-2, #lStatus').show();
             
-            $.post(".php/controlador/processar-recuperar-senha.php", $("#frmEmail").serialize(), function( dados ){
+            $.post("php/controlador/processar-recuperar-senha.php", $("#frmEmail").serialize(), function( dados ){
                 var objRetorno = JSON.parse(dados);
                 $("#lStatus").text(objRetorno.texto);
             })
@@ -40,7 +40,7 @@ $(document).ready(function() {
         event.preventDefault(); // Evita o comportamento padrão do botão "Entrar"
         $("#lStatus").text("Aguarde um momento novamente");
 
-        $.post(".php/controlador/processar-trocar-senha.php", $("#frmSenha").serialize(), function( dados ){
+        $.post("php/controlador/processar-trocar-senha.php", $("#frmSenha").serialize(), function( dados ){
             var objRetorno = JSON.parse(dados);
             $("#lStatus").text(objRetorno.texto);
 
