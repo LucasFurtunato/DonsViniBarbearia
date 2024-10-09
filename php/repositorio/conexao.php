@@ -1,8 +1,8 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$databasename = "donvinibarbearia";
+$servername = "144.217.39.54";
+$username = "hostdeprojetos";
+$password = "ifspgru@2022";
+$databasename = "hostdeprojetos_donvinibarbearia";
 
 //criação da conexão
 $conn = new mysqli($servername, $username, $password, $databasename);
