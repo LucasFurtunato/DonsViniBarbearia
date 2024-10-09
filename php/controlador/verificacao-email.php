@@ -18,7 +18,7 @@ function enviarEmailConfirmacao($email, $token){
         $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
         $mail->Username   = 'lucasfurtunato11@gmail.com';                     //SMTP username
-        $mail->Password   = 'tiun evrn rgwl vliv';                               //SMTP password
+        $mail->Password   = 'gbxx kuhh anbt spkp';                               //SMTP password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
         $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
@@ -30,7 +30,7 @@ function enviarEmailConfirmacao($email, $token){
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
         $mail->Subject = 'Comfirme seu Email';
-        $link = "localhost/donvinibarbearia/php/controlador/confirmar-email.php?token=" . urlencode($token);
+        $link = "https://donsvinibarbearia.hostdeprojetosdoifsp.gru.br/php/controlador/confirmar-email.php?token=" . urlencode($token);
         $mail->Body    = "Olá,<br><br>Por favor, clique no link abaixo para confirmar seu e-mail:<br><br>
                           <a href='$link'>$link</a><br><br>Se você não solicitou isso, ignore este e-mail.";
         $mail->AltBody = 'Por favor, copie e cole este link no navegador para confirmar seu e-mail: $link';
@@ -51,7 +51,7 @@ function enviarCodRecuperacaoSenha($email, $token){
         $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
         $mail->Username   = 'lucasfurtunato11@gmail.com';                     //SMTP username
-        $mail->Password   = 'tiun evrn rgwl vliv';                               //SMTP password
+        $mail->Password   = 'gbxx kuhh anbt spkp';                               //SMTP password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
         $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
