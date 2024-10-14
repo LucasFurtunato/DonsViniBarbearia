@@ -26,13 +26,18 @@
                 <li><a href="#services">Serviços</a></li>
                 <li><a href="#gallery">Galeria</a></li>
                 <li><a href="#contact">Contato</a></li>
-                <li>
+                <li class="login-item">
                     <a href="#" class="login-button" id="aCliente"></a>
                     <a href="#" class="login-button" id="aGerente"></a>
-                    <a href="php/controlador/logout.php" id="aSair">Sair</a>
+                    <a href="#" class="login-button" id="aEntrarUsr">Entrar</a>
 
-                    <a href="login-cadastro.php" class="login-button" id="aEntrarUsr">Entrar</a>
-                    <a href="login_admin.php" class="login-button" id="aEntrarAdm">Entrar Admin</a>
+                    <div class="login-submenu">
+                        <a href="#" id="aAgenda">Agenda</a>
+                        <a href="php/controlador/logout.php" id="aSair">Sair</a>
+                        <a href="login-cadastro.php" id="aEntrarUsr">Entrar Cliente</a>
+                        <a href="login_admin.php" id="aEntrarAdm">Entrar Admin</a>
+                    </div>
+                </li>
             </ul>
         </nav>
         <script type="text/javascript">
@@ -46,6 +51,7 @@
                         $("#aCliente").show();
                         $("#aGerente").hide();
                         $("#aSair").show();
+                        $("#aAgenda").show();
                         $("#aEntrarUsr").hide();
                         $("#aEntrarAdm").hide();
                     } else if (objRetorno.usrType == "gerente"){
@@ -54,12 +60,14 @@
                         $("#aCliente").hide();
                         $("#aGerente").show();
                         $("#aSair").show();
+                        $("#aAgenda").show();
                         $("#aEntrarUsr").hide();
                         $("#aEntrarAdm").hide();
                     } else {
                         $("#aCliente").hide();
                         $("#aGerente").hide();
                         $("#aSair").hide();
+                        $("#aAgenda").hide();
                         $("#aEntrarUsr").show();
                         $("#aEntrarAdm").show();
                     }

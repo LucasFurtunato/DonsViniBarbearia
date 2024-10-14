@@ -103,6 +103,8 @@ nav {
 
 
 
+
+
 @media (max-width: 999px) {
     body {
         overflow-x: hidden;
@@ -142,6 +144,29 @@ nav {
     transform: translateX(0);
 }
 
+@keyframes navLinkFade {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.mobile-menu.active .line1 {
+    transform: rotate(-45deg) translate(-8px, 8px);
+}
+
+.mobile-menu.active .line2 {
+    opacity: 0;
+}
+
+.mobile-menu.active .line3 {
+    transform: rotate(45deg) translate(-5px, -7px);
+}
 
 /* Div container */
 
@@ -155,9 +180,8 @@ nav {
 .title-second {
     color: #f8c66f;
     /* cor para o título da segunda coluna */
+    text-align: center;
     margin-top: 20px;
-    width: 100%; /* Garante que a largura seja 100% */
-    text-align: center; /* Centraliza o texto dentro do contêiner */
 }
 
 .btn {
@@ -228,6 +252,7 @@ nav {
     min-height: 80vh; /* Define uma altura mínima maior para acomodar melhor o conteúdo */
 }
 
+
 .first-content {
     display: flex;
     /* deixar uma coluna ao lado da outra */
@@ -239,7 +264,6 @@ nav {
 
 .first-collumn {
     margin-left: 7%;
-
 }
 
 .second-collumn {
@@ -294,10 +318,8 @@ h4 {
 }
 
 .content-to-toggle {
-        text-align: center;
-        display: none;
-        max-height: 150px; /* Define a altura máxima da lista */
-        overflow-y: scroll; /* Adiciona a barra de rolagem vertical */
+    text-align: center;
+    display: none;
 }
 
 .itens {
@@ -319,31 +341,59 @@ h4 {
     padding-top: 0; /* Remove padding superior se existir */
 }
 
+
+
+.content-to-toggle {
+    text-align: center;
+    display: none;
+    max-height: 150px; /* Define a altura máxima da lista */
+    overflow-y: scroll; /* Adiciona a barra de rolagem vertical */
+}
+
 .itens {
-    list-style: none;
-    background-color: rgb(212, 212, 212);
-    cursor: pointer;
-    padding: 10px 0; /* Adiciona um pouco de padding para melhorar o layout */
+list-style: none;
+background-color: rgb(212, 212, 212);
+cursor: pointer;
+}
+
+.first-collumn h4 {
+margin-top: 10px; /* Reduz a margem superior dos títulos para aproximar os botões do topo */
+}
+
+.first-collumn li {
+margin-bottom: 10px; /* Reduz a margem inferior entre os botões */
+}
+
+.first-collumn {
+margin-top: 0; /* Remove qualquer margem superior da coluna */
+padding-top: 0; /* Remove padding superior se existir */
+}
+
+.itens {
+list-style: none;
+background-color: rgb(212, 212, 212);
+cursor: pointer;
+padding: 10px 0; /* Adiciona um pouco de padding para melhorar o layout */
 }
 
 .itens li {
-    padding: 50px;
-    /* Adiciona um pouco de padding entre os itens */
+padding: 50px;
+/* Adiciona um pouco de padding entre os itens */
 }
 
 /* Estiliza a barra de rolagem */
 .content-to-toggle::-webkit-scrollbar {
-    width: 8px; /* Largura da barra de rolagem */
+width: 8px; /* Largura da barra de rolagem */
 }
 
 .content-to-toggle::-webkit-scrollbar-track {
-    background: #f1f1f1; /* Cor de fundo da trilha da barra de rolagem */
-    border-radius: 10px; /* Torna a trilha arredondada */
+background: #f1f1f1; /* Cor de fundo da trilha da barra de rolagem */
+border-radius: 10px; /* Torna a trilha arredondada */
 }
 
 .content-to-toggle::-webkit-scrollbar-thumb {
-    background-color: grey; /* Cor da "parte rolante" da barra */
-    border-radius: 10px; /* Torna a barra arredondada */
+background-color: grey; /* Cor da "parte rolante" da barra */
+border-radius: 10px; /* Torna a barra arredondada */
 }
 
 
@@ -364,3 +414,9 @@ h4 {
     /* Reduzi a margem superior de 30% para 5% */
 }
 
+
+@media screen and (max-width: 700px) {
+    .footer-content {
+        flex-direction: column;
+    }
+}
