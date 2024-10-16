@@ -29,7 +29,7 @@
                 <li class="login-item">
                     <a href="#" class="login-button" id="aCliente"></a>
                     <a href="#" class="login-button" id="aGerente"></a>
-                    <a href="#" class="login-button" id="aEntrarUsr">Entrar</a>
+                    <a href="#" class="login-button" id="aEntrar">Entrar</a>
 
                     <div class="login-submenu">
                         <a href="#" id="aAgenda">Agenda</a>
@@ -54,6 +54,7 @@
                         $("#aAgenda").show();
                         $("#aEntrarUsr").hide();
                         $("#aEntrarAdm").hide();
+                        $("#aEntrar").hide();
                     } else if (objRetorno.usrType == "gerente"){
                         $("#aGerente").text(objRetorno.name);
 
@@ -63,6 +64,7 @@
                         $("#aAgenda").show();
                         $("#aEntrarUsr").hide();
                         $("#aEntrarAdm").hide();
+                        $("#aEntrar").hide();
                     } else {
                         $("#aCliente").hide();
                         $("#aGerente").hide();
@@ -70,6 +72,7 @@
                         $("#aAgenda").hide();
                         $("#aEntrarUsr").show();
                         $("#aEntrarAdm").show();
+                        $("#aEntrar").show();
                     }
                 });
             });

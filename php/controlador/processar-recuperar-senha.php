@@ -29,33 +29,12 @@ if(isset($_REQUEST["email"])) {
 
         enviarCodRecuperacaoSenha($email, $token);
 
+        $respostaJson["valCompo"] = "true";
         $respostaJson["texto"] = "código enviado para seu email";
         echo json_encode($respostaJson, JSON_UNESCAPED_UNICODE);
-    }
-}
-
-if(isset($_REQUEST["token"]) && isset($_REQUEST["senha"]) & isset($_REQUEST["confirmarsenha"])) {
-    $email = $_REQUEST["token"];
-    $senha = $_REQUEST["senha"];
-    $confirmarsenha = $_REQUEST["confirmarsenha"];
-    
-    $sql="SELECT * FROM cliente WHERE token = ?";
-    $stmt= $conn->prepare($sql);
-    $stmt->bind_param('s',$token);
-    $stmt->execute();
-    $result=$stmt->get_result();
-
-    if ($result->num_rows > 0) {
-        if ( $senha === $confirmarsenha){
-        // Armazenar o senha no banco de dados
-        $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
-        $sql_update = "UPDATE cliente SET SENHA = ? WHERE TOKEN = ?";
-        $stmt = $conn->prepare($sql_update);
-        $stmt->bind_param('ss', $senhaHash, $token);
-        $stmt->execute();
-
-        $respostaJson["texto"] = "Nova senha cadastrada com sucesso";
+    } else {
+        $respostaJson["valCompo"] = "false";
+        $respostaJson["texto"] = "Este email não está registrado";
         echo json_encode($respostaJson, JSON_UNESCAPED_UNICODE);
-        }
     }
 }

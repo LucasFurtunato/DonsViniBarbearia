@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-  <title>Alterar Perfil</title>
+  <title>Login Admin</title>
   <link rel="stylesheet" href="css/login_admin.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -42,7 +42,7 @@
                           <div class="space_icon">
                             <i class="far fa-user icon-modify"></i> <!-- imagem usuario -->
                           </div>
-                            <input type="text" placeholder="Código" name="codigo" maxlength="50">
+                            <input type="text" placeholder="Código" name="codigo" maxlength="50" id="codigo">
                         </label>
                         
                         <label class="label-input" for="">
@@ -72,22 +72,7 @@
                             </div> 
                         </label>
                         <label id="lFunPassInvalid">Código, email ou senha inválidos</label>
-                        <button type="button" class="btn btn-second" id="btnLogin">Entrar</button>
-                        <script type="text/javascript">
-                          $(document).ready(function(){
-                              $("#lFunPassInvalid").hide();
-                              $("#btnLogin").click(function(){
-                                  $.post("php/controlador/processar-login-gerente.php", $("#frmLogin").serialize(), function( dados ){
-                                      var objRetorno = JSON.parse(dados);
-                                      if ( objRetorno.login == "false"){
-                                          $("#lFunPassInvalid").show();
-                                      }else{
-                                          window.location.href = 'index.php';
-                                      }
-                                  });
-                              });
-                          });
-                        </script>       
+                        <button type="button" class="btn btn-second" id="btnLogin">Entrar</button>    
                     </form>
                 </div><!-- second column -->
             </div><!-- first content -->

@@ -201,7 +201,8 @@ nav {
     height: 45px; /* altura dos imputs */
     width: 100%; /* largura dos imputs */
     border: none; /* retirar a borda */
-    background-color: #ecf0f1 /* cor de fundo dos imputs */
+    background-color: #ecf0f1; /* cor de fundo dos imputs */
+    padding: 8px;
 }
 
 
@@ -248,6 +249,9 @@ nav {
     color: #f8c66f; /* cor da letra */
 }
 
+.space_icon{
+    margin: 10px;
+}
 
 /*VERSÃO MOBILE*/
 @media screen and (max-width: 1040px) {

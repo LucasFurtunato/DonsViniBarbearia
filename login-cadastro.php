@@ -59,7 +59,7 @@
                 <form class="form" id="frmCadastro">
                     <label class="label-input" for="">
                         <i class="far fa-user icon-modify"></i> <!-- imagem usuario -->
-                        <input type="text" placeholder="Nome" name="nome" maxlength="50" required>
+                        <input type="text" placeholder="Nome" name="nome" maxlength="50" id="nome" required>
                     </label>
                     
                     <label class="label-input" for="">
@@ -86,35 +86,6 @@
                     <label id="cErroInvalid">Houve algum erro ao cadastrar</label>
                     <label id="cUsrPassValid">Enviamos um email para você confirmá-lo</label> 
                     <button type="button" class="btn btn-second" id="btnCadastro">Criar</button>
-                    <script type="text/javascript">
-                        $(document).ready(function(){
-                            $("#cUsrPassInvalid").hide();
-                            $("#cUsrPassValid").hide();
-                            $("#cErroInvalid").hide();
-
-                            $("#btnCadastro").click(function(){
-                                $.post("php/controlador/processar-cadastro.php", $("#frmCadastro").serialize(), function( dados ){
-
-                                    var objRetorno = JSON.parse(dados);
-                                    
-                                    if (objRetorno.cadastro == "false" && objRetorno.erro == "1"){
-                                        $("#cUsrPassInvalid").show();
-                                        $("#cUsrPassValid").hide();
-                                        $("#cErroInvalid").hide();
-                                    }else if (objRetorno.cadastro == "false" && objRetorno.erro == "2"){
-                                        $("#cUsrPassInvalid").hide();
-                                        $("#cUsrPassValid").hide();
-                                        $("#cErroInvalid").show();
-                                    }
-                                    else{
-                                        $("#cUsrPassInvalid").hide();
-                                        $("#cUsrPassValid").show();
-                                        $("#cErroInvalid").hide();
-                                    }
-                                });
-                            });
-                        });
-                    </script>
                 </form>
             </div><!-- second column -->
         </div><!-- first content -->
@@ -150,7 +121,7 @@
                 <form class="form" id="frmLogin">
                     <label class="label-input" for="">
                         <i class="far fa-envelope icon-modify"></i>
-                        <input type="email" placeholder="Email" name="email" maxlength="50" required>
+                        <input type="email" placeholder="Email" name="email" maxlength="50" id="email2" required>
                     </label>
                 
                     <label class="label-input" for="">
@@ -165,17 +136,7 @@
                     <button type="button" class="btn btn-second" id="btnLogin">Entrar</button>
                     <script type="text/javascript">
                         $(document).ready(function(){
-                            $("#lUsrPassInvalid").hide();
-                            $("#btnLogin").click(function(){
-                                $.post("php/controlador/processar-login.php", $("#frmLogin").serialize(), function( dados ){
-                                    var objRetorno = JSON.parse(dados);
-                                    if ( objRetorno.login == "false"){
-                                        $("#lUsrPassInvalid").show();
-                                    }else{
-                                        window.location.href = 'index.php';
-                                    }
-                                });
-                            });
+                            
                         });
                     </script>
                 </form>
@@ -189,6 +150,6 @@
     </div>
     </footer> 
     <script src="js/mobile-navbar.js"></script>
-    <script src="js/app.js"></script>
+    <script src="js/cadastro.js"></script>
 </body>
 </html>

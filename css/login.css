@@ -258,7 +258,8 @@ nav {
     height: 45px; /* altura dos imputs */
     width: 100%; /* largura dos imputs */
     border: none; /* retirar a borda */
-    background-color: #ecf0f1 /* cor de fundo dos imputs */
+    background-color: #ecf0f1; /* cor de fundo dos imputs */
+    padding: 8px;
 }
 input:-webkit-autofill 
 {    
