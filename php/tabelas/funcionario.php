@@ -59,7 +59,18 @@
             $this->senha = $senha;
             return $this;
         }
+        function cadastrarFun($codigo, $nome, $email, $fk_unidade, $senha) {
+            $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
+            $sql = "INSERT INTO funcionario (codigo, nome, email, fk_unidade, senha) VALUES 
+                (?, ?, ?, ?, ?)";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bind_param("sssis", $codigo, $nome, $email, $fk_unidade, $senhaHash);
+            
+            if ($stmt->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
-
-
 ?>

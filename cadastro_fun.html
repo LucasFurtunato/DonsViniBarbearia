@@ -39,37 +39,26 @@
                     <div class="second-column">
                         <h2 class="title title-second">Adicionar Funcionário</h2>
                         <p class="description description-second">insira as informações para cadastrar um funcionário</p>
-                        <form class="form">
-
-                            <label class="label-input" for="">
-                                <div class="space_icon">
-                                    <i class="fas fa-lock icon-modify"></i> <!-- imagem senha -->
-                                </div>
-                                <input type="password" placeholder="Senha atual" maxlength="50" id="password-1">
-                                <div class="btn-fig">
-                                    <i class="bi bi-eye" id="btn-password-1" onclick="mostrarSenha1()"></i>
-                                </div>
-                            </label>
-
+                        <form class="form" id="frmCadastroFun">
                             <label class="label-input" for="">
                                 <div class="space_icon">
                                     <i class="far fa-user icon-modify"></i> <!-- imagem usuario -->
                                 </div>
-                                <input type="text" placeholder="Código" maxlength="50" id="codigo">
+                                <input type="text" placeholder="Código" maxlength="50" name="codigo" id="codigo">
                             </label>
                             
                             <label class="label-input" for="">
                                 <div class="space_icon">
                                     <i class="far fa-user icon-modify"></i> <!-- imagem usuario -->
                                 </div>
-                                <input type="text" placeholder="Nome" maxlength="50">
+                                <input type="text" placeholder="Nome" name="nome" maxlength="50">
                             </label>
 
                             <label class="label-input" for="">
                                 <div class="space_icon">
                                     <i class="far fa-envelope icon-modify"></i> <!-- imagem email -->  
                                 </div>
-                                <input type="email" placeholder="Email" maxlength="50" id="email">
+                                <input type="email" placeholder="Email" name="email" maxlength="50" id="email">
                             </label>
                             
                             <label class="label-input" for="">
@@ -87,7 +76,7 @@
                                 <div class="space_icon">
                                     <i class="fas fa-lock icon-modify"></i> <!-- imagem senha -->   
                                 </div>
-                                <input type="password" placeholder="Senha do funcionário" maxlength="50" id="password-2">
+                                <input type="password" placeholder="Senha do funcionário" name="senha" maxlength="50" id="password-2">
                                 <div class="btn-fig">
                                     <i class="bi bi-eye" id="btn-password-2" onclick="mostrarSenha2()"></i>
                                 </div>
@@ -97,12 +86,13 @@
                                 <div class="space_icon">
                                     <i class="fas fa-lock icon-modify"></i> <!-- imagem senha -->   
                                 </div>
-                                <input type="password" placeholder="Confirmar senha do funcionário" maxlength="50" id="password-3">
+                                <input type="password" placeholder="Confirmar senha do funcionário" name="confirmarsenha" maxlength="50" id="password-3">
                                 <div class="btn-fig">
                                     <i class="bi bi-eye" id="btn-password-3" onclick="mostrarSenha3()"></i>
                                 </div> 
-                            </label>      
-                            <button class="btn btn-second" id="edit-profile-button">Adicionar</button>        
+                            </label>
+                            <label id="statusCadastro">a</label>
+                            <button type="button" class="btn btn-second" id="edit-profile-button">Adicionar</button>        
                         </form>
                     </div><!-- second column -->
                 </div><!-- first content -->
