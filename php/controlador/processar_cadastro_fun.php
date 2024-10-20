@@ -9,7 +9,6 @@ $fk_unidade = 0;
 $senha = "";
 $confirmarsenha = "";
 
-
 $respostaJson = array();
 
 if (isset($_REQUEST['codigo']) && isset($_REQUEST['nome']) && isset($_REQUEST['email']) && isset($_REQUEST['unidade']) && isset($_REQUEST['senha']) && isset($_REQUEST['confirmarsenha'])){
@@ -44,6 +43,6 @@ if (isset($_REQUEST['codigo']) && isset($_REQUEST['nome']) && isset($_REQUEST['e
             $respostaJson["cadastroFun"]  = "false";
             $respostaJson["erro"]  = "1";
             echo json_encode($respostaJson, JSON_UNESCAPED_UNICODE);
-        }
+        } 
     }
 ?>

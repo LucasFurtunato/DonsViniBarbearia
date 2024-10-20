@@ -17,7 +17,6 @@
         public function setCodigo($codigo)
         {
             $this->codigo = $codigo;
-            return $this;
         }
         public function getNome()
         {
@@ -26,7 +25,6 @@
         public function setNome($nome)
         {
             $this->nome = $nome;
-            return $this;
         }
 
         public function getEmail()
@@ -37,7 +35,6 @@
         public function setEmail($email)
         {
             $this->email = $email;
-            return $this;
         }
 
         public function getFk_unidade()
@@ -47,7 +44,6 @@
         public function setFk_unidade($fk_unidade)
         {
             $this->fk_unidade = $fk_unidade;
-            return $this;
         }
 
         public function getSenha()
@@ -57,7 +53,6 @@
         public function setSenha($senha)
         {
             $this->senha = $senha;
-            return $this;
         }
         function cadastrarFun($codigo, $nome, $email, $fk_unidade, $senha) {
             $senhaHash = password_hash($senha, PASSWORD_DEFAULT);

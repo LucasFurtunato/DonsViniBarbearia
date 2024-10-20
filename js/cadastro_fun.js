@@ -77,22 +77,13 @@
                 // Verificar se as senhas não correspondem
                 alert("As senhas do funcionário não correspondem. Por favor, tente novamente.");
             } else {
-                alert("enviado")
-                $.post("php/controlador/processar_cadastro_fun.php", $("#frmCadastroFun").serialize(), function( dados ){
-
+                alert($("#frmCadastroFun").serialize())
+                $("#statusCadastro").show();
+                $.post("php/controlador/processar_cadastro_fun.php", $("#frmCadastroFun").serialize(), function ( dados ) {
                     var objRetorno = JSON.parse(dados);
-
-                    $("#statusCadastro").show();
-
-                    if (objRetorno.cadastroFun == "false" && objRetorno.erro == "1"){
-                        $("#statusCadastro").text(objRetorno.erro);
-                    }else if (objRetorno.cadastroFun == "false" && objRetorno.erro == "2"){
-                        $("#statusCadastro").text(objRetorno.erro);
-                    }
-                    else{
-                        $("#statusCadastro").text(objRetorno.erro);
-                    }
-                 });
+                    console.log(dados)
+                    alert(objRetorno.erro)
+                })
             }
         });
     
