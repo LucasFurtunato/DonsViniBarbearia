@@ -49,12 +49,13 @@
 
 
     $(document).ready(function() {
+        $("#lStatus").hide();
         // Ao clicar no botão de editar perfil
         $('#edit-profile-button').on('click', function(event) {
             event.preventDefault(); // Prevenir o comportamento padrão do botão
             
             // Verificar se todos os campos estão preenchidos
-            let senhaAtual = $('#password-1').val().trim();
+            let codigoAtual = $('#codigoatual').val().trim();
             let codigo = $('#codigo').val().trim();
             let nome = $('input[placeholder="Nome"]').val().trim();
             let email = $('#email').val().trim();
@@ -68,7 +69,7 @@
             }
     
             // Se algum campo estiver vazio, exibir mensagem de erro
-            if (senhaAtual === '' || codigo === '' || nome === '' || email === '' || unidade === '' || senhaFuncionario === '' || confirmarSenhaFuncionario === '') {
+            if (codigoAtual === '' || codigo === '' || nome === '' || email === '' || unidade === '' || senhaFuncionario === '' || confirmarSenhaFuncionario === '') {
                 alert("Por favor, preencha todos os campos.");
             } else if (!validarEmail(email)) {
                 // Verificar se o email contém "@" e "."
@@ -77,9 +78,19 @@
                 // Verificar se as senhas não correspondem
                 alert("As senhas do funcionário não correspondem. Por favor, tente novamente.");
             } else {
-                // Se todos os campos estiverem preenchidos corretamente e o email for válido, mostrar o próximo container
-                $('#first-container').hide();
-                $('#second-container').show();
+                console.log($("#frmAlterarFun").serialize())
+                $.post("php/controlador/processar_alterar_fun.php", $("#frmAlterarFun").serialize(), function (dados) {
+                    var objRetorno = JSON.parse(dados);
+                    
+                    $("#lStatus").show();
+                    if (objRetorno.erro == "1") {
+                        $("#lStatus").text(objRetorno.texto);
+                    } else if (objRetorno.erro == "2") {
+                        $("#lStatus").text(objRetorno.texto);
+                    } else {
+                        $("#lStatus").text(objRetorno.texto);
+                    }
+                });
             }
         });
     

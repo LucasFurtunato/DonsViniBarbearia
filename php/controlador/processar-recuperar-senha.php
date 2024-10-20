@@ -6,8 +6,6 @@ $respostaJson = array();
 
 $token = "";
 $email = "";
-$senha = "";
-$confirmarsenha = "";
 
 if(isset($_REQUEST["email"])) {
     $email = $_REQUEST["email"];

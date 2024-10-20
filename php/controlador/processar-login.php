@@ -15,8 +15,8 @@ if(isset($_REQUEST['email']) && isset($_REQUEST['senha'])){
     $cliente = $login->verificarCliente($email, $senha);
     if ($cliente){
         session_start();
-        $_SESSION["cliente"] = $cliente['NOME'];
-        $_SESSION["nomecliente"] = $cliente["NOME"];
+        $_SESSION["cliente"] = $cliente['nome'];
+        $_SESSION["nomecliente"] = $cliente["nome"];
 
         $respostaJson["login"]  = "true";
         echo json_encode($respostaJson, JSON_UNESCAPED_UNICODE);
