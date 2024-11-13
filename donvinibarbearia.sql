@@ -1,203 +1,137 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Host: localhost:3306
--- Tempo de geração: 19/10/2024 às 09:17
--- Versão do servidor: 10.5.26-MariaDB-cll-lve
--- Versão do PHP: 8.3.11
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
+USE hostdeprojetos_donvinibarbearia;
+
+DROP TABLE IF EXISTS `agendamentos`;
+DROP TABLE IF EXISTS `funcionario`;
+DROP TABLE IF EXISTS `galeria`;
+DROP TABLE IF EXISTS `unidade`;
+DROP TABLE IF EXISTS `servicos`;
+DROP TABLE IF EXISTS `gerente`;
+DROP TABLE IF EXISTS `cuidados`;
+DROP TABLE IF EXISTS `barba`;
+DROP TABLE IF EXISTS `cliente`;
+DROP TABLE IF EXISTS `corte`;
 
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Banco de dados: `hostdeprojetos_donvinibarbearia`
---
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `agendamentos`
---
-
-CREATE TABLE `agendamentos` (
-  `svc_id` int(10) NOT NULL,
-  `fk_unidade` int(2) NOT NULL,
-  `servico` int(4) NOT NULL,
-  `preco` int(255) NOT NULL,
-  `dia` date NOT NULL,
-  `horario` time NOT NULL,
-  `fk_email` varchar(255) NOT NULL
+CREATE TABLE `barba` (
+  `barbaId` int(100) NOT NULL AUTO_INCREMENT,
+  `nomeBarba` varchar(250) NOT NULL,
+  `preco` varchar(250) NOT NULL,
+  PRIMARY KEY (`barbaId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
 
---
--- Estrutura para tabela `cliente`
---
 
 CREATE TABLE `cliente` (
+  `clienteId` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `senha` varchar(255) NOT NULL,
   `token` varchar(100) NOT NULL,
-  `email_verified` tinyint(1) NOT NULL
+  `email_verified` tinyint(1) NOT NULL,
+  PRIMARY KEY (`clienteId`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `cliente` VALUES (1,'lucas','lucasfurtunato11@gmail.com','$2y$10$uznfxeckkn7gskpn4rxxfubgfpb5jaatuvkiwemrglwyqtuxeym52','2f43b9b936',1),(2,'jhota','jota@gmail.com','123','Ze0uUzRkfB',0),(3,'gaga','gaga@gmail.com','123','ZQBAKar&ds',0),(4,'gog','gog@gmail.com','123','97vYNslolA',0),(5,'gu','gu@gmail.com','123','1pQPPkxzqg',0);
+
+
+
+CREATE TABLE `corte` (
+  `corteId` int(100) NOT NULL AUTO_INCREMENT,
+  `nomeCorte` varchar(250) NOT NULL,
+  `preco` varchar(250) NOT NULL,
+  PRIMARY KEY (`corteId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Despejando dados para a tabela `cliente`
---
-
-INSERT INTO `cliente` (`nome`, `email`, `senha`, `token`, `email_verified`) VALUES
-('lucas', 'lucasfurtunato11@gmail.com', '$2y$10$uznfxeckkn7gskpn4rxxfubgfpb5jaatuvkiwemrglwyqtuxeym52', '2f43b9b936', 1);
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `funcionario`
---
-
-CREATE TABLE `funcionario` (
-  `codigo` varchar(10) NOT NULL,
-  `nome` varchar(250) NOT NULL,
-  `email` varchar(250) NOT NULL,
-  `fk_unidade` int(2) NOT NULL,
-  `senha` varchar(250) NOT NULL
+CREATE TABLE `cuidados` (
+  `cuidadosId` int(100) NOT NULL AUTO_INCREMENT,
+  `nomeCuidado` varchar(250) NOT NULL,
+  `preco` varchar(250) NOT NULL,
+  PRIMARY KEY (`cuidadosId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
 
---
--- Estrutura para tabela `galeria`
---
-
-CREATE TABLE `galeria` (
-  `id` int(100) NOT NULL,
-  `localizacao` int(3) NOT NULL,
-  `imagem` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `gerente`
---
 
 CREATE TABLE `gerente` (
   `codigo` varchar(10) NOT NULL,
   `email` varchar(250) NOT NULL,
   `senha` varchar(250) NOT NULL,
-  `nome` varchar(255) NOT NULL
+  `nome` varchar(255) NOT NULL,
+  PRIMARY KEY (`codigo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Despejando dados para a tabela `gerente`
---
+INSERT INTO `gerente` VALUES ('12345','gerente@gmail.com','123','gerente');
 
-INSERT INTO `gerente` (`codigo`, `email`, `senha`, `nome`) VALUES
-('12345', 'gerente@gmail.com', '123', 'gerente');
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `unidade`
---
 
 CREATE TABLE `unidade` (
-  `id` int(11) NOT NULL,
-  `unidade` int(2) NOT NULL
+  `unidadeId` int(11) NOT NULL AUTO_INCREMENT,
+  `cep` varchar(9) DEFAULT NULL,
+  `logradouro` varchar(50) DEFAULT NULL,
+  `numero` varchar(50) DEFAULT NULL,
+  `complemento` varchar(30) DEFAULT NULL,
+  `bairro` varchar(50) DEFAULT NULL,
+  `cidade` varchar(50) DEFAULT NULL,
+  `uf` varchar(2) DEFAULT NULL,
+  PRIMARY KEY (`unidadeId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Índices para tabelas despejadas
---
+CREATE TABLE `funcionario` (
+  `funcionarioId` int(11) NOT NULL AUTO_INCREMENT,
+  `codigo` varchar(10) NOT NULL,
+  `nome` varchar(250) NOT NULL,
+  `email` varchar(250) NOT NULL,
+  `unidadeId` int(2) NOT NULL,
+  `senha` varchar(250) NOT NULL,
+  PRIMARY KEY (`funcionarioId`),
+  KEY `unidadeId` (`unidadeId`),
+  CONSTRAINT `funcionario_ibfk_1` FOREIGN KEY (`unidadeId`) REFERENCES `unidade` (`unidadeId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Índices de tabela `agendamentos`
---
-ALTER TABLE `agendamentos`
-  ADD PRIMARY KEY (`svc_id`),
-  ADD KEY `fk_email` (`fk_email`),
-  ADD KEY `agendamentos_ibfk_2` (`fk_unidade`);
+CREATE TABLE `agendamentos` (
+  `agendamentosId` int(11) NOT NULL AUTO_INCREMENT,
+  `unidadeId` int(11) NOT NULL,
+  `funcionarioId` int(11) NOT NULL,
+  `clienteId` int(11) NOT NULL,
+  `corteId` int(100) NOT NULL,
+  `barbaId` int(100) NOT NULL,
+  `cuidadosId` int(100) NOT NULL,
+  `preco` int(255) NOT NULL,
+  `dia` date NOT NULL,
+  `horario` time NOT NULL,
+  PRIMARY KEY (`agendamentosId`),
+  KEY `unidadeId` (`unidadeId`),
+  KEY `clienteId` (`clienteId`),
+  KEY `funcionarioId` (`funcionarioId`),
+  KEY `corteId` (`corteId`),
+  KEY `barbaId` (`barbaId`),
+  KEY `cuidadosId` (`cuidadosId`),
+  CONSTRAINT `agendamentos_ibfk_1` FOREIGN KEY (`unidadeId`) REFERENCES `unidade` (`unidadeId`),
+  CONSTRAINT `agendamentos_ibfk_2` FOREIGN KEY (`clienteId`) REFERENCES `cliente` (`clienteId`),
+  CONSTRAINT `agendamentos_ibfk_3` FOREIGN KEY (`funcionarioId`) REFERENCES `funcionario` (`funcionarioId`),
+  CONSTRAINT `agendamentos_ibfk_4` FOREIGN KEY (`corteId`) REFERENCES `corte` (`corteId`),
+  CONSTRAINT `agendamentos_ibfk_5` FOREIGN KEY (`barbaId`) REFERENCES `barba` (`barbaId`),
+  CONSTRAINT `agendamentos_ibfk_6` FOREIGN KEY (`cuidadosId`) REFERENCES `cuidados` (`cuidadosId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Índices de tabela `cliente`
---
-ALTER TABLE `cliente`
-  ADD PRIMARY KEY (`email`);
+CREATE TABLE `galeria` (
+  `galeriaId` int(100) NOT NULL AUTO_INCREMENT,
+  `localizacao` int(3) NOT NULL,
+  `imagem` varchar(255) NOT NULL,
+  PRIMARY KEY (`galeriaId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Índices de tabela `funcionario`
---
-ALTER TABLE `funcionario`
-  ADD PRIMARY KEY (`codigo`),
-  ADD KEY `fk_unidade` (`fk_unidade`);
+CREATE TABLE `servicos` (
+  `servicoId` int(100) NOT NULL AUTO_INCREMENT,
+  `barbaId` int(100) DEFAULT NULL,
+  `corteId` int(100) DEFAULT NULL,
+  `cuidadosId` int(100) DEFAULT NULL,
+  PRIMARY KEY (`servicoId`),
+  KEY `barbaId` (`barbaId`),
+  KEY `corteId` (`corteId`),
+  KEY `cuidadosId` (`cuidadosId`),
+  CONSTRAINT `servicos_ibfk_1` FOREIGN KEY (`barbaId`) REFERENCES `barba` (`barbaId`),
+  CONSTRAINT `servicos_ibfk_2` FOREIGN KEY (`corteId`) REFERENCES `corte` (`corteId`),
+  CONSTRAINT `servicos_ibfk_3` FOREIGN KEY (`cuidadosId`) REFERENCES `cuidados` (`cuidadosId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Índices de tabela `galeria`
---
-ALTER TABLE `galeria`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `gerente`
---
-ALTER TABLE `gerente`
-  ADD PRIMARY KEY (`codigo`);
-
---
--- Índices de tabela `unidade`
---
-ALTER TABLE `unidade`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT para tabelas despejadas
---
-
---
--- AUTO_INCREMENT de tabela `agendamentos`
---
-ALTER TABLE `agendamentos`
-  MODIFY `svc_id` int(10) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `galeria`
---
-ALTER TABLE `galeria`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `unidade`
---
-ALTER TABLE `unidade`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- Restrições para tabelas despejadas
---
-
---
--- Restrições para tabelas `agendamentos`
---
-ALTER TABLE `agendamentos`
-  ADD CONSTRAINT `agendamentos_ibfk_1` FOREIGN KEY (`fk_email`) REFERENCES `cliente` (`email`),
-  ADD CONSTRAINT `agendamentos_ibfk_2` FOREIGN KEY (`fk_unidade`) REFERENCES `unidade` (`ID`);
-
---
--- Restrições para tabelas `funcionario`
---
-ALTER TABLE `funcionario`
-  ADD CONSTRAINT `fk_unidade` FOREIGN KEY (`fk_unidade`) REFERENCES `unidade` (`ID`);
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
