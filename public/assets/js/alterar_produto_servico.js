@@ -104,7 +104,7 @@ $(document).ready(function() {
 	                $('#table-body').append(`
 	                    <tr>
 							<td data-label="Serviços">
-							    <label for="typeServicos">Cidados</label>
+							    <label for="typeServicos">Cuidados</label>
 							</td>
 							<td data-label="Serviços">
 							    <label for="servicos">${cuidado.nomeCuidado}</label>
