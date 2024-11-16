@@ -1,0 +1,660 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+* {
+    margin: 0; /* definir como padrão para o navegador */
+    padding: 0; /* definir como padrão para o navegador */
+    box-sizing: border-box; /* a medida das bordas é contada juntamente com a medida de altura e largura */
+}
+body {
+    font-family: 'Noto Sans', sans-serif;
+}
+/*menu*/
+a:hover {
+    opacity: 0.8;
+}
+a {
+    color: #ffc154;
+    text-decoration: none;
+    transition: 0.3s;
+}
+.logo {
+    height: 11vh;
+    user-select: none;
+}
+.login-button {
+    color: whitesmoke;
+    background-color: #f8c66f;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-family: 'Noto Sans', sans-serif;
+    background: #1c1a18f3;
+    height: 12vh;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+}
+
+.nav-list li {
+    letter-spacing: 3px;
+    margin-left: 32px;
+}
+
+.mobile-menu {
+    display: none; 
+    cursor: pointer;
+}
+
+.mobile-menu div {
+    width: 32px;
+    height: 2px;
+    background: #fff;
+    margin: 8px;
+    transition: 0.3s;
+}
+
+@media (max-width: 999px) {
+    body {
+        overflow-x: hidden;
+    }
+    .nav-list {
+        position: absolute;
+        top: 12vh;
+        right: 0;
+        width: 100vw;
+        height: 92vh;
+        background: #1c1a18f3;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in;
+    }
+
+    .nav-list li {
+        margin-left: 0;
+        opacity: 0;
+    }
+
+    .mobile-menu {
+        display: block;
+    }
+
+    .login-button {
+        color: #f8c66f;
+        background: none;
+    }
+
+}
+
+.nav-list.active {
+    transform: translateX(0);
+}
+
+@keyframes navLinkFade {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.mobile-menu.active .line1 {
+    transform: rotate(-45deg) translate(-8px, 8px);
+}
+
+.mobile-menu.active .line2 {
+    opacity: 0;
+}
+
+.mobile-menu.active .line3 {
+    transform: rotate(45deg) translate(-5px, -7px);
+}
+
+
+.container {
+    display: flex;  /* deixar o primeiro e segundo conteúdo um ao lado do outro */
+    justify-content: center; /* centraliza as duas divs de conteúdo */
+    align-items: center; /* centraliza os itens das divs de conteúdo */
+    height: 120vh; /* centraliza os itens das divs de conteúdo */
+    background-color: #f4f4f3 /* cor de fundo sem ser das divs conteúdos */
+}
+.content {
+    background-color: #fff;
+    border-radius: 15px; /* define a borda circular em torno das divs de conteúdo */
+    width: 75%; /* define a largura das divs de conteúdo */
+    height: 60%; /* define a altura das divs de conteúdo */
+    justify-content: space-between; /* espaço entre a primeira coluna e a segunda coluna */
+    align-items: center; /* alinhar verticalmente os itens dos conteúdos */
+    position: relative; /* para deixar o pseudoelemento com a altura do content */
+}
+.content::before { /* pseudoelemento - fique em cima da div do primeiro conteúdo */
+    content: "";
+    position: absolute;
+    background-color: #ffc154; /* cor que fica sobreposta em cima da div do primeiro conteúdo */
+    width: 40%;
+    height: 100%;
+    border-top-left-radius: 15px; /* alterar a borda de cima esquerda com o formato circular */
+    border-bottom-left-radius: 15px; /* alterar a borda de baixo esquerda com o formato circular */
+
+}
+.title {
+    font-size: 28px; /*tamanho da letra de título */
+    font-weight: bold; /* negrito */
+}
+.title-primary {
+    color: #fff; /* cor para o título da primeira coluna */
+}
+.title-second {
+    color: #ffc154 /* cor para o título da segunda coluna */
+}
+.description {
+    font-size: 14px; /* tamanho da fonte */
+    font-weight: 300; 
+    line-height: 30px; /*espaçamento entre linhas */
+}
+.description-primary {
+    color: #fff; /* cor da descrição primária */
+}
+.description-second {
+    color: #7f8c8d; /* cor da descrição secundária */
+}
+.btn {
+    border-radius: 15px; /* deixar arredondado o botão */
+    text-transform: uppercase; /* deixar letra maiuscula */
+    color: #fff; 
+    font-size: 10px; /* tamanho da letra dentro do botão */
+    padding: 10px 50px; /* tamanho interno do botão */
+    cursor: pointer; /* cursor para indicar click */
+    font-weight: bold; /*negrito */
+    width: 150px; /* largura do botão */
+    align-self: center; /* alinhar todos os botões no centro */
+    border: none; /* retirar borda do botão */
+    margin-top: 1rem; /* distanciar do conteudo de cima */
+}
+.btn-password{
+    position: absolute;
+    right: 0;
+    z-index: 100;
+}
+.btn-primary {
+    background-color: transparent; /* cor de fundo - no caso branco */
+    border: 1px solid #fff; /* cor da borda em volta do botão */
+    transition: background-color 0.25s; /* transição suave */
+}
+.btn-primary:hover {
+    background-color: #fff; /* cor de fundo do botão */
+    color: #ffc154; /* cor de fundo da letra dentro do botão */
+}
+.btn-second {
+    background-color: #ffc154; /* cor de fundo do botão */ 
+    border: 1px solid #ffc154; /* cor da borda do botão */
+    transition: background-color 0.25s; /* transição suave */
+}
+.btn-second:hover {
+    background-color: #fff; /* cor de fundo do botão */
+    border: 1px solid #ffc154; /* cor da borda do botão */
+    color: #ffc154; /* cor da letra */
+}
+.first-content {
+    display: flex; /* deixar uma coluna ao lado da outra */
+}
+.first-content .second-column {
+    z-index: 11;
+}
+.first-column {
+    text-align: center; /* texto centralizado */
+    width: 40%; /* largura da primeira coluna */
+    z-index: 10; /* para os elementos da primeira coluna ficarem a frente do pseudoelemento */
+}
+.second-column {
+    width: 60%; /* largura da segunda coluna */
+    display: flex; /* deixar os elementos um ao lado do outro */
+    flex-direction: column; /* organizar esses elementos em um fluxo para a coluna */
+    align-items: center; /* centralizar os itens */
+}
+.social-media {
+    margin: 1rem 0; /* defini uma margin para distanciar dos outros elementos do formulário */
+}
+.link-social-media:not(:first-child){
+    margin-left: 10px; /* pseudo classe que defini que o primeiro item não terá essa margin */
+}
+.link-social-media .item-social-media {
+    transition: background-color 0.25s; /* transição do hover suave */
+}
+.link-social-media:hover .item-social-media{
+    background-color: #ffc154; /* cor ao passar o mouse pelo icone */
+    color: #fff; /* cor do icone ao passar o mouse */
+    border-color: #ffc154; /* cor da borda ao passar o mouse pelo icone */
+}
+.list-social-media {
+    display: flex; /* deixar os itens um ao lado do outro */
+    list-style-type: none; /*desaparecer as bolinhas de link */
+}
+.item-social-media {
+    border: 1px solid #bdc3c7; /*borda das redes sociais */
+    border-radius: 50%; /* deixar a borda circular */
+    width: 35px; /* deixar a borda circular */
+    height: 35px; /* deixar a borda circular */
+    line-height: 35px; /* defini a altura em que o texto pode ficar */
+    text-align: center; /* centraliza o texto  */
+    color: #95a5a6; /* defini a cor das imagens */
+}
+.form {
+    display: flex; /* deixa os itens em uma mesma linha - um ao lado do outro */
+    flex-direction: column; /* direciona o fluxo desses itens para uma coluna */
+    width: 55%; /* aumenta a largura do formulário */
+}
+.form input {
+    height: 45px; /* altura dos imputs */
+    width: 100%; /* largura dos imputs */
+    border: none; /* retirar a borda */
+    background-color: #ecf0f1; /* cor de fundo dos imputs */
+    padding: 8px;
+}
+input:-webkit-autofill 
+{    
+    -webkit-box-shadow: 0 0 0px 1000px #ecf0f1 inset !important;
+    -webkit-text-fill-color: #000 !important;
+} /* tirar o padrão do chrome */
+.label-input {
+    background-color: #ecf0f1; /* cor de fundo dos campos do formulário */
+    display: flex; /* deixar um ao lado do outro */
+    align-items: center; /* deixar a imafem centralizada com o nome */
+    margin: 8px; /* espaçamento entre os campos do formulário */
+    position: relative;
+}
+.icon-modify {
+    color: #7f8c8d; /* cor do icone */
+    padding: 0 10px; /* separar o nome da imagem  */
+}
+
+.bi-bi-eye{
+    width: 300px;
+}
+
+.btn-password{
+    font-size: 18px;
+    margin-right: 5px;
+    margin-left: 5px;
+    cursor: pointer;
+    color: #7f8c8d; 
+}
+
+/* second content*/
+
+.second-content {
+    position: absolute; /* sobrepor o segundo conteúdo no primeiro conteúdo */
+    display: flex;
+}
+.second-content .first-column {
+    order: 2; /* inverter as posições das colunas */ 
+    z-index: -1; /* fica o conteudo atras do content */
+}
+.second-content .second-column {
+    order: 1; /* inverter as posições das colunas */
+    z-index: -1; /* fica o conteudo atras do content */
+}
+.password {
+    color: #34495e; /* cor do link */
+    font-size: 14px; /* tamanho da fonte do link */
+    margin: 15px 0; /* distanciar dos outros elementos do formulário */
+    text-align: center; /* centralizar ao meio o texto */
+}
+
+.sign-in-js .first-content .first-column {
+    z-index: -1; /* utiliza o js para aparecer ou esconder o conteudo */
+}
+
+.sign-in-js .second-content .second-column {
+    z-index: 11; /* utiliza o js para aparecer ou esconder o conteudo */
+}
+.sign-in-js .second-content .first-column {
+    z-index: 13; /* utiliza o js para aparecer ou esconder o conteudo */
+}
+
+.sign-in-js .content::before {
+    left: 60%;
+    border-top-left-radius: 0; /* deixar a borda quadrada */
+    border-bottom-left-radius: 0; /* deixar a borda quadrada */
+    border-top-right-radius: 15px; /* deixar a borda invertida do pseudoelemento ao clicar no botão */
+    border-bottom-right-radius: 15px; /* deixar a borda invertida do pseudoelemento ao clicar no botão */
+    animation: slidein 0.25s; 
+
+    z-index: 12;
+}
+
+.sign-up-js .content::before {
+    animation: slideout 0.25s; 
+
+    z-index: 12;
+}
+
+.sign-up-js .second-content .first-column,
+.sign-up-js .second-content .second-column {
+    z-index: -1; /* utiliza o js para aparecer ou esconder o conteudo */
+}
+
+.sign-up-js .first-content .second-column {
+    z-index: 11; /* utiliza o js para aparecer ou esconder o conteudo */
+}
+
+.sign-up-js .first-content .first-column {
+    z-index: 13;   /* utiliza o js para aparecer ou esconder o conteudo */  
+}
+
+
+/* DESLOCAMENTO CONTEÚDO ATRÁS DO CONTENT:BEFORE*/
+.sign-in-js .first-content .second-column {
+
+    z-index: -1;
+    position: relative;
+    animation: deslocamentoEsq 0.25s;  /* aqui é inserido o conteúdo da animação css */
+}
+
+.sign-up-js .second-content .second-column {
+    position: relative;
+    z-index: -1;
+    animation: deslocamentoDir 0.25s; /* aqui é inserido o conteúdo da animação css */
+}
+
+/*ANIMAÇÃOO CSS PARA O CONTEÚDO*/
+
+@keyframes deslocamentoEsq {
+
+    from {
+        left: 0;
+        opacity: 1;
+        z-index: 12;
+    }
+
+    25% {
+        left: -80px;
+        opacity: .5;
+       
+    }
+
+    50% {
+        left: -100px;
+        opacity: .2;
+       
+    }
+
+    to {
+        left: -110px;
+        opacity: 0;
+        z-index: -1;
+    }
+}
+
+
+@keyframes deslocamentoDir {
+
+    from {
+        left: 0;
+        z-index: 12;
+    }
+
+    25% {
+        left: 80px;
+ 
+    }
+
+    50% {
+        left: 100px;
+
+    }
+
+    to {
+        left: 110px;
+        z-index: -1;
+    }
+}
+
+
+/*ANIMAÇÃO CSS*/
+
+@keyframes slidein {
+
+    from {
+        left: 0;
+        width: 40%;
+    }
+
+    25% {
+        left: 5%;
+        width: 50%;
+    }
+
+    50% {
+        left: 25%;
+        width: 60%;
+    }
+
+    75% {
+        left: 45%;
+        width: 50%;
+    }
+
+    to {
+        left: 60%;
+        width: 40%;
+    }
+}
+
+@keyframes slideout {
+
+    from {
+        left: 60%;
+        width: 40%;
+    }
+
+    25% {
+        left: 45%;
+        width: 50%;
+    }
+
+    50% {
+        left: 25%;
+        width: 60%;
+    }
+
+    75% {
+        left: 5%;
+        width: 50%;
+    }
+
+    to {
+        left: 0;
+        width: 40%;
+    }
+}
+
+/*VERSÃO MOBILE*/
+@media screen and (max-width: 1040px) {
+    .content {
+        width: 100%;
+        height: 100%;
+    }
+
+    .content::before {
+        width: 100%;
+        height: 40%;
+        top: 0;
+        border-radius: 0;
+    }
+    .first-content, .second-content {
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    .first-column, .second-column {
+        width: 100%;
+    }
+    
+    .sign-in-js .content::before {
+        top: 60%;
+        left: 0;
+        border-radius: 0;
+
+    }
+
+    .form {
+        width: 90%;
+    }
+    
+    /* ANIMAÇÃO MOBILE CSS*/
+
+    @keyframes deslocamentoEsq {
+
+        from {
+            top: 0;
+            opacity: 1;
+            z-index: 12;
+        }
+    
+        25% {
+            top: -80px;
+            opacity: .5;
+        
+        }
+    
+        50% {
+            top: -100px;
+            opacity: .2;
+        
+        }
+    
+        to {
+            top: -110px;
+            opacity: 0;
+            z-index: -1;
+        }
+    }
+    
+    
+    @keyframes deslocamentoDir {
+    
+        from {
+            top: 0;
+            z-index: 12;
+        }
+    
+        25% {
+            top: 80px;
+        
+        }
+    
+        50% {
+            top: 100px;
+
+        }
+    
+        to {
+            top: 110px;
+            z-index: -1;
+        }
+    }
+    
+    
+    
+    @keyframes slidein {
+    
+        from {
+            top: 0;
+            height: 40%;
+        }
+    
+        25% {
+            top: 5%;
+            height: 50%;
+        }
+    
+        50% {
+            top: 25%;
+            height: 60%;
+        }
+    
+        75% {
+            top: 45%;
+            height: 50%;
+        }
+    
+        to {
+            top: 60%;
+            height: 40%;
+        }
+    }
+    
+    @keyframes slideout {
+    
+        from {
+            top: 60%;
+            height: 40%;
+        }
+    
+        25% {
+            top: 45%;
+            height: 50%;
+        }
+    
+        50% {
+            top: 25%;
+            height: 60%;
+        }
+    
+        75% {
+            top: 5%;
+            height: 50%;
+        }
+    
+        to {
+            top: 0;
+            height: 40%;
+        }
+    }
+   
+}
+
+@media screen and (max-width: 740px) {
+    .form {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .form {
+        width: 100%;
+    }
+}
+
+/*Footer*/
+
+.footer-content {
+    width: 100%;
+    height: 100px;
+    background: #1C1A18;
+    margin-top: -5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 2% 5%;
+    color: #fdfdfd;
+}
+
+@media screen and (max-width: 700px) {
+    .footer-content {
+        flex-direction: column;
+    }
+}
+
+

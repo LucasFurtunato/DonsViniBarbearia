@@ -1,0 +1,375 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%; 
+}
+
+body {
+    display: flex; 
+    flex-direction: column; 
+}
+
+main {
+    flex: 1; 
+}
+
+.table-container {
+    padding: 0 10%;
+    margin: 40px auto 0;
+}
+
+.heading {
+    font-size: 2.5rem;
+    font-weight: 500;
+    text-align: center;
+    font-style: italic;
+    color: #ffc154;
+    margin-bottom: 30px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table thead {
+    background-color: #1c1a18f3;
+}
+
+.table thead tr th{
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.35px;
+    color: #ffc154;
+    opacity: 1;
+    padding: 12px;
+    vertical-align: top;
+    border: 1px solid transparent;
+}
+
+.table tbody tr td {
+    font-size: 1rem;
+    letter-spacing: 0.35px;
+    font-weight: normal;
+    color: #1c1a18f3;
+    padding: 8px;
+    text-align: center;
+}
+
+.table {
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 0.35px;
+    color: #ffc154;
+}
+
+.table tbody tr td .btn-alterar {
+    width: 130px;
+    text-decoration: none;
+    line-height: 35px;
+    display: inline-block;
+    border-radius: 30px;
+    background-color: #ffc154; 
+    font-weight: medium;
+    color: #ffffff;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    font-size: 14px;
+    opacity: 1;
+}
+
+.table tbody tr td .btn-excluir {
+    width: 130px;
+    text-decoration: none;
+    line-height: 35px;
+    display: inline-block;
+    border-radius: 30px;
+    background-color: #ff1046;
+    font-weight: medium;
+    color: #ffffff;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    font-size: 14px;
+    opacity: 1;
+}
+
+.table tbody tr td .btn-alterar:hover {
+    opacity: 0.7; 
+}
+
+.table tbody tr td .btn-excluir:hover {
+    opacity: 0.7; 
+}
+
+hr {
+    border: none; 
+    height: 5px; 
+    background:#1c1a18f3;
+    margin: 70px 0;
+    border-radius: 5px;
+}
+
+.button-container {
+    text-align: center;
+}
+
+
+.b-table {
+    width: 130px;
+    text-decoration: none;
+    line-height: 35px;
+    display: inline-block;
+    border-radius: 30px;
+    background-color: #119200;
+    font-weight: medium;
+    color: #ffffff;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    font-size: 14px;
+    opacity: 1;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.b-table:hover {
+    opacity: 0.8;
+}
+
+input[type="text"] {
+    border: none; 
+    background-color: rgba(128, 128, 128, 0.3); 
+    color: black; 
+    padding: 10px; 
+    font-size: 16px; 
+    width: 85%;
+    box-sizing: border-box; 
+    text-align: center;
+}
+
+input[type="text"]:focus {
+    outline: none; 
+}
+
+@media (max-width: 768px) {
+    .table thead {
+        display: none;
+    }
+
+    .table, .table tbody, .table tr, .table td {
+        display: block;
+        width: 100%;
+    }
+    
+    .table tr {
+        margin-bottom: 15px;
+        border: 1px solid #1c1a18f3;
+    }
+
+    .table tbody tr td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;    
+    }
+    
+    .table td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px;
+        font-weight: 600;
+        font-size: 1rem;
+        text-align: left;
+    }
+
+}
+
+/*Confirmações*/
+
+.container {
+    display: flex;  
+    justify-content: center; 
+    align-items: center; 
+    height: 120vh; 
+    background-color: #ecf0f1; 
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.content {
+    background-color: #fff;
+    border-radius: 15px; 
+    width: 50%; 
+    height: 60%; 
+    justify-content: space-between; 
+    align-items: center; 
+    position: relative; 
+}
+
+.first-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.second-column {
+    width: 100%; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+}
+
+.title {
+    font-size: 28px; 
+    font-weight: bold; 
+}
+
+.title-second {
+    color: #f8c66f; 
+}
+
+.description {
+    font-size: 14px; 
+    font-weight: 300; 
+    line-height: 30px; 
+}
+
+.description-second {
+    color: #7f8c8d; 
+}
+
+.btn {
+    border-radius: 15px; 
+    text-transform: uppercase; 
+    color: #fff; 
+    font-size: 10px; 
+    padding: 10px 50px; 
+    cursor: pointer; 
+    font-weight: bold; 
+    width: 150px; 
+    align-self: center; 
+    border: none; 
+    margin-top: 1rem; 
+}
+
+.btn-second {
+    background-color: #f8c66f; 
+    border: 1px solid #f8c66f;
+    transition: background-color .5s;
+}
+
+.btn-second:hover {
+    background-color: #fff; 
+    border: 1px solid #f8c66f; 
+    color: #f8c66f; 
+}
+
+.cancel-btn {
+    background-color: #e74c3c; 
+    border: 1px solid #e74c3c;
+    transition: background-color .5s;
+}
+
+.cancel-btn:hover {
+    background-color: #fff;
+    border: 1px solid #e74c3c;
+    color: #e74c3c;
+}
+
+.btn-fig{
+    position: absolute;
+    right: 0;
+    z-index: 100;
+}
+
+.space_icon{
+    margin: 10px;
+}
+
+.form {
+    display: flex; /* deixa os itens em uma mesma linha - um ao lado do outro */
+    flex-direction: column; /* direciona o fluxo desses itens para uma coluna */
+    width: 55%; /* aumenta a largura do formulário */
+}
+
+.label-input {
+    background-color: #ecf0f1; /* cor de fundo dos campos do formulário */
+    display: flex; /* deixar um ao lado do outro */
+    align-items: center; /* deixar a imafem centralizada com o nome */
+    margin: 8px; /* espaçamento entre os campos do formulário */
+    position: relative;
+}
+
+.form input {
+    height: 45px; /* altura dos imputs */
+    width: 100%; /* largura dos imputs */
+    border: none; /* retirar a borda */
+    background-color: #ecf0f1; /* cor de fundo dos imputs */
+    padding: 8px;
+}
+
+/*VERSÃO MOBILE*/
+@media screen and (max-width: 1040px) {
+    .content {
+        width: 100%;
+        height: 100%;
+    }
+
+    .first-content {
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    .second-column {
+        width: 100%;
+    }
+    
+}
+
+@media screen and (max-width: 740px) {
+    .form {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .form {
+        width: 100%;
+    }
+}
+
+
+
+/*Footer*/
+
+.footer-content {
+    width: 100%;
+    height: 100px;
+    background: #1C1A18;
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 2% 5%;
+    color: #fdfdfd;
+}
+
+@media screen and (max-width: 700px) {
+    .footer-content {
+        flex-direction: column;
+    }
+}
+
+
