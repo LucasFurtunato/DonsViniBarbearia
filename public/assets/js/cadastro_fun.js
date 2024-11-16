@@ -1,18 +1,4 @@
-    // Função para alternar visibilidade da senha no campo 1
-    $('#btn-password-1').click(function() {
-        let inputPass = $('#password-1');
-        let btnPass = $('#btn-password-1');
-  
-        if (inputPass.attr('type') === 'password') {
-            inputPass.attr('type', 'text');
-            btnPass.removeClass('bi-eye').addClass('bi-eye-slash');
-        } else {
-            inputPass.attr('type', 'password');
-            btnPass.removeClass('bi-eye-slash').addClass('bi-eye');
-        }
-    });
-  
-    // Função para alternar visibilidade da senha no campo 2
+   // Função para alternar visibilidade da senha no campo 1
     $('#btn-password-2').click(function() {
         let inputPass = $('#password-2');
         let btnPass = $('#btn-password-2');
@@ -26,7 +12,7 @@
         }
     });
   
-    // Função para alternar visibilidade da senha no campo 3
+    // Função para alternar visibilidade da senha no campo 2
     $('#btn-password-3').click(function() {
      let inputPass = $('#password-3');
      let btnPass = $('#btn-password-3');
@@ -54,11 +40,10 @@
             event.preventDefault(); // Prevenir o comportamento padrão do botão
             
             // Verificar se todos os campos estão preenchidos
-            let senhaAtual = $('#password-1').val().trim();
             let codigo = $('#codigo').val().trim();
-            let nome = $('input[placeholder="Nome"]').val().trim();
+            let nome = $('#nome').val().trim();
             let email = $('#email').val().trim();
-            let unidade = $('#unidade').val();
+            let unidade = $('#unidadeId').val();
             let senhaFuncionario = $('#password-2').val().trim();
             let confirmarSenhaFuncionario = $('#password-3').val().trim();
     
@@ -68,7 +53,7 @@
             }
     
             // Se algum campo estiver vazio, exibir mensagem de erro
-            if (senhaAtual === '' || codigo === '' || nome === '' || email === '' || unidade === '' || senhaFuncionario === '' || confirmarSenhaFuncionario === '') {
+            if (codigo === '' || nome === '' || email === '' || unidade === '' || senhaFuncionario === '' || confirmarSenhaFuncionario === '') {
                 alert("Por favor, preencha todos os campos.");
             } else if (!validarEmail(email)) {
                 // Verificar se o email contém "@" e "."
@@ -78,8 +63,27 @@
                 alert("As senhas do funcionário não correspondem. Por favor, tente novamente.");
             } else {
                 // Se todos os campos estiverem preenchidos corretamente e o email for válido, mostrar o próximo container
-                $('#first-container').hide();
-                $('#second-container').show();
+                $.ajax({
+                    url: "../app/controllers/CtrlFuncionario.php",
+                    method: "POST",
+                    data: $("#form-fun").serialize(),
+                    success: function(response) {
+                        console.log(response);
+                        var objRetorno = JSON.parse(response);
+    
+                        if(objRetorno.status === "error") {
+                            console.log('errado');
+                            $('#responseArea').text("errado");
+                        } else {
+                            $('#responseArea').text("Registrado");
+                        }
+                        $('#first-container').hide();
+                        $('#second-container').show();
+                    },
+                    error: function(xhr, status, error) {
+                        $('#responseArea').text("Erro na requisição: " + error);
+                    }
+                });
             }
         });
     
@@ -91,5 +95,8 @@
             $('#second-container').hide();
             $('#first-container').show();
         });
+
     });
-    
+
+
+

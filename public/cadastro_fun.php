@@ -39,44 +39,34 @@
                     <div class="second-column">
                         <h2 class="title title-second">Adicionar Funcionário</h2>
                         <p class="description description-second">insira as informações para cadastrar um funcionário</p>
-                        <form class="form">
-
-                            <label class="label-input" for="">
-                                <div class="space_icon">
-                                    <i class="fas fa-lock icon-modify"></i> <!-- imagem senha -->
-                                </div>
-                                <input type="password" placeholder="Senha atual" maxlength="50" id="password-1">
-                                <div class="btn-fig">
-                                    <i class="bi bi-eye" id="btn-password-1" onclick="mostrarSenha1()"></i>
-                                </div>
-                            </label>
+                        <form class="form" id="form-fun">
 
                             <label class="label-input" for="">
                                 <div class="space_icon">
                                     <i class="far fa-user icon-modify"></i> <!-- imagem usuario -->
                                 </div>
-                                <input type="text" placeholder="Código" maxlength="50" id="codigo">
+                                <input type="text" placeholder="Código" maxlength="50" id="codigo" name="codigo">
                             </label>
                             
                             <label class="label-input" for="">
                                 <div class="space_icon">
                                     <i class="far fa-user icon-modify"></i> <!-- imagem usuario -->
                                 </div>
-                                <input type="text" placeholder="Nome" maxlength="50">
+                                <input type="text" placeholder="Nome" id="nome" maxlength="50" name="nome">
                             </label>
 
                             <label class="label-input" for="">
                                 <div class="space_icon">
                                     <i class="far fa-envelope icon-modify"></i> <!-- imagem email -->  
                                 </div>
-                                <input type="email" placeholder="Email" maxlength="50" id="email">
+                                <input type="email" placeholder="Email" maxlength="50" id="email" name="email">
                             </label>
                             
                             <label class="label-input" for="">
                                 <div class="space_icon">
                                     <i class="bi bi-geo-alt-fill"></i> <!--imagem localização-->
                                 </div>
-                                <select id="unidade" name="unidade">
+                                <select id="unidadeId" name="unidadeId">
                                     <option value="">Escolha a unidade</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -87,9 +77,9 @@
                                 <div class="space_icon">
                                     <i class="fas fa-lock icon-modify"></i> <!-- imagem senha -->   
                                 </div>
-                                <input type="password" placeholder="Senha" maxlength="50" id="password-2">
+                                <input type="password" placeholder="Senha" maxlength="50" id="password-2" name="senhaFuncionario">
                                 <div class="btn-fig">
-                                    <i class="bi bi-eye" id="btn-password-2" onclick="mostrarSenha2()"></i>
+                                    <i class="bi bi-eye" id="btn-password-2" onclick="mostrarSenha2()" ></i>
                                 </div>
                             </label>
         
@@ -97,12 +87,12 @@
                                 <div class="space_icon">
                                     <i class="fas fa-lock icon-modify"></i> <!-- imagem senha -->   
                                 </div>
-                                <input type="password" placeholder="Confirmar senha" maxlength="50" id="password-3">
+                                <input type="password" placeholder="Confirmar senha" maxlength="50" id="password-3"name="confirmarSenhaFuncionario">
                                 <div class="btn-fig">
                                     <i class="bi bi-eye" id="btn-password-3" onclick="mostrarSenha3()"></i>
                                 </div> 
                             </label>      
-                            <button class="btn btn-second" id="edit-profile-button">Adicionar</button>        
+                            <button type="button"class="btn btn-second" id="edit-profile-button">Adicionar</button>        
                         </form>
                     </div><!-- second column -->
                 </div><!-- first content -->

@@ -21,22 +21,78 @@ class CtrlFuncionario extends ControllerHandler {
 	}
 
 	public function get() {
+		$this->funcionario = new Funcionario();
 		$data = $this->funcionario->listAll();
 		$json = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 		echo $json;
 	}
+	public function getByEmail() {
+	    // Email estático para teste
+	    $email = 'thiago@gmail.com';
+	    
+	    // Se o email não for fornecido, retornar erro
+	    if (empty($email)) {
+	        return ["error" => "Email parameter is required"];
+	    }
+	    
+	    // Obter os dados do cliente
+	    $data = $this->funcionario->listByField('email', $email);
+	    
+	    // Verifique o que está sendo retornado pela consulta
+	    var_dump($data); // Verificar os dados retornados
+	    return $data; // Retorne o dado para visualização no teste
+	}
 
 	public function post() {		
-		$funcionarioId = $this->getParameter('funcionarioId');
+		$funcionarioId = 0;
 		$codigo = $this->getParameter('codigo');
 		$nome = $this->getParameter('nome');
 		$email = $this->getParameter('email');
 		$unidadeId = $this->getParameter('unidadeId');
-		$senha = $this->getParameter('senha');
-	    $this->funcionario->populate( $funcionarioId, $codigo, $nome, $email, $unidadeId, $senha);
+		$senhaFuncionario = $this->getParameter('senhaFuncionario');
+		
+		$existingFuncionario = $this->funcionario->listByfield('email', $email);
+	   
+		if (!empty($nome)) {
+			if (!empty($existingFuncionario)) {
+				$result = [
+					'status' => 'error',
+					'message' => 'Email já registrado.'
+				];
+				$json = \json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+				echo $json;
+				return;
+			}
+		
+		$this->funcionario->populate( $funcionarioId, $codigo, $nome, $email, $unidadeId, $senhaFuncionario);
 		$result = $this->funcionario->save();
-		echo $result;
-	}
+		$json = \json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+		echo $json;
+	} else if (!empty($existingFuncionario)) {
+		$validationUser = $this->funcionario->checkUserExists($email, $senhaFuncionario);
+		if (!empty($validationUser)){
+			$funcionario = $validationUser[0];
+			$nome = $funcionario['nome'];
+			
+			$_SESSION["funcionario"] = $nome;
+			
+			$result = [
+				'status' => 'true',
+				'message' => 'Login Executado'
+			];
+			$json = \json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+			echo $json;
+		} else {
+			$result = [
+				'status' => 'error',
+				'message' => 'Funcionario não registrado.'
+			];
+			$json = \json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+			echo $json;
+		}
+	}	
+
+	} 
 
 	public function put() {		
 		$funcionarioId = $this->getParameter('funcionarioId');
@@ -44,8 +100,8 @@ class CtrlFuncionario extends ControllerHandler {
 		$nome = $this->getParameter('nome');
 		$email = $this->getParameter('email');
 		$unidadeId = $this->getParameter('unidadeId');
-		$senha = $this->getParameter('senha');
-	    $this->funcionario->populate( $funcionarioId, $codigo, $nome, $email, $unidadeId, $senha);
+		$senhaFuncionario = $this->getParameter('senhaFuncionario');
+	    $this->funcionario->populate( $funcionarioId, $codigo, $nome, $email, $unidadeId, $senhaFuncionario);
 		$result = $this->funcionario->save();
 		echo $result;
 	}
@@ -56,8 +112,8 @@ class CtrlFuncionario extends ControllerHandler {
 		$nome = $this->getParameter('nome');
 		$email = $this->getParameter('email');
 		$unidadeId = $this->getParameter('unidadeId');
-		$senha = $this->getParameter('senha');
-	    $this->funcionario->populate( $funcionarioId, $codigo, $nome, $email, $unidadeId, $senha);
+		$senhaFuncionario = $this->getParameter('senhaFuncinario');
+	    $this->funcionario->populate( $funcionarioId, $codigo, $nome, $email, $unidadeId, $senhaFuncionario);
 		$result = $this->funcionario->delete();
 		echo $result;
 	}

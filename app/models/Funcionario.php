@@ -74,6 +74,26 @@ class Funcionario {
 		    $rSet = $this->dbquery->selectWhere($where);
 		    return( $rSet );
 	}
+	public function listByField($fieldName, $value) {
+		// Cria uma condição WHERE usando o campo dinâmico
+		$where = new Where();
+		$where->addCondition('AND', $fieldName, '=', $value);
+		
+		// Chama o DBQuery passando as condições de WHERE
+		$rSet = $this->dbquery->selectWhere($where);
+		
+		return $rSet;
+	}
+
+
+	public function checkUserExists($email, $senha) {
+		// Cria uma condição WHERE usando o campo dinâmico
+		$where = new Where();
+		$where->addCondition('AND', 'email', '=', $email);
+		$where->addCondition('AND', 'senha', '=', $senha);
+		$rSet = $this->dbquery->selectWhere($where);
+		return $rSet;
+	}
 
 	public function delete() {
 		if($this->getFuncionarioId() != 0){
