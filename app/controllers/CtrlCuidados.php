@@ -28,7 +28,21 @@ class CtrlCuidados extends ControllerHandler {
         $preco = $this->getParameter('preco');
         $this->cuidados->populate($cuidadosId, $nomeCuidado, $preco);
         $result = $this->cuidados->save();
-        echo $result;
+        
+        $existingCuidado = $this->cuidados->listByField('nomeCuidado', $nomeCuidado);
+        
+        if ($result && !empty($existingCuidado)) {
+            $corte = $existingCuidado[0];
+            // Retorne os dados do produto criado em JSON
+            $produtoCriado = [
+                'id' => $corte['cuidadosId'],
+                'nomeServico' => $corte['nomeCuidado'],
+                'preco' => $corte['preco']
+            ];
+            echo json_encode($produtoCriado, JSON_UNESCAPED_UNICODE);
+        } else {
+            echo json_encode(['status' => false, 'message' => 'Erro ao salvar produto']);
+        }
     }
 
     public function put() {

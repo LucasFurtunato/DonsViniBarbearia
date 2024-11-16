@@ -38,6 +38,7 @@
             <table class="table">
                 <thead>
                     <tr>
+                    	<th>Tipo de serviço</th>
                         <th>Serviços</th>
                         <th>Preços</th>
                         <th>Alterar</th>
@@ -45,20 +46,7 @@
                     </tr>
                 </thead>
                 <tbody id="table-body"> 
-                    <tr>
-                        <td data-label="Serviços">
-                            <label for="servicos">aaaa</label>
-                        </td>
-                        <td data-label="Preços">
-                            <label for="preco">aaaa</label>
-                        </td>   
-                        <td data-label="Alterar">
-                            <a href="#" class="btn-alterar" id="btn-alterar" >Alterar</a>
-                        </td>
-                        <td data-label="Excluir">
-                            <a href="#" class="btn-excluir" id="btn-excluir">Excluir</a>
-                        </td>                
-                    </tr>
+					
                 </tbody>
             </table>
         </div>
@@ -77,9 +65,9 @@
                     <tr>
                         <td data-label="Serviço">
                             <select id="service" name="service">
-                                <option value="CtrlCorte">Corte</option>
-                                <option value="CtrlBarba">Barba</option>
-                                <option value="CtrlCuidados">Cuidados</option>
+                                <option value="Corte">Corte</option>
+                                <option value="Barba">Barba</option>
+                                <option value="Cuidados">Cuidados</option>
                             </select>
                         </td>
                         <td data-label="Nome do Serviço">

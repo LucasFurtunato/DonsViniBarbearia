@@ -28,7 +28,21 @@ class CtrlCorte extends ControllerHandler {
         $preco = $this->getParameter('preco');
         $this->corte->populate($corteId, $nomeCorte, $preco);
         $result = $this->corte->save();
-        echo $result;
+        
+        $existingCorte = $this->corte->listByField('nomeCorte', $nomeCorte);
+        
+        if ($result && !empty($existingCorte)) {
+            $corte = $existingCorte[0];
+            // Retorne os dados do produto criado em JSON
+            $produtoCriado = [
+                'id' => $corte['corteId'],
+                'nomeServico' => $corte['nomeCorte'],
+                'preco' => $corte['preco']
+            ];
+            echo json_encode($produtoCriado, JSON_UNESCAPED_UNICODE);
+        } else {
+            echo json_encode(['status' => false, 'message' => 'Erro ao salvar produto']);
+        }
     }
 
     public function put() {
