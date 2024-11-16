@@ -23,12 +23,26 @@ class CtrlBarba extends ControllerHandler {
     }
 
     public function post() {
-        $barbaId = $this->getParameter('barbaId');
-        $nomeBarba = $this->getParameter('nomeBarba');
+        $barbaId = 0;
+        $nomeBarba = $this->getParameter('nomeServico');
         $preco = $this->getParameter('preco');
         $this->barba->populate($barbaId, $nomeBarba, $preco);
         $result = $this->barba->save();
-        echo $result;
+        
+        $existingBarba = $this->barba->listByField('nomeBarba', $nomeBarba);
+        
+        if ($result && !empty($existingBarba)) {
+            $corte = $existingBarba[0];
+            // Retorne os dados do produto criado em JSON
+            $produtoCriado = [
+                'id' => $corte['barbaId'],
+                'nomeServico' => $corte['nomeBarba'],
+                'preco' => $corte['preco']
+            ];
+            echo json_encode($produtoCriado, JSON_UNESCAPED_UNICODE);
+        } else {
+            echo json_encode(['status' => false, 'message' => 'Erro ao salvar produto']);
+        }
     }
 
     public function put() {

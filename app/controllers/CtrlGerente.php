@@ -28,9 +28,56 @@ class CtrlGerente extends ControllerHandler {
 		$email = $this->getParameter('email');
 		$senha = $this->getParameter('senha');
 		$nome = $this->getParameter('nome');
+		
+		$existingGerente = $this->gerente->listByField('email', $email);
+		
+		if (!empty($codigo) && !empty($existingGerente)) {
+		    $validationGerente = $this->gerente->checkUserExists($codigo, $email, $senha);
+		    if (!empty($validationGerente)){
+		        $gerente = $validationGerente[0];
+		        $nome = $gerente['nome'];
+		        
+		        $_SESSION["gerente"] = $nome;
+		        
+		        $result = [
+		            'status' => 'true',
+		            'message' => 'Login Executado'
+		        ];
+		        $json = \json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+		        echo $json;
+		    } else {
+		        $result = [
+		            'status' => 'error',
+		            'message' => 'Gerente não registrado.'
+		        ];
+		        $json = \json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+		        echo $json;
+		    }
+		} else if (!empty($senha)) {
+		    $validationPass = $this->gerente->listByField('senha', $senha);
+		    //verificar pela sessão se a senha corresponde ao gerente.
+		    if (!empty($validationPass)){
+		        $result = [
+		            'status' => 'true',
+		            'message' => 'Senha Correta'
+		        ];
+		        $json = \json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+		        echo $json;
+		    } else {
+		        $result = [
+		            'status' => 'false',
+		            'message' => 'Senha Incorreta'
+		        ];
+		        $json = \json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+		        echo $json;
+		    }
+		}
+		
+		/*
 	    $this->gerente->populate( $codigo, $email, $senha, $nome);
 		$result = $this->gerente->save();
 		echo $result;
+		*/
 	}
 
 	public function put() {		
