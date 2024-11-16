@@ -23,8 +23,8 @@ class CtrlBarba extends ControllerHandler {
     }
 
     public function post() {
-        $barbaId = $this->getParameter('barbaId');
-        $nomeBarba = $this->getParameter('nomeBarba');
+        $barbaId = 0;
+        $nomeBarba = $this->getParameter('nomeServico');
         $preco = $this->getParameter('preco');
         $this->barba->populate($barbaId, $nomeBarba, $preco);
         $result = $this->barba->save();

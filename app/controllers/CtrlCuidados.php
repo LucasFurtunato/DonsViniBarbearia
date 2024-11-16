@@ -23,8 +23,8 @@ class CtrlCuidados extends ControllerHandler {
     }
 
     public function post() {
-        $cuidadosId = $this->getParameter('cuidadosId');
-        $nomeCuidado = $this->getParameter('nomeCuidado');
+        $cuidadosId = 0;
+        $nomeCuidado = $this->getParameter('nomeServico');
         $preco = $this->getParameter('preco');
         $this->cuidados->populate($cuidadosId, $nomeCuidado, $preco);
         $result = $this->cuidados->save();

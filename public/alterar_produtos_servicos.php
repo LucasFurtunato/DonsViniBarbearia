@@ -69,16 +69,24 @@
                 <thead>
                     <tr>
                         <th>Serviço</th>
+                        <th>Nome do Serviço</th>
                         <th>Preço</th>
                     </tr>
                 </thead>
                 <tbody id="table-body"> 
                     <tr>
                         <td data-label="Serviço">
-                            <input type="text" name="servico" placeholder="Digite o serviço" maxlength="30" id="service" required>
+                            <select id="service" name="service">
+                                <option value="CtrlCorte">Corte</option>
+                                <option value="CtrlBarba">Barba</option>
+                                <option value="CtrlCuidados">Cuidados</option>
+                            </select>
+                        </td>
+                        <td data-label="Nome do Serviço">
+                            <input type="text" name="servico" placeholder="Digite o nome do serviço" maxlength="30" id="serviceName" name="serviceName" required>
                         </td>
                         <td data-label="Preço">
-                            <input type="text" name="preco" placeholder="Digite o preço" maxlength="8" id="price" required>
+                            <input type="number" name="preco" placeholder="Digite o preço" maxlength="8" id="price" name="price" required>
                         </td>   
                     </tr>
                 </tbody>
@@ -123,7 +131,7 @@
                 <p class="description description-second">Tem certeza de que deseja adicionar esse serviço?</p>
                 <form class="form-confirmation">
                     <div class="btn-group">
-                        <button type="submit" class="btn btn-second">Adicionar</button>
+                        <button type="button" class="btn btn-second add-btn">Adicionar</button>
                         <button type="button" class="btn btn-second cancel-btn">Cancelar</button>
                     </div>
                 </form>
@@ -175,17 +183,18 @@
             <div class="second-column">
                 <h2 class="title title-second">Confirmar Produto</h2>
                 <p class="description description-second">Insira a senha para conseguir cadastrar o produto e serviço</p>
-                <form class="form">
+                <form class="form" id="form-password">
                     <label class="label-input">
                         <div class="space_icon">
                             <i class="fas fa-lock icon-modify"></i> 
                         </div>
-                        <input type="password" placeholder="Senha atual" maxlength="50" id="password-3">
+                        <input type="password" placeholder="Senha atual" maxlength="50" id="password-3" name="senha">
                         <div class="btn-fig">
                             <i class="bi bi-eye" id="btn-password-3"></i>
                         </div>
                     </label>
-                    <button class="btn btn-second" id="edit-password-product">Adicionar</button>        
+                    <label id="responseArea"></label>
+                    <button type="button" class="btn btn-second" id="edit-password-product">Adicionar</button>        
                 </form>
             </div>
         </div>

@@ -23,8 +23,8 @@ class CtrlCorte extends ControllerHandler {
     }
 
     public function post() {
-        $corteId = $this->getParameter('corteId');
-        $nomeCorte = $this->getParameter('nomeCorte');
+        $corteId = 0;
+        $nomeCorte = $this->getParameter('nomeServico');
         $preco = $this->getParameter('preco');
         $this->corte->populate($corteId, $nomeCorte, $preco);
         $result = $this->corte->save();

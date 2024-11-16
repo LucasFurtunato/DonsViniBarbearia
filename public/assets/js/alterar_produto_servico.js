@@ -127,14 +127,23 @@ $(document).ready(function() {
 });
 
 
-
+var data = {};
+var servType = '';
 //Para cadastrar produto
 $(document).ready(function() {
     $('#register-product').on('click', function() {
         let serviço = $('#service').val().trim();
+		let nomeServiço = $('#serviceName').val().trim();
         let preço = $('#price').val().trim();
+		
+		// Crie um objeto para armazenar as informações
+		let formData = {
+		    servico: serviço,
+		    nomeServico: nomeServiço,
+		    preco: preço
+		};
     
-        if (serviço === '' || preço === '') {
+        if (serviço === '' || nomeServiço === '' || preço === '') {
             alert("Por favor, preencha os campos de serviço e preço.");
         } else {
             // Se todos os campos estiverem preenchidos corretamente
@@ -142,6 +151,9 @@ $(document).ready(function() {
             $('#table-container-2').hide();
             $('#hr').hide();
             $('#sixth-container').show();
+			
+			data = formData;
+			servType = serviço;
         }
         
     });
@@ -150,10 +162,26 @@ $(document).ready(function() {
         let password = $('#password-3').val().trim();
 
         if( password === '') {
-            alert("Por favor, preencha o campo de redefinir senha.")
-        } else{
-            $('#third-container').show();
-            $('#sixth-container').hide();
+            alert("Por favor, preencha o campo de senha.")
+        } else{		
+			$.ajax({
+		        url: "../app/controllers/CtrlGerente.php",
+		        method: "POST",
+		        data: $("#form-password").serialize(),
+		        success: function(response) {
+		            var objRetorno = JSON.parse(response);
+					
+					if (objRetorno.status === "true") {
+						$('#third-container').show();
+						$('#sixth-container').hide();
+					} else {
+						$("#responseArea").text("Senha Incorreta");
+					}
+		        },
+		        error: function(xhr, status, error) {
+		            $('#responseArea').text("Erro na requisição: " + error);
+		        }
+		    });
         }
     });
     
@@ -166,6 +194,28 @@ $(document).ready(function() {
         $('#table-container-1').show();
         $('#table-container-2').show();
         $('#hr').show();
+    });
+	
+	// Ao clicar no botão de adicionar
+    $('.add-btn').on('click', function(event) {
+        event.preventDefault(); // Prevenir o comportamento padrão do botão
+		
+		$.ajax({
+            url: "../app/controllers/" + servType + ".php",
+            method: "POST",
+            data: data,
+            success: function(response) {
+                var objRetorno = JSON.parse(response);
+				// Esconder o segundo container e mostrar o primeiro novamente
+		        $('#third-container').hide();
+		        $('#table-container-1').show();
+		        $('#table-container-2').show();
+		        $('#hr').show();
+            },
+            error: function(xhr, status, error) {
+                $('#responseArea').text("Erro na requisição: " + error);
+            }
+        });
     });
 });
 
