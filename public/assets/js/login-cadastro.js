@@ -146,7 +146,6 @@ btnSignup.addEventListener("click", function () {
                     }else{
                         $("#responseAreaLogin").text("Aguarde");
                         window.location.href = 'index.php';
-                        console.log(response)
                     }
                 },
                 error: function(xhr, status, error) {

@@ -39,40 +39,6 @@
                 </li>
             </ul>
         </nav>
-        <script type="text/javascript">
-            $(document).ready(function(){
-                $.get( '../app/controllers/VfyLogin.php', function(dados) {
-                    var objRetorno = JSON.parse(dados)
-
-                    if (objRetorno.usrType == "cliente"){
-                        $("#aName").text(objRetorno.name);
-
-                        $("#aName").show();
-                        $("#aSair").show();
-                        $("#aAgenda").show();
-                        $("#aEntrarUsr").hide();
-                        $("#aEntrarAdm").hide();
-                        $("#aEntrar").hide();
-                    } else if (objRetorno.usrType == "gerente"){
-                        $("#aGerente").text(objRetorno.name);
-
-                        $("#aName").show();
-                        $("#aSair").show();
-                        $("#aAgenda").show();
-                        $("#aEntrarUsr").hide();
-                        $("#aEntrarAdm").hide();
-                        $("#aEntrar").hide();
-                    } else {
-                        $("#aName").hide();
-                        $("#aSair").hide();
-                        $("#aAgenda").hide();
-                        $("#aEntrarUsr").show();
-                        $("#aEntrarAdm").show();
-                        $("#aEntrar").show();
-                    }
-                });
-            });
-        </script>
     </header>
     <main>
         <div class="background-container">

@@ -22,7 +22,17 @@ if (isset($_SESSION["cliente"])) {
   
   $json = \json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
   echo $json;
-} else {
+} else if (isset($_SESSION["funcionario"])) {
+    $funcionario = $_SESSION["funcionario"];
+    
+    $result = [
+        'usrType' => 'funcionario',
+        'name' => $funcionario
+    ];
+    
+    $json = \json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+    echo $json;
+}else {
     $result = [
         'usrType' => 'deslogado',
         'name' => ''
