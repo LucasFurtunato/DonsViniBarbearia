@@ -83,6 +83,36 @@
                 <button type="submit" id="register-product" class="b-table" >Cadastrar Produto</button> 
             </div>
         </div>
+        <div class="container" id="alterar-container" style="display: none;">
+            <div class="content first-content">
+                <div class="second-column">
+                    <h2 class="title title-second">Alterar Serviço</h2>
+                    <form id="form-alterar">
+                    	<input type="hidden" name="idServico" id="idServico"> <!-- ID invisível com o input hidden -->
+                        <label class="label-input">
+                            <span>Tipo de Serviço</span>
+                            <select id="alterar-servico" name="alterarTipoServico" required>
+                                <option value="Corte">Corte</option>
+                                <option value="Barba">Barba</option>
+                                <option value="Cuidados">Cuidados</option>
+                            </select>
+                        </label>
+                        <label class="label-input">
+                            <span>Nome do Serviço</span>
+                            <input type="text" id="alterar-nome-servico" name="alterarNomeServico" maxlength="50" required>
+                        </label>
+                        <label class="label-input">
+                            <span>Preço</span>
+                            <input type="number" id="alterar-preco" name="alterarPreco" maxlength="8" required>
+                        </label>
+                        <div class="btn-group">
+                            <button type="button" id="confirmar-alteracao" class="btn btn-second">Salvar Alterações</button>
+                            <button type="button" id="cancelar-alteracao" class="btn btn-second cancel-btn">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </main>
     <div class="container" id="first-content" style="display: none">
         <div class="content first-content">
@@ -181,7 +211,6 @@
                             <i class="bi bi-eye" id="btn-password-3"></i>
                         </div>
                     </label>
-                    <label id="responseArea"></label>
                     <button type="button" class="btn btn-second" id="edit-password-product">Adicionar</button>        
                 </form>
             </div>

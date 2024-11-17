@@ -45,7 +45,7 @@ $('#btn-password-3').click(function() {
 $(document).ready(function() {
 	// Fazer a requisição GET para o controlador combinado
     $.ajax({
-        url: "../app/controllers/GetProdutosCombinados.php", // URL para o controlador combinado
+        url: "../app/controllers/CtrlServicos.php", // URL para o controlador combinado
         method: "GET",
         success: function(response) {
             let data = JSON.parse(response);
@@ -56,12 +56,12 @@ $(document).ready(function() {
             // Inserir dados de Corte
             data.cortes.forEach(corte => {
                 $('#table-body').append(`
-                    <tr>
-						<td data-label="Serviços">
-	                        <label for="typeServicos">Corte</label>
+                    <tr data-id="${corte.servicosId}">
+						<td data-label="TiposDeServicos">
+	                        <label for="servType">${corte.tipoServico}</label>
 	                    </td>
 						<td data-label="Serviços">
-	                        <label for="servicos">${corte.nomeCorte}</label>
+	                        <label for="servicos">${corte.nomeServico}</label>
 	                    </td>
 	                    <td data-label="Preços">
 	                        <label for="preco">${corte.preco}</label> 	
@@ -79,12 +79,12 @@ $(document).ready(function() {
             // Inserir dados de Barba
             data.barbas.forEach(barba => {
                 $('#table-body').append(`
-                    <tr>
-						<td data-label="Serviços">
-						    <label for="typeServicos">Barba</label>
+                    <tr data-id="${barba.servicosId}">
+						<td data-label="TiposDeServicos">
+						    <label for="servType">${barba.tipoServico}</label>
 						</td>
 						<td data-label="Serviços">
-					        <label for="servicos">${barba.nomeBarba}</label>
+					        <label for="servicos">${barba.nomeServico}</label>
 					    </td>
 					    <td data-label="Preços">
 					        <label for="preco">${barba.preco}</label> 	
@@ -102,12 +102,12 @@ $(document).ready(function() {
 	            // Inserir dados de Cuidados
 	            data.cuidados.forEach(cuidado => {
 	                $('#table-body').append(`
-	                    <tr>
-							<td data-label="Serviços">
-							    <label for="typeServicos">Cuidados</label>
+	                    <tr data-id="${cuidado.servicosId}">
+							<td data-label="TiposDeServicos">
+							    <label for="servType">${cuidado.tipoServico}</label>
 							</td>
 							<td data-label="Serviços">
-							    <label for="servicos">${cuidado.nomeCuidado}</label>
+							    <label for="servicos">${cuidado.nomeServico}</label>
 							</td>
 							<td data-label="Preços">
 							    <label for="preco">${cuidado.preco}</label> 	
@@ -123,26 +123,127 @@ $(document).ready(function() {
 	            });
 	        },
 	        error: function(xhr, status, error) {
-	            console.error("Erro ao carregar os dados: ", error);
+	            alert("Erro na requisição: " + error);
 	        }
 	    });
 	
 	
-    $('#btn-alterar').on('click', function() {
-        let serviços = $('#services').val().trim();
-        let preços = $('#prices').val().trim();
-    
-        if (serviços === '' || preços === '') {
-            alert("Por favor, preencha os campos de serviço e preço.");
-        } else {
-            // Se todos os campos estiverem preenchidos corretamente
-            $('#table-container-1').hide();
-            $('#table-container-2').hide();
-            $('#hr').hide();
-            $('#fourth-container').show();
-        }
-    
-    });
+		// Captura o evento de clique no botão "Alterar"
+		$(document).on('click', '.btn-alterar', function(event) {
+		    event.preventDefault(); // Previne o comportamento padrão do link
+			
+			// Adiciona a classe 'active' ao botão clicado e remove de seus irmãos
+			$(this).addClass('active').closest('tr').siblings().find('.btn-alterar').removeClass('active');
+		    
+			// Obtém a linha da tabela onde o botão foi clicado
+		    let row = $(this).closest('tr');
+		    
+			// Extrai os valores das células na linha
+			let idServico = $(this).closest('tr').data('id');
+			console.log(idServico)
+		    let tipoServico = row.find('td[data-label="TiposDeServicos"] label').text();
+		    let nomeServico = row.find('td[data-label="Serviços"]:nth-child(2) label').text();
+		    let preco = row.find('td[data-label="Preços"] label').text();
+
+		    // Preenche os campos do formulário de alteração com os dados existentes
+			$('#idServico').val(idServico);
+		    $('#alterar-servico').val(tipoServico);
+		    $('#alterar-nome-servico').val(nomeServico);
+		    $('#alterar-preco').val(preco);
+
+		    // Exibe o formulário de edição e esconde a tabela
+		    $('#table-container-1').hide();
+		    $('#table-container-2').hide();
+		    $('#hr').hide();
+		    $('#alterar-container').show(); // Mostra a seção de alteração
+		});
+		
+		$(document).on('click', '.btn-excluir', function(event) {
+		    event.preventDefault(); // Previne o comportamento padrão do link
+			
+			// Encontrar a linha <tr> mais próxima ao botão "Excluir" clicado
+			let row = $(this).closest('tr');
+			
+		    // Extrai os valores das células na linha
+			let idServico = $(this).closest('tr').data('id');
+			
+			
+			let dataId = {
+					    servicosId: idServico,
+			};
+		    // Preenche os campos do formulário de alteração com os dados existentes
+			$('#idServico').val(idServico);
+			$.ajax({
+		        url: "../app/controllers/CtrlServicos.php",
+		        method: "DELETE",
+		        data: dataId,
+		        success: function(response) {
+		            var objRetorno = JSON.parse(response);
+					
+					if (objRetorno.status == false) {
+						alert(objRetorno.message);
+					} else {
+						alert(objRetorno.message);
+						// Remover a linha
+						row.remove();
+					}
+		        },
+		        error: function(xhr, status, error) {
+					alert("Erro na requisição: " + error);
+		        }
+		    });
+		});
+
+		// Confirma a alteração e atualiza os dados na tabela
+		$('#confirmar-alteracao').on('click', function() {
+		    // Obtém os valores do formulário
+			let idServico = $('#idServico').val().trim();
+		    let tipoServico = $('#alterar-servico').val().trim();
+		    let nomeServico = $('#alterar-nome-servico').val().trim();
+		    let preco = $('#alterar-preco').val().trim();
+
+		    // Valida os campos
+		    if (tipoServico === '' || nomeServico === '' || preco === '' || idServico === '') {
+		        alert("Por favor, preencha todos os campos.");
+		    } else {
+				$.ajax({
+			        url: "../app/controllers/CtrlServicos.php",
+			        method: "PUT",
+			        data: $("#form-alterar").serialize(),
+			        success: function(response) {
+			            var objRetorno = JSON.parse(response);
+						
+						if (objRetorno.status == false) {
+							alert(objRetorno.message);
+						} else {
+							// Atualiza os valores na tabela (supondo que a linha alterada ainda está selecionada)
+						    let row = $('.btn-alterar.active').closest('tr'); // Mantém referência à linha ativa
+							row.find('td[data-label="TiposDeServicos"] label').text(tipoServico);
+						    row.find('td[data-label="Serviços"]:nth-child(2) label').text(nomeServico);
+						    row.find('td[data-label="Preços"] label').text(preco);
+							// Oculta o formulário de edição e volta para a tabela
+						    $('#alterar-container').hide();
+						    $('#table-container-1').show();
+						    $('#table-container-2').show();
+						    $('#hr').show();
+						}
+			        },
+			        error: function(xhr, status, error) {
+						alert("Erro na requisição: " + error);
+			        }
+			    });
+			}		    
+		});
+
+		// Ao clicar em "Cancelar" no formulário de alteração
+		$('#cancelar-alteracao').on('click', function() {
+		    // Oculta o formulário de edição e volta para a tabela
+		    $('#alterar-container').hide();
+		    $('#table-container-1').show();
+		    $('#table-container-2').show();
+		    $('#hr').show();
+		});
+
 
     $('#edit-password-change').on('click', function() {
         let password = $('#password-1').val().trim();
@@ -172,22 +273,6 @@ $(document).ready(function() {
 
 //Redefinir senha produto e excluir produto
 $(document).ready(function() {
-    $('#btn-excluir').on('click', function() {
-        let serviço = $('#services').val().trim();
-        let preço = $('#prices').val().trim();
-    
-        if (serviço === '' || preço === '') {
-            alert("Os campos devem estar preenchidos, caso contrário não é possível excluir.");
-        } else {
-            // Se todos os campos estiverem preenchidos corretamente
-            $('#table-container-1').hide();
-            $('#table-container-2').hide();
-            $('#hr').hide();
-            $('#fifth-container').show();
-        }
-        
-    });
-    
     $('#edit-password-exclusion').on('click', function() {
         let password = $('#password-2').val().trim();
 
@@ -213,7 +298,6 @@ $(document).ready(function() {
 
 
 var data = {};
-var servType = '';
 //Para cadastrar produto
 $(document).ready(function() {
     $('#register-product').on('click', function() {
@@ -223,7 +307,7 @@ $(document).ready(function() {
 		
 		// Crie um objeto para armazenar as informações
 		let formData = {
-		    servico: serviço,
+		    tipoServico: serviço,
 		    nomeServico: nomeServiço,
 		    preco: preço
 		};
@@ -238,7 +322,6 @@ $(document).ready(function() {
             $('#sixth-container').show();
 			
 			data = formData;
-			servType = serviço;
         }
         
     });
@@ -260,11 +343,11 @@ $(document).ready(function() {
 						$('#third-container').show();
 						$('#sixth-container').hide();
 					} else {
-						$("#responseArea").text("Senha Incorreta");
+						alert(objRetorno.message)
 					}
 		        },
 		        error: function(xhr, status, error) {
-		            $('#responseArea').text("Erro na requisição: " + error);
+		            alert("Erro na requisição: " + error);
 		        }
 		    });
         }
@@ -279,6 +362,7 @@ $(document).ready(function() {
         $('#table-container-1').show();
         $('#table-container-2').show();
         $('#hr').show();
+		$('#responseArea').text('');
     });
 	
 	// Ao clicar no botão de adicionar
@@ -286,7 +370,7 @@ $(document).ready(function() {
         event.preventDefault(); // Prevenir o comportamento padrão do botão
 		
 		$.ajax({
-            url: "../app/controllers/Ctrl" + servType + ".php",
+            url: "../app/controllers/CtrlServicos.php",
             method: "POST",
             data: data,
             success: function(response) {
@@ -295,9 +379,9 @@ $(document).ready(function() {
 				if (objRetorno.id) { // Verifica se o produto foi criado
 	                // Adicione o produto na tabela de alterar produtos
 	                $('#table-body').append(`
-	                    <tr>
+	                    <tr data-id="${objRetorno.id}">
 							<td data-label="Serviços">
-		                        <label for="typeServicos">${servType}</label>
+		                        <label for="servType">${objRetorno.tipoServico}</label>
 		                    </td>
 							<td data-label="Serviços">
 		                        <label for="servicos">${objRetorno.nomeServico}</label>
@@ -320,12 +404,12 @@ $(document).ready(function() {
 			        $('#table-container-2').show();
 			        $('#hr').show();
                 } else {
-                    $('#responseArea').text("Erro ao adicionar produto.");
+                    alert(objRetorno.message);
                 }
 				
             },
             error: function(xhr, status, error) {
-                $('#responseArea').text("Erro na requisição: " + error);
+                alert("Erro na requisição: " + error);
             }
         });
     });

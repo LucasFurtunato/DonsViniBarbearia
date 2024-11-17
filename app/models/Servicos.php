@@ -7,31 +7,34 @@ require_once dirname(__DIR__, 1).'/config.php';
 use app\core\DBQuery;
 use app\core\Where;
 
-class Barba {
+class Servicos {
 
-    private $barbaId;
-    private $nomeBarba;
+    private $servicosId;
+    private $tipoServico;
+    private $nomeServico;
     private $preco;
 
-    private $tableName  = "hostdeprojetos_donvinibarbearia.barba";
-    private $fieldsName = "barbaId, nomeBarba, preco";
-    private $fieldKey   = "barbaId";
-    private $dbquery     = null;
+    private $tableName  = "hostdeprojetos_donvinibarbearia.servicos";
+    private $fieldsName = "servicosId, tipoServico, nomeServico, preco";
+    private $fieldKey   = "servicosId";
+    private $dbquery    = null;
 
     function __construct() {
         $this->dbquery = new DBQuery($this->tableName, $this->fieldsName, $this->fieldKey);
     }
 
-    function populate($barbaId, $nomeBarba, $preco) {
-        $this->setBarbaId($barbaId);
-        $this->setNomeBarba($nomeBarba);
+    function populate($servicosId, $tipoServico, $nomeServico, $preco) {
+        $this->setServicosId($servicosId);
+        $this->setTipoServico($tipoServico);
+        $this->setNomeServico($nomeServico);
         $this->setPreco($preco);
     }
 
     public function toArray() {
         return array(
-            'barbaId' => $this->getBarbaId(),
-            'nomeBarba' => $this->getNomeBarba(),
+            'servicosId' => $this->getServicosId(),
+            'tipoServico' => $this->getTipoServico(),
+            'nomeServico' => $this->getNomeServico(),
             'preco' => $this->getPreco(),
         );
     }
@@ -45,7 +48,7 @@ class Barba {
     }
 
     public function save() {
-        if ($this->getBarbaId() == 0) {
+        if ($this->getServicosId() == 0) {
             return $this->dbquery->insert($this->toArray());
         } else {
             return $this->dbquery->update($this->toArray());
@@ -75,25 +78,33 @@ class Barba {
     }
 
     public function delete() {
-        if ($this->getBarbaId() != 0) {
+        if ($this->getServicosId() != 0) {
             return $this->dbquery->delete($this->toArray());
         }
     }
 
-    public function setBarbaId($barbaId) {
-        $this->barbaId = $barbaId;
+    public function setServicosId($servicosId) {
+        $this->servicosId = $servicosId;
     }
 
-    public function getBarbaId() {
-        return $this->barbaId;
+    public function getServicosId() {
+        return $this->servicosId;
     }
 
-    public function setNomeBarba($nomeBarba) {
-        $this->nomeBarba = $nomeBarba;
+    public function setTipoServico($tipoServico) {
+        $this->tipoServico = $tipoServico;
     }
 
-    public function getNomeBarba() {
-        return $this->nomeBarba;
+    public function getTipoServico() {
+        return $this->tipoServico;
+    }
+
+    public function setNomeServico($nomeServico) {
+        $this->nomeServico = $nomeServico;
+    }
+
+    public function getNomeServico() {
+        return $this->nomeServico;
     }
 
     public function setPreco($preco) {
