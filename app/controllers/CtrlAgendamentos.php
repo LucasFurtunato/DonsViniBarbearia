@@ -27,13 +27,11 @@ class CtrlAgendamentos extends ControllerHandler {
         $unidadeId = $this->getParameter('unidadeId');
         $funcionarioId = $this->getParameter('funcionarioId');
         $clienteId = $this->getParameter('clienteId');
-        $barbaId = $this->getParameter('barbaId');
-        $corteId = $this->getParameter('corteId');
-        $cuidadosId = $this->getParameter('cuidadosId');
+        $servicosId = $this->getParameter('servicosId');
         $preco = $this->getParameter('preco');
         $dia = $this->getParameter('dia');
         $horario = $this->getParameter('horario');
-        $this->agendamentos->populate($agendamentosId, $unidadeId, $funcionarioId, $clienteId, $barbaId, $corteId, $cuidadosId, $preco, $dia, $horario);
+        $this->agendamentos->populate($agendamentosId, $unidadeId, $funcionarioId, $clienteId, $servicosId, $preco, $dia, $horario);
         $result = $this->agendamentos->save();
         echo $result;
     }
@@ -43,13 +41,11 @@ class CtrlAgendamentos extends ControllerHandler {
         $unidadeId = $this->getParameter('unidadeId');
         $funcionarioId = $this->getParameter('funcionarioId');
         $clienteId = $this->getParameter('clienteId');
-        $barbaId = $this->getParameter('barbaId');
-        $corteId = $this->getParameter('corteId');
-        $cuidadosId = $this->getParameter('cuidadosId');
+        $servicosId = $this->getParameter('servicosId');
         $preco = $this->getParameter('preco');
         $dia = $this->getParameter('dia');
         $horario = $this->getParameter('horario');
-        $this->agendamentos->populate($agendamentosId, $unidadeId, $funcionarioId, $clienteId, $barbaId, $corteId, $cuidadosId, $preco, $dia, $horario);
+        $this->agendamentos->populate($agendamentosId, $unidadeId, $funcionarioId, $clienteId, $servicosId, $preco, $dia, $horario);
         $result = $this->agendamentos->save();
         echo $result;
     }
@@ -59,13 +55,11 @@ class CtrlAgendamentos extends ControllerHandler {
         $unidadeId = $this->getParameter('unidadeId');
         $funcionarioId = $this->getParameter('funcionarioId');
         $clienteId = $this->getParameter('clienteId');
-        $barbaId = $this->getParameter('barbaId');
-        $corteId = $this->getParameter('corteId');
-        $cuidadosId = $this->getParameter('cuidadosId');
+        $servicosId = $this->getParameter('servicosId');
         $preco = $this->getParameter('preco');
         $dia = $this->getParameter('dia');
         $horario = $this->getParameter('horario');
-        $this->agendamentos->populate($agendamentosId, $unidadeId, $funcionarioId, $clienteId, $barbaId, $corteId, $cuidadosId, $preco, $dia, $horario);
+        $this->agendamentos->populate($agendamentosId, $unidadeId, $funcionarioId, $clienteId, $servicosId, $preco, $dia, $horario);
         $result = $this->agendamentos->delete();
         echo $result;
     }
