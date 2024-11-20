@@ -23,10 +23,10 @@ class CtrlAgendamentos extends ControllerHandler {
     }
 
     public function post() {
-        $agendamentosId = $this->getParameter('agendamentosId');
-        $unidadeId = $this->getParameter('unidadeId');
+        $agendamentosId = 0;
+        $unidadeId = 1; //por enquanto fica assim
         $funcionarioId = $this->getParameter('funcionarioId');
-        $clienteId = $this->getParameter('clienteId');
+        $clienteId = 1;
         $servicosId = $this->getParameter('servicosId');
         $preco = $this->getParameter('preco');
         $dia = $this->getParameter('dia');

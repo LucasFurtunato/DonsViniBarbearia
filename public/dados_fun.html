@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dados dos Funcionários</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/dados_fun.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+            integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    
+    <header>
+        <nav>
+            <img src="assets/img/logo.png" alt="Don' Vini logo" class="logo">
+            <div class="mobile-menu" style="z-index: 999;">
+            </div>
+            <ul class="nav-list">
+                <li><a href="#">Início</a></li>
+                <li><a href="#" id="login-button">Main Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+
+    <main>
+        <div class="table-container" id="table">
+            <h1 class="heading">Dados dos Funcionários</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nome Fun.</th>
+                        <th>Email</th>
+                        <th>Unidade</th>
+                        <th>Código</th>
+                        <th>Alterar</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body"> 
+                    <tr>
+                        <td data-label="Nome Fun.">Funcionário Novo</td>
+                        <td data-label="Email">fun1@gmail.com</td>
+                        <td data-label="Unidade">Unidade 1</td>
+                        <td data-label="Código">1a2wiend</td>
+                        <td data-label="Ações">
+
+                            <div class="btn-group">
+                                <a href="#" class="btn" id="alterar_dados">Alterar dados</a>
+                                <a href="#" class="btn, delete" id="excluir_dados">Excluir</a>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+            <div class="button-container">
+                <button class="btn" id="btn-add-row">Adicionar Linha</button>
+            </div>
+            
+
+            <!--rodapé da tabela-->  
+            <div class="footer-table"></div>
+        </div>
+        <div class="container" id="first-container" style="display: none;"> 
+            <div class="content first-content"> 
+                <div class="second-column">
+                    <h2 class="title title-second">Alterar Dados do Funcionário</h2>
+                    <p class="description description-second">Insira a senha para conseguir alterar o funcionário</p>
+                    <form class="form">
+                        <label class="label-input">
+                            <div class="space_icon">
+                                <i class="fas fa-lock icon-modify"></i> 
+                            </div>
+                            <input type="password" placeholder="Senha atual" maxlength="50" id="password-1">
+                            <div class="btn-fig">
+                                <i class="bi bi-eye" id="btn-password-1"></i>
+                            </div>
+                        </label>
+                        <button class="btn1 btn-second" id="edit-password-product">Confirmar</button>       
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="container" id="second-container" style="display: none;"> 
+            <div class="content first-content"> 
+                <div class="second-column">
+                    <h2 class="title title-second">Excluir Funcionário</h2>
+                    <p class="description description-second">Insira a senha para conseguir excluir o funcionário</p>
+                    <form class="form">
+                        <label class="label-input">
+                            <div class="space_icon">
+                                <i class="fas fa-lock icon-modify"></i> 
+                            </div>
+                            <input type="password" placeholder="Senha atual" maxlength="50" id="password-2">
+                            <div class="btn-fig">
+                                <i class="bi bi-eye" id="btn-password-2"></i>
+                            </div>
+                        </label>
+                        <button class="btn1 btn-second" id="edit-password-product">Excluir</button>       
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Barbearias Don' Vini. Todos os direitos reservados.</p>
+            <p>Por: RootingTI</p>
+        </div>
+    </footer> 
+
+    <script src="assets/js/dados_fun.js"></script>
+    <script src="assets/js/mobile-navbar.js"></script>
+    <script>
+
+$(document).ready(function() {
+    // Função para adicionar uma nova linha
+    $('#btn-add-row').click(function() {
+        const newRow = `
+<tr>
+    <td data-label="Nome Fun.">Funcionário Novo</td>
+    <td data-label="Email">fun1@gmail.com</td>
+    <td data-label="Unidade">Unidade 1</td>
+    <td data-label="Código">1a2wiend</td>
+    <td data-label="Ações">
+        <div class="btn-group">
+            <a href="#" class="btn alterar">Alterar dados</a>
+            <a href="#" class="btn excluir" style="background-color: rgb(255, 62, 62);">Excluir</a>
+        </div>
+    </td>
+</tr>
+
+        `;
+        
+        // Adicionar a nova linha à tabela
+        $('#table-body').append(newRow);
+    });
+
+    // Função para excluir a linha
+    $(document).on('click', '.excluir', function() {
+        $(this).closest('tr').remove(); // Remove a linha correspondente
+    });
+});
+
+
+
+
+    </script>
+</body>
+</html>

@@ -26,22 +26,6 @@ class CtrlFuncionario extends ControllerHandler {
 		$json = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 		echo $json;
 	}
-	public function getByEmail() {
-	    // Email estático para teste
-	    $email = 'thiago@gmail.com';
-	    
-	    // Se o email não for fornecido, retornar erro
-	    if (empty($email)) {
-	        return ["error" => "Email parameter is required"];
-	    }
-	    
-	    // Obter os dados do cliente
-	    $data = $this->funcionario->listByField('email', $email);
-	    
-	    // Verifique o que está sendo retornado pela consulta
-	    var_dump($data); // Verificar os dados retornados
-	    return $data; // Retorne o dado para visualização no teste
-	}
 
 	public function post() {		
 		$funcionarioId = 0;

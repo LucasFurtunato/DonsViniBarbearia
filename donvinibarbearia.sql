@@ -77,7 +77,9 @@ CREATE TABLE `agendamentos` (
   `unidadeId` int(11) NOT NULL,
   `funcionarioId` int(11) NOT NULL,
   `clienteId` int(11) NOT NULL,
-  `servicosId` int(11) NOT NULL,
+  `barbaId` int(11) NOT NULL,
+  `corteId` int(11) NOT NULL,
+  `cuidadosId` int(11) NOT NULL,
   `preco` int(255) NOT NULL,
   `dia` date NOT NULL,
   `horario` time NOT NULL,
@@ -85,11 +87,15 @@ CREATE TABLE `agendamentos` (
   KEY `unidadeId` (`unidadeId`),
   KEY `clienteId` (`clienteId`),
   KEY `funcionarioId` (`funcionarioId`),
-  KEY `servicosId` (`servicosId`),
+  KEY `corteId` (`corteId`),
+  KEY `barbaId` (`barbaId`),
+  KEY `cuidadosId` (`cuidadosId`),
   CONSTRAINT `agendamentos_ibfk_1` FOREIGN KEY (`unidadeId`) REFERENCES `unidade` (`unidadeId`),
   CONSTRAINT `agendamentos_ibfk_2` FOREIGN KEY (`clienteId`) REFERENCES `cliente` (`clienteId`),
   CONSTRAINT `agendamentos_ibfk_3` FOREIGN KEY (`funcionarioId`) REFERENCES `funcionario` (`funcionarioId`),
-  CONSTRAINT `agendamentos_ibfk_4` FOREIGN KEY (`servicosId`) REFERENCES `servicos` (`servicosId`)
+  CONSTRAINT `agendamentos_ibfk_4` FOREIGN KEY (`corteId`) REFERENCES `servicos` (`servicosId`),
+  CONSTRAINT `agendamentos_ibfk_5` FOREIGN KEY (`barbaId`) REFERENCES `servicos` (`servicosId`),
+  CONSTRAINT `agendamentos_ibfk_6` FOREIGN KEY (`cuidadosId`) REFERENCES `servicos` (`servicosId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `galeria` (

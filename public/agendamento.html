@@ -40,10 +40,9 @@
                         <button class="btn-2"> Selecione corte</i><i class="bi bi-caret-down-fill"></i></button>
                         <div class="content-to-toggle">
                             <!-- Conteúdo para cortes aqui -->
-                            <ul class="itens">
-                                <li>Corte low fade</li>                               
-                                <li>Corte low fade</li>
-                                <li>Corte low fade</li>
+                            <ul class="itens" id="cortes">
+                                <!-- Cortes aqui -->
+                                <li data-preco="0">Não é necessário o corte</li> 
                             </ul>
                         </div>
                     </li>
@@ -52,10 +51,9 @@
                         <button class="btn-2"> Selecione Barba<i class="bi bi-caret-down-fill"></i></button>
                         <div class="content-to-toggle" style="display: none;">
                             <!-- Conteúdo para barba aqui -->
-                            <ul class="itens">
-                                <li>Barba quadrada</li>
-                                <li>Barba quadrada</li> 
-                                <li>Barba quadrada</li>                                                              
+                            <ul class="itens" id="barbas">
+                            	<!-- Barbas aqui -->
+                            	<li data-preco="0">Não é necessário fazer a barba</li>                                          
                             </ul>
                         </div>
                     </li>
@@ -64,46 +62,27 @@
                         <button class="btn-2"> Selecione Cuidados</i><i class="bi bi-caret-down-fill"></i></button>
                         <div class="content-to-toggle" style="display: none;">
                             <!-- Conteúdo para cuidados aqui -->
-                            <ul class="itens">
-                                <li>Sobrancelha</li>                               
-                                <li>Sobrancelha</li>
-                                <li>Sobrancelha</li>
+                            <ul class="itens" id="cuidados">
+                                <!-- Cuidados aqui -->
+                                <li data-preco="0">Não é necessário nenhum dos cuidados</li>
                             </ul>
                         </div>
                     </li>
                     <h4>DATA</h4>
                     <li>
-                        <button class="btn-2"> Selecione Data</i><i class="bi bi-caret-down-fill"></i></button>
-                        <div class="content-to-toggle" style="display: none;">
-                            <!-- Conteúdo para data aqui -->
-                            <ul class="itens">
-                                <li>19/10/24</li>                               
-                                <li>19/10/24</li>
-                                <li>19/10/24</li>
-                            </ul>
-                        </div>
+                    	<input type="date" id="data" name="data">
                     </li>
                     <h4>HORÁRIO</h4>
                     <li>
-                        <button class="btn-2"> Selecione Horário</i><i class="bi bi-caret-down-fill"></i></button>
-                        <div class="content-to-toggle" style="display: none;">
-                            <!-- Conteúdo para horário aqui -->
-                            <ul class="itens">
-                                <li>14h</li>                               
-                                <li>14h</li>
-                                <li>14h</li>
-                            </ul>
-                        </div>
+                        <input type="time" id="horario" name="horario">
                     </li>
                     <h4>PROFISSIONAL</h4>
                     <li>
                         <button class="btn-2"> Selecione barbeiro</i><i class="bi bi-caret-down-fill"></i></button>
                         <div class="content-to-toggle" style="display: none;">
                             <!-- Conteúdo para aqui -->
-                            <ul class="itens">
-                                <li>Vinicius</li>                               
-                                <li>Vinicius</li>
-                                <li></li>
+                            <ul class="itens" id="profissional">
+                                <!-- Profissionais aqui -->
                             </ul>
                         </div>
                     </li>
@@ -113,6 +92,9 @@
             <div class="second-collumn">
                 <h2>PREÇO</h2>
                 <span id="price">R$ 00,00</span>
+                <ul id="individual-prices">
+				    <!-- Aqui será exibido o preço de cada serviço selecionado -->
+				</ul>
                 <button class="btn btn-second">Agendar</button>
             </div>
         </div>
