@@ -52,12 +52,13 @@ class CtrlFuncionario extends ControllerHandler {
 		$senhaFuncionario = $this->getParameter('senhaFuncionario');
 		
 		$existingFuncionario = $this->funcionario->listByfield('email', $email);
-	   
+			
 		if (!empty($nome)) {
 			if (!empty($existingFuncionario)) {
 				$result = [
 					'status' => 'error',
 					'message' => 'Email já registrado.'
+					
 				];
 				$json = \json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 				echo $json;
@@ -117,6 +118,7 @@ class CtrlFuncionario extends ControllerHandler {
 		$result = $this->funcionario->delete();
 		echo $result;
 	}
+	
 
 	public function file(){
 

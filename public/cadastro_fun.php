@@ -92,7 +92,8 @@
                                     <i class="bi bi-eye" id="btn-password-3" onclick="mostrarSenha3()"></i>
                                 </div> 
                             </label>      
-                            <button type="button"class="btn btn-second" id="edit-profile-button">Adicionar</button>        
+                            <button type="button"class="btn btn-second" id="edit-profile-button">Adicionar</button>
+                            <label id="responseArea"></label>        
                         </form>
                     </div><!-- second column -->
                 </div><!-- first content -->
@@ -106,8 +107,9 @@
                     <form class="form-confirmation">
                         <!-- Botões de confirmação e cancelamento -->
                         <div class="btn-group">
-                            <button type="submit" class="btn btn-second">Adicionar</button>
+                            <button type="button" class="btn btn-second" id="add-profile-button">Adicionar</button>
                             <button type="button" class="btn btn-second cancel-btn">Cancelar</button>
+                            <label id="responseArea"></label> 
                         </div>
                     </form>
                 </div>
