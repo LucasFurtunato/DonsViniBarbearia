@@ -15,7 +15,7 @@ class Funcionario {
 	private $nome;
 	private $email;
 	private $unidadeId;
-	private $senha;
+	private $senhaFuncionario;
 
 	private $tableName  = "hostdeprojetos_donvinibarbearia.funcionario";
 	private $fieldsName = "funcionarioId, codigo, nome, email, unidadeId, senha";
@@ -26,14 +26,14 @@ class Funcionario {
 		$this->dbquery = new DBQuery($this->tableName, $this->fieldsName, $this->fieldKey);
 	}
 
-	function populate( $funcionarioId, $codigo, $nome, $email, $unidadeId, $senha){
+	function populate( $funcionarioId, $codigo, $nome, $email, $unidadeId, $senhaFuncionario){
 
 		 $this->setFuncionarioId( $funcionarioId );
 		 $this->setCodigo( $codigo );
 		 $this->setNome( $nome );
 		 $this->setEmail( $email );
 		 $this->setUnidadeId( $unidadeId );
-		 $this->setSenha( $senha );
+		 $this->setsenhaFuncionario( $senhaFuncionario );
 	}
 
 	public function toArray(){
@@ -43,7 +43,7 @@ class Funcionario {
 			 'nome' => $this->getNome(),
 			 'email' => $this->getEmail(),
 			 'unidadeId' => $this->getUnidadeId(),
-			 'senha' => $this->getSenha()
+			 'senha' => $this->getsenhaFuncionario()
 		);
 	}
 
@@ -86,11 +86,11 @@ class Funcionario {
 	}
 
 
-	public function checkUserExists($email, $senha) {
+	public function checkUserExists($email, $senhaFuncionario) {
 		// Cria uma condição WHERE usando o campo dinâmico
 		$where = new Where();
 		$where->addCondition('AND', 'email', '=', $email);
-		$where->addCondition('AND', 'senha', '=', $senha);
+		$where->addCondition('AND', 'senha', '=', $senhaFuncionario);
 		$rSet = $this->dbquery->selectWhere($where);
 		return $rSet;
 	}
@@ -141,12 +141,12 @@ class Funcionario {
 		  return( $this->unidadeId );
 	}
 
-	public function setSenha( $senha ){
-		 $this->senha = $senha;
+	public function setsenhaFuncionario( $senhaFuncionario ){
+		 $this->senhaFuncionario = $senhaFuncionario;
 	}
 
-	public function getSenha(){
-		  return( $this->senha );
+	public function getsenhaFuncionario(){
+		  return( $this->senhaFuncionario );
 	}
 
 }
