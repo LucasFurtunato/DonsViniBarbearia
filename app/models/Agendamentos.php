@@ -13,13 +13,15 @@ class Agendamentos {
     private $unidadeId;
     private $funcionarioId;
     private $clienteId;
-    private $servicosId;
+    private $barbaId;
+    private $corteId;
+    private $cuidadosId;
     private $preco;
     private $dia;
     private $horario;
 
     private $tableName  = "hostdeprojetos_donvinibarbearia.agendamentos";
-    private $fieldsName = "agendamentosId, unidadeId, funcionarioId, clienteId, servicosId, preco, dia, horario";
+    private $fieldsName = "agendamentosId, unidadeId, funcionarioId, clienteId, barbaId, corteId, cuidadosId, preco, dia, horario";
     private $fieldKey   = "agendamentosId";
     private $dbquery    = null;
 
@@ -27,12 +29,14 @@ class Agendamentos {
         $this->dbquery = new DBQuery($this->tableName, $this->fieldsName, $this->fieldKey);
     }
 
-    function populate($agendamentosId, $unidadeId, $funcionarioId, $clienteId, $servicosId, $preco, $dia, $horario) {
+    function populate($agendamentosId, $unidadeId, $funcionarioId, $clienteId, $barbaId, $corteId, $cuidadosId, $preco, $dia, $horario) {
         $this->setAgendamentosId($agendamentosId);
         $this->setUnidadeId($unidadeId);
         $this->setFuncionarioId($funcionarioId);
         $this->setClienteId($clienteId);
-        $this->setServicosId($servicosId);
+        $this->setBarbaId($barbaId);
+        $this->setCorteId($corteId);
+        $this->setCuidadosId($cuidadosId);
         $this->setPreco($preco);
         $this->setDia($dia);
         $this->setHorario($horario);
@@ -44,7 +48,9 @@ class Agendamentos {
             'unidadeId' => $this->getUnidadeId(),
             'funcionarioId' => $this->getFuncionarioId(),
             'clienteId' => $this->getClienteId(),
-            'servicosId' => $this->getServicosId(),
+            'barbaId' => $this->getBarbaId(),
+            'corteId' => $this->getCorteId(),
+            'cuidadosId' => $this->getCuidadosId(),
             'preco' => $this->getPreco(),
             'dia' => $this->getDia(),
             'horario' => $this->getHorario(),
@@ -116,12 +122,28 @@ class Agendamentos {
         return $this->clienteId;
     }
 
-    public function setServicosId($servicosId) {
-        $this->servicosId = $servicosId;
+    public function setBarbaId($barbaId) {
+        $this->barbaId = $barbaId;
     }
 
-    public function getServicosId() {
-        return $this->servicosId;
+    public function getBarbaId() {
+        return $this->barbaId;
+    }
+
+    public function setCorteId($corteId) {
+        $this->corteId = $corteId;
+    }
+
+    public function getCorteId() {
+        return $this->corteId;
+    }
+
+    public function setCuidadosId($cuidadosId) {
+        $this->cuidadosId = $cuidadosId;
+    }
+
+    public function getCuidadosId() {
+        return $this->cuidadosId;
     }
 
     public function setPreco($preco) {

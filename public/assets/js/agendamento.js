@@ -71,13 +71,21 @@ $(document).ready(function() {
 
 	// Evento para seleção de profissionais (sem alterar preço)
 	$(document).on('click', '#profissional li', function() {
-	    const selectedText = $(this).text();
+		// Se o item já estiver selecionado, desmarque-o, se não, marque-o
+		if ($(this).hasClass('selected')) {
+		    $(this).removeClass('selected');
+		} else {
+		    // Apenas um profissional deve ser selecionado por vez
+		    $('#profissional li').removeClass('selected');
+		    $(this).addClass('selected');
+		}
 
-	    // Atualiza o botão correspondente
-	    $(this).closest('.content-to-toggle').prev('.btn-2').text(selectedText);
+		// Atualiza o botão com o nome do profissional selecionado
+		const selectedText = $(this).text();
+		$(this).closest('.content-to-toggle').prev('.btn-2').text(selectedText);
 
-	    // Fecha o menu dropdown
-	    $(this).closest('.content-to-toggle').slideUp();
+		// Fecha o menu dropdown
+		$(this).closest('.content-to-toggle').slideUp();
 	});
 
 	
@@ -110,23 +118,81 @@ $(document).ready(function() {
 	});
 	
 	$.ajax({
-		    url: "../app/controllers/CtrlFuncionario.php",
-		    method: "GET",
+	    url: "../app/controllers/CtrlFuncionario.php",
+	    method: "GET",
+	    success: function(response) {
+	        let data = JSON.parse(response);
+			
+			// Limpar as tabelas antes de adicionar novos dados
+			$('#profissional').empty();
+			
+			data.forEach(funcionario => {
+				$('#profissional').append(`
+					<li data-id="${funcionario.funcionarioId}">${funcionario.nome}</li>
+
+				`);
+			});
+	    },
+	    error: function(xhr, status, error) {
+			alert("Erro na requisição: " + error);
+	    }
+	});
+	
+	$('#btn-agendar').on('click', function() {
+		let funcionarioId = $('#profissional li.selected').data('id');
+		let barbaId = $('#barbas li.selected').data('id') || 1;
+		let corteId = $('#cortes li.selected').data('id') || 2;
+		let cuidadosId = $('#cuidados li.selected').data('id') || 3;
+		let preco = totalPrice;
+		let dia = $('#data').val();
+		let horario = $('#horario').val();
+
+		// Verifique se o funcionário foi selecionado
+		if (!preco) {
+		    alert("Por favor, selecione algum serviço que precisa ser feito");
+		    return;  // Impede o envio do formulário
+		} else if (!dia) {
+			alert("Por favor, selecione um dia.");
+			return;  // Impede o envio do formulário
+		} else if (!horario) {
+			alert("Por favor, selecione um horário.");
+			return;  // Impede o envio do formulário
+		} else if (!funcionarioId) {
+			alert("Por favor, selecione um profissional para fazer o serviço");
+			return;  // Impede o envio do formulário
+		}
+		
+		let data = {
+			funcionarioId: funcionarioId,
+			barbaId: barbaId,
+			corteId: corteId,
+			cuidadosId: cuidadosId,
+			preco: preco,
+			dia: dia,
+			horario: horario
+		}
+		
+		console.log(data);
+		$.ajax({
+		    url: "../app/controllers/CtrlAgendamentos.php",
+		    method: "POST",
+		    data: data,
 		    success: function(response) {
-		        let data = JSON.parse(response);
+		        var objRetorno = JSON.parse(response);
 				
-				// Limpar as tabelas antes de adicionar novos dados
-				$('#profissional').empty();
-				
-				data.forEach(funcionario => {
-					$('#profissional').append(`
-						<li data-value="${funcionario.funcionarioId}">${funcionario.nome}</li>
-					`);
-				});
+				if (objRetorno.status === "true") {
+					$('#third-container').show();
+					$('#sixth-container').hide();
+				} else {
+					alert(objRetorno.message)
+				}
 		    },
 		    error: function(xhr, status, error) {
-				alert("Erro na requisição: " + error);
+		        alert("Erro na requisição: " + error);
 		    }
 		});
+	})
+
+	
 });
 

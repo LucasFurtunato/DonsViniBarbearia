@@ -24,14 +24,16 @@ class CtrlAgendamentos extends ControllerHandler {
 
     public function post() {
         $agendamentosId = 0;
-        $unidadeId = 1; //por enquanto fica assim
+        $unidadeId = 1; //por enquanto
         $funcionarioId = $this->getParameter('funcionarioId');
-        $clienteId = 1;
-        $servicosId = $this->getParameter('servicosId');
+        $clienteId = 1; //por enquanto
+        $barbaId = $this->getParameter('barbaId');
+        $corteId = $this->getParameter('corteId');
+        $cuidadosId = $this->getParameter('cuidadosId');
         $preco = $this->getParameter('preco');
         $dia = $this->getParameter('dia');
         $horario = $this->getParameter('horario');
-        $this->agendamentos->populate($agendamentosId, $unidadeId, $funcionarioId, $clienteId, $servicosId, $preco, $dia, $horario);
+        $this->agendamentos->populate($agendamentosId, $unidadeId, $funcionarioId, $clienteId, $barbaId, $corteId, $cuidadosId, $preco, $dia, $horario);
         $result = $this->agendamentos->save();
         echo $result;
     }
@@ -41,11 +43,13 @@ class CtrlAgendamentos extends ControllerHandler {
         $unidadeId = $this->getParameter('unidadeId');
         $funcionarioId = $this->getParameter('funcionarioId');
         $clienteId = $this->getParameter('clienteId');
-        $servicosId = $this->getParameter('servicosId');
+        $barbaId = $this->getParameter('barbaId');
+        $corteId = $this->getParameter('corteId');
+        $cuidadosId = $this->getParameter('cuidadosId');
         $preco = $this->getParameter('preco');
         $dia = $this->getParameter('dia');
         $horario = $this->getParameter('horario');
-        $this->agendamentos->populate($agendamentosId, $unidadeId, $funcionarioId, $clienteId, $servicosId, $preco, $dia, $horario);
+        $this->agendamentos->populate($agendamentosId, $unidadeId, $funcionarioId, $clienteId, $barbaId, $corteId, $cuidadosId, $preco, $dia, $horario);
         $result = $this->agendamentos->save();
         echo $result;
     }
@@ -55,11 +59,13 @@ class CtrlAgendamentos extends ControllerHandler {
         $unidadeId = $this->getParameter('unidadeId');
         $funcionarioId = $this->getParameter('funcionarioId');
         $clienteId = $this->getParameter('clienteId');
-        $servicosId = $this->getParameter('servicosId');
+        $barbaId = $this->getParameter('barbaId');
+        $corteId = $this->getParameter('corteId');
+        $cuidadosId = $this->getParameter('cuidadosId');
         $preco = $this->getParameter('preco');
         $dia = $this->getParameter('dia');
         $horario = $this->getParameter('horario');
-        $this->agendamentos->populate($agendamentosId, $unidadeId, $funcionarioId, $clienteId, $servicosId, $preco, $dia, $horario);
+        $this->agendamentos->populate($agendamentosId, $unidadeId, $funcionarioId, $clienteId, $barbaId, $corteId, $cuidadosId, $preco, $dia, $horario);
         $result = $this->agendamentos->delete();
         echo $result;
     }
