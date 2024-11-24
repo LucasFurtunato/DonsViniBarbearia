@@ -21,7 +21,6 @@ class CtrlFuncionario extends ControllerHandler {
 	}
 
 	public function get() {
-		$this->funcionario = new Funcionario();
 		$data = $this->funcionario->listAll();
 		$json = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 		echo $json;
@@ -33,7 +32,7 @@ class CtrlFuncionario extends ControllerHandler {
 		$nome = $this->getParameter('nome');
 		$email = $this->getParameter('email');
 		$unidadeId = $this->getParameter('unidadeId');
-		$senhaFuncionario = $this->getParameter('senhaFuncionario');
+		$senhaFuncionario = $this->getParameter('senha');
 		
 		$existingFuncionario = $this->funcionario->listByfield('email', $email);
 			
@@ -48,35 +47,44 @@ class CtrlFuncionario extends ControllerHandler {
 				echo $json;
 				return;
 			}
+			// Criptografando a senha
+			if (!empty($senhaFuncionario)) {
+			    $senhaHash = password_hash($senhaFuncionario, PASSWORD_DEFAULT);
+			}
 		
-		$this->funcionario->populate( $funcionarioId, $codigo, $nome, $email, $unidadeId, $senhaFuncionario);
-		$result = $this->funcionario->save();
-		$json = \json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-		echo $json;
-	} else if (!empty($existingFuncionario)) {
-		$validationUser = $this->funcionario->checkUserExists($email, $senhaFuncionario);
-		if (!empty($validationUser)){
-			$funcionario = $validationUser[0];
-			$nome = $funcionario['nome'];
-			
-			$_SESSION["funcionario"] = $nome;
-			
-			$result = [
-				'status' => 'true',
-				'message' => 'Login Executado'
-			];
-			$json = \json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-			echo $json;
-		} else {
-			$result = [
-				'status' => 'error',
-				'message' => 'Funcionario não registrado.'
-			];
-			$json = \json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-			echo $json;
-		}
-	}	
-
+			$this->funcionario->populate( $funcionarioId, $codigo, $nome, $email, $unidadeId, $senhaHash);
+    		$result = $this->funcionario->save();
+    		$json = \json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+    		echo $json;
+    	} else if (!empty($existingFuncionario)) {
+    	    $storedHash = $existingFuncionario[0]['senha'];
+    	    if (password_verify($senhaFuncionario, $storedHash)){
+    	        $_SESSION["funcionario"]["funcionarioId"] = $existingFuncionario[0]["funcionarioId"];
+    	        $_SESSION["funcionario"]["nome"] = $existingFuncionario[0]["nome"];
+    	        $_SESSION["funcionario"]["email"] = $existingFuncionario[0]["email"];
+    			
+    			$result = [
+    				'status' => 'true',
+    				'message' => 'Login Executado'
+    			];
+    			$json = \json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+    			echo $json;
+    		} else {
+    			$result = [
+    				'status' => 'error',
+    				'message' => 'Código, email ou senha incorreta'
+    			];
+    			$json = \json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+    			echo $json;
+    		}
+    	} else {
+    	    $result = [
+    	        'status' => 'error',
+    	        'message' => 'Este Funcionario não existe'
+    	    ];
+    	    $json = \json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+    	    echo $json;
+    	}
 	} 
 
 	public function put() {		

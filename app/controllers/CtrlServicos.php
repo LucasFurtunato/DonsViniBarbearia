@@ -36,7 +36,7 @@ class CtrlServicos extends ControllerHandler {
         $json = \json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
         echo $json;
     }
-
+    
     public function post() {
         $servicosId = 0;
         $tipoServico = $this->getParameter('tipoServico');
