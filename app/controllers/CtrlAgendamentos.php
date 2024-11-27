@@ -6,6 +6,7 @@ use app\core\ControllerHandler;
 use app\models\Agendamentos;
 use app\models\Funcionario;
 use app\models\Servicos;
+use app\models\Cliente;
 
 require_once dirname(__DIR__, 1).'/config.php';
 
@@ -19,12 +20,18 @@ class CtrlAgendamentos extends ControllerHandler {
     }
 
     public function get() {
-        $clienteId = $_SESSION["cliente"]['clienteId'];
+        if (isset($_SESSION["cliente"])) {
+            $clienteId = $_SESSION["cliente"]['clienteId'];
+            // Obtém todos os agendamentos do cliente
+            $agendamentos = $this->agendamentos->listByField("clienteId", $clienteId);
+        } else {
+            $agendamentos = $this->agendamentos->listAll();
+        }
         $funcionario = new Funcionario();
         $servico = new Servicos();
+        $cliente = new Cliente();
         
-        // Obtém todos os agendamentos do cliente
-        $agendamentos = $this->agendamentos->listByField("clienteId", $clienteId);
+        
         
         if (empty($agendamentos)) {
             echo json_encode(["message" => "Nenhum agendamento encontrado"], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
@@ -47,11 +54,14 @@ class CtrlAgendamentos extends ControllerHandler {
             $cuidadosNome = $servico->listByField('servicosId', $data["cuidadosId"])[0] ?? null;
             $cuidadosNome = $cuidadosNome ? $cuidadosNome["nomeServico"] : null;
             
+            $clienteNome = $cliente->listByField('clienteId', $data["clienteId"])[0] ?? null;
+            $clienteNome = $clienteNome ? $clienteNome["nome"] : null;
+            
             // Adiciona os dados formatados ao array de resposta
             $response[] = [
                 "agendamentosId" => $data["agendamentosId"],
                 "barbaNome" => $barbaNome,
-                "clienteId" => $data["clienteId"],
+                "clienteNome" => $clienteNome,
                 "corteNome" => $corteNome,
                 "cuidadosNome" => $cuidadosNome,
                 "dia" => $data["dia"],
@@ -71,7 +81,7 @@ class CtrlAgendamentos extends ControllerHandler {
         $agendamentosId = 0;
         $unidadeId = 1; //por enquanto
         $funcionarioId = $this->getParameter('funcionarioId');
-        $clienteId = 8; //por enquanto
+        $clienteId = $_SESSION["cliente"]["clienteId"];
         $barbaId = $this->getParameter('barbaId');
         $corteId = $this->getParameter('corteId');
         $cuidadosId = $this->getParameter('cuidadosId');
@@ -101,18 +111,44 @@ class CtrlAgendamentos extends ControllerHandler {
 
     public function delete() {
         $agendamentosId = $this->getParameter('agendamentosId');
-        $unidadeId = $this->getParameter('unidadeId');
-        $funcionarioId = $this->getParameter('funcionarioId');
-        $clienteId = $this->getParameter('clienteId');
-        $barbaId = $this->getParameter('barbaId');
-        $corteId = $this->getParameter('corteId');
-        $cuidadosId = $this->getParameter('cuidadosId');
-        $preco = $this->getParameter('preco');
-        $dia = $this->getParameter('dia');
-        $horario = $this->getParameter('horario');
-        $this->agendamentos->populate($agendamentosId, $unidadeId, $funcionarioId, $clienteId, $barbaId, $corteId, $cuidadosId, $preco, $dia, $horario);
-        $result = $this->agendamentos->delete();
-        echo $result;
+        
+        $existingAgendamento = $this->agendamentos->listByField('agendamentosId', $agendamentosId)[0];
+        
+        if (!empty($existingAgendamento)){
+            $unidadeId = $existingAgendamento['unidadeId'];
+            $funcionarioId = $existingAgendamento['funcionarioId'];
+            $clienteId = $existingAgendamento['clienteId'];
+            $barbaId = $existingAgendamento['barbaId'];
+            $corteId = $existingAgendamento['corteId'];
+            $cuidadosId = $existingAgendamento['cuidadosId'];
+            $preco = $existingAgendamento['preco'];
+            $dia = $existingAgendamento['dia'];
+            $horario = $existingAgendamento['horario'];
+            
+            $this->agendamentos->populate($agendamentosId, $unidadeId, $funcionarioId, $clienteId, $barbaId, $corteId, $cuidadosId, $preco, $dia, $horario);
+            $result = $this->agendamentos->delete();
+            echo $result;
+            
+            if ($result) {
+                $response = [
+                    'status' => true,
+                    'message' => 'Este serviço foi excluído'
+                ];
+            } else {
+                $response = [
+                    'status' => false,
+                    'message' => 'Houve algum erro ao alterar'
+                ];
+            }
+        } else {
+            $response = [
+                'status' => false,
+                'message' => 'Este serviço não existe'
+            ];
+        }
+        
+        $json = \json_encode($response, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        echo $json;
     }
 
     public function file() {

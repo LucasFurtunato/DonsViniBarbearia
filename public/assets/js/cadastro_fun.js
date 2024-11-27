@@ -52,9 +52,8 @@
             codigo: codigo,
             nome:nome,
             email: email,
-            unidade: unidade,
-            senhaFuncionario: senhaFuncionario,
-            confirmarSenhaFuncionario: confirmarSenhaFuncionario
+            unidadeId: unidade,
+            senhaFuncionario: senhaFuncionario
 		};
         function validarEmail(email) {
             return email.includes('@') && email.includes('.');
@@ -89,17 +88,16 @@
         // Ao clicar no botão de editar perfil
         $('#add-profile-button').on('click', function(event) {
             event.preventDefault(); // Prevenir o comportamento padrão do botão
-                // Se todos os campos estiverem preenchidos corretamente e o email for válido, mostrar o próximo container
+			// Se todos os campos estiverem preenchidos corretamente e o email for válido, mostrar o próximo container
                 $.ajax({
                     url: "../app/controllers/CtrlFuncionario.php",
                     method: "POST",
-                    data: $("#form-fun").serialize() ,
+                    data: data ,
                     success: function(response) {
-                        console.log(response);
+
                         var objRetorno = JSON.parse(response);
                         if(objRetorno.status === "error") {
                             $('#responseArea').text("Email errado");
-                            console.log('errado');
                             $('#second-container').hide();
                             $('#first-container').show();
 
@@ -109,7 +107,6 @@
                             $('#second-container').hide();
                             $('#first-container').show();     
                             $('#responseArea').text("Registrado");
-                            console.log('registrado');
                         }
                     },
                     error: function(xhr, status, error) {

@@ -83,6 +83,7 @@ $(document).ready(function(){
             $("#aName").show();
             $("#aSair").show();
             $("#aAgenda").show();
+			$("#aAgenda").attr("href", "seu_agendamento.html");
             $("#aEntrarUsr").hide();
             $("#aEntrarAdm").hide();
             $("#aEntrar").hide();
@@ -92,6 +93,7 @@ $(document).ready(function(){
             $("#aName").show();
             $("#aSair").show();
             $("#aAgenda").show();
+			$("#aAgenda").attr("href", "agenda.html");
             $("#aEntrarUsr").hide();
             $("#aEntrarAdm").hide();
             $("#aEntrar").hide();
@@ -101,6 +103,7 @@ $(document).ready(function(){
             $("#aName").show();
             $("#aSair").show();
             $("#aAgenda").show();
+			$("#aAgenda").attr("href", "agenda.html");
             $("#aEntrarUsr").hide();
             $("#aEntrarAdm").hide();
             $("#aEntrar").hide();

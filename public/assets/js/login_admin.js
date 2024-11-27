@@ -74,14 +74,25 @@ $(document).ready(function() {
             // Verificar se as senhas não correspondem
             alert("As senhas do funcionário não correspondem. Por favor, tente novamente.");
         } else {
-            $.post("php/controlador/processar-login-gerente.php", $("#frmLogin").serialize(), function( dados ){
-                var objRetorno = JSON.parse(dados);
-                if ( objRetorno.login == "false"){
-                    alert("Código, email ou senha inválidos");
-                }else{
-                    window.location.href = 'index.php';
-                }
-            });
+			console.log($("#frmLogin").serialize())
+			$.ajax({
+			    url: "../app/controllers/CtrlFuncionario.php",
+			    method: "POST",
+			    data: $("#frmLogin").serialize(),
+			    success: function(response) {
+			        console.log(response)
+			        var objRetorno = JSON.parse(response);
+			        if ( objRetorno.status === "error"){
+			            alert(objRetorno.message);
+			        }else{
+			            $("#responseArea").text("Aguarde");
+			            window.location.href = 'index.html';
+			        }
+			    },
+			    error: function(xhr, status, error) {
+			        $('#responseArea').text("Erro na requisição: " + error);
+			    }
+			});
         }
     });
 });

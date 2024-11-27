@@ -1,4 +1,14 @@
 $(document).ready(function() {
+	$.get( '../app/controllers/VfyLogin.php', function(dados) {
+	    var objRetorno = JSON.parse(dados)
+
+	    if (objRetorno.usrType == "cliente"){
+	        $("#login-button").text(objRetorno.name);
+	    } else {
+			window.location.href = 'index.html';
+		}
+	});
+	
 	const today = new Date().toISOString().split('T')[0];
 	$('#data').attr('min', today);
 	
@@ -172,7 +182,6 @@ $(document).ready(function() {
 			horario: horario
 		}
 		
-		console.log(data);
 		$.ajax({
 		    url: "../app/controllers/CtrlAgendamentos.php",
 		    method: "POST",
@@ -184,7 +193,7 @@ $(document).ready(function() {
 					$('#third-container').show();
 					$('#sixth-container').hide();
 				} else {
-					alert(objRetorno.message)
+					alert("Agendamento definido")
 				}
 		    },
 		    error: function(xhr, status, error) {

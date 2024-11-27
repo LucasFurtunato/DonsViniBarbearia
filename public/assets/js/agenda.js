@@ -1,4 +1,47 @@
 $(document).ready(function() {
+	$.get( '../app/controllers/VfyLogin.php', function(dados) {
+	    var objRetorno = JSON.parse(dados)
+
+	    if (objRetorno.usrType == "funcionario"){
+	        $("#login-button").text(objRetorno.name);
+	    } else {
+			window.location.href = 'index.html';
+		}
+	});
+
+	$.ajax({
+	    url: "../app/controllers/CtrlAgendamentos.php",
+	    method: "GET",
+	    success: function(response) {
+			console.log(response);
+	        let data = JSON.parse(response);
+			// Limpa o corpo da tabela antes de adicionar novos dados
+	        $('#table-body').empty();
+
+	        // Itera sobre cada registro retornado
+	        data.forEach(item => {
+	            $('#table-body').append(`
+					<tr>
+					    <td data-label="Nome Fun."><p>${item.funNome}</p></td>
+					    <td data-label="Dia">${item.dia}</td>
+					    <td data-label="Horário">${item.horario}</td>
+					    <td data-label="Serviços">${
+						    [item.corteNome, item.barbaNome, item.cuidadosNome]
+						        .filter(nome => nome && nome.trim() !== "") // Remove itens vazios ou apenas espaços
+						        .join(", ") // Junta os valores restantes com uma vírgula
+						}</td>                    
+					    <td data-label="Nome Cliente">${item.clienteNome}</td>      
+					    <td data-label="Situação"><a href="#" class="btn">Feito</a></td>              
+					</tr>
+	            `);
+	        });
+	    },
+	    error: function(xhr, status, error) {
+			alert("Erro na requisição: " + error);
+	    }
+	});
+
+	
     $('#add-row').click(function() {
         // Dados da nova linha
         const newRow = `

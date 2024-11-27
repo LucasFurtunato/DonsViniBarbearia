@@ -145,7 +145,7 @@ btnSignup.addEventListener("click", function () {
                         $("#responseAreaLogin").text("erro ao logar");
                     }else{
                         $("#responseAreaLogin").text("Aguarde");
-                        window.location.href = 'index.php';
+                        window.location.href = 'index.html';
                     }
                 },
                 error: function(xhr, status, error) {

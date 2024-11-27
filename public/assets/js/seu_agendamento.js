@@ -30,6 +30,53 @@ $('#btn-password-2').click(function() {
 //Verificar se o campo de senha está preenchido
 
 $(document).ready(function() {
+	$.get( '../app/controllers/VfyLogin.php', function(dados) {
+	    var objRetorno = JSON.parse(dados)
+	
+	    if (objRetorno.usrType == "cliente"){
+	        $("#login-button").text(objRetorno.name);
+	    } else {
+			window.location.href = 'index.html';
+		}
+	});
+	
+	$.ajax({
+	    url: "../app/controllers/CtrlAgendamentos.php",
+	    method: "GET",
+	    success: function(response) {
+	        let data = JSON.parse(response);
+			// Limpa o corpo da tabela antes de adicionar novos dados
+	        $('#table-body').empty();
+
+	        // Itera sobre cada registro retornado
+	        data.forEach(item => {
+	            $('#table-body').append(`
+	                <tr data-id="${item.agendamentosId}">
+	                    <td data-label="Local">${item.unidadeId}</td>
+	                    <td data-label="Nome Fun.">${item.funNome}</td>
+	                    <td data-label="Dia">${item.dia}</td>
+	                    <td data-label="Horário">${item.horario}</td>
+						<td data-label="Serviço">${
+						    [item.corteNome, item.barbaNome, item.cuidadosNome]
+						        .filter(nome => nome && nome.trim() !== "") // Remove itens vazios ou apenas espaços
+						        .join(", ") // Junta os valores restantes com uma vírgula
+						}</td>
+	                    <td data-label="Preço">${item.preco}</td>
+	                    <td data-label="Ações">
+	                        <div class="btn-group">
+	                            <a href="#" class="btn" id="alterar_dados">Alterar dados</a>
+	                            <a href="#" class="btn delete" id="excluir_dados">Excluir</a>
+	                        </div>
+	                    </td>
+	                </tr>
+	            `);
+	        });
+	    },
+	    error: function(xhr, status, error) {
+			alert("Erro na requisição: " + error);
+	    }
+	});
+	
     $('.btn1').on('click', function(event) {
         event.preventDefault();
         
@@ -37,7 +84,7 @@ $(document).ready(function() {
         
         if (passwordInput.val().trim() === '') {
             alert('Por favor, preencha o campo de senha.');
-        } 
+        }
     });
 });
 
@@ -51,8 +98,44 @@ $(document).ready(function() {
 
 //Esconder tabela e apararecer confirmar senha - excluir
 $(document).ready(function() {
-    $("#excluir_dados").click(function() {
+    /*$("#excluir_dados").click(function() {
         $("#table").hide();            // Esconde o elemento com id 'table'
         $("#second-container").show();  // Exibe o elemento com id 'first-container'
-    });
+    });*/
+
+	$(document).on('click', '#excluir_dados', function(event) {
+	    event.preventDefault(); // Previne o comportamento padrão do link
+		
+		// Encontrar a linha <tr> mais próxima ao botão "Excluir" clicado
+		let row = $(this).closest('tr');
+		
+	    // Extrai os valores das células na linha
+		let idAgendamento = $(this).closest('tr').data('id');
+		
+		
+		let dataId = {
+				    agendamentosId: idAgendamento,
+		};
+		console.log(dataId);
+		$.ajax({
+	        url: "../app/controllers/CtrlAgendamentos.php",
+	        method: "DELETE",
+	        data: dataId,
+	        success: function(response) {
+				console.log(response);
+	            var objRetorno = JSON.parse(response);
+				
+				if (objRetorno.status == false) {
+					alert(objRetorno.message);
+				} else {
+					alert(objRetorno.message);
+					// Remover a linha
+					row.remove();
+				}
+	        },
+	        error: function(xhr, status, error) {
+				alert("Erro na requisição: " + error);
+	        }
+	    });
+	});
 });
