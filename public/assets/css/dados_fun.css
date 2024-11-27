@@ -17,6 +17,7 @@ body {
 
 main {
     flex: 1;
+    margin-top: 12vh;
 }
 
 
@@ -35,22 +36,31 @@ a:hover {
 
 .login-button {
     cursor: pointer;
-    color: #f8c66f;
+    color: #fff;
     padding: 8px;
     border-radius: 5px;
 }
 
+/* Esconde os botões de alterar e excluir quando o menu hamburguer estiver aberto */
+body.menu-open .btn-group {
+    display: none;
+}
+
+
 /* Estilos gerais do menu */
 nav {
+    z-index: 999;
+    top: 0;
+    width: 100%;
+    position: fixed;
     display: flex;
-    justify-content: space-between; /* Mantém os itens espaçados corretamente */
+    justify-content: space-between;
     align-items: center;
     font-family: 'Noto Sans', sans-serif;
     background: #1c1a18f3;
     height: 12vh;
-    padding: 0 2%; /* Adiciona um pequeno padding lateral */
+    padding: 0 2%;
 }
-
 /* Logo */
 .logo {
     height: 11vh;
@@ -78,7 +88,6 @@ nav {
     opacity: 0.8;
     text-decoration: none; 
 }
-
 
 
 

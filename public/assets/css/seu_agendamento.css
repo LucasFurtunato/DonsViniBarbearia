@@ -35,20 +35,24 @@ a:hover {
 
 .login-button {
     cursor: pointer;
-    color: #f8c66f;
+    color: #fff;
     padding: 8px;
     border-radius: 5px;
 }
 
 /* Estilos gerais do menu */
+
 nav {
     display: flex;
-    justify-content: space-between; /* Mantém os itens espaçados corretamente */
+    justify-content: space-around;
     align-items: center;
     font-family: 'Noto Sans', sans-serif;
     background: #1c1a18f3;
     height: 12vh;
-    padding: 0 2%; /* Adiciona um pequeno padding lateral */
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
 
 /* Logo */
@@ -114,9 +118,6 @@ nav {
 
 
 
-
-
-
 /* Tabelas */
 
 
@@ -127,6 +128,7 @@ nav {
     font-style: italic;
     color: #ffc154;
     margin-bottom: 30px;
+    margin-top: 110px; 
 }
 
 .table {
@@ -468,4 +470,51 @@ nav {
     .footer-content {
         flex-direction: column;
     }
-}s
+}
+
+/* Estilo para o menu hambúrguer */
+.mobile-menu {
+    display: none; /* Esconde por padrão */
+    cursor: pointer;
+    z-index: 1000;
+}
+
+/* Exibição do menu hambúrguer para telas menores */
+@media (max-width: 991px) {
+    .mobile-menu {
+        display: block;
+    }
+
+    .nav-list {
+        position: absolute;
+        top: 12vh; /* Abaixo do menu */
+        right: 0;
+        background: #1c1a18f3;
+        width: 100%;
+        height: 0;
+        overflow: hidden;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-list.active {
+        height: 88vh; /* Expande para exibir os links */
+    }
+
+    .nav-list li {
+        margin: 15px 0; /* Espaçamento entre os itens no menu responsivo */
+    }
+}
+
+/* Animações do menu mobile */
+.mobile-menu.active .line1 {
+    transform: rotate(-45deg) translate(-8px, 8px);
+}
+
+.mobile-menu.active .line2 {
+    opacity: 0;
+}
+
+.mobile-menu.active .line3 {
+    transform: rotate(45deg) translate(-5px, -7px);
+}

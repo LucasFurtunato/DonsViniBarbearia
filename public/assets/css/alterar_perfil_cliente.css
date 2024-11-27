@@ -111,6 +111,7 @@ nav {
 
 .nav-list.active {
     transform: translateX(0);
+    z-index: 999;
 }
 
 @keyframes navLinkFade {
@@ -142,7 +143,7 @@ nav {
     display: flex;  /* deixar o primeiro e segundo conteúdo um ao lado do outro */
     justify-content: center; /* centraliza as duas divs de conteúdo */
     align-items: center; /* centraliza os itens das divs de conteúdo */
-    height: 120vh; /* centraliza os itens das divs de conteúdo */
+    min-height: calc(100vh - 180px); /* centraliza os itens das divs de conteúdo */
     background-color: #ecf0f1; /* cor de fundo sem ser das divs conteúdos */
     margin-top: 1%;
     margin-bottom: 1%;
@@ -152,8 +153,6 @@ nav {
     background-color: #fff;
     border-radius: 15px; /* define a borda circular em torno das divs de conteúdo */
     width: 50%; /* define a largura das divs de conteúdo */
-    height: 60%; /* define a altura das divs de conteúdo */
-    justify-content: space-between; /* espaço entre a primeira coluna e a segunda coluna */
     align-items: center; /* alinhar verticalmente os itens dos conteúdos */
     position: relative; /* para deixar o pseudoelemento com a altura do content */
 }
@@ -162,6 +161,7 @@ nav {
     display: flex; /* deixar uma coluna ao lado da outra */
     align-items: center;
     justify-content: center;
+    padding: 20px;
 }
 
 .second-column {
@@ -179,6 +179,7 @@ nav {
 .title-second {
     color: #f8c66f; /* cor para o título da segunda coluna */
     margin-bottom: 5%;
+    text-align: center;
 }
 
 .description {
@@ -337,6 +338,5 @@ nav {
 .space_icon{
     margin: 10px;
 }
-
 
 

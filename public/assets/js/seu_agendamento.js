@@ -65,7 +65,7 @@ $(document).ready(function() {
 	                    <td data-label="Ações">
 	                        <div class="btn-group">
 	                            <a href="#" class="btn" id="alterar_dados">Alterar dados</a>
-	                            <a href="#" class="btn delete" id="excluir_dados">Excluir</a>
+	                            <a href="#" class="btn delete" id="excluir_dados" style="background-color: rgb(255, 62, 62);">Excluir</a>
 	                        </div>
 	                    </td>
 	                </tr>

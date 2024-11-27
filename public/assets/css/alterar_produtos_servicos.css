@@ -16,7 +16,8 @@ body {
 }
 
 main {
-    flex: 1; 
+    flex: 1;
+    margin-top: 12vh;
 }
 
 .table-container {
@@ -161,6 +162,40 @@ input[type="text"] {
 input[type="text"]:focus {
     outline: none; 
 }
+
+select#service, select#alterar-servico {
+    border: none; 
+    background-color: rgba(128, 128, 128, 0.3); 
+    color: black; 
+    padding: 10px; 
+    font-size: 16px; 
+    width: 85%;
+    box-sizing: border-box; 
+    text-align: center; /* Centraliza o texto no dropdown */
+}
+
+select#service:focus, select#alterar-servico:focus {
+    outline: none; /* Remove o contorno ao focar no campo */
+}
+
+input[type="number"] {
+    border: none; 
+    background-color: rgba(128, 128, 128, 0.3); 
+    color: black; 
+    padding: 10px; 
+    font-size: 16px; 
+    width: 85%;
+    box-sizing: border-box; 
+    text-align: center; /* Alinha o texto no campo numérico */
+}
+
+input[type="number"]:focus {
+    outline: none; /* Remove o contorno ao focar no campo */
+}
+
+
+
+
 
 @media (max-width: 768px) {
     .table thead {
@@ -320,6 +355,10 @@ input[type="text"]:focus {
     padding: 8px;
 }
 
+
+
+
+
 /*VERSÃO MOBILE*/
 @media screen and (max-width: 1040px) {
     .content {
@@ -352,6 +391,8 @@ input[type="text"]:focus {
 
 
 
+
+
 /*Footer*/
 
 .footer-content {
@@ -371,5 +412,4 @@ input[type="text"]:focus {
         flex-direction: column;
     }
 }
-
 

@@ -95,6 +95,7 @@ nav {
 
 .nav-list.active {
     transform: translateX(0);
+    z-index: 999;
 }
 
 @keyframes navLinkFade {
@@ -126,7 +127,7 @@ nav {
     justify-content: center; /* centraliza as duas divs de conteúdo */
     align-items: center; /* centraliza os itens das divs de conteúdo */
     height: 120vh; /* centraliza os itens das divs de conteúdo */
-    background-color: #f4f4f3 /* cor de fundo sem ser das divs conteúdos */
+    background-color: #f4f4f3; /* cor de fundo sem ser das divs conteúdos */
 }
 .content {
     background-color: #fff;
@@ -155,7 +156,7 @@ nav {
     color: #fff; /* cor para o título da primeira coluna */
 }
 .title-second {
-    color: #ffc154 /* cor para o título da segunda coluna */
+    color: #ffc154; /* cor para o título da segunda coluna */
 }
 .description {
     font-size: 14px; /* tamanho da fonte */
@@ -183,7 +184,7 @@ nav {
 }
 .btn-password{
     position: absolute;
-    right: 0;
+    right: 5px;
     z-index: 100;
 }
 .btn-primary {
@@ -656,5 +657,4 @@ input:-webkit-autofill
         flex-direction: column;
     }
 }
-
 
