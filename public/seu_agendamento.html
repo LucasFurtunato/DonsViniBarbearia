@@ -52,6 +52,87 @@
             <!--rodapé da tabela-->  
             <div class="footer-table"></div>
         </div>
+		<div class="container" id="alterar-container" style="display: none;">
+		    <div class="content first-content">
+		        <div class="second-column">
+		            <h2 class="title title-second">Alterar Agendamento</h2>
+		            <form id="form-alterar">
+		                <input type="hidden" name="idAgendamento" id="idAgendamento"> <!-- ID invisível com o input hidden -->
+		                
+		                <!-- Local -->
+		                <label class="label-input">
+		                    <span>Local</span>
+		                    <select id="alterar-local" name="alterarLocal" required>
+		                        <option value="1">1</option>
+		                        <option value="2">2</option>
+		                    </select>
+		                </label>
+		                
+		                <!-- Funcionário -->
+		                <label class="label-input">
+		                    <span>Funcionário</span>
+		                    <select id="alterar-funcionario" name="alterarFuncionario" required>
+
+		                    </select>
+		                </label>
+		                
+		                <!-- Dia -->
+		                <label class="label-input">
+		                    <span>Dia</span>
+		                    <input type="date" id="alterar-dia" name="alterarDia" required>
+		                </label>
+		                
+		                <!-- Horário -->
+		                <label class="label-input">
+		                    <span>Horário</span>
+		                    <input type="time" id="alterar-horario" name="alterarHorario" required>
+		                </label>
+		                
+		                <!-- Corte -->
+		                <label class="label-input">
+		                    <span>Corte</span>
+		                    <select id="alterar-corte" name="alterarCorte" required>
+		                        <option value="Corte 3">Sem Corte</option>
+		                    </select>
+		                </label>
+		                
+		                <!-- Barba -->
+		                <label class="label-input">
+		                    <span>Barba</span>
+		                    <select id="alterar-barba" name="alterarBarba" required>
+		                        <option value="Sem Barba">Sem Barba</option>
+		                    </select>
+		                </label>
+		                
+		                <!-- Cuidados -->
+		                <label class="label-input">
+		                    <span>Cuidados</span>
+		                    <select id="alterar-cuidados" name="alterarCuidados" required>
+		                        <option value="Sem Cuidados">Sem Cuidados</option>
+		                    </select>
+		                </label>
+		                
+		                <!-- Preço -->
+		                <label class="label-input">
+		                    <span>Preço</span>
+		                    <span id="alterar-preco" name="alterarPreco">R$ 00,00</span>
+		                </label>
+		                <div class="precos-individuais">
+						    <p>Corte: R$ <span id="preco-corte">0.00</span></p>
+						    <p>Barba: R$ <span id="preco-barba">0.00</span></p>
+						    <p>Cuidados: R$ <span id="preco-cuidados">0.00</span></p>
+						</div>
+		                
+		                <div class="btn-group">
+		                    <button type="button" id="confirmar-alteracao" class="btn btn-second">Salvar Alterações</button>
+		                    <button type="button" id="cancelar-alteracao" class="btn btn-second cancel-btn">Cancelar</button>
+		                </div>
+		            </form>
+		        </div>
+		    </div>
+		</div>
+
+
     </main>
     <div class="container" id="first-container" style="display: none;"> 
         <div class="content first-content"> 
