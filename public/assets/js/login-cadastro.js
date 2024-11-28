@@ -138,7 +138,6 @@ btnSignup.addEventListener("click", function () {
                 method: "POST",
                 data: $("#frmLogin").serialize(),
                 success: function(response) {
-					console.log("Resposta recebida:", response);
                     var objRetorno = JSON.parse(response);
 
                     if ( objRetorno.status == false){

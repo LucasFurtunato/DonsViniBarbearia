@@ -6,14 +6,12 @@ require_once dirname(__DIR__, 1).'/config.php';
 $to = 'lucasfurtunato11@gmail.com';
 $subject = 'Assunto do e-mail';
 $message = 'Corpo do e-mail';
-$headers = 'From: meuemail@gmail.com' . "\r\n" .
-    'Reply-To: meuemail@gmail.com' . "\r\n" .
-    'X-Mailer: PHP/' . phpversion();
+$headers = 'From: lucasfurtunato11@gmail.com' . "\r\n" .
+    'Reply-To: lucasfurtunato11@gmail.com';
 
-// Enviando o e-mail
-if(mail($to, $subject, $message, $headers)) {
-    echo "E-mail enviado com sucesso!";
-} else {
-    echo "Falha ao enviar o e-mail.";
-}
+
+mail($to, $subject, $message, $headers);
+
+echo "E-mail enviado com sucesso!";
+
 ?>
