@@ -98,11 +98,9 @@ btnSignup.addEventListener("click", function () {
                 method: "POST",
                 data: $("#frmCadastro").serialize(),
                 success: function(response) {
-                    console.log(response);
                     var objRetorno = JSON.parse(response);
 
                     if(objRetorno.status === "error") {
-                        console.log('errado');
                         $('#responseArea').text("errado");
                     } else {
                         $('#responseArea').text("Registrado");
@@ -134,16 +132,18 @@ btnSignup.addEventListener("click", function () {
              // Verificar se o email contém "@" e "."
              alert("Por favor, insira um e-mail válido.");
          } else {
+			console.log("Iniciando o AJAX");
             $.ajax({
-                url: "../app/controllers/CtrlCliente.php",
+                url: "../app/controllers/CtrlClienteLogin.php",
                 method: "POST",
                 data: $("#frmLogin").serialize(),
                 success: function(response) {
-                    console.log(response)
+					console.log("Resposta recebida:", response);
                     var objRetorno = JSON.parse(response);
-                    if ( objRetorno.status === "error"){
-                        $("#responseAreaLogin").text("erro ao logar");
-                    }else{
+
+                    if ( objRetorno.status == false){
+                        alert(objRetorno.message);
+                    } else {
                         $("#responseAreaLogin").text("Aguarde");
                         window.location.href = 'index.html';
                     }

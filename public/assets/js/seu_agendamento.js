@@ -171,15 +171,92 @@ $(document).ready(function() {
 	// Função de inicialização: calcula o preço baseado nos serviços já selecionados
 	atualizarPreco();
 	
-    $('.btn1').on('click', function(event) {
+    $('#edit-password-product').on('click', function(event) {
         event.preventDefault();
         
         const passwordInput = $(this).closest('.form').find('input[type="password"]');
         
         if (passwordInput.val().trim() === '') {
             alert('Por favor, preencha o campo de senha.');
-        }
+        } else {
+			$.ajax({
+			    url: "../app/controllers/CtrlClienteVfyPass.php",
+			    method: "POST",
+			    data: $("#formAlterarAgendamentoPassword").serialize(),
+			    success: function(response) {
+			        var objRetorno = JSON.parse(response);
+					
+					if (objRetorno.status == false) {
+						alert(objRetorno.message);
+					} else {
+						$("#table").hide();            // Esconde o elemento com id 'table'
+						$("#first-container").hide();  // Exibe o elemento com id 'first-container'
+						$('#alterar-container').show(); // Mostra a seção de alteração
+					}
+			    },
+			    error: function(xhr, status, error) {
+			        $('#responseArea').text("Erro na requisição: " + error);
+			    }
+			});
+		}
     });
+	
+	let dataId = null;
+	let rowExcluirDados;
+	
+	$('#delete-password-product').on('click', function(event) {
+	    event.preventDefault();
+	    
+	    const passwordInput = $(this).closest('.form').find('input[type="password"]');
+	    
+	    if (passwordInput.val().trim() === '') {
+	        alert('Por favor, preencha o campo de senha.');
+	    } else {
+			$.ajax({
+			    url: "../app/controllers/CtrlClienteVfyPass.php",
+			    method: "POST",
+			    data: $("#formDeleteAgendamentoPassword").serialize(),
+			    success: function(response) {
+			        var objRetorno = JSON.parse(response);
+					
+					if (objRetorno.status == false) {
+						alert(objRetorno.message);
+					} else {
+						$.ajax({
+						    url: "../app/controllers/CtrlAgendamentos.php",
+						    method: "DELETE",
+						    data: dataId,
+						    success: function(response) {
+								
+						        var objRetorno = JSON.parse(response);
+								
+								console.log(objRetorno);
+								
+								if (objRetorno.status == false) {
+									alert(objRetorno.message);
+								} else {
+									alert(objRetorno.message);
+									// Remover a linha
+									rowExcluirDados.remove();
+									
+									$("#table").show();            // Esconde o elemento com id 'table'
+									$("#first-container").hide();  // Exibe o elemento com id 'first-container'
+									$('#alterar-container').hide(); // Mostra a seção de alteração
+									$("#second-container").hide();
+								}
+						    },
+						    error: function(xhr, status, error) {
+								alert("Erro na requisição: " + error);
+						    }
+						});
+					}
+			    },
+			    error: function(xhr, status, error) {
+			        $('#responseArea').text("Erro na requisição: " + error);
+			    }
+			});
+		}
+	});
 	
 	$(document).on('click', '#alterar_dados', function(event) {
 		event.preventDefault(); // Previne o comportamento padrão do link
@@ -219,15 +296,35 @@ $(document).ready(function() {
 
 		
 		$("#table").hide();            // Esconde o elemento com id 'table'
-		//$("#first-container").show();  // Exibe o elemento com id 'first-container'
-		$('#alterar-container').show(); // Mostra a seção de alteração
+		$("#first-container").show();  // Exibe o elemento com id 'first-container'
+		$('#alterar-container').hide(); // Mostra a seção de alteração
 	})
+	
+	$(document).on('click', '#excluir_dados', function(event) {
+	    event.preventDefault(); // Previne o comportamento padrão do link
+		
+		// Encontrar a linha <tr> mais próxima ao botão "Excluir" clicado
+		rowExcluirDados = $(this).closest('tr');
+		
+	    // Extrai os valores das células na linha
+		let idAgendamento = $(this).closest('tr').data('id');
+		
+		
+		dataId = {
+				    agendamentosId: idAgendamento,
+		};
+		
+		$("#table").hide();            // Esconde o elemento com id 'table'
+		$("#first-container").hide();  // Exibe o elemento com id 'first-container'
+		$('#alterar-container').hide(); // Mostra a seção de alteração
+		$("#second-container").show();
+	});
 	
 	// Ao clicar em "Cancelar" no formulário de alteração
 	$('#cancelar-alteracao').on('click', function() {
 	    // Oculta o formulário de edição e volta para a tabela
 		$("#table").show();            // Esconde o elemento com id 'table'
-		//$("#first-container").show();  // Exibe o elemento com id 'first-container'
+		$("#first-container").hide();  // Exibe o elemento com id 'first-container'
 		$('#alterar-container').hide(); // Mostra a seção de alteração
 	});
 	
@@ -268,6 +365,7 @@ $(document).ready(function() {
 				if (objRetorno.status == false) {
 					alert(objRetorno.message);
 				} else {
+					alert(objRetorno.message);
 					atualizarTabela();
 					
 					$("#table").show();            // Esconde o elemento com id 'table'
@@ -280,41 +378,4 @@ $(document).ready(function() {
 		});
 		
 	})
-	
-
-	$(document).on('click', '#excluir_dados', function(event) {
-	    event.preventDefault(); // Previne o comportamento padrão do link
-		
-		// Encontrar a linha <tr> mais próxima ao botão "Excluir" clicado
-		let row = $(this).closest('tr');
-		
-	    // Extrai os valores das células na linha
-		let idAgendamento = $(this).closest('tr').data('id');
-		
-		
-		let dataId = {
-				    agendamentosId: idAgendamento,
-		};
-		
-		$.ajax({
-	        url: "../app/controllers/CtrlAgendamentos.php",
-	        method: "DELETE",
-	        data: dataId,
-	        success: function(response) {
-				console.log(response);
-	            var objRetorno = JSON.parse(response);
-				
-				if (objRetorno.status == false) {
-					alert(objRetorno.message);
-				} else {
-					alert(objRetorno.message);
-					// Remover a linha
-					row.remove();
-				}
-	        },
-	        error: function(xhr, status, error) {
-				alert("Erro na requisição: " + error);
-	        }
-	    });
-	});
 });

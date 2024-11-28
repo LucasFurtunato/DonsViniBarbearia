@@ -46,7 +46,7 @@
                 </tbody>
             </table>
             <div class="button-container">
-                <button class="btn" id="btn-add-row">Adicionar Linha</button>
+                <a class="btn" href="agendamento.html">Agendar</a>
             </div>
 
             <!--rodapé da tabela-->  
@@ -139,17 +139,17 @@
             <div class="second-column">
                 <h2 class="title title-second">Alterar Dados do Agendamento</h2>
                 <p class="description description-second">Insira a senha para conseguir alterar o agendamento</p>
-                <form class="form">
+                <form id="formAlterarAgendamentoPassword" class="form">
                     <label class="label-input">
                         <div class="space_icon">
                             <i class="fas fa-lock icon-modify"></i> 
                         </div>
-                        <input type="password" placeholder="Senha atual" maxlength="50" id="password-1">
+                        <input type="password" placeholder="Senha atual" name="senha" maxlength="50" id="password-1">
                         <div class="btn-fig">
                             <i class="bi bi-eye" id="btn-password-1"></i>
                         </div>
                     </label>
-                    <button class="btn1 btn-second" id="edit-password-product">Confirmar</button>       
+                    <button type="button" class="btn1 btn-second" id="edit-password-product">Confirmar</button>       
                 </form>
             </div>
         </div>
@@ -161,17 +161,17 @@
             <div class="second-column">
                 <h2 class="title title-second">Excluir Agendamento</h2>
                 <p class="description description-second">Insira a senha para conseguir excluir o agendamento</p>
-                <form class="form">
+                <form id="formDeleteAgendamentoPassword" class="form">
                     <label class="label-input">
                         <div class="space_icon">
                             <i class="fas fa-lock icon-modify"></i> 
                         </div>
-                        <input type="password" placeholder="Senha atual" maxlength="50" id="password-2">
+                        <input type="password" placeholder="Senha atual" name="senha" maxlength="50" id="password-2">
                         <div class="btn-fig">
                             <i class="bi bi-eye" id="btn-password-2"></i>
                         </div>
                     </label>
-                    <button class="btn1 btn-second" id="edit-password-product">Excluir</button>       
+                    <button type="button" class="btn1 btn-second" id="delete-password-product">Excluir</button>       
                 </form>
             </div>
         </div>
@@ -186,40 +186,5 @@
 
     <script src="assets/js/mobile-navbar.js"></script>
     <script src="assets/js/seu_agendamento.js"></script>
-    <script>
-
-$(document).ready(function() {
-    // Função para adicionar uma nova linha
-    $('#btn-add-row').click(function() {
-        const newRow = `
-<tr>
-    <td data-label="Nome Fun.">Funcionário Novo</td>
-    <td data-label="Dia">xx/xx/xx</td>
-    <td data-label="Horário">xx:xx</td>
-    <td data-label="Serviço">Cabelo simples</td>
-    <td data-label="Ações">
-        <div class="btn-group">
-            <a href="#" class="btn alterar">Alterar dados</a>
-            <a href="#" class="btn excluir" style="background-color: rgb(255, 62, 62);">Excluir</a>
-        </div>
-    </td>
-</tr>
-
-        `;
-        
-        // Adicionar a nova linha à tabela
-        $('#table-body').append(newRow);
-    });
-
-    // Função para excluir a linha
-    $(document).on('click', '.excluir', function() {
-        $(this).closest('tr').remove(); // Remove a linha correspondente
-    });
-});
-
-
-
-
-    </script>
 </body>
 </html>

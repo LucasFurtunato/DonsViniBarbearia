@@ -194,6 +194,7 @@ $(document).ready(function() {
 					$('#sixth-container').hide();
 				} else {
 					alert("Agendamento definido")
+					window.location.href = 'seu_agendamento.html'
 				}
 		    },
 		    error: function(xhr, status, error) {

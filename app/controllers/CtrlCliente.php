@@ -32,58 +32,33 @@ class CtrlCliente extends ControllerHandler {
 		
 		$existingCliente = $this->cliente->listByField('email', $email);
 		
-		if (!empty($nome)) {
-			if (!empty($existingCliente)) {
-				$result = [
-					'status' => 'error',
-					'message' => 'Email já registrado.'
-				];
-				$json = \json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-				echo $json;
-				return;
-			}
-			
-			// Criptografando a senha
-			if (!empty($senha)) {
-			    $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
-			}
-			
-			$this->cliente->populate($clienteId, $nome, $email, $senhaHash, $token, $email_verified);
-			$result = $this->cliente->save();
+		if (!empty($existingCliente)) {
+			$result = [
+			    'status' => false,
+				'message' => 'Email já registrado.'
+			];
 			$json = \json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 			echo $json;
-		} else if (!empty($existingCliente)) {
-		    $storedHash = $existingCliente[0]['senha'];
-		    if (password_verify($senha, $storedHash)) {
-		        $_SESSION["cliente"]["clienteId"] = $existingCliente[0]["clienteId"];
-		        $_SESSION["cliente"]["nome"] = $existingCliente[0]["nome"];
-		        $_SESSION["cliente"]["email"] = $existingCliente[0]["email"];
-	            
-	            $result = [
-	                'status' => 'true',
-	                'message' => 'Login Executado'
-	            ];
-	            
-	            $json = \json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-	            echo $json;
-	        } else {
-	            $result = [
-	                'status' => 'error',
-	                'message' => 'Usuário ou senha incorreta'
-	            ];
-	            $json = \json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-	            echo $json;
-	        }
-	        
-	        
-		} else {
+			return;
+		}
+		
+		if (empty($senha)) {
 		    $result = [
-		        'status' => 'error',
-		        'message' => 'Este Usuário não existe'
+		        'status' => false,
+		        'message' => 'Houve algum problema com a senha'
 		    ];
 		    $json = \json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 		    echo $json;
+		    return;
 		}
+		
+		// Criptografando a senha
+		$senhaHash = password_hash($senha, PASSWORD_DEFAULT);
+		
+		$this->cliente->populate($clienteId, $nome, $email, $senhaHash, $token, $email_verified);
+		$result = $this->cliente->save();
+		$json = \json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+		echo $json;
 	}
 
 	public function put() {		

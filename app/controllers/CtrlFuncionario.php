@@ -62,6 +62,7 @@ class CtrlFuncionario extends ControllerHandler {
     	        $_SESSION["funcionario"]["funcionarioId"] = $existingFuncionario[0]["funcionarioId"];
     	        $_SESSION["funcionario"]["nome"] = $existingFuncionario[0]["nome"];
     	        $_SESSION["funcionario"]["email"] = $existingFuncionario[0]["email"];
+    	        $_SESSION["funcionario"]["unidadeId"] = $existingFuncionario[0]["unidadeId"];
     			
     			$result = [
     				'status' => 'true',
