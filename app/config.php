@@ -35,10 +35,10 @@ $config->setDatabase([
 ]);
 
 $config->setSmtp([
-		'host' => 'smtp.mydomain.com',
-		'port' => 587,
-		'username' => 'my_username',
-		'password' => 'my_password'
+		'host' => 'smtp.gmail.com',
+		'port' => 465,
+		'username' => 'suportedonvinibarbearia@gmail.com',
+		'password' => 'ircl ahkx nlii vgnp'
 ]);
 
 $config->setUrl([

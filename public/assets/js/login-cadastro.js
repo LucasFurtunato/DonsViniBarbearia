@@ -93,17 +93,19 @@ btnSignup.addEventListener("click", function () {
               // Verificar se as senhas não correspondem
               alert("As senhas do funcionário não correspondem. Por favor, tente novamente.");
           } else {
+			$('#responseArea').text("Aguarde alguns segundos");
             $.ajax({
                 url: "../app/controllers/CtrlCliente.php",
                 method: "POST",
                 data: $("#frmCadastro").serialize(),
                 success: function(response) {
+					console.log(response);
                     var objRetorno = JSON.parse(response);
 
-                    if(objRetorno.status === "error") {
-                        $('#responseArea').text("errado");
+                    if(objRetorno.status == false) {
+                        alert(objRetorno.message)
                     } else {
-                        $('#responseArea').text("Registrado");
+                        $('#responseArea').text(objRetorno.message);
                     }
                 },
                 error: function(xhr, status, error) {

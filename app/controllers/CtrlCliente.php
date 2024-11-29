@@ -7,6 +7,8 @@ use app\models\Cliente;
 
 require_once  dirname( __DIR__ , 1).'/config.php';
 
+include 'SendEmail.php';
+
 class CtrlCliente extends ControllerHandler {
 
 	private $cliente = null;
@@ -33,21 +35,21 @@ class CtrlCliente extends ControllerHandler {
 		$existingCliente = $this->cliente->listByField('email', $email);
 		
 		if (!empty($existingCliente)) {
-			$result = [
+		    $response = [
 			    'status' => false,
 				'message' => 'Email já registrado.'
 			];
-			$json = \json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+			$json = \json_encode($response, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 			echo $json;
 			return;
 		}
 		
 		if (empty($senha)) {
-		    $result = [
+		    $response = [
 		        'status' => false,
 		        'message' => 'Houve algum problema com a senha'
 		    ];
-		    $json = \json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+		    $json = \json_encode($response, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 		    echo $json;
 		    return;
 		}
@@ -57,26 +59,79 @@ class CtrlCliente extends ControllerHandler {
 		
 		$this->cliente->populate($clienteId, $nome, $email, $senhaHash, $token, $email_verified);
 		$result = $this->cliente->save();
-		$json = \json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+		
+		if ($result) {
+		    // Chama a função de envio de e-mail e captura o retorno
+		    $emailResult = enviarEmailConfirmacao($email, $nome, $token);
+		    
+		    // Se o e-mail for enviado com sucesso, inclui a resposta no resultado
+		    if ($emailResult['status']) {
+		        $response = [
+		            'status' => true,
+		            'message' => 'Enviamos um email de confirmação de cadastro'
+		        ];
+		    } else {
+		        $response = [
+		            'status' => false,
+		            'message' => 'Cadastro realizado, mas houve um erro ao enviar o e-mail de confirmação: ' . $emailResult['message']
+		        ];
+		    }
+		} else {
+		    $response = [
+		        'status' => false,
+		        'message' => 'Houve algum erro ao cadastrar'
+		    ];
+		}
+		
+		$json = \json_encode($response, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 		echo $json;
 	}
 
-	public function put() {		
-		$clienteId = $this->getParameter('clienteId');
-		$nome = $this->getParameter('nome');
-		$email = $this->getParameter('email');
-		$senha = $this->getParameter('senha');
+	public function put() {
 		$token = $this->getParameter('token');
-		$email_verified = $this->getParameter('email_verified');
 		
-		// Criptografando a senha, caso seja fornecida
-		if (!empty($senha)) {
-		    $senha = password_hash($senha, PASSWORD_DEFAULT);
+		$existingCliente = $this->cliente->listByField('token', $token);
+		
+		if (!empty($existingCliente)) {
+		    $email_verified = $existingCliente[0]['email_verified'];
+		    
+		    if ($email_verified == 0) {
+		        $clienteId = $existingCliente[0]["clienteId"];
+		        $nome = $existingCliente[0]["nome"];
+		        $email = $existingCliente[0]["email"];
+		        $senha = $existingCliente[0]["senha"];
+		        $token = '0';
+		        $email_verified = 1;
+		        
+		        $this->cliente->populate( $clienteId, $nome, $email, $senha, $token, $email_verified);
+		        $result = $this->cliente->save();
+
+		        if ($result) {
+		            $response = [
+		                'status' => true,
+		                'message' => 'Verificação realizada com sucesso'
+		            ];
+		        } else {
+		            $response = [
+		                'status' => false,
+		                'message' => 'Houve algum erro ao confimar seu email'
+		            ];
+		        }
+		    } else {
+		        $response = [
+		            'status' => false,
+		            'message' => 'Conta já verificada'
+		        ];
+		    }
+		} else {
+		    $response = [
+		        'status' => false,
+		        'message' => 'Conta já verificada ou algum erro com o token'
+		    ];
 		}
 		
-	    $this->cliente->populate( $clienteId, $nome, $email, $senha, $token, $email_verified);
-		$result = $this->cliente->save();
-		echo $result;
+		$json = \json_encode($response, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+		echo $json;
 	}
 
 	public function delete() {		

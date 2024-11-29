@@ -35,14 +35,14 @@
     <main>
 
         <section class="card-section">
-            <div class="card">
+            <div class="card" data-value="1">
                 <img src="assets/img/12.png" alt="Card 1">
                 <div class="card-description">
                     <p class="p_bold">UNIDADE 1</p>
                     <p>Endereço: R. São Geraldo, 446 - Jardim São Paulo</p>
                 </div>
             </div>
-            <div class="card">
+            <div class="card" data-value="2">
                 <img src="assets/img/12.png" alt="Card 2">
                 <div class="card-description">
                     <p class="p_bold">UNIDADE 2</p>
@@ -61,5 +61,23 @@
     </footer>
 
     <script src="assets/js/mobile-navbar.js"></script>
+    <script type="text/javascript">
+	    $(document).ready(function () {
+	        $(".card").on("click", function () {
+	            // Remove a seleção anterior
+	            $(".card").removeClass("selected");
+	
+	            // Adiciona a classe 'selected' ao card clicado
+	            $(this).addClass("selected");
+	
+	            // Obtém o valor do card selecionado
+	            const selectedValue = $(this).data("value");
+	
+	            // Exibe o valor selecionado no console (ou utilize conforme a necessidade)
+	            console.log("Card selecionado:", selectedValue);
+	            window.location.href = 'agendamento.html?unidade=' + selectedValue;
+	        });
+	    });
+    </script>
 </body>
 </html>

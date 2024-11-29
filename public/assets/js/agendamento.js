@@ -9,6 +9,19 @@ $(document).ready(function() {
 		}
 	});
 	
+	function getUrlParameter(name) {
+	    var url = new URL(window.location.href);
+	    return url.searchParams.get(name);
+	}
+
+	// Obtendo o unidade da URL
+	var unidade = getUrlParameter('unidade');
+	
+	if (!unidade || (unidade != 1 && unidade != 2)) {
+		alert("A unidade não foi selecionada de forma correta, redicionaremos você para a páguna de seleção de unidades");
+		window.location.href = 'escolha_unidades.html';
+	}
+	
 	const today = new Date().toISOString().split('T')[0];
 	$('#data').attr('min', today);
 	
@@ -29,7 +42,7 @@ $(document).ready(function() {
 	        if (price > 0) {
 	            $('#individual-prices').append(`
 	                <li>${name}: R$ ${price.toFixed(2)}</li>
-	            `);
+	            `)
 	        }
 	    });
 	}
@@ -173,6 +186,7 @@ $(document).ready(function() {
 		}
 		
 		let data = {
+			unidadeId: unidade, 
 			funcionarioId: funcionarioId,
 			barbaId: barbaId,
 			corteId: corteId,
