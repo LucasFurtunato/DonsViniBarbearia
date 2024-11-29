@@ -140,7 +140,6 @@ $(document).ready(function() {
 		    
 			// Extrai os valores das células na linha
 			let idServico = $(this).closest('tr').data('id');
-			console.log(idServico)
 		    let tipoServico = row.find('td[data-label="TiposDeServicos"] label').text();
 		    let nomeServico = row.find('td[data-label="Serviços"]:nth-child(2) label').text();
 		    let preco = row.find('td[data-label="Preços"] label').text();

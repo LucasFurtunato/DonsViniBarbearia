@@ -40,25 +40,9 @@
                     </tr>
                 </thead>
                 <tbody id="table-body"> 
-                    <tr>
-                        <td data-label="Nome Fun.">Funcionário Novo</td>
-                        <td data-label="Email">fun1@gmail.com</td>
-                        <td data-label="Unidade">Unidade 1</td>
-                        <td data-label="Código">1a2wiend</td>
-                        <td data-label="Ações">
-
-                            <div class="btn-group">
-                                <a href="#" class="btn" id="alterar_dados">Alterar dados</a>
-                                <a href="#" class="btn, delete" id="excluir_dados">Excluir</a>
-                            </div>
-                        </td>
-                    </tr>
-                    
+                   
                 </tbody>
             </table>
-            <div class="button-container">
-                <button class="btn" id="btn-add-row">Adicionar Linha</button>
-            </div>
             
 
             <!--rodapé da tabela-->  
@@ -84,7 +68,47 @@
                 </div>
             </div>
         </div>
-        
+        <div class="container" id="alterar-container" style="display: none;">
+            <div class="content first-content">
+                <div class="second-column">
+                    <h2 class="title title-second">Alterar Funcionário</h2>
+                    <form id="form-alterar">
+                    	<input type="hidden" name="funcionarioId" id="idfuncionario"> <!-- ID invisível com o input hidden -->
+                        <label class="label-input">
+                            <span>Unidade</span>
+                            <select id="unidade_fun" name="unidadeId" required>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                            </select>
+                        </label>
+                        <label class="label-input">
+                            <span>Código</span>
+                            <input type="text" id="alterar-codigo" name="codigo" maxlength="50" required>
+                        </label>
+                        <label class="label-input">
+                            <span>Nome</span>
+                            <input type="text" id="alterar-nome" name="nome" maxlength="50" required>
+                        </label>
+                        <label class="label-input">
+                            <span>Email</span>
+                            <input type="text" id="alterar-email" name="email" maxlength="50" required>
+                        </label>
+                        <label class="label-input">
+                            <span>Senha</span>
+                            <input type="password" id="alterar-senha" name="senha" maxlength="20" required>
+                        </label>
+                        <label class="label-input">
+                            <span>Confirmar Senha</span>
+                            <input type="password" id="alterar-senha" name="confirmarsenha" maxlength="20" required>
+                        </label>
+                        <div class="btn-group">
+                            <button type="button" id="confirmar-alteracao" class="btn btn-second">Salvar Alterações</button>
+                            <button type="button" id="cancelar-alteracao" class="btn btn-second cancel-btn">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
         <div class="container" id="second-container" style="display: none;"> 
             <div class="content first-content"> 

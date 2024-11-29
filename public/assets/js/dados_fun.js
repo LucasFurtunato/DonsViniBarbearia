@@ -43,9 +43,11 @@ $(document).ready(function() {
 
 //Esconder tabela e apararecer confirmar senha - alterar dados
 $(document).ready(function() {
-    $("#alterar_dados").click(function() {
+    $(document).on('click','#alterar_dados',function(event) {
+        event.preventDefault();
         $("#table").hide();            // Esconde o elemento com id 'table'
-        $("#first-container").show();  // Exibe o elemento com id 'first-container'
+        $("#first-container").hide();
+        $("#alterar-container").show();  // Exibe o elemento com id 'first-container'
     });
 });
 
@@ -54,5 +56,49 @@ $(document).ready(function() {
     $("#excluir_dados").click(function() {
         $("#table").hide();            // Esconde o elemento com id 'table'
         $("#second-container").show();  // Exibe o elemento com id 'first-container'
+    });
+});
+
+$(document).ready(function(){
+    $.ajax({
+        url: "../app/controllers/CtrlFuncionario.php",
+        method: "GET",
+        success: function(response) {
+            console.log(response)
+            var data = JSON.parse(response);
+
+               // Limpar a tabela antes de adicionar novos dados
+            $('#table-body').empty();
+
+            // Inserir dados de Corte
+            data.forEach(fun => {
+                $('#table-body').append(`
+                    <tr data-id="${fun.funcinarioId}">
+						<td data-label="Nome Fun.">
+                        ${fun.nome}
+	                    </td>
+						<td data-label="Email">
+                        ${fun.email}
+	                    </td>
+	                    <td data-label="Unidade">
+                        ${fun.unidadeId}
+	                    </td>   
+                        <td data-label="Código">
+                        ${fun.codigo}
+	                    </td>   
+                        <td data-label="Ações">
+                        <div class="btn-group">
+                            <a href="#" class="btn" id="alterar_dados">Alterar dados</a>
+                            <a href="#" class="btn, delete" id="excluir_dados">Excluir</a>
+                        </div>
+                    </td>
+                    </tr>
+                `);
+            });
+            
+        },
+        error: function(xhr, status, error) {
+            $('#responseArea').text("Erro na requisição: " + error);
+        }
     });
 });
