@@ -22,8 +22,50 @@ $(document).ready(function() {
 		window.location.href = 'escolha_unidades.html';
 	}
 	
+	$('#horario').timepicker({
+	    timeFormat: 'HH:mm',
+	    interval: 30,
+	    minTime: '09:00',
+	    maxTime: '17:00',
+	    defaultTime: '09:00',
+	    dynamic: false,
+	    dropdown: true,
+	    scrollbar: true
+	});
+	
+	$('#horario').on('change', function (event) {
+	    const minTime = '09:00';
+	    const maxTime = '17:00';
+	    const selectedTime = $(this).val();
+
+	    // Converte o horário em minutos totais para validar o intervalo
+	    const [hours, minutes] = selectedTime.split(':').map(Number);
+	    const totalMinutes = hours * 60 + minutes;
+
+	    // Converte limites para minutos
+	    const minMinutes = 9 * 60;  // 09:00 em minutos
+	    const maxMinutes = 17 * 60; // 17:00 em minutos
+		
+		if (selectedTime < minTime || selectedTime > maxTime) {
+		    alert('Por favor, selecione um horário válido.');
+		    event.preventDefault(); // Impede o envio do formulário
+			$(this).val('09:00'); // Reseta para o horário mínimo permitido
+		}
+	    // Verifica se está no intervalo e é múltiplo de 30
+	    else if (
+	        totalMinutes < minMinutes || 
+	        totalMinutes > maxMinutes || 
+	        totalMinutes % 30 !== 0
+	    ) {
+	        alert('Por favor, insira um horário válido em intervalos de 30 minutos.');
+	        $(this).val('09:00'); // Reseta para o horário mínimo permitido
+	    }
+	});
+
+	
 	const today = new Date().toISOString().split('T')[0];
 	$('#data').attr('min', today);
+	
 	
 	let totalPrice = 0;  // Variável para armazenar o preço total
 	let selectedItems = [];  // Array para armazenar os itens selecionados
@@ -150,10 +192,12 @@ $(document).ready(function() {
 			$('#profissional').empty();
 			
 			data.forEach(funcionario => {
-				$('#profissional').append(`
-					<li data-id="${funcionario.funcionarioId}">${funcionario.nome}</li>
+				if (funcionario.unidadeId == unidade) {
+					$('#profissional').append(`
+						<li data-id="${funcionario.funcionarioId}" data-unidadeId="${funcionario.unidadeId}">${funcionario.nome}</li>
 
-				`);
+					`);
+				}
 			});
 	    },
 	    error: function(xhr, status, error) {

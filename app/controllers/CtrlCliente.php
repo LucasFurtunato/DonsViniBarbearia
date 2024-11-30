@@ -92,7 +92,7 @@ class CtrlCliente extends ControllerHandler {
 		
 		$existingCliente = $this->cliente->listByField('token', $token);
 		
-		if (!empty($existingCliente)) {
+		if (!empty($existingCliente) || $existingCliente['token'] != '0') {
 		    $email_verified = $existingCliente[0]['email_verified'];
 		    
 		    if ($email_verified == 0) {

@@ -20,13 +20,24 @@ class CtrlClienteLogin extends ControllerHandler {
 	}
 	
 	public function post() {
-	    
 	    $email = $this->getParameter('email');
 	    $senha = $this->getParameter('senha');
-	    //$email_verified = 0; usar depois para verificar se o email está verifcado
 	    
 	    // Tentar recuperar o cliente pelo email
 	    $existingCliente = $this->cliente->listByField('email', $email);
+	    $email_verified = $existingCliente[0]['email_verified'];
+	    
+	    if ($email_verified == 0) {
+	        // Email não verificado
+	        $result = [
+	            'status' => false,
+	            'message' => 'Email não verificado'
+	        ];
+	        // Codifica o resultado em JSON e envia como resposta
+	        echo \json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+	        return;
+	        
+	    }
 	    
 	    // Verifica se o cliente existe
 	    if (!empty($existingCliente)) {
@@ -67,7 +78,44 @@ class CtrlClienteLogin extends ControllerHandler {
 	
 
 	public function put() {		
-
+	    $token = $this->getParameter('token');
+	    $senha = $this->getParameter('senha');
+	    
+	    $existingCliente = $this->cliente->listByField('token', $token);
+	    
+	    if (!empty($existingCliente)) {
+	        $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
+	        
+	        $clienteId = $existingCliente[0]["clienteId"];
+	        $nome = $existingCliente[0]["nome"];
+	        $email = $existingCliente[0]["email"];
+	        $senha = $senhaHash;
+	        $token = '0';
+	        $email_verified = $existingCliente[0]["email_verified"];
+	        
+	        $this->cliente->populate( $clienteId, $nome, $email, $senha, $token, $email_verified);
+	        $result = $this->cliente->save();
+	        
+	        if ($result) {
+	            $response = [
+	                'status' => true,
+	                'message' => 'Senha mudada com sucesso'
+	            ];
+	        } else {
+	            $response = [
+	                'status' => false,
+	                'message' => 'Houve algum erro ao registar a nova senha'
+	            ];
+	        }
+	    } else {
+	        $response = [
+	            'status' => false,
+	            'message' => 'Este token não existe'
+	        ];
+	    }
+	    
+	    // Codifica o resultado em JSON e envia como resposta
+	    echo \json_encode($response, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 	}
 
 	public function delete() {		

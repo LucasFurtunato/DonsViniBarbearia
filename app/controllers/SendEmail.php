@@ -50,3 +50,44 @@ function enviarEmailConfirmacao($email, $nome, $token) {
         return ['status' => false, 'message' => "Mailer Error: {$mail->ErrorInfo}"];
     }
 }
+
+function enviarCodRecuperacaoSenha($email, $nome, $token) {
+    $smtpConfig = $_SESSION['smtp'];
+    
+    $mail = new PHPMailer(true);
+    
+    try {
+        //Server settings
+        $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+        $mail->isSMTP();                                            //Send using SMTP
+        $mail->Host       = $smtpConfig['host'];                     //Set the SMTP server to send through
+        $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+        $mail->Username   = $smtpConfig['username'];                     //SMTP username
+        $mail->Password   = $smtpConfig['password'];                               //SMTP password
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+        $mail->Port       = $smtpConfig['port'];                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+        
+        // Desabilitar a exibição de debug (defina como 0)
+        $mail->SMTPDebug = 0;  // Desativa o log detalhado
+        
+        //Recipients
+        $mail->setFrom('suportedonvinibarbearia@gmail.com', "Suporte  Don'Vini Barbearia");
+        $mail->addAddress($email, $nome);
+        $mail->addReplyTo('suportedonvinibarbearia@gmail.com', "Suporte Don'Vini Barbearia");
+        
+        //Content
+        $mail->isHTML(true);                                  //Set email format to HTML
+        $mail->Subject = "Codigo de recuperação de senha";
+        $mail->Body    = "Olá,<br><br>Por favor, use o código abaixo para recuperar sua senha:<br><br>
+                          <h2>$token</h2><br><br>Se você não solicitou isso, ignore este e-mail.";
+        
+        if ($mail->send()) {
+            return ['status' => true, 'message' => 'Mensagem enviada com sucesso.'];
+        } else {
+            return ['status' => false, 'message' => 'Mensagem não enviada.'];
+        }
+    } catch (Exception $e) {
+        return ['status' => false, 'message' => "Mailer Error: {$mail->ErrorInfo}"];
+    }
+}
+

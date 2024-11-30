@@ -4,15 +4,18 @@ namespace app\controllers;
 
 use app\core\ControllerHandler;
 use app\models\Servicos;
+use app\models\Agendamentos;
 
 require_once dirname(__DIR__, 1).'/config.php';
 
 class CtrlServicos extends ControllerHandler {
 
     private $servicos = null;
+    private $agendamentos = null;
 
     public function __construct() {
         $this->servicos = new Servicos();
+        $this->agendamentos = new Agendamentos();
         parent::__construct();
     }
 
@@ -113,43 +116,86 @@ class CtrlServicos extends ControllerHandler {
         $json = \json_encode($response, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
         echo $json;
     }
-
+    
     public function delete() {
         $servicosId = $this->getParameter('servicosId');
         
-        $existingServico = $this->servicos->listByField('servicosId', $servicosId);
-        $servico = $existingServico[0];
-        
-        $tipoServico = $servico['tipoServico'];
-        $nomeServico = $servico['nomeServico'];
-        $preco = $servico['preco'];
-        
-        if (!empty($existingServico)) {
-            $this->servicos->populate($servicosId, $tipoServico, $nomeServico, $preco);
-            $result = $this->servicos->delete();
-            
-            if ($result) {
-                $response = [
-                    'status' => true,
-                    'message' => 'Este serviço foi excluído'
-                ];
-            } else {
-                $response = [
-                    'status' => false,
-                    'message' => 'Houve algum erro ao alterar'
-                ];
-            }
-        } else {
+        // Verifica se o serviço existe
+        $existingServico = $this->servicos->listByField('servicosId', $servicosId)[0];
+        if (empty($existingServico)) {
             $response = [
                 'status' => false,
                 'message' => 'Este serviço não existe'
             ];
+            echo json_encode($response, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+            return;
         }
-        $json = \json_encode($response, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-        echo $json;
         
+        $tipoServico = $existingServico['tipoServico'];
+        $nomeServico = $existingServico['nomeServico'];
+        $preco = $existingServico['preco'];
         
+        // Atualiza os agendamentos relacionados
+        if (!$this->putAgendamentos($servicosId)) {
+            $response = [
+                'status' => false,
+                'message' => 'Erro ao atualizar os agendamentos'
+            ];
+            echo json_encode($response, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+            return;
+        }
+        
+        // Exclui o serviço
+        $this->servicos->populate($servicosId, $tipoServico, $nomeServico, $preco);
+        $result = $this->servicos->delete();
+        
+        $response = [
+            'status' => $result,
+            'message' => $result ? 'Este serviço foi excluído' : 'Houve algum erro ao excluir'
+        ];
+        echo json_encode($response, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
     }
+    
+    public function putAgendamentos($idServico) {
+        $servicosId = $idServico;
+        
+        // Atualiza todos os agendamentos relacionados
+        $updated = true;
+        $fields = ['corteId', 'barbaId', 'cuidadosId'];
+        foreach ($fields as $field) {
+            $agendamentos = $this->agendamentos->listByField($field, $servicosId);
+            foreach ($agendamentos as $agendamento) {
+                if (!$this->updateField($agendamento, $field, 1)) {
+                    $updated = false;
+                }
+            }
+        }
+        
+        return $updated;
+    }
+    
+    private function updateField(array $existing, string $fieldToUpdate, $newValue) {
+        $existing[$fieldToUpdate] = $newValue;
+        
+        $this->agendamentos->populate(
+            $existing['agendamentosId'],
+            $existing['unidadeId'],
+            $existing['funcionarioId'],
+            $existing['clienteId'],
+            $existing['barbaId'] ?? null,
+            $existing['corteId'] ?? null,
+            $existing['cuidadosId'] ?? null,
+            $existing['preco'],
+            $existing['dia'],
+            $existing['horario']
+            );
+        
+        return $this->agendamentos->save();
+    }
+    
+    
+
+
 
     public function file() {
         // Implement file handling if necessary
