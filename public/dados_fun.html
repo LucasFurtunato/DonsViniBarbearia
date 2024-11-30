@@ -53,7 +53,7 @@
                 <div class="second-column">
                     <h2 class="title title-second">Alterar Dados do Funcionário</h2>
                     <p class="description description-second">Insira a senha para conseguir alterar o funcionário</p>
-                    <form class="form">
+                    <form class="form" id="form-password">
                         <label class="label-input">
                             <div class="space_icon">
                                 <i class="fas fa-lock icon-modify"></i> 
@@ -142,40 +142,6 @@
 
     <script src="assets/js/dados_fun.js"></script>
     <script src="assets/js/mobile-navbar.js"></script>
-    <script>
 
-$(document).ready(function() {
-    // Função para adicionar uma nova linha
-    $('#btn-add-row').click(function() {
-        const newRow = `
-<tr>
-    <td data-label="Nome Fun.">Funcionário Novo</td>
-    <td data-label="Email">fun1@gmail.com</td>
-    <td data-label="Unidade">Unidade 1</td>
-    <td data-label="Código">1a2wiend</td>
-    <td data-label="Ações">
-        <div class="btn-group">
-            <a href="#" class="btn alterar">Alterar dados</a>
-            <a href="#" class="btn excluir" style="background-color: rgb(255, 62, 62);">Excluir</a>
-        </div>
-    </td>
-</tr>
-
-        `;
-        
-        // Adicionar a nova linha à tabela
-        $('#table-body').append(newRow);
-    });
-
-    // Função para excluir a linha
-    $(document).on('click', '.excluir', function() {
-        $(this).closest('tr').remove(); // Remove a linha correspondente
-    });
-});
-
-
-
-
-    </script>
 </body>
 </html>
