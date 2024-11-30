@@ -94,29 +94,78 @@ class CtrlFuncionario extends ControllerHandler {
 		$nome = $this->getParameter('nome');
 		$email = $this->getParameter('email');
 		$unidadeId = $this->getParameter('unidadeId');
-		$senhaFuncionario = $this->getParameter('senhaFuncionario');
-	    $this->funcionario->populate( $funcionarioId, $codigo, $nome, $email, $unidadeId, $senhaFuncionario);
-		$result = $this->funcionario->save();
-		echo $result;
+		$senhaFuncionario = $this->getParameter('senha');
+		
+		$existingFuncionario = $this->funcionario->listByField('funcionarioId', $funcionarioId);
+		// Criptografando a senha
+		if (!empty($senhaFuncionario)) {
+			$senhaHash = password_hash($senhaFuncionario, PASSWORD_DEFAULT);
+			}
+
+		if (!empty($existingFuncionario)) {
+            $this->funcionario->populate( $funcionarioId, $codigo, $nome, $email, $unidadeId, $senhaHash);
+			$result = $this->funcionario->save();
+			if ($result) {
+                $response = [
+                    'status' => true,
+                    'message' => 'Alteração feita com sucesso'
+                ];
+            } else { 
+                $response = [
+                    'status' => false,
+                    'message' => 'Houve algum erro ao alterar'
+                ];
+            }
+		}else {
+            $response = [
+                'status' => false,
+                'message' => 'Este funcionario não existe'
+            ];
+        }
+        $json = \json_encode($response, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        echo $json;
 	}
 
 	public function delete() {		
+		
 		$funcionarioId = $this->getParameter('funcionarioId');
-		$codigo = $this->getParameter('codigo');
-		$nome = $this->getParameter('nome');
-		$email = $this->getParameter('email');
-		$unidadeId = $this->getParameter('unidadeId');
-		$senhaFuncionario = $this->getParameter('senhaFuncinario');
-	    $this->funcionario->populate( $funcionarioId, $codigo, $nome, $email, $unidadeId, $senhaFuncionario);
-		$result = $this->funcionario->delete();
-		echo $result;
+        $existingFuncionario = $this->funcionario->listByField('funcionarioId', $funcionarioId);
+	    if (!empty($existingFuncionario)) {
+            $funcionario = $existingFuncionario[0];
+        	$codigo = $funcionario['codigo'];
+        	$nome = $funcionario['nome'];
+			$email = $funcionario['email'];
+			$unidadeId =$funcionario['unidadeId'];
+			$senhaFuncionario = $funcionario['senha'];
+			$this->funcionario->populate( $funcionarioId, $codigo, $nome, $email, $unidadeId, $senhaFuncionario);
+			$result = $this->funcionario->delete();
+            
+            if ($result) {
+                $response = [
+                    'status' => true,
+                    'message' => 'Este Funcionario foi excluído'
+                ];
+            } else {
+                $response = [
+                    'status' => false,
+                    'message' => 'Houve algum erro ao alterar'
+                ];
+            }
+        } else {
+            $response = [
+                'status' => false,
+                'message' => 'Este serviço não existe'
+            ];
+        }
+        $json = \json_encode($response, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        echo $json;
+        
+        
+    }
+		
 	}
-	
 
-	public function file(){
 
-	}
-}
 
 new CtrlFuncionario();
 ?>
