@@ -32,7 +32,7 @@ class CtrlFuncionario extends ControllerHandler {
 		$nome = $this->getParameter('nome');
 		$email = $this->getParameter('email');
 		$unidadeId = $this->getParameter('unidadeId');
-		$senhaFuncionario = $this->getParameter('senha');
+		$senhaFuncionario = $this->getParameter('senhaFuncionario');
 		
 		$existingFuncionario = $this->funcionario->listByfield('email', $email);
 			

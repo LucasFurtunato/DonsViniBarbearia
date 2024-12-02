@@ -46,8 +46,8 @@ $(document).ready(function() {
     $(document).on('click','#alterar_dados',function(event) {
         event.preventDefault();
         $("#table").hide();            // Esconde o elemento com id 'table'
-        $("#first-container").hide();
-        $("#alterar-container").show();  // Exibe o elemento com id 'first-container'
+        $("#first-container").show();
+        $("#alterar-container").hide();  // Exibe o elemento com id 'first-container'
     });
 });
 
@@ -93,37 +93,63 @@ $(document).ready(function(){
         }
     });
 });
+$(document).on('click', '#aleterar_dados', function(event) {
+    $(this).addClass('active').closest('tr').siblings().find('#alterar_dados').removeClass('active');
+    let password = $('#password-1').val().trim();
 
-// Captura o evento de clique no botão "Alterar"
-$(document).on('click', '#alterar_dados', function(event) {
+    if( password === '') {
+        alert("Por favor, preencha o campo de senha.")
+    } else{		
+        $.ajax({
+            url: "../app/controllers/CtrlGerente.php",
+            method: "POST",
+            data: $("#form-password").serialize(),
+            success: function(response) {
+                var objRetorno = JSON.parse(response);
+                console.log(response)
+                if (objRetorno.status === "true") {
+                    // Adiciona a classe 'active' ao botão clicado e remove de seus irmãos
+    
+                    // Obtém a linha da tabela onde o botão foi clicado
+                    let row = $(this).closest('tr');
+    
+                    // Extrai os valores das células na linha
+                    let Idfuncionario = $(this).closest('tr').data('id');
+                    let nome = row.find('td[data-label="Nome Fun."]').text();
+                    let email = row.find('td[data-label="Email"]').text();
+                    let unidadeId = row.find('td[data-label="Unidade"]').text();
+                    let codigo = row.find('td[data-label="Código"]').text();
+
+                    // Preenche os campos do formulário de alteração com os dados existentes
+                    $('#idfuncionario').val(Idfuncionario);
+                    $('#alterar-nome').val(nome);
+                    $('#alterar-email').val(email);
+                    $('#unidade_fun').val(unidadeId);
+                    $('#alterar-codigo').val(codigo);
+    
+
+                    // Exibe o formulário de edição e esconde a tabela
+                    $('#first-container').hide();
+                    $('#second-container').hide();
+                    $('#alterar-container').show(); // Mostra a seção de alteração
+
+                } else {
+                    alert(objRetorno.message)
+                }
+            },
+            error: function(xhr, status, error) {
+                alert("Erro na requisição: " + error);
+            }
+        });
+    }
+});
+
+/* Captura o evento de clique no botão "Alterar"
+$(document).on('click', '#edit-password-product', function(event) {
     event.preventDefault(); // Previne o comportamento padrão do link
     
-    // Adiciona a classe 'active' ao botão clicado e remove de seus irmãos
-    $(this).addClass('active').closest('tr').siblings().find('#alterar_dados').removeClass('active');
     
-    // Obtém a linha da tabela onde o botão foi clicado
-    let row = $(this).closest('tr');
-    
-    // Extrai os valores das células na linha
-    let Idfuncionario = $(this).closest('tr').data('id');
-    let nome = row.find('td[data-label="Nome Fun."]').text();
-    let email = row.find('td[data-label="Email"]').text();
-    let unidadeId = row.find('td[data-label="Unidade"]').text();
-    let codigo = row.find('td[data-label="Código"]').text();
-
-    // Preenche os campos do formulário de alteração com os dados existentes
-    $('#idfuncionario').val(Idfuncionario);
-    $('#alterar-nome').val(nome);
-    $('#alterar-email').val(email);
-    $('#unidade_fun').val(unidadeId);
-    $('#alterar-codigo').val(codigo);
-    
-
-    // Exibe o formulário de edição e esconde a tabela
-    $('#first-container').hide();
-    $('#second-container').hide();
-    $('#alterar-container').show(); // Mostra a seção de alteração
-});
+});*/
 
 
 // Confirma a alteração e atualiza os dados na tabela
@@ -158,8 +184,8 @@ $('#confirmar-alteracao').on('click', function() {
                     row.find('td[data-label="Unidade"]').text(unidadeId);
                     row.find('td[data-label="Código"]').text(codigo);
                     // Oculta o formulário de edição e volta para a tabela
-                    $('#first-container').show();
-                    $('#table').hide();
+                    $('#first-container').hide();
+                    $('#table').show();
                     $('#second-container').hide();
                     $('#alterar-container').hide(); // Mostra a seção de alteração
                 }
@@ -171,6 +197,35 @@ $('#confirmar-alteracao').on('click', function() {
     }		    
 });
 //senha 
+
+$(document).on('click', '#excluir_dados', function(event) {
+     $('#second-container').show();
+    $('#table').hide();
+    let password = $('#password-2').val().trim();
+    if( password === '') {
+        alert("Por favor, preencha o campo de senha.")
+    } else{		
+        $.ajax({
+            url: "../app/controllers/CtrlGerente.php",
+            method: "POST",
+            data: $("#form2").serialize(),
+            success: function(response) {
+                var objRetorno = JSON.parse(response);
+                
+                if (objRetorno.status === "true") {
+                    $('#second-container').show();
+                    $('#table-container').hide();
+                } else {
+                    alert(objRetorno.message)
+                }
+            },
+            error: function(xhr, status, error) {
+                alert("Erro na requisição: " + error);
+            }
+        });
+    }
+});
+
 		// Ao clicar em "Cancelar" no formulário de alteração
 		$('#cancelar-alteracao').on('click', function() {
 		    // Oculta o formulário de edição e volta para a tabela
@@ -182,7 +237,7 @@ $('#confirmar-alteracao').on('click', function() {
 
 
 //deletar
-$(document).on('click', '#excluir_dados', function(event) {
+$(document).on('click', '#edit-password-product2', function(event) {
     event.preventDefault(); // Previne o comportamento padrão do link
     
     // Encontrar a linha <tr> mais próxima ao botão "Excluir" clicado
