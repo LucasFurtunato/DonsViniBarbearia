@@ -9,17 +9,98 @@ $(document).ready(function() {
 		}
 	});
 	
+	// Inicialmente, desabilitar os horários
+	$('#horario li').addClass('disabled');
+	
+	let agendamentos = [];
+	
 	$.ajax({
 	    url: "../app/controllers/CtrlAgendamentosListAll.php",
 	    method: "GET",
 	    success: function(response) {
-	        var objRetorno = JSON.parse(response);
-			console.log(objRetorno);
+			agendamentos = JSON.parse(response);
 	    },
 	    error: function(xhr, status, error) {
 	        alert("Erro na requisição: " + error);
 	    }
 	});
+	
+	// Atualizar horários disponíveis ao alterar a data
+	$('#data').on('change', function () {
+	    const dataSelecionada = $(this).val();
+		
+		// Reinicia os horários para exibir todos
+		$('#horario li').show().addClass('disabled');
+		// Limpar a seleção de horário (remover a classe 'selected' de todos os itens)
+		$('#horario li').removeClass('selected');
+		// Opcional: Se você tiver um botão que exibe o horário selecionado, pode limpar o texto também
+		$('#horario-button').text("Selecione o horário");
+	    if (dataSelecionada) {
+			$('#horario li').removeClass('disabled'); // Habilita os horários
+
+	        // Filtra os agendamentos para o dia selecionado
+	        const horariosIndisponiveis = agendamentos
+	            .filter(agendamento => agendamento.dia === dataSelecionada)
+	            .map(agendamento => agendamento.horario);
+
+	        // Esconde os horários já agendados
+	        $('#horario li').each(function () {
+	            const horario = $(this).data('time');
+	            if (horariosIndisponiveis.includes(horario)) {
+	                $(this).hide();
+	            }
+	        });
+	    }
+	});
+	
+	// Função para desabilitar as datas
+	function desabilitarDatas() {
+	    $('#data').on('change', function () {
+	        const dataSelecionada = $(this).val();  // A data selecionada pelo usuário
+
+	        // Verifica se todos os horários do dia estão ocupados
+	        if (verificarDiaDisponivel(dataSelecionada)) {
+	            alert("Todos os horários para essa data estão ocupados.");
+	            // Desabilitar a data selecionada
+	            $(this).val('');  // Limpar o campo de data
+	        }
+	    });
+	}
+
+	// Chama a função para desabilitar datas
+	desabilitarDatas();
+	
+	function verificarDiaDisponivel(dataSelecionada) {
+	    const horariosDisponiveis = [
+	        "09:00:00", "09:30:00", "10:00:00", "10:30:00", "11:00:00", "11:30:00", 
+	        "12:00:00", "12:30:00", "13:00:00", "13:30:00", "14:00:00", "14:30:00", 
+	        "15:00:00", "15:30:00", "16:00:00", "16:30:00", "17:00:00", "17:30:00"
+	    ];
+
+	    // Filtrar os agendamentos para o dia selecionado
+	    const agendamentosDia = agendamentos.filter(agendamento => agendamento.dia === dataSelecionada);
+	    
+	    // Obter os horários já ocupados para esse dia
+	    const horariosOcupados = agendamentosDia.map(agendamento => agendamento.horario);
+		
+	    // Verificar se todos os horários estão ocupados
+	    const todosOcupados = horariosDisponiveis.every(horario => horariosOcupados.includes(horario));
+
+	    return todosOcupados;
+	}
+	
+	
+	
+	// Evento de clique nos horários
+	$('#horario li').on('click', function () {
+	    if ($(this).hasClass('disabled')) {
+	        alert("Por favor, selecione uma data antes de escolher o horário.");
+	        return;
+	    }
+	});
+	
+	const today = new Date().toISOString().split('T')[0];
+	$('#data').attr('min', today);
 	
 	function getUrlParameter(name) {
 	    var url = new URL(window.location.href);
@@ -33,52 +114,7 @@ $(document).ready(function() {
 		alert("A unidade não foi selecionada de forma correta, redicionaremos você para a páguna de seleção de unidades");
 		window.location.href = 'escolha_unidades.html';
 	}
-	
-	$('#horario').timepicker({
-	    timeFormat: 'HH:mm',
-	    interval: 30,
-	    minTime: '09:00',
-	    maxTime: '17:00',
-	    defaultTime: '09:00',
-	    dynamic: false,
-	    dropdown: true,
-	    scrollbar: true
-	});
-	
-	$('#horario').on('change', function (event) {
-	    const minTime = '09:00';
-	    const maxTime = '17:00';
-	    const selectedTime = $(this).val();
 
-	    // Converte o horário em minutos totais para validar o intervalo
-	    const [hours, minutes] = selectedTime.split(':').map(Number);
-	    const totalMinutes = hours * 60 + minutes;
-
-	    // Converte limites para minutos
-	    const minMinutes = 9 * 60;  // 09:00 em minutos
-	    const maxMinutes = 17 * 60; // 17:00 em minutos
-		
-		if (selectedTime < minTime || selectedTime > maxTime) {
-		    alert('Por favor, selecione um horário válido.');
-		    event.preventDefault(); // Impede o envio do formulário
-			$(this).val('09:00'); // Reseta para o horário mínimo permitido
-		}
-	    // Verifica se está no intervalo e é múltiplo de 30
-	    else if (
-	        totalMinutes < minMinutes || 
-	        totalMinutes > maxMinutes || 
-	        totalMinutes % 30 !== 0
-	    ) {
-	        alert('Por favor, insira um horário válido em intervalos de 30 minutos.');
-	        $(this).val('09:00'); // Reseta para o horário mínimo permitido
-	    }
-	});
-
-	
-	const today = new Date().toISOString().split('T')[0];
-	$('#data').attr('min', today);
-	
-	
 	let totalPrice = 0;  // Variável para armazenar o preço total
 	let selectedItems = [];  // Array para armazenar os itens selecionados
 
@@ -224,7 +260,7 @@ $(document).ready(function() {
 		let cuidadosId = $('#cuidados li.selected').data('id') || 3;
 		let preco = totalPrice;
 		let dia = $('#data').val();
-		let horario = $('#horario').val();
+		let horario = $('#horario li.selected').data('time');
 
 		// Verifique se o funcionário foi selecionado
 		if (!preco) {

@@ -364,3 +364,9 @@ h4 {
     /* Reduzi a margem superior de 30% para 5% */
 }
 
+#horario li.disabled {
+    color: #ccc;
+    pointer-events: none; /* Impede o clique */
+    cursor: not-allowed;
+}
+
