@@ -6,6 +6,7 @@
     <title>Home</title>
     <link rel="stylesheet" href="assets/css/index_main_admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
     
@@ -59,7 +60,7 @@
 
                 <div class="card">
                     <div class="card-content">
-                        <img src="img/tesoura_e_pente.png" alt="Tesoura">
+                        <img src="assets/img/tesoura_e_pente.png" alt="Tesoura">
                         <h3>Cabelo</h3>
                         <div class="line"></div>
                         <p>Fazemos cortes personalizados que atendem o seu pedido e valorizam sua identidade.</p>
@@ -104,17 +105,14 @@
             <div class="gallery-content">
                 <div class="wrapper">
                     <i id="left" class="fa-solid fa-angle-left"></i>
-                    <div class="carousel">
-                        <img src="assets/img/image1.jpg" alt="" draggable="false">
-                        <img src="assets/img/image2.jpg" alt="" draggable="false">
-                        <img src="assets/img/image3.jpg" alt="" draggable="false">
-                        <img src="assets/img/image4.jpg" alt="" draggable="false">
-                        <img src="assets/img/image5.jpg" alt="" draggable="false">
+                    <div class="carousel admin">
+                        
                     </div>
                     <i id="right" class="fa-solid fa-angle-right"></i>
                 </div>
             </div>
-            <a href="#" class="button-generic">Editar texto</a>
+            <button id="addCarouselImg" style="border: none" class="button-generic">Adicionar</button>
+            <input type="file" id="imageInput" style="display: none;">
 
         </section>
 

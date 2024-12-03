@@ -76,7 +76,7 @@ $(document).ready(function() {
         } else {
 			console.log($("#frmLogin").serialize())
 			$.ajax({
-			    url: "../app/controllers/CtrlFuncionario.php",
+			    url: "../app/controllers/CtrlGerente.php",
 			    method: "POST",
 			    data: $("#frmLogin").serialize(),
 			    success: function(response) {
@@ -86,7 +86,7 @@ $(document).ready(function() {
 			            alert(objRetorno.message);
 			        }else{
 			            $("#responseArea").text("Aguarde");
-			            window.location.href = 'index.html';
+			            window.location.href = 'index_main_admin.html';
 			        }
 			    },
 			    error: function(xhr, status, error) {
