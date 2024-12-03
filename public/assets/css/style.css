@@ -419,6 +419,8 @@ nav {
     overflow: hidden;
     white-space: nowrap;
     scroll-behavior: smooth;
+    display: flex;
+    column-gap: 20px;
 }
 
 .carousel.dragging {
@@ -426,29 +428,36 @@ nav {
     scroll-behavior: auto;
 }
 
-.carousel.dragging img {
+.carousel.dragging .carousel-item {
     pointer-events: none;
 }
 
-.carousel img {
+.carousel .carousel-item {
     height: 340px;
     object-fit: cover;
     margin-left: 14px;
     width: calc(100% / 3);
+    display: flex;
+    flex-direction: column;
+    position: relative;
 }
 
-.carousel img:first-child {
+.carousel .carousel-item:first-child {
     margin-left: 0px;
 }
 
+.carousel .carousel-item img {
+   height: 100%;
+}
+
 @media screen and (max-width: 900px) {
-    .carousel img {
+    .carousel .carousel-item{
         width: calc(100% / 2);
     }
 }
 
 @media screen and (max-width: 550px) {
-    .carousel img {
+    .carousel .carousel-item{
         width: 100%;
     }
 }

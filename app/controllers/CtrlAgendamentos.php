@@ -30,7 +30,7 @@ class CtrlAgendamentos extends ControllerHandler {
             $clienteId = $_SESSION["cliente"]['clienteId'];
             // Obtém todos os agendamentos do cliente
             $agendamentos = $this->agendamentos->listByField("clienteId", $clienteId);
-        } else {
+        } else if (isset($_SESSION["funcionario"])){
             $funUnidadeId = $_SESSION["funcionario"]["unidadeId"];
             // Obtém todos os agendamentos baseado na unidade em que o funcionario está registrado
             $agendamentos = $this->agendamentos->listByField('unidadeId', $funUnidadeId);

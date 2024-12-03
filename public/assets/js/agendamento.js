@@ -9,6 +9,18 @@ $(document).ready(function() {
 		}
 	});
 	
+	$.ajax({
+	    url: "../app/controllers/CtrlAgendamentosListAll.php",
+	    method: "GET",
+	    success: function(response) {
+	        var objRetorno = JSON.parse(response);
+			console.log(objRetorno);
+	    },
+	    error: function(xhr, status, error) {
+	        alert("Erro na requisição: " + error);
+	    }
+	});
+	
 	function getUrlParameter(name) {
 	    var url = new URL(window.location.href);
 	    return url.searchParams.get(name);
