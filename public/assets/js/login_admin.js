@@ -76,18 +76,22 @@ $(document).ready(function() {
         } else {
 			console.log($("#frmLogin").serialize())
 			$.ajax({
-			    url: "../controllers/CtrlGerente.php",
+			    url: "../controllers/CtrlFuncionarioGerenteLogin.php",
 			    method: "POST",
 			    data: $("#frmLogin").serialize(),
 			    success: function(response) {
 			        console.log(response)
 			        var objRetorno = JSON.parse(response);
-			        if ( objRetorno.status === "error"){
+			        if ( objRetorno.status === false){
 			            alert(objRetorno.message);
-			        }else{
+			        }else if (objRetorno.tipo === "funcionario"){
 			            $("#responseArea").text("Aguarde");
-			            window.location.href = 'index_main_admin.html';
-			        }
+			            window.location.href = '../../index.html';
+			        } else if (objRetorno.tipo === "gerente") {
+						$("#responseArea").text("Aguarde");
+						window.location.href = '../../index_main_admin.html';
+					}
+					
 			    },
 			    error: function(xhr, status, error) {
 			        $('#responseArea').text("Erro na requisição: " + error);
