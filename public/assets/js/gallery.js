@@ -196,28 +196,29 @@ $(document).ready(function () {
     var objRetorno = JSON.parse(dados);
 
     if (objRetorno.usrType == "cliente") {
+      $("#inscrevase").hide();
       $("#aName").text(objRetorno.name);
-
+      $("#agendaja").attr("href", "app/views/seu_agendamento.html")
       $("#aName").show();
       $("#aSair").show();
       $("#aAgenda").show();
       $("#aAgenda").attr("href", "app/views/seu_agendamento.html");
       $("#aEntrarUsr").hide();
       $("#aEntrarAdm").hide();
+      $("#aAgenda2").hide();
       $("#aEntrar").hide();
     } else if (objRetorno.usrType == "gerente") {
       $("#aGerente").text(objRetorno.name);
 
       $("#aName").show();
       $("#aSair").show();
-      $("#aAgenda").show();
-      $("#aAgenda").attr("href", "app/views/agenda.html");
+      $("#aAgenda2").show();
+      $("#aAgenda2").attr("href", "app/views/agenda.html");
       $("#aEntrarUsr").hide();
       $("#aEntrarAdm").hide();
       $("#aEntrar").hide();
     } else if (objRetorno.usrType == "funcionario") {
       $("#aName").text(objRetorno.name);
-
       $("#aName").show();
       $("#aSair").show();
       $("#aAgenda").show();
@@ -226,10 +227,13 @@ $(document).ready(function () {
       $("#aEntrarAdm").hide();
       $("#aEntrar").hide();
     } else {
+      $("#inscrevase").attr("href", "app/views/login-cadastro.html")     
+      $("#agendaja").attr("href", "app/views/login-cadastro.html")
       $("#aName").hide();
       $("#aSair").hide();
       $("#aAgenda").hide();
       $("#aEntrarUsr").show();
+      $("#aAgenda2").hide();
       $("#aEntrarAdm").show();
       $("#aEntrar").show();
     }

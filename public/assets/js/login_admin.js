@@ -86,7 +86,7 @@ $(document).ready(function() {
 			            alert(objRetorno.message);
 			        }else{
 			            $("#responseArea").text("Aguarde");
-			            window.location.href = 'index_main_admin.html';
+			            window.location.href = '../../index_main_admin.html';
 			        }
 			    },
 			    error: function(xhr, status, error) {
