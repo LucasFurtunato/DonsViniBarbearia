@@ -14,7 +14,7 @@ $(document).ready(function() {
 	};
 	
 	$.ajax({
-	    url: "../app/controllers/CtrlCliente.php",
+	    url: "../controllers/CtrlCliente.php",
 	    method: "PUT",
 	    data: data,
 	    success: function(response) {

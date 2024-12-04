@@ -86,7 +86,7 @@ $(function () {
   const fetchGalleryImages = async () => {
     try {
       await $.get(
-        "../app/controllers/CtrlGaleria.php/get",
+        "app/controllers/CtrlGaleria.php/get",
         function (response) {
           const parsedResponse = Array.isArray(response)
             ? response
@@ -140,7 +140,7 @@ $(function () {
       formData.append("image", file);
 
       $.ajax({
-        url: "../app/controllers/CtrlGaleria.php",
+        url: "app/controllers/CtrlGaleria.php",
         type: "POST",
         data: formData,
         contentType: false,
@@ -170,7 +170,7 @@ $(function () {
   
     const handleRemoveImage = (imageId) => {
       $.ajax({
-        url: '../app/controllers/CtrlGaleria.php', 
+        url: 'app/controllers/CtrlGaleria.php', 
         type: 'DELETE', 
         data: { id: imageId }, 
         success: function (response) {
@@ -192,7 +192,7 @@ $(function () {
 });
 
 $(document).ready(function () {
-  $.get("../app/controllers/VfyLogin.php", function (dados) {
+  $.get("app/controllers/VfyLogin.php", function (dados) {
     var objRetorno = JSON.parse(dados);
 
     if (objRetorno.usrType == "cliente") {
@@ -201,7 +201,7 @@ $(document).ready(function () {
       $("#aName").show();
       $("#aSair").show();
       $("#aAgenda").show();
-      $("#aAgenda").attr("href", "seu_agendamento.html");
+      $("#aAgenda").attr("href", "app/views/seu_agendamento.html");
       $("#aEntrarUsr").hide();
       $("#aEntrarAdm").hide();
       $("#aEntrar").hide();
@@ -211,7 +211,7 @@ $(document).ready(function () {
       $("#aName").show();
       $("#aSair").show();
       $("#aAgenda").show();
-      $("#aAgenda").attr("href", "agenda.html");
+      $("#aAgenda").attr("href", "app/views/agenda.html");
       $("#aEntrarUsr").hide();
       $("#aEntrarAdm").hide();
       $("#aEntrar").hide();
@@ -221,7 +221,7 @@ $(document).ready(function () {
       $("#aName").show();
       $("#aSair").show();
       $("#aAgenda").show();
-      $("#aAgenda").attr("href", "agenda.html");
+      $("#aAgenda").attr("href", "app/views/agenda.html");
       $("#aEntrarUsr").hide();
       $("#aEntrarAdm").hide();
       $("#aEntrar").hide();

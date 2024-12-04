@@ -30,7 +30,7 @@ $('#btn-password-2').click(function() {
 
 $(document).ready(function(){
     $.ajax({
-        url: "../app/controllers/CtrlFuncionario.php",
+        url: "../controllers/CtrlFuncionario.php",
         method: "GET",
         success: function(response) {
             var data = JSON.parse(response);
@@ -40,20 +40,22 @@ $(document).ready(function(){
 
             // Inserir dados de Corte
             data.forEach(fun => {
-            $('#table-body').append(`
-                <tr data-id="${fun.funcionarioId}">
-                <td data-label="Nome Fun.">${fun.nome}</td>
-				<td data-label="Email">${fun.email}</td>
-	            <td data-label="Unidade">${fun.unidadeId}</td>   
-                <td data-label="Código">${fun.codigo}</td>   
-                <td data-label="Ações">
-                <div class="btn-group">
-                    <a href="#" class="btn" id="alterar_dados">Alterar dados</a>
-                    <a href="#" class="btn, delete" id="excluir_dados">Excluir</a>
-                </div>
-                </td>
-                </tr>
-                `);
+				if (fun.unidadeId !== 3) { // Apenas processa se unidadeId não for 3
+				    $('#table-body').append(`
+				        <tr data-id="${fun.funcionarioId}">
+				            <td data-label="Nome Fun.">${fun.nome}</td>
+				            <td data-label="Email">${fun.email}</td>
+				            <td data-label="Unidade">${fun.unidadeId}</td>   
+				            <td data-label="Código">${fun.codigo}</td>   
+				            <td data-label="Ações">
+				                <div class="btn-group">
+				                    <a href="#" class="btn" id="alterar_dados">Alterar dados</a>
+				                    <a href="#" class="btn, delete" id="excluir_dados">Excluir</a>
+				                </div>
+				            </td>
+				        </tr>
+                	`);
+				}
             });
             
         },
@@ -104,7 +106,7 @@ $(document).ready(function(){
 	        alert("Por favor, preencha todos os campos.");
 	    } else {
 	        $.ajax({
-	            url: "../app/controllers/CtrlFuncionario.php",
+	            url: "../controllers/CtrlFuncionario.php",
 	            method: "PUT",
 	            data: $("#form-alterar").serialize(),
 	            success: function(response) {
@@ -137,7 +139,15 @@ $(document).ready(function(){
 		   // Oculta o formulário de edição e volta para a tabela
 		    $('#alterar-container').hide();
 		    $('#first-container').hide();
-		    $('#secod-container').hide();
+		    $('#second-container').hide();
+	        $('#table').show();
+		});
+	
+	$('#cancelar-exclusão').on('click', function() {
+		   // Oculta o formulário de edição e volta para a tabela
+		    $('#alterar-container').hide();
+		    $('#first-container').hide();
+		    $('#second-container').hide();
 	        $('#table').show();
 		});
 
@@ -160,33 +170,32 @@ $(document).ready(function(){
 
 	$(document).on('click', '#edit-password-product', function(event) {
 		let password= $('#password-1').val().trim();
-	        
-        let passwordInput = {
-			senha: password,
-		};
-		
-		console.log(passwordInput)
-        $.ajax({
-            url: "../app/controllers/CtrlGerente.php",
-            method: "POST",
-            data: passwordInput,
-            success: function(response) {
-				console.log(response)
-                var objRetorno = JSON.parse(response);
-                console.log(response)
-                if (objRetorno.status === true) {
-    				$('#alterar-container').show();
-				    $('#first-container').hide();
-				    $('#secod-container').hide();
-			        $('#table').hide();
-                } else {
-                    alert(objRetorno.message);
-                }
-            },
-            error: function(xhr, status, error) {
-                alert("Erro na requisição: " + error);
-            }
-        });
+		if( password === '') {
+	        alert("Por favor, preencha o campo de senha.")
+	    }
+	    else {
+			let passwordInput = {
+				senha: password,
+			};
+	        $.ajax({
+	            url: "../controllers/CtrlGerente.php",
+	            method: "POST",
+	            data: passwordInput,
+	            success: function(response) {
+	                var objRetorno = JSON.parse(response);
+	                if (objRetorno.status === true) {
+	    				$('#alterar-container').show();
+					    $('#first-container').hide();
+				        $('#table').hide();
+	                } else {
+	                    alert(objRetorno.message);
+	                }
+	            },
+	            error: function(xhr, status, error) {
+	                alert("Erro na requisição: " + error);
+	            }
+	        });
+		}
 	});
 
 	//deletar
@@ -200,8 +209,9 @@ $(document).ready(function(){
 			let passwordInput = {
 				senha: password,
 			};
+			console.log(dataIdx)
 	        $.ajax({
-	            url: "../app/controllers/CtrlGerente.php",
+	            url: "../controllers/CtrlGerente.php",
 	            method: "POST",
 	            data: passwordInput,
 	            success: function(response) {
@@ -209,7 +219,7 @@ $(document).ready(function(){
 	                
 	                if (objRetorno.status === true) {
 	                   $.ajax({
-	        				url: "../app/controllers/CtrlFuncionario.php",
+	        				url: "../controllers/CtrlFuncionario.php",
 	        				method: "DELETE",
 	        				data: dataIdx,
 	        				success: function(response) {

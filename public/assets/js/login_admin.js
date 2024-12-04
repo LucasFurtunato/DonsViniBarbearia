@@ -76,7 +76,7 @@ $(document).ready(function() {
         } else {
 			console.log($("#frmLogin").serialize())
 			$.ajax({
-			    url: "../app/controllers/CtrlGerente.php",
+			    url: "../controllers/CtrlGerente.php",
 			    method: "POST",
 			    data: $("#frmLogin").serialize(),
 			    success: function(response) {

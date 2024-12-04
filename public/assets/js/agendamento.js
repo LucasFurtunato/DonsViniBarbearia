@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$.get( '../app/controllers/VfyLogin.php', function(dados) {
+	$.get( '../controllers/VfyLogin.php', function(dados) {
 	    var objRetorno = JSON.parse(dados)
 
 	    if (objRetorno.usrType == "cliente"){
@@ -15,7 +15,7 @@ $(document).ready(function() {
 	let agendamentos = [];
 	
 	$.ajax({
-	    url: "../app/controllers/CtrlAgendamentosListAll.php",
+	    url: "../controllers/CtrlAgendamentosListAll.php",
 	    method: "GET",
 	    success: function(response) {
 			agendamentos = JSON.parse(response);
@@ -203,7 +203,7 @@ $(document).ready(function() {
 
 	
 	$.ajax({
-	    url: "../app/controllers/CtrlServicos.php",
+	    url: "../controllers/CtrlServicos.php",
 	    method: "GET",
 	    success: function(response) {
 	        let data = JSON.parse(response);
@@ -231,7 +231,7 @@ $(document).ready(function() {
 	});
 	
 	$.ajax({
-	    url: "../app/controllers/CtrlFuncionario.php",
+	    url: "../controllers/CtrlFuncionario.php",
 	    method: "GET",
 	    success: function(response) {
 	        let data = JSON.parse(response);
@@ -289,7 +289,7 @@ $(document).ready(function() {
 		}
 		
 		$.ajax({
-		    url: "../app/controllers/CtrlAgendamentos.php",
+		    url: "../controllers/CtrlAgendamentos.php",
 		    method: "POST",
 		    data: data,
 		    success: function(response) {

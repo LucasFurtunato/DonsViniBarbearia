@@ -58,14 +58,14 @@ class CtrlGerente extends ControllerHandler {
 		    //verificar pela sessão se a senha corresponde ao gerente.
 		    if (!empty($validationPass)){
 		        $result = [
-		            'status' => 'true',
+		            'status' => true,
 		            'message' => 'Senha Correta'
 		        ];
 		        $json = \json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 		        echo $json;
 		    } else {
 		        $result = [
-		            'status' => 'false',
+		            'status' => false,
 		            'message' => 'Senha Incorreta'
 		        ];
 		        $json = \json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);

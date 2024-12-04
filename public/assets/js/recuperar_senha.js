@@ -23,7 +23,7 @@ $(document).ready(function() {
          else {
 			$("#responseArea").show();
 			$.ajax({
-			    url: "../app/controllers/CtrlClienteVfyEmail.php",
+			    url: "../controllers/CtrlClienteVfyEmail.php",
 			    method: "PUT",
 			    data: $("#frmEmail").serialize(),
 			    success: function(response) {
@@ -62,7 +62,7 @@ $(document).ready(function() {
         } 
         else{
 			$.ajax({
-			    url: "../app/controllers/CtrlClienteLogin.php",
+			    url: "../controllers/CtrlClienteLogin.php",
 			    method: "PUT",
 			    data: $("#frmSenha").serialize(),
 			    success: function(response) {

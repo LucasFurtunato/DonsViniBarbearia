@@ -95,7 +95,7 @@ btnSignup.addEventListener("click", function () {
           } else {
 			$('#responseArea').text("Aguarde alguns segundos");
             $.ajax({
-                url: "../app/controllers/CtrlCliente.php",
+                url: "../controllers/CtrlCliente.php",
                 method: "POST",
                 data: $("#frmCadastro").serialize(),
                 success: function(response) {
@@ -136,7 +136,7 @@ btnSignup.addEventListener("click", function () {
          } else {
 			console.log("Iniciando o AJAX");
             $.ajax({
-                url: "../app/controllers/CtrlClienteLogin.php",
+                url: "../controllers/CtrlClienteLogin.php",
                 method: "POST",
                 data: $("#frmLogin").serialize(),
                 success: function(response) {
@@ -146,7 +146,7 @@ btnSignup.addEventListener("click", function () {
                         alert(objRetorno.message);
                     } else {
                         $("#responseAreaLogin").text("Aguarde");
-                        window.location.href = 'index.html';
+                        window.location.href = '../../index.html';
                     }
                 },
                 error: function(xhr, status, error) {

@@ -30,7 +30,7 @@ $('#btn-password-2').click(function() {
 //Verificar se o campo de senha está preenchido
 
 $(document).ready(function() {
-	$.get( '../app/controllers/VfyLogin.php', function(dados) {
+	$.get( '../controllers/VfyLogin.php', function(dados) {
 	    var objRetorno = JSON.parse(dados)
 	
 	    if (objRetorno.usrType == "cliente"){
@@ -41,7 +41,7 @@ $(document).ready(function() {
 	});
 	
 	$.ajax({
-	    url: "../app/controllers/CtrlServicos.php",
+	    url: "../controllers/CtrlServicos.php",
 	    method: "GET",
 	    success: function(response) {
 	        let data = JSON.parse(response);
@@ -69,7 +69,7 @@ $(document).ready(function() {
 	});
 
 	$.ajax({
-	    url: "../app/controllers/CtrlFuncionario.php",
+	    url: "../controllers/CtrlFuncionario.php",
 	    method: "GET",
 	    success: function(response) {
 	        let data = JSON.parse(response);
@@ -93,7 +93,7 @@ $(document).ready(function() {
 	
 	function atualizarTabela(){
 		$.ajax({
-		    url: "../app/controllers/CtrlAgendamentos.php",
+		    url: "../controllers/CtrlAgendamentos.php",
 		    method: "GET",
 		    success: function(response) {
 		        let data = JSON.parse(response);
@@ -180,7 +180,7 @@ $(document).ready(function() {
             alert('Por favor, preencha o campo de senha.');
         } else {
 			$.ajax({
-			    url: "../app/controllers/CtrlClienteVfyPass.php",
+			    url: "../controllers/CtrlClienteVfyPass.php",
 			    method: "POST",
 			    data: $("#formAlterarAgendamentoPassword").serialize(),
 			    success: function(response) {
@@ -213,7 +213,7 @@ $(document).ready(function() {
 	        alert('Por favor, preencha o campo de senha.');
 	    } else {
 			$.ajax({
-			    url: "../app/controllers/CtrlClienteVfyPass.php",
+			    url: "../controllers/CtrlClienteVfyPass.php",
 			    method: "POST",
 			    data: $("#formDeleteAgendamentoPassword").serialize(),
 			    success: function(response) {
@@ -223,7 +223,7 @@ $(document).ready(function() {
 						alert(objRetorno.message);
 					} else {
 						$.ajax({
-						    url: "../app/controllers/CtrlAgendamentos.php",
+						    url: "../controllers/CtrlAgendamentos.php",
 						    method: "DELETE",
 						    data: dataId,
 						    success: function(response) {
@@ -328,6 +328,14 @@ $(document).ready(function() {
 		$('#alterar-container').hide(); // Mostra a seção de alteração
 	});
 	
+	// Ao clicar em "Cancelar" no formulário de alteração
+	$('#cancelar-exclusao').on('click', function() {
+	    // Oculta o formulário de edição e volta para a tabela
+		$("#table").show();            // Esconde o elemento com id 'table'
+		$("#first-container").hide();  // Exibe o elemento com id 'first-container'
+		$('#alterar-container').hide(); // Mostra a seção de alteração
+	});
+	
 	$("#confirmar-alteracao").on('click', function() {
 		let idAgendamento = $('#idAgendamento').val().trim();
 		let idLocal = $('#alterar-local').val().trim();
@@ -356,7 +364,7 @@ $(document).ready(function() {
 		};
 		
 		$.ajax({
-		    url: "../app/controllers/CtrlAgendamentos.php",
+		    url: "../controllers/CtrlAgendamentos.php",
 		    method: "PUT",
 		    data: data,
 		    success: function(response) {

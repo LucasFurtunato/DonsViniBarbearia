@@ -90,23 +90,19 @@
             event.preventDefault(); // Prevenir o comportamento padrão do botão
 			// Se todos os campos estiverem preenchidos corretamente e o email for válido, mostrar o próximo container
                 $.ajax({
-                    url: "../app/controllers/CtrlFuncionario.php",
+                    url: "../controllers/CtrlFuncionario.php",
                     method: "POST",
                     data: data ,
                     success: function(response) {
-
                         var objRetorno = JSON.parse(response);
+						
                         if(objRetorno.status === "error") {
-                            $('#responseArea').text("Email errado");
                             $('#second-container').hide();
                             $('#first-container').show();
-
+							alert(objRetorno.message);
                         } else { 
-                            let data = {}
-                            restoreFormFields(data);
-                            $('#second-container').hide();
-                            $('#first-container').show();     
-                            $('#responseArea').text("Registrado");
+							alert("Funcionario Registrado")
+							window.location.href = 'dados_fun.html';
                         }
                     },
                     error: function(xhr, status, error) {

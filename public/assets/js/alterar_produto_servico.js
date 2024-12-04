@@ -45,7 +45,7 @@ $('#btn-password-3').click(function() {
 $(document).ready(function() {
 	// Fazer a requisição GET para o controlador combinado
     $.ajax({
-        url: "../app/controllers/CtrlServicos.php", // URL para o controlador combinado
+        url: "../controllers/CtrlServicos.php", // URL para o controlador combinado
         method: "GET",
         success: function(response) {
             let data = JSON.parse(response);
@@ -173,7 +173,7 @@ $(document).ready(function() {
 		    // Preenche os campos do formulário de alteração com os dados existentes
 			$('#idServico').val(idServico);
 			$.ajax({
-		        url: "../app/controllers/CtrlServicos.php",
+		        url: "../controllers/CtrlServicos.php",
 		        method: "DELETE",
 		        data: dataId,
 		        success: function(response) {
@@ -206,7 +206,7 @@ $(document).ready(function() {
 		        alert("Por favor, preencha todos os campos.");
 		    } else {
 				$.ajax({
-			        url: "../app/controllers/CtrlServicos.php",
+			        url: "../controllers/CtrlServicos.php",
 			        method: "PUT",
 			        data: $("#form-alterar").serialize(),
 			        success: function(response) {
@@ -332,7 +332,7 @@ $(document).ready(function() {
             alert("Por favor, preencha o campo de senha.")
         } else{		
 			$.ajax({
-		        url: "../app/controllers/CtrlGerente.php",
+		        url: "../controllers/CtrlGerente.php",
 		        method: "POST",
 		        data: $("#form-password").serialize(),
 		        success: function(response) {
@@ -369,7 +369,7 @@ $(document).ready(function() {
         event.preventDefault(); // Prevenir o comportamento padrão do botão
 		
 		$.ajax({
-            url: "../app/controllers/CtrlServicos.php",
+            url: "../controllers/CtrlServicos.php",
             method: "POST",
             data: data,
             success: function(response) {

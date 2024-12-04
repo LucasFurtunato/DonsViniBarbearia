@@ -1,16 +1,16 @@
 $(document).ready(function() {
-	$.get( '../app/controllers/VfyLogin.php', function(dados) {
+	$.get( '../controllers/VfyLogin.php', function(dados) {
 	    var objRetorno = JSON.parse(dados)
 
 	    if (objRetorno.usrType == "funcionario"){
 	        $("#login-button").text(objRetorno.name);
 	    } else {
-			window.location.href = 'index.html';
+			window.location.href = '../../index.html';
 		}
 	});
 
 	$.ajax({
-	    url: "../app/controllers/CtrlAgendamentos.php",
+	    url: "../controllers/CtrlAgendamentos.php",
 	    method: "GET",
 	    success: function(response) {
 			console.log(response);

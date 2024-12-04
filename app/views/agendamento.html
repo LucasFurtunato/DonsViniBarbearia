@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <title>Agendamento</title>
+    <link rel="stylesheet" href="../../public/assets/css/agendamento.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+        
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <img src="../../public/assets/img/logo.png" alt="Don' Vini logo" class="logo">
+            <div class="mobile-menu">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+            <ul class="nav-list">
+                <li><a href="#">Início</a></li>
+                <li><a href="#" class="login-button">Cliente</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="content first-content">
+            <div class="first-collumn">
+                <ul class="li-1">
+                    <div class="agenda">
+                        <h2 class="title title-second">Agendar</h2>
+                    </div>
+                    <h4>CORTES</h4>
+                    <li>
+                        <button class="btn-2"> Selecione corte</i><i class="bi bi-caret-down-fill"></i></button>
+                        <div class="content-to-toggle">
+                            <!-- Conteúdo para cortes aqui -->
+                            <ul class="itens" id="cortes">
+                                <!-- Cortes aqui -->
+                                <li data-preco="0">Sem Corte</li> 
+                            </ul>
+                        </div>
+                    </li>
+                    <h4>BARBA</h4>
+                    <li>
+                        <button class="btn-2"> Selecione Barba<i class="bi bi-caret-down-fill"></i></button>
+                        <div class="content-to-toggle" style="display: none;">
+                            <!-- Conteúdo para barba aqui -->
+                            <ul class="itens" id="barbas">
+                            	<!-- Barbas aqui -->
+                            	<li data-preco="0">Sem Barba</li>                                          
+                            </ul>
+                        </div>
+                    </li>
+                    <h4>CUIDADOS</h4>
+                    <li>
+                        <button class="btn-2"> Selecione Cuidados</i><i class="bi bi-caret-down-fill"></i></button>
+                        <div class="content-to-toggle" style="display: none;">
+                            <!-- Conteúdo para cuidados aqui -->
+                            <ul class="itens" id="cuidados">
+                                <!-- Cuidados aqui -->
+                                <li data-preco="0">Sem Cuidados</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <h4>DATA</h4>
+                    <li>
+                    	<input type="date" id="data" name="data">
+                    </li>
+                    <h4>HORÁRIO</h4>
+                    <li>
+                        <button class="btn-2" id="horario-button">Selecione o horário</i><i class="bi bi-caret-down-fill"></i></button>
+                        <div class="content-to-toggle">
+                            <ul class="itens" id="horario">
+                                <li data-time="09:00:00">09:00</li>
+                                <li data-time="09:30:00">09:30</li> 
+                                <li data-time="10:00:00">10:00</li> 
+                                <li data-time="10:30:00">10:30</li> 
+                                <li data-time="11:00:00">11:00</li> 
+                                <li data-time="11:30:00">11:30</li> 
+                                <li data-time="12:00:00">12:00</li> 
+                                <li data-time="12:30:00">12:30</li> 
+                                <li data-time="13:00:00">13:00</li> 
+                                <li data-time="13:30:00">13:30</li> 
+                                <li data-time="14:00:00">14:00</li> 
+                                <li data-time="14:30:00">14:30</li> 
+                                <li data-time="15:00:00">15:00</li> 
+                                <li data-time="15:30:00">15:30</li> 
+                                <li data-time="16:00:00">16:00</li> 
+                                <li data-time="16:30:00">16:30</li> 
+                                <li data-time="17:00:00">17:00</li> 
+                                <li data-time="17:30:00">17:30</li> 
+                            </ul>
+                        </div>
+                    </li>
+                    <h4>PROFISSIONAL</h4>
+                    <li>
+                        <button class="btn-2"> Selecione barbeiro</i><i class="bi bi-caret-down-fill"></i></button>
+                        <div class="content-to-toggle" style="display: none;">
+                            <!-- Conteúdo para aqui -->
+                            <ul class="itens" id="profissional">
+                                <!-- Profissionais aqui -->
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="second-collumn">
+                <h2>PREÇO</h2>
+                <span id="price">R$ 00,00</span>
+                <ul id="individual-prices">
+				    <!-- Aqui será exibido o preço de cada serviço selecionado -->
+				</ul>
+                <button type="button" class="btn btn-second" id="btn-agendar">Agendar</button>
+            </div>
+        </div>
+    </div>
+
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Barbearias Don' Vini. Todos os direitos reservados.</p>
+            <p>Por: RootingTI</p>
+        </div>
+    </footer>
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="../../public/assets/js/mobile-navbar.js"></script> <!-- Script para o menu móvel -->
+    <script src="../../public/assets/js/agendamento.js"></script> <!-- Script de agendamento -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+</body>
+
+
+</html>
