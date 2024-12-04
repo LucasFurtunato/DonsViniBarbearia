@@ -37,7 +37,7 @@ function enviarEmailConfirmacao($email, $nome, $token) {
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
         $mail->Subject = "Comfirme seu Email em Don'Vini Barbearia";
-        $link = "https://donvinibarbearia.ifhost.gru.br/app/views/confirmar_email.html?token=" . urlencode($token);
+        $link = "localhost/donvinibarbearia/public/confirmar_email.html?token=" . urlencode($token);
         $mail->Body    = "Olá,<br><br>Por favor, clique no link abaixo para confirmar seu e-mail:<br><br>
                           <a href='$link'>$link</a><br><br>Se você não solicitou isso, ignore este e-mail.";
         
@@ -90,4 +90,3 @@ function enviarCodRecuperacaoSenha($email, $nome, $token) {
         return ['status' => false, 'message' => "Mailer Error: {$mail->ErrorInfo}"];
     }
 }
-
