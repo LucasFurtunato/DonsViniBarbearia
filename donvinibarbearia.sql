@@ -34,11 +34,12 @@ CREATE TABLE `cliente` (
 INSERT INTO `cliente` VALUES (1,'lucas','lucasfurtunato11@gmail.com','$2y$10$uznfxeckkn7gskpn4rxxfubgfpb5jaatuvkiwemrglwyqtuxeym52','2f43b9b936',1);
 
 CREATE TABLE `gerente` (
+`gerenteId` int(11) NOT NULL AUTO_INCREMENT,
   `codigo` varchar(10) NOT NULL,
   `email` varchar(250) NOT NULL,
   `senha` varchar(250) NOT NULL,
   `nome` varchar(255) NOT NULL,
-  PRIMARY KEY (`codigo`)
+  PRIMARY KEY (`gerenteId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `gerente` VALUES ('12345','gerente@gmail.com','123','gerente');
