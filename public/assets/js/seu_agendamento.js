@@ -230,8 +230,6 @@ $(document).ready(function() {
 								
 						        var objRetorno = JSON.parse(response);
 								
-								console.log(objRetorno);
-								
 								if (objRetorno.status == false) {
 									alert(objRetorno.message);
 								} else {

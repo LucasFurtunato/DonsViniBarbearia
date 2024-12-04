@@ -36,6 +36,16 @@
     var data = {};
     //Para cadastrar produto
     $(document).ready(function() {
+		$.get( '../controllers/VfyLogin.php', function(dados) {
+		    var objRetorno = JSON.parse(dados)
+
+		    if (objRetorno.usrType == "gerente"){
+		        $("#login-button").text(objRetorno.name);
+		    } else {
+				window.location.href = '../../index.html';
+			}
+		});
+		
       $('#edit-profile-button').on('click', function(event) {
 
          // Verificar se todos os campos estão preenchidos

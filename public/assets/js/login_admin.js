@@ -74,13 +74,11 @@ $(document).ready(function() {
             // Verificar se as senhas não correspondem
             alert("As senhas do funcionário não correspondem. Por favor, tente novamente.");
         } else {
-			console.log($("#frmLogin").serialize())
 			$.ajax({
 			    url: "../controllers/CtrlFuncionarioGerenteLogin.php",
 			    method: "POST",
 			    data: $("#frmLogin").serialize(),
 			    success: function(response) {
-			        console.log(response)
 			        var objRetorno = JSON.parse(response);
 			        if ( objRetorno.status === false){
 			            alert(objRetorno.message);
@@ -91,7 +89,6 @@ $(document).ready(function() {
 						$("#responseArea").text("Aguarde");
 						window.location.href = '../../index_main_admin.html';
 					}
-					
 			    },
 			    error: function(xhr, status, error) {
 			        $('#responseArea').text("Erro na requisição: " + error);

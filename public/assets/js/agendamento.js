@@ -5,7 +5,7 @@ $(document).ready(function() {
 	    if (objRetorno.usrType == "cliente"){
 	        $("#login-button").text(objRetorno.name);
 	    } else {
-			window.location.href = 'index.html';
+			window.location.href = '../../index.html';
 		}
 	});
 	

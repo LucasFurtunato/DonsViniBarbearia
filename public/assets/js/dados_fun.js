@@ -29,6 +29,16 @@ $('#btn-password-2').click(function() {
 
 
 $(document).ready(function(){
+	$.get( '../controllers/VfyLogin.php', function(dados) {
+	    var objRetorno = JSON.parse(dados)
+
+	    if (objRetorno.usrType == "gerente"){
+	        $("#login-button").text(objRetorno.name);
+	    } else {
+			window.location.href = '../../index.html';
+		}
+	});
+	
     $.ajax({
         url: "../controllers/CtrlFuncionario.php",
         method: "GET",
@@ -209,7 +219,6 @@ $(document).ready(function(){
 			let passwordInput = {
 				senha: password,
 			};
-			console.log(dataIdx)
 	        $.ajax({
 	            url: "../controllers/CtrlGerente.php",
 	            method: "POST",

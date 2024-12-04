@@ -18,7 +18,6 @@ $(document).ready(function() {
 	    method: "PUT",
 	    data: data,
 	    success: function(response) {
-			console.log(response);
 	        var objRetorno = JSON.parse(response);
 
 	        if(objRetorno.status == false) {

@@ -43,6 +43,15 @@ $('#btn-password-3').click(function() {
 
 //Redefinir senha produto e alterar produto
 $(document).ready(function() {
+	$.get( '../controllers/VfyLogin.php', function(dados) {
+	    var objRetorno = JSON.parse(dados)
+
+	    if (objRetorno.usrType == "gerente"){
+	        $("#login-button").text(objRetorno.name);
+	    } else {
+			window.location.href = '../../index.html';
+		}
+	});
 	// Fazer a requisição GET para o controlador combinado
     $.ajax({
         url: "../controllers/CtrlServicos.php", // URL para o controlador combinado

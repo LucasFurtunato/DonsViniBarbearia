@@ -133,7 +133,6 @@ $(function () {
 
   $("#imageInput").on("change", function (event) {
     const file = event.target.files[0];
-	console.log(file);
 
     if (file) {
       const formData = new FormData();
@@ -146,7 +145,6 @@ $(function () {
         contentType: false,
         processData: false,
         success: function (response) {
-			console.log(response);
           const parsedResponse = JSON.parse(response);
 
           if (parsedResponse.success) {
@@ -196,8 +194,9 @@ $(document).ready(function () {
     var objRetorno = JSON.parse(dados);
 
     if (objRetorno.usrType == "cliente") {
+      $("#inscrevase").hide();
       $("#aName").text(objRetorno.name);
-
+      $("#agendaja").attr("href", "app/views/seu_agendamento.html")
       $("#aName").show();
       $("#aSair").show();
       $("#aAgenda").show();
@@ -210,14 +209,11 @@ $(document).ready(function () {
 
       $("#aName").show();
       $("#aSair").show();
-      $("#aAgenda").show();
-      $("#aAgenda").attr("href", "app/views/agenda.html");
       $("#aEntrarUsr").hide();
       $("#aEntrarAdm").hide();
       $("#aEntrar").hide();
     } else if (objRetorno.usrType == "funcionario") {
       $("#aName").text(objRetorno.name);
-
       $("#aName").show();
       $("#aSair").show();
       $("#aAgenda").show();
@@ -226,6 +222,8 @@ $(document).ready(function () {
       $("#aEntrarAdm").hide();
       $("#aEntrar").hide();
     } else {
+      $("#inscrevase").attr("href", "app/views/login-cadastro.html")     
+      $("#agendaja").attr("href", "app/views/login-cadastro.html")
       $("#aName").hide();
       $("#aSair").hide();
       $("#aAgenda").hide();

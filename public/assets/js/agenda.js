@@ -2,9 +2,13 @@ $(document).ready(function() {
 	$.get( '../controllers/VfyLogin.php', function(dados) {
 	    var objRetorno = JSON.parse(dados)
 
-	    if (objRetorno.usrType == "funcionario"){
+	    if (objRetorno.usrType == "funcionario" ){
 	        $("#login-button").text(objRetorno.name);
-	    } else {
+			$("#btnadm").attr("href", "../../index")
+	    } else if(objRetorno.usrType == "gerente"){
+			$("#login-button").text(objRetorno.name);
+			$("#btnadm").attr("href", "../../index_admin_main.html")
+		}else {
 			window.location.href = '../../index.html';
 		}
 	});
@@ -13,7 +17,6 @@ $(document).ready(function() {
 	    url: "../controllers/CtrlAgendamentos.php",
 	    method: "GET",
 	    success: function(response) {
-			console.log(response);
 	        let data = JSON.parse(response);
 			// Limpa o corpo da tabela antes de adicionar novos dados
 	        $('#table-body').empty();
@@ -41,22 +44,6 @@ $(document).ready(function() {
 	    }
 	});
 
-	
-    $('#add-row').click(function() {
-        // Dados da nova linha
-        const newRow = `
-            <tr>
-                <td data-label="Nome Fun."><p>Funcionário Novo</p></td>
-                <td data-label="Dia">XX/XX/XX</td>
-                <td data-label="Horário">00:00</td>
-                <td data-label="Serviços">Serviço Novo</td>                    
-                <td data-label="Nome Cliente"> Cliente Novo</td>      
-                <td data-label="Situação"><a href="#" class="btn">Nova</a></td>              
-            </tr>
-        `;
-        // Adiciona a nova linha ao tbody
-        $('#table-body').append(newRow);
-    });
 });
 
 $(document).ready(function() {
