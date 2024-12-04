@@ -99,7 +99,6 @@ btnSignup.addEventListener("click", function () {
                 method: "POST",
                 data: $("#frmCadastro").serialize(),
                 success: function(response) {
-					console.log(response);
                     var objRetorno = JSON.parse(response);
 
                     if(objRetorno.status == false) {
@@ -134,7 +133,6 @@ btnSignup.addEventListener("click", function () {
              // Verificar se o email contém "@" e "."
              alert("Por favor, insira um e-mail válido.");
          } else {
-			console.log("Iniciando o AJAX");
             $.ajax({
                 url: "../controllers/CtrlClienteLogin.php",
                 method: "POST",

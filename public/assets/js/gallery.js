@@ -133,7 +133,6 @@ $(function () {
 
   $("#imageInput").on("change", function (event) {
     const file = event.target.files[0];
-	console.log(file);
 
     if (file) {
       const formData = new FormData();
@@ -146,7 +145,6 @@ $(function () {
         contentType: false,
         processData: false,
         success: function (response) {
-			console.log(response);
           const parsedResponse = JSON.parse(response);
 
           if (parsedResponse.success) {
@@ -205,15 +203,12 @@ $(document).ready(function () {
       $("#aAgenda").attr("href", "app/views/seu_agendamento.html");
       $("#aEntrarUsr").hide();
       $("#aEntrarAdm").hide();
-      $("#aAgenda2").hide();
       $("#aEntrar").hide();
     } else if (objRetorno.usrType == "gerente") {
       $("#aGerente").text(objRetorno.name);
 
       $("#aName").show();
       $("#aSair").show();
-      $("#aAgenda2").show();
-      $("#aAgenda2").attr("href", "app/views/agenda.html");
       $("#aEntrarUsr").hide();
       $("#aEntrarAdm").hide();
       $("#aEntrar").hide();
@@ -233,7 +228,6 @@ $(document).ready(function () {
       $("#aSair").hide();
       $("#aAgenda").hide();
       $("#aEntrarUsr").show();
-      $("#aAgenda2").hide();
       $("#aEntrarAdm").show();
       $("#aEntrar").show();
     }

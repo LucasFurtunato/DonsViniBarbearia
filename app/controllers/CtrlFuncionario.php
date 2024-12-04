@@ -59,35 +59,6 @@ class CtrlFuncionario extends ControllerHandler {
     		$result = $this->funcionario->save();
     		$json = \json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
     		echo $json;
-    	} else if (!empty($existingFuncionario)) {
-    	    $storedHash = $existingFuncionario[0]['senha'];
-    	    if (password_verify($senhaFuncionario, $storedHash)){
-    	        $_SESSION["funcionario"]["funcionarioId"] = $existingFuncionario[0]["funcionarioId"];
-    	        $_SESSION["funcionario"]["nome"] = $existingFuncionario[0]["nome"];
-    	        $_SESSION["funcionario"]["email"] = $existingFuncionario[0]["email"];
-    	        $_SESSION["funcionario"]["unidadeId"] = $existingFuncionario[0]["unidadeId"];
-    			
-    			$result = [
-    				'status' => 'true',
-    				'message' => 'Login Executado'
-    			];
-    			$json = \json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-    			echo $json;
-    		} else {
-    			$result = [
-    				'status' => 'error',
-    				'message' => 'Código, email ou senha incorreta'
-    			];
-    			$json = \json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-    			echo $json;
-    		}
-    	} else {
-    	    $result = [
-    	        'status' => 'error',
-    	        'message' => 'Este Funcionario não existe'
-    	    ];
-    	    $json = \json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-    	    echo $json;
     	}
 	} 
 

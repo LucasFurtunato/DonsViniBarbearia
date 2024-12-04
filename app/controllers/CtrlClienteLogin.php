@@ -61,14 +61,14 @@ class CtrlClienteLogin extends ControllerHandler {
 	            // Senha incorreta
 	            $result = [
 	                'status' => false,
-	                'message' => 'Senha incorreta'
+	                'message' => 'Senha ou Email incorretos'
 	            ];
 	        }
 	    } else {
 	        // Email não encontrado
 	        $result = [
 	            'status' => false,
-	            'message' => 'Email não cadastrado'
+	            'message' => 'Senha ou Email incorretos'
 	        ];
 	    }
 	    

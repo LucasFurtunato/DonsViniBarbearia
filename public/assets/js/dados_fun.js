@@ -209,7 +209,6 @@ $(document).ready(function(){
 			let passwordInput = {
 				senha: password,
 			};
-			console.log(dataIdx)
 	        $.ajax({
 	            url: "../controllers/CtrlGerente.php",
 	            method: "POST",
