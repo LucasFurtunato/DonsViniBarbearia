@@ -36,7 +36,7 @@ $config->setDatabase([
 
 $config->setSmtp([
 		'host' => 'smtp.gmail.com',
-		'port' => 465,
+		'port' => 587,
 		'username' => 'suportedonvinibarbearia@gmail.com',
 		'password' => 'ircl ahkx nlii vgnp'
 ]);
