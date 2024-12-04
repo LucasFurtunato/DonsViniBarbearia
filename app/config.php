@@ -28,9 +28,9 @@ $config = new Configurations("donvinibarbearia");
 $config->setDatabase([
 		'sgbd'   => 'mysql',
 		'host'   => '144.217.39.54',
-		'user'   => 'ifhostgru',
-		'pass' 	 => 'ifspgru@2024',
-		'schema' => 'ifhostgru_donvinibarbearia',
+		'user'   => 'hostdeprojetos',
+		'pass' 	 => 'ifspgru@2022',
+		'schema' => 'hostdeprojetos_donvinibarbearia',
 		'port' 	 => '3306'
 ]);
 
