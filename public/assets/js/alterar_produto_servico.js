@@ -347,7 +347,7 @@ $(document).ready(function() {
 		        success: function(response) {
 		            var objRetorno = JSON.parse(response);
 					
-					if (objRetorno.status === "true") {
+					if (objRetorno.status === true) {
 						$('#third-container').show();
 						$('#sixth-container').hide();
 					} else {
