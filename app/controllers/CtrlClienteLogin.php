@@ -25,22 +25,22 @@ class CtrlClienteLogin extends ControllerHandler {
 	    
 	    // Tentar recuperar o cliente pelo email
 	    $existingCliente = $this->cliente->listByField('email', $email);
-	    $email_verified = $existingCliente[0]['email_verified'];
-	    
-	    if ($email_verified == 0) {
-	        // Email não verificado
-	        $result = [
-	            'status' => false,
-	            'message' => 'Email não verificado'
-	        ];
-	        // Codifica o resultado em JSON e envia como resposta
-	        echo \json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-	        return;
-	        
-	    }
 	    
 	    // Verifica se o cliente existe
 	    if (!empty($existingCliente)) {
+			$email_verified = $existingCliente[0]['email_verified'];
+	    
+			if ($email_verified == 0) {
+				// Email não verificado
+				$result = [
+					'status' => false,
+					'message' => 'Email não verificado ou a Senha e Email incorretos'
+				];
+				// Codifica o resultado em JSON e envia como resposta
+				echo \json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+				return;
+			}
+
 	        $clienteId = $existingCliente[0]["clienteId"];
 	        $nome = $existingCliente[0]["nome"];
 	        $storedHash = $existingCliente[0]['senha'];
@@ -61,14 +61,14 @@ class CtrlClienteLogin extends ControllerHandler {
 	            // Senha incorreta
 	            $result = [
 	                'status' => false,
-	                'message' => 'Senha ou Email incorretos'
+	                'message' => 'Email não verificado ou a Senha e Email incorretos'
 	            ];
 	        }
 	    } else {
 	        // Email não encontrado
 	        $result = [
 	            'status' => false,
-	            'message' => 'Senha ou Email incorretos'
+	            'message' => 'Email não verificado ou a Senha e Email incorretos'
 	        ];
 	    }
 	    
