@@ -35,7 +35,7 @@ class CtrlFuncionarioGerenteLogin extends ControllerHandler {
 		
 		$existingGerente = $this->gerente->listByfield('email', $email);
 		
-		if (!empty($existingGerente) && $email === $existingGerente[0]['email']) {
+		if (!empty($existingGerente) && $email === $existingGerente[0]['email'] && $codigo === $existingGerente[0]['codigo']) {
 		    $gerenteId = $existingGerente[0]['gerenteId'];
 		    $nome = $existingGerente[0]['nome'];
 		    $storedHash = $existingGerente[0]['senha'];
@@ -65,7 +65,7 @@ class CtrlFuncionarioGerenteLogin extends ControllerHandler {
 		
 		$existingFuncionario = $this->funcionario->listByfield('email', $email);
 		
-    	if (!empty($existingFuncionario)) {
+    	if (!empty($existingFuncionario) && $codigo === $existingFuncionario[0]['codigo']) {
     	    $funcionarioId = $existingFuncionario[0]['funcionarioId'];
     	    $nome = $existingFuncionario[0]['nome'];
     	    $unidadeId = $existingFuncionario[0]['unidadeId'];
