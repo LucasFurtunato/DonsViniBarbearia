@@ -92,7 +92,7 @@ class CtrlFuncionarioGerenteLogin extends ControllerHandler {
     	} else {
     	    $result = [
     	        'status' => false,
-    	        'message' => 'Este Funcionario não existe'
+    	        'message' => 'Código, email ou senha incorreta'
     	    ];
     	}
     	
