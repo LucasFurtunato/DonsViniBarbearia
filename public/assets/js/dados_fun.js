@@ -44,7 +44,6 @@ $(document).ready(function(){
         method: "GET",
         success: function(response) {
             var data = JSON.parse(response);
-			console.log(data);
 
                // Limpar a tabela antes de adicionar novos dados
             $('#table-body').empty();
