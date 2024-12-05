@@ -49,26 +49,6 @@
             <!--rodapé da tabela-->  
             <div class="footer-table"></div>
         </div>
-        <div class="container" id="first-container" style="display: none;"> 
-            <div class="content first-content"> 
-                <div class="second-column">
-                    <h2 class="title title-second">Alterar Dados do Funcionário</h2>
-                    <p class="description description-second">Insira a senha para conseguir alterar o funcionário</p>
-                    <form class="form" id="form-password">
-                        <label class="label-input">
-                            <div class="space_icon">
-                                <i class="fas fa-lock icon-modify"></i> 
-                            </div>
-                            <input type="password" placeholder="Senha atual" maxlength="50" id="password-1">
-                            <div class="btn-fig">
-                                <i class="bi bi-eye" id="btn-password-1"></i>
-                            </div>
-                        </label>
-                        <button class="btn1 btn-second" id="edit-password-product">Confirmar</button>       
-                    </form>
-                </div>
-            </div>
-        </div>
         <div class="container" id="alterar-container" style="display: none;">
             <div class="content first-content">
                 <div class="second-column">
@@ -111,27 +91,16 @@
             </div>
         </div>
 
-        <div class="container" id="second-container" style="display: none;"> 
+        <div class="container" id="delete-container" style="display: none;"> 
             <div class="content first-content"> 
                 <div class="second-column">
                     <h2 class="title title-second">Excluir Funcionário</h2>
-                    <p class="description description-second">Insira a senha para conseguir excluir o funcionário</p>
-                    <form class="form" id="form2">
-                        <label class="label-input">
-                            <div class="space_icon">
-                                <i class="fas fa-lock icon-modify"></i> 
-                            </div>
-                            <input type="password" placeholder="Senha atual" maxlength="50" id="password-2">
-                            <div class="btn-fig">
-                                <i class="bi bi-eye" id="btn-password-2"></i>
-                            </div>
-                        </label>
-                        <button class="btn1 btn-second" id="edit-password-product2">Excluir</button>
-                        <br>
-                        <div style="text-align: center;"> 
-                        	<button type="button" id="cancelar-exclusão" class="btn btn-second cancel-btn">Cancelar</button>
-                        </div>
-                    </form>
+                    <p class="description description-second">Você tem certeza de que quer excluir este funcionario?</p>
+                    <button class="btn1 btn-second" id="delete-fun">Excluir</button>
+                    <br>
+                    <div style="text-align: center;"> 
+                        <button type="button" id="cancelar-exclusão" class="btn btn-second cancel-btn">Cancelar</button>
+                    </div>
                 </div>
             </div>
         </div>

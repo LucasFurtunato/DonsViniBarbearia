@@ -44,6 +44,7 @@ $(document).ready(function(){
         method: "GET",
         success: function(response) {
             var data = JSON.parse(response);
+			console.log(data);
 
                // Limpar a tabela antes de adicionar novos dados
             $('#table-body').empty();
@@ -95,10 +96,8 @@ $(document).ready(function(){
 	    $('#alterar-codigo').val(codigo);
 	    
         // Oculta o formulário de edição e volta para a tabela
-        $('#first-container').show();
         $('#table').hide();
-        $('#second-container').hide();
-        $('#alterar-container').hide(); // Mostra a seção de alteração
+        $('#alterar-container').show(); // Mostra a seção de alteração
 	});
 
 	// Confirma a alteração e atualiza os dados na tabela
@@ -132,9 +131,7 @@ $(document).ready(function(){
 	                    row.find('td[data-label="Unidade"]').text(unidadeId);
 	                    row.find('td[data-label="Código"]').text(codigo);
 	                    // Oculta o formulário de edição e volta para a tabela
-	                    $('#first-container').hide();
 	                    $('#table').show();
-	                    $('#second-container').hide();
 	                    $('#alterar-container').hide(); // Mostra a seção de alteração
 	                }
 	            },
@@ -148,16 +145,12 @@ $(document).ready(function(){
 	$('#cancelar-alteracao').on('click', function() {
 		   // Oculta o formulário de edição e volta para a tabela
 		    $('#alterar-container').hide();
-		    $('#first-container').hide();
-		    $('#second-container').hide();
 	        $('#table').show();
 		});
 	
 	$('#cancelar-exclusão').on('click', function() {
 		   // Oculta o formulário de edição e volta para a tabela
 		    $('#alterar-container').hide();
-		    $('#first-container').hide();
-		    $('#second-container').hide();
 	        $('#table').show();
 		});
 
@@ -166,99 +159,45 @@ $(document).ready(function(){
 	let rowExcluirDados;
 	$(document).on('click', '#excluir_dados', function(event) {
 		 event.preventDefault(); // Previne o comportamento padrão do link
+
 		// Encontrar a linha <tr> mais próxima ao botão "Excluir" clicado
-			rowExcluirDados = $(this).closest('tr'); 
+		rowExcluirDados = $(this).closest('tr'); 
 	    let Idfuncionario = $(this).closest('tr').data('id');
 	    
 	     dataIdx = {
 	                funcionarioId: Idfuncionario,
 	    };
-	     $('#second-container').show();
-	     $('#table').hide();
-	   
-	});
 
-	$(document).on('click', '#edit-password-product', function(event) {
-		let password= $('#password-1').val().trim();
-		if( password === '') {
-	        alert("Por favor, preencha o campo de senha.")
-	    }
-	    else {
-			let passwordInput = {
-				senha: password,
-			};
-	        $.ajax({
-	            url: "../controllers/CtrlGerente.php",
-	            method: "POST",
-	            data: passwordInput,
-	            success: function(response) {
-	                var objRetorno = JSON.parse(response);
-	                if (objRetorno.status === true) {
-	    				$('#alterar-container').show();
-					    $('#first-container').hide();
-				        $('#table').hide();
-	                } else {
-	                    alert(objRetorno.message);
-	                }
-	            },
-	            error: function(xhr, status, error) {
-	                alert("Erro na requisição: " + error);
-	            }
-	        });
-		}
+		 $('#alterar-container').hide();
+		 $('#delete-container').show();
+	     $('#table').hide();
 	});
 
 	//deletar
-	$(document).on('click', '#edit-password-product2', function(event) {
+	$(document).on('click', '#delete-fun', function(event) {
 	    event.preventDefault();
-		let password= $('#password-2').val().trim();
-		
-	    if( password === '') {
-	        alert("Por favor, preencha o campo de senha.")
-	    } else{
-			let passwordInput = {
-				senha: password,
-			};
-	        $.ajax({
-	            url: "../controllers/CtrlGerente.php",
-	            method: "POST",
-	            data: passwordInput,
-	            success: function(response) {
-	                var objRetorno = JSON.parse(response);
-	                
-	                if (objRetorno.status === true) {
-	                   $.ajax({
-	        				url: "../controllers/CtrlFuncionario.php",
-	        				method: "DELETE",
-	        				data: dataIdx,
-	        				success: function(response) {
-	            				var objRetorno = JSON.parse(response);
-	            
-	            				if (objRetorno.status == false) {
-	            			    	alert(objRetorno.message);
-	            				} else {
-	                				alert(objRetorno.message);
-	                				// Remover a linha
-	                				rowExcluirDados.remove();
-		    
-		   							$('#second-container').hide();
-	        						$('#table').show();
-	                				
-	            				}
-				        },
-				        error: function(xhr, status, error) {
-				            alert("Erro na requisição: " + error);
-				        }
-	    			});
-	
-	            } else {
-	                   alert(objRetorno.message)
-	                }
-	            },
-	            error: function(xhr, status, error) {
-	                alert("Erro na requisição: " + error);
-	            }
-	        });
-	    }
+
+		$.ajax({
+			url: "../controllers/CtrlFuncionario.php",
+			method: "DELETE",
+			data: dataIdx,
+			success: function(response) {
+				var objRetorno = JSON.parse(response);
+
+				if (objRetorno.status == false) {
+					alert(objRetorno.message);
+				} else {
+					alert(objRetorno.message);
+					// Remover a linha
+					rowExcluirDados.remove();
+					$('#alterar-container').hide();
+					$('#delete-container').hide();
+					$('#table').show();
+				}
+			},
+			error: function(xhr, status, error) {
+				alert("Erro na requisição: " + error);
+			}
+		});
 	});
 });

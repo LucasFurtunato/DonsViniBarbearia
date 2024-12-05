@@ -206,54 +206,32 @@ $(document).ready(function() {
 	
 	$('#delete-password-product').on('click', function(event) {
 	    event.preventDefault();
-	    
-	    const passwordInput = $(this).closest('.form').find('input[type="password"]');
-	    
-	    if (passwordInput.val().trim() === '') {
-	        alert('Por favor, preencha o campo de senha.');
-	    } else {
-			$.ajax({
-			    url: "../controllers/CtrlClienteVfyPass.php",
-			    method: "POST",
-			    data: $("#formDeleteAgendamentoPassword").serialize(),
-			    success: function(response) {
-			        var objRetorno = JSON.parse(response);
+
+		$.ajax({
+			url: "../controllers/CtrlAgendamentos.php",
+			method: "DELETE",
+			data: dataId,
+			success: function(response) {
+				
+				var objRetorno = JSON.parse(response);
+				
+				if (objRetorno.status == false) {
+					alert(objRetorno.message);
+				} else {
+					alert(objRetorno.message);
+					// Remover a linha
+					rowExcluirDados.remove();
 					
-					if (objRetorno.status == false) {
-						alert(objRetorno.message);
-					} else {
-						$.ajax({
-						    url: "../controllers/CtrlAgendamentos.php",
-						    method: "DELETE",
-						    data: dataId,
-						    success: function(response) {
-								
-						        var objRetorno = JSON.parse(response);
-								
-								if (objRetorno.status == false) {
-									alert(objRetorno.message);
-								} else {
-									alert(objRetorno.message);
-									// Remover a linha
-									rowExcluirDados.remove();
-									
-									$("#table").show();            // Esconde o elemento com id 'table'
-									$("#first-container").hide();  // Exibe o elemento com id 'first-container'
-									$('#alterar-container').hide(); // Mostra a seção de alteração
-									$("#second-container").hide();
-								}
-						    },
-						    error: function(xhr, status, error) {
-								alert("Erro na requisição: " + error);
-						    }
-						});
-					}
-			    },
-			    error: function(xhr, status, error) {
-			        $('#responseArea').text("Erro na requisição: " + error);
-			    }
-			});
-		}
+					$("#table").show();            // Esconde o elemento com id 'table'
+					$("#first-container").hide();  // Exibe o elemento com id 'first-container'
+					$('#alterar-container').hide(); // Mostra a seção de alteração
+					$("#second-container").hide();
+				}
+			},
+			error: function(xhr, status, error) {
+				alert("Erro na requisição: " + error);
+			}
+		});
 	});
 	
 	$(document).on('click', '#alterar_dados', function(event) {
@@ -294,8 +272,8 @@ $(document).ready(function() {
 
 		
 		$("#table").hide();            // Esconde o elemento com id 'table'
-		$("#first-container").show();  // Exibe o elemento com id 'first-container'
-		$('#alterar-container').hide(); // Mostra a seção de alteração
+		//$("#first-container").show();  // Exibe o elemento com id 'first-container'
+		$('#alterar-container').show(); // Mostra a seção de alteração
 	})
 	
 	$(document).on('click', '#excluir_dados', function(event) {

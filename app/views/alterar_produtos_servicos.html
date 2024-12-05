@@ -134,8 +134,8 @@
                 <p class="description description-second">Tem certeza de que deseja excluir esse produto?</p>
                 <form class="form-confirmation">
                     <div class="btn-group">
-                        <button type="submit" class="btn btn-second">Excluir</button>
-                        <button type="button" class="btn btn-second cancel-btn">Cancelar</button>
+                        <button type="submit" class="btn btn-second" id="confim-exclusion">Excluir</button>
+                        <button type="button" class="btn btn-second cancel-btn" id="cancel-exclusion">Cancelar</button>
                     </div>
                 </form>
             </div>
@@ -175,28 +175,6 @@
                         </div>
                     </label>
                     <button class="btn btn-second" id="edit-password-change">Alterar</button>        
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Container para confirmação de exclusão com senha -->
-    <div class="container" id="fifth-container" style="display:none"> 
-        <div class="content first-content"> 
-            <div class="second-column">
-                <h2 class="title title-second">Confirmar Exclusão</h2>
-                <p class="description description-second">Insira a senha para conseguir excluir o produto e serviço</p>
-                <form class="form">
-                    <label class="label-input">
-                        <div class="space_icon">
-                            <i class="fas fa-lock icon-modify"></i> 
-                        </div>
-                        <input type="password" placeholder="Senha atual" maxlength="50" id="password-2">
-                        <div class="btn-fig">
-                            <i class="bi bi-eye" id="btn-password-2"></i>
-                        </div>
-                    </label>
-                    <button class="btn btn-second" id="edit-password-exclusion">Excluir</button>        
                 </form>
             </div>
         </div>

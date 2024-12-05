@@ -166,25 +166,36 @@ $(document).ready(function() {
 		    $('#alterar-container').show(); // Mostra a seção de alteração
 		});
 		
+		let rowExcluirDados = null;
+		let dataIdx = null;
 		$(document).on('click', '.btn-excluir', function(event) {
 		    event.preventDefault(); // Previne o comportamento padrão do link
 			
 			// Encontrar a linha <tr> mais próxima ao botão "Excluir" clicado
-			let row = $(this).closest('tr');
+			rowExcluirDados = $(this).closest('tr');
 			
 		    // Extrai os valores das células na linha
 			let idServico = $(this).closest('tr').data('id');
 			
 			
-			let dataId = {
-					    servicosId: idServico,
+			dataIdx = {
+				servicosId: idServico,
 			};
 		    // Preenche os campos do formulário de alteração com os dados existentes
 			$('#idServico').val(idServico);
+
+			$('#second-container').show();
+			$('#table-container-1').hide();
+		    $('#table-container-2').hide();
+		    $('#hr').hide();
+			$('#table-container').hide();
+		});
+
+		$('#confim-exclusion').on('click', function() {
 			$.ajax({
 		        url: "../controllers/CtrlServicos.php",
 		        method: "DELETE",
-		        data: dataId,
+		        data: dataIdx,
 		        success: function(response) {
 		            var objRetorno = JSON.parse(response);
 					
@@ -193,13 +204,20 @@ $(document).ready(function() {
 					} else {
 						alert(objRetorno.message);
 						// Remover a linha
-						row.remove();
+						rowExcluirDados.remove();
+						$('#second-container').hide();
+						$('#table-container').show();
 					}
 		        },
 		        error: function(xhr, status, error) {
 					alert("Erro na requisição: " + error);
 		        }
 		    });
+		});
+
+		$('#cancel-exclusion').on('click', function() {
+			$('#second-container').hide();
+			$('#table-container').show();
 		});
 
 		// Confirma a alteração e atualiza os dados na tabela
@@ -274,40 +292,8 @@ $(document).ready(function() {
         $('#table-container-2').show();
         $('#hr').show();
     });
-});
 
-
-
-
-//Redefinir senha produto e excluir produto
-$(document).ready(function() {
-    $('#edit-password-exclusion').on('click', function() {
-        let password = $('#password-2').val().trim();
-
-        if( password === '') {
-            alert("Por favor, preencha o campo de redefinir senha.")
-        } else{
-            $('#second-container').show();
-            $('#fifth-container').hide();
-        }
-    });
-
-    // Ao clicar no botão de cancelar
-    $('.cancel-btn').on('click', function(event) {
-        event.preventDefault(); // Prevenir o comportamento padrão do botão
-
-        // Esconder o segundo container e mostrar o primeiro novamente
-        $('#second-container').hide();
-        $('#table-container-1').show();
-        $('#table-container-2').show();
-        $('#hr').show();
-    });
-});
-
-
-var data = {};
-//Para cadastrar produto
-$(document).ready(function() {
+	var data = {};
     $('#register-product').on('click', function() {
         let serviço = $('#service').val().trim();
 		let nomeServiço = $('#serviceName').val().trim();
