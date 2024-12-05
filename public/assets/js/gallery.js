@@ -109,7 +109,7 @@ $(function () {
     $(".carousel").empty();
 
     images.forEach(function (imageData) {
-      const imagePath = "../app/" + imageData.imagem;
+      const imagePath = "../" + imageData.imagem;
       const isAdmin = $(".carousel").hasClass("admin");
       const imageItem = `
         <div class="carousel-item" data-id="${imageData.id}" id="corousel${imageData.id}">
