@@ -152,7 +152,7 @@ class Cliente {
 	}
 	
 	public function enviarEmail() {
-		\mail("cleber@ifsp.edu.br", "testandoemail", "oi");
+		\mail("lucasfurtunato11@gmail.com", "testandoemail", "oi");
 	}
 
 }
