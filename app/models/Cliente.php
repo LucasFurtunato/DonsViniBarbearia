@@ -150,11 +150,6 @@ class Cliente {
 	public function getEmail_verified(){
 		  return( $this->email_verified );
 	}
-	
-	public function enviarEmail() {
-		\mail("lucasfurtunato11@gmail.com", "testandoemail", "oi");
-	}
-
 }
 
 

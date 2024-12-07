@@ -40,9 +40,9 @@ function enviarCodRecuperacaoSenha($email, $nome, $token) {
         $message = "Olá,$nome.
                     <br> 
                     Por favor, use o código abaixo para recuperar sua senha:
-                    <br>
+                    <br><br>
                     $token
-                    <br>
+                    <br><br>
                     Se você não solicitou isso, ignore este e-mail.";
         
         $send = \mail($to, $subject, $message, $headers);

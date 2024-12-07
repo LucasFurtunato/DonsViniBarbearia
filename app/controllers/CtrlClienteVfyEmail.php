@@ -38,7 +38,7 @@ class CtrlClienteVfyEmail extends ControllerHandler {
 	            $clienteId = $existingCliente[0]["clienteId"];
 	            $nome = $existingCliente[0]["nome"];
 	            $senha = $existingCliente[0]["senha"];
-	            $token = (new CodeGenerator())->run(5);
+	            $token = (new CodeGenerator())->run(10);
 	            
 	            $this->cliente->populate( $clienteId, $nome, $email, $senha, $token, $email_verified);
 	            $result = $this->cliente->save();

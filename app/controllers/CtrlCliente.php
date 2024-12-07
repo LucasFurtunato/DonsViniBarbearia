@@ -149,10 +149,6 @@ class CtrlCliente extends ControllerHandler {
 	public function file(){
 
 	}
-	
-	public function eviandoEmail() {
-	    $this->cliente->enviarEmail();
-	}
 }
 
 new CtrlCliente();
