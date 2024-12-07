@@ -5,7 +5,7 @@ function enviarEmailConfirmacao($email, $nome, $token) {
     try {
         $to = $email;
         $subject = "Comfirme seu Email em Don'Vini Barbearia";
-        $link = "localhost/donvinibarbearia/public/confirmar_email.html?token=" . urlencode($token);
+        $link = "https://donsvinibarbearia.hostdeprojetosdoifsp.gru.br/app/views/confirmar_email.html?token=" . urlencode($token);
         $message = "Olá, $nome. Por favor, clique no link abaixo para confirmar seu e-mail:
 
 $link

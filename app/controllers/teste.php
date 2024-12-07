@@ -9,14 +9,12 @@ $subject = "Olá, apenas um teste de envio de email, não se apavore, provavelme
 
 $headers = array(
     "MIME-Version" => "1.0",
-    "Content-Type" => "text/html;charset=UTF-8",
-    "From" => "lucasfurtunato11@gmail.com",
-    "Reply-To" => "lucasfurtunato11@gmail.com"
+    "Content-Type" => "text/html;charset=UTF-8"
 );
 
-$message = "oi, isso é apenas um teste";
+$message = "oi, isso é apenas um teste <a href='google.com.br'> google </a>";
 
-$send = \mail($to, $subject, $message);
+$send = \mail($to, $subject, $message, $headers);
 
 echo ($send ? "Houve algum erro ao enviar" : "Email enviado");
 ?>
