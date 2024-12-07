@@ -16,7 +16,7 @@ $headers = array(
 
 $message = "oi, isso é apenas um teste";
 
-$send = \mail($to, $subject, $message, $headers);
+$send = \mail($to, $subject, $message);
 
-echo ($send ? "Email enviado" : "Houve algum erro ao enviar");
+echo ($send ? "Houve algum erro ao enviar" : "Email enviado");
 ?>
