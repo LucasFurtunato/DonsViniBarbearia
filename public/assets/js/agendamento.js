@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
 	$.get( '../controllers/VfyLogin.php', function(dados) {
 	    var objRetorno = JSON.parse(dados)
@@ -9,6 +10,14 @@ $(document).ready(function() {
 		}
 	});
 	
+	function getUrlParameter(name) {
+	    var url = new URL(window.location.href);
+	    return url.searchParams.get(name);
+	}
+
+	// Obtendo o unidade da URL
+	var unidade = getUrlParameter('unidade');
+	
 	// Inicialmente, desabilitar os horários
 	$('#horario li').addClass('disabled');
 	
@@ -19,28 +28,30 @@ $(document).ready(function() {
 	    method: "GET",
 	    success: function(response) {
 			agendamentos = JSON.parse(response);
+			console.log(agendamentos);
 	    },
 	    error: function(xhr, status, error) {
 	        alert("Erro na requisição: " + error);
 	    }
 	});
 	
-	// Atualizar horários disponíveis ao alterar a data
 	$('#data').on('change', function () {
 	    const dataSelecionada = $(this).val();
-		
-		// Reinicia os horários para exibir todos
-		$('#horario li').show().addClass('disabled');
-		// Limpar a seleção de horário (remover a classe 'selected' de todos os itens)
-		$('#horario li').removeClass('selected');
-		// Opcional: Se você tiver um botão que exibe o horário selecionado, pode limpar o texto também
-		$('#horario-button').text("Selecione o horário");
-	    if (dataSelecionada) {
-			$('#horario li').removeClass('disabled'); // Habilita os horários
 
-	        // Filtra os agendamentos para o dia selecionado
+	    // Reinicia os horários para exibir todos
+	    $('#horario li').show().addClass('disabled');
+	    $('#horario li').removeClass('selected');
+	    $('#horario-button').text("Selecione o horário");
+
+	    if (dataSelecionada) {
+	        $('#horario li').removeClass('disabled'); // Habilita os horários
+
+	        // Filtra os agendamentos para o dia e unidade selecionados
 	        const horariosIndisponiveis = agendamentos
-	            .filter(agendamento => agendamento.dia === dataSelecionada)
+	            .filter(agendamento => 
+	                agendamento.dia === dataSelecionada && 
+	                parseInt(agendamento.unidadeId) === parseInt(unidade) // Comparação de unidadeId
+	            )
 	            .map(agendamento => agendamento.horario);
 
 	        // Esconde os horários já agendados
@@ -52,6 +63,8 @@ $(document).ready(function() {
 	        });
 	    }
 	});
+
+
 	
 	// Função para desabilitar as datas
 	function desabilitarDatas() {
@@ -67,9 +80,6 @@ $(document).ready(function() {
 	    });
 	}
 
-	// Chama a função para desabilitar datas
-	desabilitarDatas();
-	
 	function verificarDiaDisponivel(dataSelecionada) {
 	    const horariosDisponiveis = [
 	        "09:00:00", "09:30:00", "10:00:00", "10:30:00", "11:00:00", "11:30:00", 
@@ -77,17 +87,21 @@ $(document).ready(function() {
 	        "15:00:00", "15:30:00", "16:00:00", "16:30:00", "17:00:00", "17:30:00"
 	    ];
 
-	    // Filtrar os agendamentos para o dia selecionado
-	    const agendamentosDia = agendamentos.filter(agendamento => agendamento.dia === dataSelecionada);
+	    // Filtrar os agendamentos para o dia e unidade selecionados
+	    const agendamentosDia = agendamentos.filter(agendamento => 
+	        agendamento.dia === dataSelecionada && 
+	        parseInt(agendamento.unidadeId) === parseInt(unidade) // Comparação de unidadeId
+	    );
 	    
-	    // Obter os horários já ocupados para esse dia
+	    // Obter os horários já ocupados para esse dia e unidade
 	    const horariosOcupados = agendamentosDia.map(agendamento => agendamento.horario);
-		
+	    
 	    // Verificar se todos os horários estão ocupados
 	    const todosOcupados = horariosDisponiveis.every(horario => horariosOcupados.includes(horario));
 
 	    return todosOcupados;
 	}
+
 	
 	
 	
@@ -102,13 +116,6 @@ $(document).ready(function() {
 	const today = new Date().toISOString().split('T')[0];
 	$('#data').attr('min', today);
 	
-	function getUrlParameter(name) {
-	    var url = new URL(window.location.href);
-	    return url.searchParams.get(name);
-	}
-
-	// Obtendo o unidade da URL
-	var unidade = getUrlParameter('unidade');
 	
 	if (!unidade || (unidade != 1 && unidade != 2)) {
 		alert("A unidade não foi selecionada de forma correta, redicionaremos você para a páguna de seleção de unidades");

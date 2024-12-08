@@ -17,7 +17,7 @@ function enviarEmailConfirmacao($email, $nome, $token) {
                     <br> 
                     Se você não solicitou isso, ignore este e-mail.";
         
-$send = \mail($to, $subject, $message, $headers);
+        $send = \mail($to, $subject, $message, $headers);
         
         if ($send) {
             return ['status' => true, 'message' => 'Mensagem enviada com sucesso.'];
