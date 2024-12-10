@@ -23,10 +23,6 @@
             </div>
             <ul class="nav-list">
                 <li><a href="#">Início</a></li>
-                <li><a href="#about">Sobre</a></li>
-                <li><a href="#services">Serviços</a></li>
-                <li><a href="#gallery">Galeria</a></li>
-                <li><a href="#contact">Contato</a></li>
                 <li><a href="#" class="login-button" id="login-button">Entrar</a></li> <!-- Botão de login -->
             </ul>
         </nav>
@@ -39,19 +35,8 @@
                         <div class="second-column">
                             <h2 class="title title-second">Alterar Informações</h2> <br>
                             <form class="form">
-                                <!-- Campo de senha atual -->
-                                <label class="label-input" for="">
-                                    <div class="space_icon">
-                                        <i class="fas fa-lock icon-modify"></i> <!-- imagem senha -->
-                                    </div>
-                                    <input type="password" placeholder="Senha atual" maxlength="50" id="password-1">
-                                    <div class="btn-fig">
-                                        <i class="bi bi-eye" id="btn-password-1" onclick="mostrarSenha1()"></i> <!-- Botão para mostrar senha -->
-                                    </div>
-                                </label>
-    
                                 <!-- Campo de código -->
-                                <label class="label-input" for="">
+                                <label class="label-input" for="" id="Codigo">
                                     <div class="space_icon">
                                         <i class="far fa-user icon-modify"></i> <!-- imagem usuario -->
                                     </div>
@@ -59,7 +44,7 @@
                                 </label>
                                 
                                   <!-- Campo de nome -->
-                                <label class="label-input" for="">
+                                <label class="label-input" for="" id="Nome">
                                     <div class="space_icon">
                                         <i class="far fa-user icon-modify"></i> <!-- imagem usuario -->
                                     </div>
@@ -67,7 +52,7 @@
                                 </label>
                                 
                                 <!-- Campo de email -->
-                                <label class="label-input" for="">
+                                <label class="label-input" for="" id="Email">
                                     <div class="space_icon">
                                         <i class="far fa-envelope icon-modify"></i> <!-- imagem email -->  
                                     </div>
@@ -75,7 +60,7 @@
                                 </label>
                                 
                                   <!-- Seleção de unidade -->
-                                <label class="label-input" for="">
+                                <label class="label-input" for="" id="Unidade">
                                     <div class="space_icon">
                                         <i class="bi bi-geo-alt-fill"></i> <!--imagem localização-->
                                     </div>
@@ -87,7 +72,7 @@
                                 </label>                            
     
                                  <!-- Campo de nova senha -->
-                                <label class="label-input" for="">
+                                <label class="label-input" for="" id="Senha">
                                     <div class="space_icon">
                                         <i class="fas fa-lock icon-modify"></i> <!-- imagem senha -->   
                                     </div>
@@ -98,7 +83,7 @@
                                 </label>
             
                                  <!-- Campo de confirmação de senha -->
-                                <label class="label-input" for="">
+                                <label class="label-input" for="" id="Cosenha">
                                     <div class="space_icon">
                                         <i class="fas fa-lock icon-modify"></i> <!-- imagem senha -->   
                                     </div>
@@ -107,7 +92,7 @@
                                         <i class="bi bi-eye" id="btn-password-3" onclick="mostrarSenha3()"></i>
                                     </div> 
                                 </label>      
-                                <button class="btn btn-second" id="edit-profile-button">Adicionar</button>        
+                                <button class="btn btn-second" id="edit-profile-button">Alterar</button>        
                             </form>
                         </div><!-- second column -->
                     </div><!-- first content -->
@@ -123,8 +108,8 @@
                         <form class="form-confirmation">
                             <!-- Botões de confirmação e cancelamento -->
                             <div class="btn-group">
-                                <button type="submit" class="btn btn-second">Alterar</button>
-                                <button type="button" class="btn btn-second cancel-btn">Cancelar</button>
+                                <button type="submit" class="btn btn-second" id="perfilfun">Alterar</button>
+                                <button type="button" class="btn btn-second cancel-btn" id="cperfilfun">Cancelar</button>
                             </div>
                         </form>
                     </div>
