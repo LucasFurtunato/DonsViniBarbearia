@@ -16,4 +16,21 @@ $(document).ready(function () {
 	        console.error(error);
 	    },
 	});
+
+	$.ajax({
+	    url: "app/controllers/CtrlTxtServicos.php", 
+	    method: "GET",
+	    success: function (response) {
+			var data = JSON.parse(response);
+			
+			data.forEach(servicoTxt => {
+				$(`#${servicoTxt.localizacao}-txt-1`).text(servicoTxt.texto1);
+				$(`#${servicoTxt.localizacao}-txt-2`).text(servicoTxt.texto2);
+			});
+	    },
+	    error: function (error) {
+	        alert("Erro ao atualizar os contatos.");
+	        console.error(error);
+	    },
+	});
 });
