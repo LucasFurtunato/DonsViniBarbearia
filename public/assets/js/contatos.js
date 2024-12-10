@@ -1,6 +1,6 @@
 $(document).ready(function () {
 	$.ajax({
-	    url: "app/controllers/CtrlEmpresa.php", // Ajuste conforme seu ambiente
+	    url: "app/controllers/CtrlEmpresa.php",
 	    method: "GET",
 	    success: function (response) {
 			var data = JSON.parse(response);
@@ -18,7 +18,7 @@ $(document).ready(function () {
 	});
 	
 	$.ajax({
-	    url: "app/controllers/CtrlTxtServicos.php", // Ajuste conforme seu ambiente
+	    url: "app/controllers/CtrlTxtServicos.php",
 	    method: "GET",
 	    success: function (response) {
 			var data = JSON.parse(response);
@@ -287,12 +287,55 @@ $(document).ready(function () {
 				texto2: cuidadosTXT2,
 			},
 			success: function (response) {
-				alert("Textos da barba atualizados com sucesso!");
+				alert("Textos da cuidados atualizados com sucesso!");
 				$("#Cuidados-txt-1").text(cuidadosTXT1);
 				$("#Cuidados-txt-2").text(cuidadosTXT2);
 				// Alterar botão para salvar
 				$("#save-txt-cuidados").hide();
 				$("#edit-txt-cuidados").show();
+			},
+			error: function (error) {
+				alert("Erro ao atualizar os contatos.");
+				console.error(error);
+			},
+		});
+	});
+	
+	$("#save-txt").hide();
+	
+	$("#edit-txt").click(function() {
+	    // Capturar os valores atuais dos campos
+	    let quemsomosTXT = $("#Quem-somos-txt-1").text();
+		
+	    // Criar campos editáveis
+	    $("#Quem-somos-txt-1").html(`<textarea id='edit-quem-somos-txt' class='large-textarea'>${quemsomosTXT}</textarea>`);
+		
+		// Alterar botão para salvar
+		$("#save-txt").show();
+		$("#edit-txt").hide();
+	});
+	
+	$("#save-txt").click(function() {
+	    // Capturar os valores atuais dos campos
+	    let quemsomosTXT = $("#edit-quem-somos-txt").val();
+		
+
+		// Enviar para o servidor via AJAX
+		$.ajax({
+			url: "app/controllers/CtrlTxtServicos.php", // Ajuste conforme seu ambiente
+			method: "PUT",
+			data: {
+				txtServicosId: 4,
+				localizacao: "Quem-somos",
+				texto1: quemsomosTXT,
+				texto2: '',
+			},
+			success: function (response) {
+				alert("Texto quem somos atualizados com sucesso!");
+				$("#Quem-somos-txt-1").text(quemsomosTXT);
+				// Alterar botão para salvar
+				$("#save-txt").hide();
+				$("#edit-txt").show();
 			},
 			error: function (error) {
 				alert("Erro ao atualizar os contatos.");
