@@ -21,14 +21,12 @@ $(document).ready(function () {
 	    url: "app/controllers/CtrlTxtServicos.php", // Ajuste conforme seu ambiente
 	    method: "GET",
 	    success: function (response) {
-			console.log(response);
 			var data = JSON.parse(response);
-			/*
-			data.forEach(contato => {
-				$(`#email-text`).text(contato.email);
-				$(`#telefone-text-unidade-${contato.Idempresa}`).text(`Unidade ${contato.Idempresa}: ` + contato.telefone);
-				$(`#endereco-text-unidade-${contato.Idempresa}`).text(`Unidade ${contato.Idempresa}: ` + contato.endereco);
-			}); */
+			
+			data.forEach(servicoTxt => {
+				$(`#${servicoTxt.localizacao}-txt-1`).text(servicoTxt.texto1);
+				$(`#${servicoTxt.localizacao}-txt-2`).text(servicoTxt.texto2);
+			});
 	    },
 	    error: function (error) {
 	        alert("Erro ao atualizar os contatos.");
@@ -168,15 +166,17 @@ $(document).ready(function () {
 	});
 
 	$("#save-txt-cabelo").hide();
+	$("#save-txt-barba").hide();
+	$("#save-txt-cuidados").hide();
 	
 	$("#edit-txt-cabelo").click(function() {
 	    // Capturar os valores atuais dos campos
-	    let cabeloTXT1 = $("#cabelo-txt-1").text();
-	    let cabeloTXT2 = $("#cabelo-txt-2").text();
+	    let cabeloTXT1 = $("#Cabelo-txt-1").text();
+	    let cabeloTXT2 = $("#Cabelo-txt-2").text();
 
 	    // Criar campos editáveis
-	    $("#cabelo-txt-1").html(`<textarea id='edit-cabelo-txt-1' class='large-textarea'>${cabeloTXT1}</textarea>`);
-	    $("#cabelo-txt-2").html(`<textarea id='edit-cabelo-txt-2' class='large-textarea'>${cabeloTXT2}</textarea>`);
+	    $("#Cabelo-txt-1").html(`<textarea id='edit-cabelo-txt-1' class='large-textarea'>${cabeloTXT1}</textarea>`);
+	    $("#Cabelo-txt-2").html(`<textarea id='edit-cabelo-txt-2' class='large-textarea'>${cabeloTXT2}</textarea>`);
 
 		// Alterar botão para salvar
 		$("#save-txt-cabelo").show();
@@ -185,8 +185,8 @@ $(document).ready(function () {
 
 	$("#save-txt-cabelo").click(function() {
 	    // Capturar os valores atuais dos campos
-	    let cabeloTXT1 = $("#cabelo-txt-1").val();
-	    let cabeloTXT2 = $("#cabelo-txt-2").val();
+	    let cabeloTXT1 = $("#edit-cabelo-txt-1").val();
+	    let cabeloTXT2 = $("#edit-cabelo-txt-2").val();
 
 		// Enviar para o servidor via AJAX
 		$.ajax({
@@ -194,14 +194,14 @@ $(document).ready(function () {
 			method: "PUT",
 			data: {
 				txtServicosId: 1,
-				localizacao: "Barba",
+				localizacao: "Cabelo",
 				texto1: cabeloTXT1,
-				texto1: cabeloTXT2,
+				texto2: cabeloTXT2,
 			},
 			success: function (response) {
 				alert("Textos do cabelo atualizados com sucesso!");
-				$("#cabelo-txt-1").text(cabeloTXT1);
-				$("#cabelo-txt-2").text(cabeloTXT2);
+				$("#Cabelo-txt-1").text(cabeloTXT1);
+				$("#Cabelo-txt-2").text(cabeloTXT2);
 				// Alterar botão para salvar
 				$("#save-txt-cabelo").hide();
 				$("#edit-txt-cabelo").show();
@@ -215,35 +215,39 @@ $(document).ready(function () {
 
 	$("#edit-txt-barba").click(function() {
 	    // Capturar os valores atuais dos campos
-	    let barbaTXT1 = $("#barba-txt-1").text();
-	    let barbaTXT2 = $("#barba-txt-2").text();
+	    let barbaTXT1 = $("#Barba-txt-1").text();
+	    let barbaTXT2 = $("#Barba-txt-2").text();
 
-	    $("#barba-txt-1").html(`<textarea id='edit-barba-txt-1' class='large-textarea'>${barbaTXT1}</textarea>`);
-	    $("#barba-txt-2").html(`<textarea id='edit-barba-txt-2' class='large-textarea'>${barbaTXT2}</textarea>`);
+	    $("#Barba-txt-1").html(`<textarea id='edit-barba-txt-1' class='large-textarea'>${barbaTXT1}</textarea>`);
+	    $("#Barba-txt-2").html(`<textarea id='edit-barba-txt-2' class='large-textarea'>${barbaTXT2}</textarea>`);
+
+		$("#save-txt-barba").show();
+		$("#edit-txt-barba").hide();
+	});
+	
+	$("#save-txt-barba").click(function() {
+	    // Capturar os valores atuais dos campos
+	    let barbaTXT1 = $("#edit-barba-txt-1").val();
+	    let barbaTXT2 = $("#edit-barba-txt-2").val();
+		
 
 		// Enviar para o servidor via AJAX
 		$.ajax({
 			url: "app/controllers/CtrlTxtServicos.php", // Ajuste conforme seu ambiente
 			method: "PUT",
 			data: {
-				Idempresa: 2, // ID fixo ou dinâmico, dependendo da lógica do seu sistema
-				unidade: "Unidade 2",
-				email: suEmail,
-				telefone: suTelefone2, // Use outros campos para cada unidade, se necessário
-				endereco: suEndereco2,
+				txtServicosId: 2,
+				localizacao: "Barba",
+				texto1: barbaTXT1,
+				texto2: barbaTXT2,
 			},
 			success: function (response) {
-				alert("Contatos atualizados com sucesso!");
-				// Atualizar os textos na página
-				$("#email-text").text(suEmail);
-				suTelefone2 = "Unidade 2: " + suTelefone2;
-				suEndereco2 = "Unidade 2: " + suEndereco2;
-				$("#telefone-text-unidade-2").text(suTelefone2);
-				$("#endereco-text-unidade-2").text(suEndereco2);
-
-				// Alterar botão de volta
-				$("#editContactBtn-2").show();
-				$("#saveContactBtn-2").hide();
+				alert("Textos da barba atualizados com sucesso!");
+				$("#Barba-txt-1").text(barbaTXT1);
+				$("#Barba-txt-2").text(barbaTXT2);
+				// Alterar botão para salvar
+				$("#save-txt-barba").hide();
+				$("#edit-txt-barba").show();
 			},
 			error: function (error) {
 				alert("Erro ao atualizar os contatos.");
@@ -254,36 +258,41 @@ $(document).ready(function () {
 
 	$("#edit-txt-cuidados").click(function() {
 	    // Capturar os valores atuais dos campos
-	    let cuidadosTXT1 = $("#cuidados-txt-1").text();
-	    let cuidadosTXT2 = $("#cuidados-txt-2").text();
-
+	    let cuidadosTXT1 = $("#Cuidados-txt-1").text();
+	    let cuidadosTXT2 = $("#Cuidados-txt-2").text();
+		
 	    // Criar campos editáveis
-	    $("#cuidados-txt-1").html(`<textarea id='edit-cuidados-txt-1' class='large-textarea'>${cuidadosTXT1}</textarea>`);
-	    $("#cuidados-txt-2").html(`<textarea id='edit-cuidados-txt-2' class='large-textarea'>${cuidadosTXT2}</textarea>`);
+	    $("#Cuidados-txt-1").html(`<textarea id='edit-cuidados-txt-1' class='large-textarea'>${cuidadosTXT1}</textarea>`);
+	    $("#Cuidados-txt-2").html(`<textarea id='edit-cuidados-txt-2' class='large-textarea'>${cuidadosTXT2}</textarea>`);
+		
+		// Alterar botão para salvar
+		$("#save-txt-cuidados").show();
+		$("#edit-txt-cuidados").hide();
+	});
+	
+	$("#save-txt-cuidados").click(function() {
+	    // Capturar os valores atuais dos campos
+	    let cuidadosTXT1 = $("#edit-cuidados-txt-1").val();
+	    let cuidadosTXT2 = $("#edit-cuidados-txt-2").val();
+		
 
 		// Enviar para o servidor via AJAX
 		$.ajax({
 			url: "app/controllers/CtrlTxtServicos.php", // Ajuste conforme seu ambiente
 			method: "PUT",
 			data: {
-				Idempresa: 2, // ID fixo ou dinâmico, dependendo da lógica do seu sistema
-				unidade: "Unidade 2",
-				email: suEmail,
-				telefone: suTelefone2, // Use outros campos para cada unidade, se necessário
-				endereco: suEndereco2,
+				txtServicosId: 3,
+				localizacao: "Cuidados",
+				texto1: cuidadosTXT1,
+				texto2: cuidadosTXT2,
 			},
 			success: function (response) {
-				alert("Contatos atualizados com sucesso!");
-				// Atualizar os textos na página
-				$("#email-text").text(suEmail);
-				suTelefone2 = "Unidade 2: " + suTelefone2;
-				suEndereco2 = "Unidade 2: " + suEndereco2;
-				$("#telefone-text-unidade-2").text(suTelefone2);
-				$("#endereco-text-unidade-2").text(suEndereco2);
-
-				// Alterar botão de volta
-				$("#editContactBtn-2").show();
-				$("#saveContactBtn-2").hide();
+				alert("Textos da barba atualizados com sucesso!");
+				$("#Cuidados-txt-1").text(cuidadosTXT1);
+				$("#Cuidados-txt-2").text(cuidadosTXT2);
+				// Alterar botão para salvar
+				$("#save-txt-cuidados").hide();
+				$("#edit-txt-cuidados").show();
 			},
 			error: function (error) {
 				alert("Erro ao atualizar os contatos.");
@@ -291,6 +300,5 @@ $(document).ready(function () {
 			},
 		});
 	});
-
 
 });
