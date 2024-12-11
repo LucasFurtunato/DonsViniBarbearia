@@ -370,3 +370,149 @@ h4 {
     cursor: not-allowed;
 }
 
+
+
+/* Responsividade para dispositivos móveis */
+@media (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+        font-size: 14px; /* Ajusta o tamanho da fonte para dispositivos móveis */
+    }
+
+    .nav-list {
+        display: none; /* Oculta o menu vertical em telas menores que 768px */
+    }
+
+    .content {
+        width: 90%; /* Aumenta a largura para ocupar mais espaço em telas menores */
+        flex-direction: column; /* Alinha as colunas verticalmente */
+    }
+
+    .first-collumn, .second-collumn {
+        margin: 0; /* Remove margens laterais */
+        width: 100%; /* Ajusta a largura das colunas para ocupar 100% */
+    }
+
+    .btn-2 {
+        width: 100%; /* Botões ocupam toda a largura disponível */
+        padding: 10px; /* Ajusta o padding para melhor visualização */
+    }
+
+    .btn {
+        width: 100%; /* Botão de agendar ocupa toda a largura */
+    }
+
+    h4 {
+        font-size: 16px; /* Ajusta o tamanho da fonte para títulos */
+    }
+
+    .title {
+        font-size: 24px; /* Ajusta o tamanho do título principal */
+    }
+
+    .title-second {
+        font-size: 20px; /* Ajusta o tamanho do título secundário */
+    }
+
+    .footer-content {
+        flex-direction: column; /* Alinha o conteúdo do rodapé verticalmente */
+        align-items: center; /* Centraliza o conteúdo do rodapé */
+    }
+}
+
+/* Estilos responsivos */
+
+/* Para telas grandes (desktops) */
+@media (min-width: 1000px) {
+    .nav-list {
+        display: flex; /* Exibe o menu lateral */
+    }
+}
+
+/* Para tablets e telas médias */
+@media (max-width: 999px) and (min-width: 600px) {
+    .nav-list {
+        display: flex; /* Exibe o menu lateral */
+    }
+}
+
+/* Para smartphones e telas pequenas */
+@media (max-width: 599px) {
+    .nav-list {
+        display: none; /* Oculta completamente o menu lateral */
+    }
+
+    .mobile-menu {
+        display: block; /* Exibe o menu móvel, se necessário */
+    }
+
+    .content {
+        width: 90%; /* Largura para smartphones */
+        flex-direction: column; /* Alinha colunas verticalmente */
+    }
+
+    .first-collumn, .second-collumn {
+        width: 100%; /* Ajusta a largura das colunas */
+        margin: 0; /* Remove margens laterais */
+    }
+
+    .btn-2, .btn {
+        width: 100%; /* Botões ocupam toda a largura disponível */
+        padding: 10px; /* Ajusta o padding para melhor visualização */
+    }
+
+    h4 {
+        font-size: 16px; /* Ajusta o tamanho da fonte para títulos */
+    }
+
+    .title {
+        font-size: 24px; /* Ajusta o tamanho do título principal */
+    }
+
+    .title-second {
+        font-size: 20px; /* Ajusta o tamanho do título secundário */
+    }
+
+    .footer-content {
+        flex-direction: column; /* Alinha o conteúdo do rodapé verticalmente */
+        align-items: center; /* Centraliza o conteúdo do rodapé */
+    }
+}
+
+
+
+@media (max-width: 480px) {
+    .btn, .btn-2 {
+        padding: 15px; /* Aumenta o padding para botões em telas menores */
+        font-size: 16px; /* Aumenta o tamanho da fonte dos botões */
+    }
+
+    input[type="date"] {
+        width: 100%; /* Faz o input de data ocupar toda a largura */
+        padding: 10px; /* Aumenta o padding do input */
+    }
+
+    .title {
+        font-size: 20px; /* Ajusta o tamanho do título principal para telas menores */
+    }
+
+    .title-second {
+        font-size: 18px; /* Ajusta o tamanho do título secundário para telas menores */
+    }
+
+    h4 {
+        font-size: 14px; /* Ajusta o tamanho da fonte para títulos em telas menores */
+    }
+
+    .container {
+        margin: 5% 0; /* Reduz a margem superior e inferior */
+    }
+
+    .first-collumn, .second-collumn {
+        padding: 10px; /* Adiciona um pouco de padding */
+    }
+}
+
+
+
+

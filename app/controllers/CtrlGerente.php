@@ -98,6 +98,9 @@ class CtrlGerente extends ControllerHandler {
 	        $result = $this->gerente->save();
 	        
 	        if ($result) {
+	            $_SESSION["gerente"]["nome"] = $nome;
+	            $_SESSION["gerente"]["email"] = $email;
+	            
 	            $response = [
 	                'status' => true,
 	                'message' => 'Alteração realizada com sucesso'

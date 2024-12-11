@@ -22,7 +22,6 @@ class CtrlClienteAl extends ControllerHandler {
 	    
 	    // Obter os dados do cliente para atualização
 	    $nome = $this->getParameter('nome');
-	    $email = $this->getParameter('email');
 	    $senha = $this->getParameter('senha');  // Senha para atualizar
 	    $token = '0';
 	    $email_verified = 1;
@@ -37,10 +36,15 @@ class CtrlClienteAl extends ControllerHandler {
 	    
 	    // Se o cliente existir, vamos atualizar os dados
 	    if (!empty($existingCliente)) {
+	        $email = $existingCliente[0]['email'];
+	        
 	        $this->cliente->populate($clienteId, $nome, $email, $senhaHash, $token, $email_verified); // Não estamos atualizando o token e email_verified
 	        $result = $this->cliente->save();
 	        
 	        if ($result) {
+	            $_SESSION["cliente"]["nome"] = $nome;
+	            $_SESSION["cliente"]["email"] = $email;
+	            
 	            $response = [
 	                'status' => true,
 	                'message' => 'Alteração feita com sucesso'

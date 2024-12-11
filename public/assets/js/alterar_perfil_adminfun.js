@@ -25,14 +25,6 @@
          btnPass.removeClass('bi-eye-slash').addClass('bi-eye');
      }
   });
-  
-  
-    // Deixa o campo de e-mail sempre em minúsculas
-    $('#email').on('input', function() {
-        $(this).val($(this).val().toLowerCase());
-    });
-
-
 
    $(document).ready(function() {
 	$.get( '../controllers/VfyLogin.php', function(dados) {
@@ -53,7 +45,6 @@
         // Verificar se todos os campos estão preenchidos
         let codigo = $('#codigo').val().trim();
         let nome = $('input[placeholder="Nome"]').val().trim();
-        let email = $('#email').val().trim();
         let unidade = $('#unidade').val();
         let senhaFuncionario = $('#password-2').val().trim();
         let confirmarSenhaFuncionario = $('#password-3').val().trim();
@@ -64,10 +55,8 @@
         }
 
         // Se algum campo estiver vazio, exibir mensagem de erro
-        if (codigo === '' || nome === '' || email === '' || unidade === '' || senhaFuncionario === '' || confirmarSenhaFuncionario === '') {
+        if (codigo === '' || nome === '' || unidade === '' || senhaFuncionario === '' || confirmarSenhaFuncionario === '') {
             alert("Por favor, preencha todos os campos.");
-        } else if (!validarEmail(email)) {
-            alert("Por favor, insira um e-mail válido.");
         } else if (senhaFuncionario !== confirmarSenhaFuncionario) {
             alert("As senhas não correspondem.");
         } else {
@@ -83,7 +72,6 @@
 
         let codigo = $('#codigo').val().trim();
         let nome = $('input[placeholder="Nome"]').val().trim();
-        let email = $('#email').val().trim();
         let unidade = $('#unidade').val();
         let senhaFuncionario = $('#password-2').val().trim();
 
@@ -93,7 +81,6 @@
             data: {
                 codigo: codigo,
                 nome: nome,
-                email: email,
                 unidadeId: unidade,
                 senhaFuncionario: senhaFuncionario
             },

@@ -206,6 +206,7 @@ $(document).ready(function () {
       $("#aEntrar").hide();
       $("#config").show();
       $("#config").attr("href", "app/views/alterar_perfil_cliente.html");
+	  $("#aTermos").show();
     } else if (objRetorno.usrType == "gerente") {
       $("#aName").text(objRetorno.name);
       $("#aName").show();
@@ -215,6 +216,7 @@ $(document).ready(function () {
       $("#aEntrarUsr").hide();
       $("#aEntrarAdm").hide();
       $("#aEntrar").hide();
+	  $("#aTermos").hide();
     } else if (objRetorno.usrType == "funcionario") {
       $("#aName").text(objRetorno.name);
       $("#aName").show();
@@ -226,6 +228,7 @@ $(document).ready(function () {
       $("#aEntrar").hide();
       $("#config").show();
       $("#config").attr("href", "app/views/alterar_perfil_adminfun.html");
+	  $("#aTermos").hide();
     } else {
       $("#inscrevase").attr("href", "app/views/login-cadastro.html")     
       $("#agendaja").attr("href", "app/views/login-cadastro.html")
@@ -236,6 +239,7 @@ $(document).ready(function () {
       $("#aEntrarUsr").show();
       $("#aEntrarAdm").show();
       $("#aEntrar").show();
+	  $("#aTermos").hide();
     }
   });
 });

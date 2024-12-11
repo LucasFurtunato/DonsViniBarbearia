@@ -92,9 +92,16 @@ class CtrlFuncionario extends ControllerHandler {
 			}
 
 		if (!empty($existingFuncionario)) {
+		    if (empty($email)) {
+		        $email = $existingFuncionario[0]['email'];
+		    }
+		    
             $this->funcionario->populate( $funcionarioId, $codigo, $nome, $email, $unidadeId, $senhaHash);
 			$result = $this->funcionario->save();
 			if ($result) {
+			    $_SESSION["funcionario"]["nome"] = $nome;
+			    $_SESSION["funcionario"]["email"] = $email;
+			    
                 $response = [
                     'status' => true,
                     'message' => 'Alteração feita com sucesso'

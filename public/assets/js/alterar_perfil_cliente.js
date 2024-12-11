@@ -40,13 +40,6 @@
    }
 });
 
-
-  // Deixa o campo de e-mail sempre em minúsculas
-  $('#email').on('input', function() {
-      $(this).val($(this).val().toLowerCase());
-  });
-
-
  $(document).ready(function() {
 	$.get( '../controllers/VfyLogin.php', function(dados) {
 	    var objRetorno = JSON.parse(dados)
@@ -63,20 +56,13 @@
 
         // Obter os valores dos campos do formulário
         let nome = $('#name').val().trim();
-        let email = $('#email').val().trim();
         let senha = $('#password-2').val().trim();
         let confirmarSenha = $('#password-3').val().trim();
 
-        // Função de validação de email
-        function validarEmail(email) {
-            return email.includes('@') && email.includes('.');
-        }
 
         // Se algum campo estiver vazio, exibir mensagem de erro
-        if (nome === '' || email === '' || senha === '' || confirmarSenha === '') {
+        if (nome === '' || senha === '' || confirmarSenha === '') {
             alert("Por favor, preencha todos os campos.");
-        } else if (!validarEmail(email)) {
-            alert("Por favor, insira um e-mail válido.");
         } else if (senha !== confirmarSenha) {
             alert("As senhas não correspondem.");
         } else {
@@ -92,20 +78,14 @@
 
         // Obter os dados novamente
         let nome = $('#name').val().trim();
-        let email = $('#email').val().trim();
         let senha = $('#password-2').val().trim();
-        
-        // Aqui você pode pegar o ID do cliente via variável de sessão ou algum campo oculto no formulário
-        let clienteId = $('#clienteId').val();  // Supondo que o ID do cliente seja passado assim
 
         // Enviar os dados para o servidor
         $.ajax({
             url: "../controllers/CtrlClienteAl.php", // URL do seu controlador
             method: "PUT",
             data: {
-                clienteId: clienteId,  // ID do cliente
                 nome: nome,
-                email: email,
                 senha: senha  // Enviar a nova senha, caso tenha sido preenchida
             },
             success: function(response) {
