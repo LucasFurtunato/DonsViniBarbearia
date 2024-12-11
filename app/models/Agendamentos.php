@@ -20,7 +20,7 @@ class Agendamentos {
     private $dia;
     private $horario;
 
-    private $tableName  = "hostdeprojetos_donvinibarbearia.agendamentos";
+    private $tableName  = "ifhostgru_donvinibarbearia.agendamentos";
     private $fieldsName = "agendamentosId, unidadeId, funcionarioId, clienteId, barbaId, corteId, cuidadosId, preco, dia, horario";
     private $fieldKey   = "agendamentosId";
     private $dbquery    = null;

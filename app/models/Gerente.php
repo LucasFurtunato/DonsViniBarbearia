@@ -15,7 +15,7 @@ class Gerente {
     private $senha;
     private $nome;
 
-    private $tableName  = "hostdeprojetos_donvinibarbearia.gerente";
+    private $tableName  = "ifhostgru_donvinibarbearia.gerente";
     private $fieldsName = "gerenteId, codigo, email, senha, nome";
     private $fieldKey   = "gerenteId";
     private $dbquery    = null;

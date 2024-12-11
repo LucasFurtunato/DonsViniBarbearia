@@ -14,7 +14,7 @@ class Servicos {
     private $nomeServico;
     private $preco;
 
-    private $tableName  = "hostdeprojetos_donvinibarbearia.servicos";
+    private $tableName  = "ifhostgru_donvinibarbearia.servicos";
     private $fieldsName = "servicosId, tipoServico, nomeServico, preco";
     private $fieldKey   = "servicosId";
     private $dbquery    = null;

@@ -15,7 +15,7 @@ class Empresa {
     private $telefone;
     private $endereco;
 
-    private $tableName  = "hostdeprojetos_donvinibarbearia.empresa";
+    private $tableName  = "ifhostgru_donvinibarbearia.empresa";
     private $fieldsName = "Idempresa, unidade, email, telefone, endereco";
     private $fieldKey   = "Idempresa";
     private $dbquery    = null;
