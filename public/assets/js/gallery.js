@@ -86,7 +86,7 @@ $(function () {
   const fetchGalleryImages = async () => {
     try {
       await $.get(
-        "../app/controllers/CtrlGaleria.php/get",
+        "app/controllers/CtrlGaleria.php/get",
         function (response) {
           const parsedResponse = Array.isArray(response)
             ? response
@@ -139,7 +139,7 @@ $(function () {
       formData.append("image", file);
 
       $.ajax({
-        url: "../app/controllers/CtrlGaleria.php",
+        url: "app/controllers/CtrlGaleria.php",
         type: "POST",
         data: formData,
         contentType: false,
@@ -168,7 +168,7 @@ $(function () {
   
     const handleRemoveImage = (imageId) => {
       $.ajax({
-        url: '../app/controllers/CtrlGaleria.php', 
+        url: 'app/controllers/CtrlGaleria.php', 
         type: 'DELETE', 
         data: { id: imageId }, 
         success: function (response) {
