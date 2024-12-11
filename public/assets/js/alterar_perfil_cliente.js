@@ -109,7 +109,6 @@
                 senha: senha  // Enviar a nova senha, caso tenha sido preenchida
             },
             success: function(response) {
-	console.log(response)
                 let objRetorno = JSON.parse(response);
                 if (objRetorno.status) {
                     alert("Perfil atualizado com sucesso!");
