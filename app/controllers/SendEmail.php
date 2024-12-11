@@ -9,7 +9,7 @@ function enviarEmailConfirmacao($email, $nome, $token) {
             "MIME-Version" => "1.0",
             "Content-Type" => "text/html;charset=UTF-8"
         );
-        $link = "https://donsvinibarbearia.hostdeprojetosdoifsp.gru.br/app/views/confirmar_email.html?token=" . urlencode($token);
+        $link = "https://donvinibarbearia.ifhost.gru.br/app/views/confirmar_email.html?token=" . urlencode($token);
         $message = "Olá, $nome. <br>
                     Por favor, clique no link abaixo para confirmar seu e-mail:
                     <br>
