@@ -86,7 +86,7 @@ $(function () {
   const fetchGalleryImages = async () => {
     try {
       await $.get(
-        "app/controllers/CtrlGaleria.php/get",
+        "../app/controllers/CtrlGaleria.php/get",
         function (response) {
           const parsedResponse = Array.isArray(response)
             ? response
@@ -109,10 +109,10 @@ $(function () {
     $(".carousel").empty();
 
     images.forEach(function (imageData) {
-      const imagePath = "../" + imageData.imagem;
+      const imagePath = "../app/" + imageData.imagem;
       const isAdmin = $(".carousel").hasClass("admin");
       const imageItem = `
-        <div class="carousel-item" data-id="${imageData.id}" id="corousel${imageData.id}">
+        <div class="carousel-item" data-id="${imageData.id}">
           <img src="${imagePath}" alt="Image" draggable="false">
           ${
             isAdmin
@@ -139,7 +139,7 @@ $(function () {
       formData.append("image", file);
 
       $.ajax({
-        url: "app/controllers/CtrlGaleria.php",
+        url: "../app/controllers/CtrlGaleria.php",
         type: "POST",
         data: formData,
         contentType: false,
@@ -168,13 +168,12 @@ $(function () {
   
     const handleRemoveImage = (imageId) => {
       $.ajax({
-        url: 'app/controllers/CtrlGaleria.php', 
+        url: '../app/controllers/CtrlGaleria.php', 
         type: 'DELETE', 
         data: { id: imageId }, 
         success: function (response) {
           const parsedResponse = JSON.parse(response);
           if (parsedResponse.status == 200) {   
-			$(`#carousel${imageId}`).remove();
             $(`.carousel-item[data-id=${imageId}]`).remove();
           } else {
             console.error('Erro ao remover a imagem:', parsedResponse.message);
