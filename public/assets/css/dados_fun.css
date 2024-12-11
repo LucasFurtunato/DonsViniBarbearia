@@ -13,6 +13,7 @@ body {
 body {
     display: flex;
     flex-direction: column;
+    overflow: auto; 
 }
 
 main {
@@ -211,6 +212,7 @@ nav {
     flex-direction: column;
     align-items: center; /* Opcional: Alinha os botões ao centro */
     gap: 10px; /* Espaço entre os botões */
+    margin-top: 20px;
 }
 
 
@@ -427,6 +429,57 @@ nav {
     background-color: #ecf0f1; /* cor de fundo dos imputs */
     padding: 8px;
 }
+
+/*Labels*/
+.label-input {
+    display: flex;
+    flex-direction: column; /* Alinha os itens na vertical */
+    align-items: flex-start; /* Alinha o texto à esquerda */
+    margin: 10px 0; /* Espaçamento entre os campos */
+    position: relative;
+}
+
+.label-input span {
+    font-size: 16px; /* Tamanho da fonte do rótulo */
+    font-weight: bold; /* Deixa o texto do rótulo em negrito */
+    color: #333; /* Cor do texto mais escura para melhor contraste */
+    margin-bottom: 5px; /* Espaço entre o rótulo e o campo */
+}
+
+.label-input select,
+.label-input input {
+    height: 40px; /* Altura dos campos */
+    width: 100%; /* Largura total */
+    border: 1px solid #ddd; /* Borda mais clara e discreta */
+    border-radius: 5px; /* Bordas arredondadas */
+    padding: 8px; /* Espaçamento interno */
+    font-size: 14px; /* Tamanho do texto nos campos */
+    background-color: #fff; /* Fundo branco para um visual limpo */
+    color: #1c1a18; /* Cor do texto nos campos */
+    outline: none; /* Remove o destaque azul ao focar */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Transição suave */
+}
+
+.label-input select:focus,
+.label-input input:focus {
+    border: 1px solid #007BFF; /* Cor de borda ao focar (azul moderno) */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2); /* Efeito de sombra ao focar */
+}
+
+.label-input select {
+    background-color: #fff; /* Fundo branco */
+    border: 1px solid #ddd; /* Borda cinza clara */
+    color: #1c1a18; /* Cor do texto */
+    appearance: none; /* Remove a aparência padrão */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24"><path fill="%23333" d="M7 10l5 5 5-5z"/></svg>') no-repeat right 10px center, #fff; /* Ícone e fundo branco */
+    background-size: 10px; /* Ajusta o tamanho do ícone */
+    padding-right: 30px; /* Espaço para o ícone */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Transição suave */
+}
+
+
 
 /*VERSÃO MOBILE*/
 @media screen and (max-width: 1040px) {
