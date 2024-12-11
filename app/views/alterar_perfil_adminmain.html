@@ -33,25 +33,14 @@
         <section id="alterar_perfil_adminmain">
 
              <!-- Container para o formulário de alteração -->
-            <div class="container"> 
-                <div class="content first-content" id="first-container"> 
+            <div class="container" id="first-container"> 
+                <div class="content first-content"> 
                     <div class="second-column">
                         <h2 class="title title-second">Alterar Informações</h2>
                         <!-- Formulário de alteração de dados -->
                         <form class="form">
-                            <!-- Campo de senha atual -->
-                            <label class="label-input" for="">
-                                <div class="space_icon">
-                                    <i class="fas fa-lock icon-modify"></i> <!-- imagem senha -->
-                                </div>
-                                <input type="password" placeholder="Senha Atual" maxlength="50" id="password-1">
-                                <div class="btn-fig">
-                                    <i class="bi bi-eye" id="btn-password-1" onclick="mostrarSenha1()"></i>
-                                </div>
-                            </label>
-
                             <!-- Campo para código -->
-                            <label class="label-input" for="">
+                            <label class="label-input" for="" id="Codigo">
                                 <div class="space_icon">
                                     <i class="far fa-user icon-modify"></i> <!-- imagem usuario -->
                                 </div>
@@ -60,9 +49,17 @@
                                     <i class="bi bi-pencil-fill"></i>
                                 </div>
                             </label>
+                              <!-- Campo de nome -->
+                              <label class="label-input" for="" id="Nome">
+                                    <div class="space_icon">
+                                        <i class="far fa-user icon-modify"></i> <!-- imagem usuario -->
+                                    </div>
+                                    <input type="text" placeholder="Nome" id="nome" maxlength="50">
+                                </label>
+                                
 
                             <!-- Campo de e-mail -->
-                            <label class="label-input" for="">
+                            <label class="label-input" for="" id="Email">
                                 <div class="space_icon">
                                     <i class="far fa-envelope icon-modify"></i> <!-- imagem email -->
                                 </div>
@@ -73,7 +70,7 @@
                             </label>
 
                               <!-- Campo para nova senha -->
-                            <label class="label-input" for="">
+                            <label class="label-input" for="" >
                                 <div class="space_icon">
                                     <i class="fas fa-lock icon-modify"></i> <!-- imagem senha -->
                                 </div>
@@ -102,7 +99,7 @@
         
             <!-- Container para confirmação -->
             <div class="container" id="second-container" style="display: none">
-                <div class="content first-content" id="first-container">
+                <div class="content first-content">
                     <div class="second-column">
                         <h2 class="title title-second">Confirmar Alterações</h2>
                         <p class="description description-second">Tem certeza de que deseja fazer essas alterações em seu perfil?</p>
@@ -111,8 +108,8 @@
                         <form class="form-confirmation">
                             <!-- Botões de confirmação e cancelamento -->
                             <div class="btn-group">
-                                <button type="submit" class="btn btn-second">Alterar</button>
-                                <button type="button" class="btn btn-second cancel-btn">Cancelar</button>
+                                <button type="submit" class="btn btn-second" id="perfilmain">Alterar</button>
+                                <button type="button" class="btn btn-second cancel-btn" id="cperfilmain">Cancelar</button>
                             </div>
                         </form>
                     </div>

@@ -204,11 +204,14 @@ $(document).ready(function () {
       $("#aEntrarUsr").hide();
       $("#aEntrarAdm").hide();
       $("#aEntrar").hide();
+      $("#config").show();
+      $("#config").attr("href", "app/views/alterar_perfil_cliente.html");
     } else if (objRetorno.usrType == "gerente") {
-      $("#aGerente").text(objRetorno.name);
-
+      $("#aName").text(objRetorno.name);
       $("#aName").show();
       $("#aSair").show();
+      $("#aAgenda").show();
+      $("#aAgenda").attr("href", "app/views/agenda.html");
       $("#aEntrarUsr").hide();
       $("#aEntrarAdm").hide();
       $("#aEntrar").hide();
@@ -221,11 +224,14 @@ $(document).ready(function () {
       $("#aEntrarUsr").hide();
       $("#aEntrarAdm").hide();
       $("#aEntrar").hide();
+      $("#config").show();
+      $("#config").attr("href", "app/views/alterar_perfil_adminfun.html");
     } else {
       $("#inscrevase").attr("href", "app/views/login-cadastro.html")     
       $("#agendaja").attr("href", "app/views/login-cadastro.html")
       $("#aName").hide();
       $("#aSair").hide();
+      $("#config").hide();
       $("#aAgenda").hide();
       $("#aEntrarUsr").show();
       $("#aEntrarAdm").show();

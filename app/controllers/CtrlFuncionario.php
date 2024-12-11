@@ -64,6 +64,21 @@ class CtrlFuncionario extends ControllerHandler {
 
 	public function put() {		
 		$funcionarioId = $this->getParameter('funcionarioId');
+		
+		if (empty($funcionarioId)) {
+		    $funcionarioId = $_SESSION["funcionario"]["funcionarioId"];
+		    if (empty($funcionarioId)) {
+		        $response = [
+		            'status' => false,
+		            'message' => 'Houve algum erro ao alterar'
+		        ];
+		        
+		        $json = \json_encode($response, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+		        echo $json;
+		        return ;
+		    }
+		}
+		
 		$codigo = $this->getParameter('codigo');
 		$nome = $this->getParameter('nome');
 		$email = $this->getParameter('email');

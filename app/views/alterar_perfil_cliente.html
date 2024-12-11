@@ -23,12 +23,8 @@
                 <div class="line3"></div>
             </div>
             <ul class="nav-list">
-                <li><a href="#">Início</a></li>
-                <li><a href="#about">Sobre</a></li>
-                <li><a href="#services">Serviços</a></li>
-                <li><a href="#gallery">Galeria</a></li>
-                <li><a href="#contact">Contato</a></li>
-                <li><a href="#" class="login-button" id="login-button">Entrar</a></li>
+                <li><a href="../../index.html">Início</a></li>
+                <li><a href="#" class="login-button" id="login-button">Cliente</a></li>
             </ul>
         </nav>
     </header>
@@ -40,18 +36,6 @@
                     <div class="second-column"> <!-- Segunda coluna do conteúdo -->
                         <h2 class="title title-second">Alterar Informações</h2>
                         <form class="form"> <!-- Formulário de alteração -->
-
-                             <!-- Campo para senha atual -->
-                            <label class="label-input" for="">
-                                <div class="space_icon">
-                                    <i class="fas fa-lock icon-modify"></i> <!-- imagem senha -->
-                                </div>
-                                <input type="password" placeholder="Senha Atual" maxlength="50" id="password-1"> <!-- Input para senha -->
-                                <div class="btn-fig">
-                                    <i class="bi bi-eye" id="btn-password-1" onclick="mostrarSenha1()"></i> <!-- Ícone para mostrar/ocultar senha -->
-                                </div>
-                            </label>
-
                             <!-- Campo para novo nome -->
                             <label class="label-input" for="">
                                 <div class="space_icon">
@@ -112,8 +96,8 @@
                     <form class="form-confirmation">
                         <!-- Botões de confirmação e cancelamento -->
                         <div class="btn-group">
-                            <button type="submit" class="btn btn-second">Alterar</button>
-                            <button type="button" class="btn btn-second cancel-btn">Cancelar</button>
+                            <button type="submit" class="btn btn-second" id="perfilcliente">Alterar</button>
+                            <button type="button" class="btn btn-second cancel-btn"id="cperfilcliente">Cancelar</button>
                         </div>
                     </form>
                 </div>
@@ -132,6 +116,7 @@
 
     <script src="../../public/assets/js/mobile-navbar.js"></script> <!-- Link para o script de navegação móvel -->
     <script src="../../public/assets/js/alterar_perfil_cliente.js"></script> <!-- Link para o script de alteração de perfil -->
+    
 
 </body> 
 
