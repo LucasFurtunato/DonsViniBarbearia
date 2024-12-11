@@ -300,6 +300,7 @@ $(document).ready(function() {
 		    method: "POST",
 		    data: data,
 		    success: function(response) {
+				console.log(response);
 		        var objRetorno = JSON.parse(response);
 				
 				if (objRetorno.status === "true") {
