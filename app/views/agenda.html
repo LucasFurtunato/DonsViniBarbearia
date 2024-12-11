@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamentos</title>
+    <link rel="stylesheet" href="../../public/assets/css/style.css">
+    <link rel="shortcut icon" type="imagex/png" href="public/assets/img/favicon.png">
+    <link rel="stylesheet" href="../../public/assets/css/agenda.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+</head>
+<body>
+    
+    <header>
+        <nav>
+            <img src="../../public/assets/img/logo.png" alt="Don' Vini logo" class="logo">
+            <div class="mobile-menu"> <!-- Menu adaptado para dispositivos móveis -->
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+            <ul class="nav-list">
+                <li><a href="../../index_main_admin.html" id="btnamd">Início</a></li>
+                <li><a href="#" class="login-button" id="login-button">Entrar</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="table-container">
+            <h1 class="heading">Agendamentos</h1>
+            <table class="table"> <!-- Tabela de agendamentos -->
+                <thead>
+                    <tr>
+                        <th>Nome Fun.</th> <!-- Nome do funcionário responsável -->
+                        <th>Dia</th>
+                        <th>Horário</th>
+                        <th>Serviços</th>
+                        <th>Nome Cliente</th>
+                        <th>Situação</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body"> 
+                     <!-- O conteúdo será preenchido dinamicamente pelo JS -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Barbearias Don' Vini. Todos os direitos reservados.</p>
+            <p>Por: RootingTI</p>
+        </div>
+    </footer> 
+
+    <script src="../../public/assets/js/mobile-navbar.js"></script> <!-- Script para menu mobile -->
+    <script src="../../public/assets/js/agenda.js"></script> <!-- Script para manipulação da tabela de agendamentos -->
+</body>
+</html>

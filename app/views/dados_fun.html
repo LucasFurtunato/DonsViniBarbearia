@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dados dos Funcionários</title>
+    <link rel="stylesheet" href="../../public/assets/css/style.css">
+    <link rel="stylesheet" href="../../public/assets/css/dados_fun.css">
+    <link rel="shortcut icon" type="imagex/png" href="public/assets/img/favicon.png">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+            integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    
+    <header>
+        <nav>
+            <img src="../../public/assets/img/logo.png" alt="Don' Vini logo" class="logo">
+            <div class="mobile-menu" style="z-index: 999;">
+            </div>
+            <ul class="nav-list">
+                <li><a href="../../index_main_admin.html">Início</a></li>
+                <li><a href="#" id="login-button">Main Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+
+    <main>
+        <div class="table-container" id="table">
+            <h1 class="heading">Dados dos Funcionários</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nome Fun.</th>
+                        <th>Email</th>
+                        <th>Unidade</th>
+                        <th>Código</th>
+                        <th>Alterar</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body"> 
+                   
+                </tbody>
+            </table>
+            <a href="cadastro_fun.html" id="novo-funcionario" class="btn btn-second">Novo funcionário</a>
+
+            <!--rodapé da tabela-->  
+            <div class="footer-table"></div>
+        </div>
+        <div class="container" id="alterar-container" style="display: none;">
+            <div class="content first-content">
+                <div class="second-column">
+                    <h2 class="title title-second">Alterar Funcionário</h2>
+                    <form id="form-alterar">
+                    	<input type="hidden" name="funcionarioId" id="idfuncionario"> <!-- ID invisível com o input hidden -->
+                        <label class="label-input">
+                            <span>Unidade</span>
+                            <select id="unidade_fun" name="unidadeId" required>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                            </select>
+                        </label>
+                        <label class="label-input">
+                            <span>Código</span>
+                            <input type="text" id="alterar-codigo" name="codigo" maxlength="50" required>
+                        </label>
+                        <label class="label-input">
+                            <span>Nome</span>
+                            <input type="text" id="alterar-nome" name="nome" maxlength="50" required>
+                        </label>
+                        <label class="label-input">
+                            <span>Email</span>
+                            <input type="text" id="alterar-email" name="email" maxlength="50" required>
+                        </label>
+                        <label class="label-input">
+                            <span>Senha</span>
+                            <input type="password" id="alterar-senha" name="senhaFuncionario" maxlength="20" required>
+                        </label>
+                        <label class="label-input">
+                            <span>Confirmar Senha</span>
+                            <input type="password" id="alterar-senha" name="confirmarsenha" maxlength="20" required>
+                        </label>
+                        <div class="btn-group">
+                            <button type="button" id="confirmar-alteracao" class="btn btn-second">Salvar Alterações</button>
+                            <button type="button" id="cancelar-alteracao" class="btn btn-second cancel-btn">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id="delete-container" style="display: none;"> 
+            <div class="content first-content"> 
+                <div class="second-column">
+                    <h2 class="title title-second">Excluir Funcionário</h2>
+                    <p class="description description-second">Você tem certeza de que quer excluir este funcionario?</p>
+                    <button class="btn1 btn-second" id="delete-fun">Excluir</button>
+                    <br>
+                    <div style="text-align: center;"> 
+                        <button type="button" id="cancelar-exclusão" class="btn btn-second cancel-btn">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Barbearias Don' Vini. Todos os direitos reservados.</p>
+            <p>Por: RootingTI</p>
+        </div>
+    </footer> 
+
+    <script src="../../public/assets/js/dados_fun.js"></script>
+    <script src="../../public/assets/js/mobile-navbar.js"></script>
+
+</body>
+</html>
