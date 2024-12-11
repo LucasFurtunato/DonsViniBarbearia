@@ -36,7 +36,7 @@ class CtrlGaleria extends ControllerHandler {
 			$uploadDir = '../uploads/gallery/'; 
 			$destPath = $uploadDir . basename($fileName);
 
-			!is_dir($uploadDir) ? mkdir($uploadDir, 7770, true) : chmod($uploadDir, 7770);
+			//!is_dir($uploadDir) ? mkdir($uploadDir, 7770, true) : chmod($uploadDir, 7770);
 					
 			if (move_uploaded_file($fileTmpPath, $destPath)) {
 
