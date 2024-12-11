@@ -110,6 +110,7 @@ $(function () {
 
     images.forEach(function (imageData) {
       const imagePath = "app/" + imageData.imagem;
+      console.log(imagePath);
       const isAdmin = $(".carousel").hasClass("admin");
       const imageItem = `
         <div class="carousel-item" data-id="${imageData.id}">
