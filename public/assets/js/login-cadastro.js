@@ -77,6 +77,7 @@ btnSignup.addEventListener("click", function () {
           let email = $('#email').val().trim();
           let senha = $('#password-1').val().trim();
           let confirmarSenha = $('#password-2').val().trim();
+		  let checkbox = $("#checkbox-example").prop("checked");
   
           // Função de validação de email
           function validarEmail(email) {
@@ -92,7 +93,9 @@ btnSignup.addEventListener("click", function () {
           } else if (senha !== confirmarSenha) {
               // Verificar se as senhas não correspondem
               alert("As senhas do funcionário não correspondem. Por favor, tente novamente.");
-          } else {
+          } else if (!checkbox) {
+		      alert("Você deve aceitar os Termos e Condições.");
+		  } else {
 			$('#responseArea').text("Aguarde alguns segundos");
             $.ajax({
                 url: "../controllers/CtrlCliente.php",

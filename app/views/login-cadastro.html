@@ -15,7 +15,9 @@
 </head>
 <body>
 <nav>
-      <img src="../../public/assets/img/logo.png" alt="Don' Vini logo" class="logo">
+        <a href="../../index.html">
+    		<img  src="../../public/assets/img/logo.png" alt="Don' Vini logo" class="logo">
+    	</a>
       <div class="mobile-menu">
         <div class="line1"></div>
         <div class="line2"></div>
@@ -23,7 +25,12 @@
       </div>
       <ul class="nav-list">
         <li><a href="../../index.html">Início</a></li>
-        <li><a href="#" class="login-button" id="login-button">Entrar</a></li>
+        <li class="login-item">
+            <a href="#" class="login-button" id="login-button">Entrar</a>
+            <div class="login-submenu">
+                <a href="#">Entrar Admin</a>
+            </div>
+        </li>
       </ul>
     </nav>
     <div class="container"> 
@@ -63,6 +70,10 @@
                             <i class="bi bi-eye" id="btn-password-2" onclick="mostrarSenha2()"></i>
                         </div> 
                     </label>
+					<label class="label-input" for="checkbox-example">
+					    <input type="checkbox" id="checkbox-example" name="aceitar-termos" required>
+					    <span class="checkbox-label">Aceitar <a href="termos_e_condicoes.html" target="_blank">Termos e Condições</a></span>
+					</label>
                     <label id="responseArea"></label>
                     <button type="button" class="btn btn-second" id="btnCadastro">Criar</button>
                 </form>

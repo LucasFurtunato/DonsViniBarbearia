@@ -150,6 +150,7 @@ $(document).ready(function(){
 	$('#cancelar-exclusão').on('click', function() {
 		   // Oculta o formulário de edição e volta para a tabela
 		    $('#alterar-container').hide();
+			$('#delete-container').hide();
 	        $('#table').show();
 		});
 

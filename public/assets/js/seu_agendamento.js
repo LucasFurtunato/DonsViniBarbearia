@@ -345,6 +345,7 @@ $(document).ready(function() {
 	    // Oculta o formulário de edição e volta para a tabela
 		$("#table").show();            // Esconde o elemento com id 'table'
 		$("#first-container").hide();  // Exibe o elemento com id 'first-container'
+		$("#second-container").hide(); 
 		$('#alterar-container').hide(); // Mostra a seção de alteração
 	});
 	

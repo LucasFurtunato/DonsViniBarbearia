@@ -1,17 +1,24 @@
 $(document).ready(function() {
+	var type = null;
+ 	
 	$.get( '../controllers/VfyLogin.php', function(dados) {
 	    var objRetorno = JSON.parse(dados)
 
 	    if (objRetorno.usrType == "funcionario" ){
 	        $("#login-button").text(objRetorno.name);
 			$("#btnadm").attr("href", "../../index")
+			$("#link-img").attr("href", "../../index")
 	    } else if(objRetorno.usrType == "gerente"){
 			$("#login-button").text(objRetorno.name);
-			$("#btnadm").attr("href", "../../index_admin_main.html")
+			type = objRetorno.usrType;
+			$("#btnadm").attr("href", "../../index_main_admin.html")
+			$("#link-img").attr("href", "../../index_main_admin.html")
 		}else {
 			window.location.href = '../../index.html';
 		}
 	});
+	
+	const today = new Date().toISOString().split('T')[0];
 
     // Carrega os agendamentos e preenche a tabela
     $.ajax({
@@ -22,22 +29,41 @@ $(document).ready(function() {
             $('#table-body').empty(); // Limpa a tabela antes de adicionar novos dados
 
             data.forEach(item => {
-                $('#table-body').append(`
-                    <tr>
-                        <td data-label="Nome Fun."><p>${item.funNome}</p></td>
-                        <td data-label="Dia">${item.dia}</td>
-                        <td data-label="Horário">${item.horario}</td>
-                        <td data-label="Serviços">${
-                            [item.corteNome, item.barbaNome, item.cuidadosNome]
-                                .filter(nome => nome && nome.trim() !== "")
-                                .join(", ")
-                        }</td>                    
-                        <td data-label="Nome Cliente">${item.clienteNome}</td>      
-                        <td data-label="Situação">
-                            <a href="#" class="btn a-fazer">A Fazer</a>
-                        </td>              
-                    </tr>
-                `);
+				if (item.dia === today && type == "funcionario") {
+					$('#table-body').append(`
+					    <tr>
+					        <td data-label="Nome Fun."><p>${item.funNome}</p></td>
+					        <td data-label="Dia">${item.dia}</td>
+					        <td data-label="Horário">${item.horario}</td>
+					        <td data-label="Serviços">${
+					            [item.corteNome, item.barbaNome, item.cuidadosNome]
+					                .filter(nome => nome && nome.trim() !== "")
+					                .join(", ")
+					        }</td>                    
+					        <td data-label="Nome Cliente">${item.clienteNome}</td>      
+					        <td data-label="Situação">
+					            <a href="#" class="btn a-fazer">A Fazer</a>
+					        </td>              
+					    </tr>
+					`);
+				} else if (type == "gerente") {
+					$('#table-body').append(`
+					    <tr>
+					        <td data-label="Nome Fun."><p>${item.funNome}</p></td>
+					        <td data-label="Dia">${item.dia}</td>
+					        <td data-label="Horário">${item.horario}</td>
+					        <td data-label="Serviços">${
+					            [item.corteNome, item.barbaNome, item.cuidadosNome]
+					                .filter(nome => nome && nome.trim() !== "")
+					                .join(", ")
+					        }</td>                    
+					        <td data-label="Nome Cliente">${item.clienteNome}</td>      
+					        <td data-label="Situação">
+					            <a href="#" class="btn a-fazer">A Fazer</a>
+					        </td>              
+					    </tr>
+					`);
+				}
             });
 
             // Adiciona o evento de clique aos botões após o carregamento
