@@ -28,7 +28,6 @@ $(document).ready(function() {
 	    method: "GET",
 	    success: function(response) {
 			agendamentos = JSON.parse(response);
-			console.log(agendamentos);
 	    },
 	    error: function(xhr, status, error) {
 	        alert("Erro na requisição: " + error);

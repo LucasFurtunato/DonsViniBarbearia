@@ -131,6 +131,19 @@ $(document).ready(function() {
 
 	}
 	
+	let agendamentos = [];
+
+	$.ajax({
+	    url: "../controllers/CtrlAgendamentosListAll.php",
+	    method: "GET",
+	    success: function(response) {
+			agendamentos = JSON.parse(response);
+	    },
+	    error: function(xhr, status, error) {
+	        alert("Erro na requisição: " + error);
+	    }
+	});
+	
 
 	// Função para calcular o preço baseado nos serviços selecionados
 	function atualizarPreco() {
@@ -234,8 +247,11 @@ $(document).ready(function() {
 		});
 	});
 	
+	let unidade = null;
+	
 	$(document).on('click', '#alterar_dados', function(event) {
 		event.preventDefault(); // Previne o comportamento padrão do link
+		unidade = $("#alterar-local").val().trim();
 				
 		$(this).addClass('active').closest('tr').siblings().find('.btn-alterar').removeClass('active');
 		   
@@ -269,6 +285,26 @@ $(document).ready(function() {
 	   $('#alterar-barba').val(barba);
 	   $('#alterar-cuidados').val(cuidados);
 	   $('#alterar-preco').text("R$ " + preco); // Exibe o preço como texto no campo de preço
+	   
+	   const dataSelecionada = $('#alterar-dia').val();
+
+	   if (dataSelecionada) {
+	       // Filtra os agendamentos para o dia e unidade selecionados
+	       const horariosIndisponiveis = agendamentos
+	           .filter(agendamento => 
+	               agendamento.dia === dataSelecionada && 
+	               parseInt(agendamento.unidadeId) === parseInt(unidade) // Comparação de unidadeId
+	           )
+	           .map(agendamento => agendamento.horario);
+
+	       // Esconde os horários já agendados
+	       $('#alterar-horario option').each(function () {
+	           const horario = $(this).val();
+	           if (horariosIndisponiveis.includes(horario)) {
+	               $(this).hide();
+	           }
+	       });
+	   }
 
 		
 		$("#table").hide();            // Esconde o elemento com id 'table'
@@ -352,6 +388,17 @@ $(document).ready(function() {
 					alert(objRetorno.message);
 					atualizarTabela();
 					
+					$.ajax({
+					    url: "../controllers/CtrlAgendamentosListAll.php",
+					    method: "GET",
+					    success: function(response) {
+							agendamentos = JSON.parse(response);
+					    },
+					    error: function(xhr, status, error) {
+					        alert("Erro na requisição: " + error);
+					    }
+					});
+					
 					$("#table").show();            // Esconde o elemento com id 'table'
 					$('#alterar-container').hide(); // Mostra a seção de alteração
 				}
@@ -360,6 +407,59 @@ $(document).ready(function() {
 				alert("Erro na requisição: " + error);
 		    }
 		});
-		
 	})
+	
+	
+	const today = new Date().toISOString().split('T')[0];
+	$('#alterar-dia').attr('min', today);
+	
+	$("#alterar-local").on("change", function() {
+		unidade = $("#alterar-local").val().trim();
+		
+		const dataSelecionada = $('#alterar-dia').val();
+
+		if (dataSelecionada) {
+		    // Filtra os agendamentos para o dia e unidade selecionados
+		    const horariosIndisponiveis = agendamentos
+		        .filter(agendamento => 
+		            agendamento.dia === dataSelecionada && 
+		            parseInt(agendamento.unidadeId) === parseInt(unidade) // Comparação de unidadeId
+		        )
+		        .map(agendamento => agendamento.horario);
+
+		    // Esconde os horários já agendados
+		    $('#alterar-horario option').each(function () {
+		        const horario = $(this).val();
+		        if (horariosIndisponiveis.includes(horario)) {
+		            $(this).hide();
+		        } else {
+					$(this).show();	
+				}
+		    });
+		}
+	})
+	
+	$('#alterar-dia').on('change', function () {
+	    const dataSelecionada = $(this).val();
+
+	    if (dataSelecionada) {
+	        // Filtra os agendamentos para o dia e unidade selecionados
+	        const horariosIndisponiveis = agendamentos
+	            .filter(agendamento => 
+	                agendamento.dia === dataSelecionada && 
+	                parseInt(agendamento.unidadeId) === parseInt(unidade) // Comparação de unidadeId
+	            )
+	            .map(agendamento => agendamento.horario);
+
+	        // Esconde os horários já agendados
+	        $('#alterar-horario option').each(function () {
+	            const horario = $(this).val();
+	            if (horariosIndisponiveis.includes(horario)) {
+	                $(this).hide();
+	            }
+	        });
+	    }
+	});
+
+
 });
