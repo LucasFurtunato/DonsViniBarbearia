@@ -27,7 +27,7 @@ class CtrlClienteLogin extends ControllerHandler {
 	    $existingCliente = $this->cliente->listByField('email', $email);
 	    
 	    // Verifica se o cliente existe
-	    if (!empty($existingCliente)) {
+	    if (!empty($existingCliente) && $email === $existingCliente[0]['email']) {
 			$email_verified = $existingCliente[0]['email_verified'];
 	    
 			if ($email_verified == 0) {

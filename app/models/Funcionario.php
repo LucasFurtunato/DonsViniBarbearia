@@ -17,7 +17,7 @@ class Funcionario {
 	private $unidadeId;
 	private $senhaFuncionario;
 
-	private $tableName  = "ifhostgru_donvinibarbearia.funcionario";
+	private $tableName  = "hostdeprojetos_donvinibarbearia.funcionario";
 	private $fieldsName = "funcionarioId, codigo, nome, email, unidadeId, senha";
 	private $fieldKey   = "funcionarioId";
 	private $dbquery     = null;

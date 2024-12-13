@@ -65,7 +65,7 @@ class CtrlFuncionarioGerenteLogin extends ControllerHandler {
 		
 		$existingFuncionario = $this->funcionario->listByfield('email', $email);
 		
-    	if (!empty($existingFuncionario) && $codigo === $existingFuncionario[0]['codigo']) {
+    	if (!empty($existingFuncionario) && $email === $existingFuncionario[0]['email'] && $codigo === $existingFuncionario[0]['codigo']) {
     	    $funcionarioId = $existingFuncionario[0]['funcionarioId'];
     	    $nome = $existingFuncionario[0]['nome'];
     	    $unidadeId = $existingFuncionario[0]['unidadeId'];
