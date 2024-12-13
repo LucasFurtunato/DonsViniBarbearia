@@ -6,8 +6,9 @@ $(document).ready(function() {
 
 	    if (objRetorno.usrType == "funcionario" ){
 	        $("#login-button").text(objRetorno.name);
-			$("#btnadm").attr("href", "../../index")
-			$("#link-img").attr("href", "../../index")
+			$("#btnadm").attr("href", "../../index.html")
+			$("#link-img").attr("href", "../../index.html")
+			type = objRetorno.usrType;
 	    } else if(objRetorno.usrType == "gerente"){
 			$("#login-button").text(objRetorno.name);
 			type = objRetorno.usrType;

@@ -92,7 +92,7 @@ btnSignup.addEventListener("click", function () {
               alert("Por favor, insira um e-mail válido.");
           } else if (senha !== confirmarSenha) {
               // Verificar se as senhas não correspondem
-              alert("As senhas do funcionário não correspondem. Por favor, tente novamente.");
+              alert("As senhas não correspondem. Por favor, tente novamente.");
           } else if (!checkbox) {
 		      alert("Você deve aceitar os Termos e Condições.");
 		  } else {
