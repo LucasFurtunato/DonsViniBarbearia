@@ -1,0 +1,291 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Noto Sans', sans-serif;
+    background-color: #ecf0f1;
+}
+
+a {
+    color: #ffc154;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+p::selection,
+h2::selection,
+h3::selection,
+a::selection {
+    background: #ffc154;
+    color: #f1faee;
+}
+
+/*Menu*/
+
+a:hover {
+    opacity: 0.8;
+}
+
+.logo {
+    height: 11vh;
+    user-select: none;
+}
+
+.login-button {
+    color: whitesmoke;
+    background-color: #f8c66f;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    /* Alinha a logo à esquerda e a nav-list à direita */
+    align-items: center;
+    font-family: 'Noto Sans', sans-serif;
+    background: #1c1a18f3;
+    height: 12vh;
+    padding: 0 20px;
+    /* Adiciona um pequeno espaço nas laterais para dar respiro */
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    margin-right: 0;
+    /* Remove a margem à direita */
+}
+
+.nav-list li {
+    letter-spacing: 3px;
+    margin-left: 32px;
+    /* Mantém espaçamento entre os itens da nav-list */
+}
+
+
+@media (max-width: 999px) {
+    body {
+        overflow-x: hidden;
+    }
+
+    .nav-list {
+        position: absolute;
+        top: 12vh;
+        right: 0;
+        width: 100vw;
+        height: 92vh;
+        background: #1c1a18f3;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in;
+    }
+
+    .nav-list li {
+        margin-left: 0;
+        opacity: 0;
+    }
+
+
+    .login-button {
+        color: #f8c66f;
+        background: none;
+    }
+
+}
+
+.nav-list.active {
+    transform: translateX(0);
+}
+
+
+
+/* Div-content first-content */
+
+.container {
+    display: flex;
+    /* deixar o primeiro e segundo conteúdo um ao lado do outro */
+    justify-content: center;
+    /* centraliza as duas divs de conteúdo */
+    align-items: center;
+    /* centraliza os itens das divs de conteúdo */
+    height: 120vh;
+    /* centraliza os itens das divs de conteúdo */
+    background-color: #ecf0f1;
+    /* cor de fundo sem ser das divs conteúdos */
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.content {
+    background-color: #fff;
+    border-radius: 15px;
+    /* define a borda circular em torno das divs de conteúdo */
+    width: 50%;
+    /* define a largura das divs de conteúdo */
+    height: 60%;
+    /* define a altura das divs de conteúdo */
+    justify-content: space-between;
+    /* espaço entre a primeira coluna e a segunda coluna */
+    align-items: center;
+    /* alinhar verticalmente os itens dos conteúdos */
+    position: relative;
+    /* para deixar o pseudoelemento com a altura do content */
+}
+
+.first-content {
+    display: flex;
+    /* deixar uma coluna ao lado da outra */
+    align-items: center;
+    justify-content: center;
+}
+
+.second-column {
+    width: 100%; /* largura da segunda coluna */
+    display: flex; /* deixar os elementos um ao lado do outro */
+    flex-direction: column; /* organizar esses elementos em um fluxo para a coluna */
+    align-items: center; /* centralizar os itens */
+    justify-content: flex-start; /* Alinha o conteúdo para o topo */
+}
+
+.title {
+    font-size: 32px; /* Aumenta o tamanho da fonte do título */
+    font-weight: bold; /* Negrito para dar destaque */
+    text-align: center; /* Centraliza o texto */
+    margin-bottom: 20px; /* Espaço abaixo do título */
+}
+
+.title-second {
+    color: #f8c66f; /* Mantém a cor do título */
+    margin-bottom: 10%; /* Ajusta o espaço abaixo do título para melhorar o espaçamento */
+}
+
+.description {
+    font-size: 14px;
+    /* tamanho da fonte */
+    font-weight: 300;
+    line-height: 30px;
+    /*espaçamento entre linhas */
+}
+
+.description-second {
+    color: #7f8c8d;
+    /* cor da descrição secundária */
+}
+
+
+.btn-1,
+.btn-2 {
+    display: flex;
+    border-radius: 15px;
+    /* deixar arredondado o botão */
+    text-transform: uppercase;
+    /* deixar letra maiuscula */
+    color: #fff;
+    font-size: 12px;
+    /* tamanho da letra dentro do botão */
+    padding: 10px 50px;
+    /* tamanho interno do botão */
+    cursor: pointer;
+    /* cursor para indicar click */
+    font-weight: bold;
+    /*negrito */
+    width: 100%;
+    /* largura do botão */
+    align-self: center;
+    /* alinhar todos os botões no centro */
+    border: none;
+    /* retirar borda do botão */
+    margin-top: 1rem;
+    /* distanciar do conteudo de cima */
+    background-color: #f8c66f;
+    /* cor de fundo do botão */
+    border: 1px solid #f8c66f;
+    /* cor da borda do botão */
+    transition: background-color .5s;
+    /* transição suave */
+    margin-bottom: 30%;
+}
+
+
+.btn-1:hover,
+.btn-2:hover {
+    background-color: #fff;
+    /* cor de fundo do botão */
+    border: 1px solid #f8c66f;
+    /* cor da borda do botão */
+    color: #f8c66f;
+    /* cor da letra */
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* centraliza os botões */
+    margin-top: 20px; /* adicione um espaço acima se necessário */
+    padding: 10px; /* Padding interno dos botões */
+    text-align: center; /* Centraliza o texto dos botões */
+    transition: background-color .3s; /* Transição suave na mudança de cor */
+}
+
+
+
+/*Footer*/
+
+.footer-content {
+    width: 100%;
+    height: 100px;
+    background: #1C1A18;
+    margin-top: -5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 2% 5%;
+    color: #fdfdfd;
+}
+.login-item {
+    position: relative; /* Posicionar o submenu corretamente */
+    display: flex; /* Alinha o botão e o submenu */
+    flex-direction: column; 
+    align-items: center; 
+}
+
+.login-submenu {
+    display: none; 
+    position: absolute; /* Posicionado em relação ao pai (login-item) */
+    top: 100%; /* Coloca o submenu logo abaixo do botão "Entrar" */
+    left: 50%; /* Posiciona à esquerda do centro */
+    transform: translateX(-50%); /* Centraliza o submenu horizontalmente */
+    background-color: #ffc154; 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 1; 
+    max-width: 100vw; 
+}
+
+.login-submenu a {
+    display: block; 
+    padding: 5px; 
+    color: #1C1A18; 
+    text-decoration: none; 
+}
+
+.login-submenu a:hover {
+    background-color: #f8c66f; 
+}
+
+.login-item:hover .login-submenu {
+    display: block; 
+}

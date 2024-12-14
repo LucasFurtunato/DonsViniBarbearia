@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <title>Home</title>
+    <link rel="stylesheet" href="public/assets/css/index_main_admin.css">
+    <link rel="shortcut icon" type="imagex/png" href="public/assets/img/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    
+    <header>
+        <nav>
+            <a href="#">
+        		<img  src="public/assets/img/logo.png" alt="Don' Vini logo" class="logo">
+        	</a>
+            <div class="mobile-menu">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+            <ul class="nav-list">
+                <li><a href="#">Início</a></li>
+                <li><a href="#about">Sobre</a></li>
+                <li><a href="#services">Serviços</a></li>
+                <li><a href="#gallery">Galeria</a></li>
+                <li><a href="#contact">Contato</a></li>
+
+                <li class="login-item">
+                    <a href="#" class="login-button" id="login-button">Entrar</a>
+                    <div class="login-submenu">
+                        <a href="app/views/alterar_produtos_servicos.html">Produtos</a>
+                        <a href="app/views/dados_fun.html">Time</a>
+                        <a href="app/views/alterar_perfil_adminmain.html">Config</a>
+                        <a href="app/views/agenda.html" id="aAgenda">Agenda</a>
+                        <a href="app/controllers/logout.php">Logout</a>
+                        
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="background-container">
+            <h1>Don' Vini</h1>
+            <h2>Barbearias</h2>
+        </div>
+
+        <section id="about">
+
+            <h2>Quem Somos?</h2>
+            <p id="Quem-somos-txt-1"> </p>
+            <button id="edit-txt" class="button-generic red">Editar Texto</button>
+            <button id="save-txt" class="button-generic red">Salvar</button>
+        </section>
+
+        <section id="services">
+            
+            <h3>Conheça Nossos</h3>
+            <h2>Serviços</h2>
+
+            <div class="services-container">
+
+                <div class="card">
+                    <div class="card-content">
+                        <img src="public/assets/img/tesoura_e_pente.png" alt="Tesoura">
+                        <h3>Cabelo</h3>
+                        <div class="line"></div>
+                        <p id="Cabelo-txt-1"></p>
+                        <div class="hidden-text">
+                            <p id="Cabelo-txt-2"> </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <img src="public/assets/img/navalha.png" alt="Navalha">
+                        <h3>Barba</h3>
+                        <div class="line sec-line"></div>
+                        <p id="Barba-txt-1"></p>
+                        <div class="hidden-text">
+                            <p id="Barba-txt-2"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <img src="public/assets/img/pincel.png" alt="Pincel">
+                        <h3>Cuidados</h3>
+                        <div class="line"></div>
+                        <p id="Cuidados-txt-1"></p>
+                        <div class="hidden-text">
+                            <p id="Cuidados-txt-2"></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <button id="edit-txt-cabelo" class="button-generic red">Editar Cabelo</button>
+            <button id="save-txt-cabelo" class="button-generic red">Salvar</button>
+            
+            <button id="edit-txt-barba" class="button-generic red">Editar Barba</button>
+            <button id="save-txt-barba" class="button-generic red">Salvar</button>
+            
+            <button id="edit-txt-cuidados" class="button-generic red">Editar cuidados</button>
+            <button id="save-txt-cuidados" class="button-generic red">Salvar</button>
+
+        </section>
+
+        <section id="gallery">
+
+            <h3>Veja Nossa</h3>
+            <h2>Galeria</h2>
+
+            <div class="gallery-content">
+                <div class="wrapper">
+                    <i id="left" class="fa-solid fa-angle-left"></i>
+                    <div class="carousel admin">
+                        <!-- As imagnes são adicionadas aqui -->
+                    </div>
+                    <i id="right" class="fa-solid fa-angle-right"></i>
+                </div>
+            </div>
+            <button id="addCarouselImg" style="border: none" class="button-generic">Adicionar</button>
+            <input type="file" id="imageInput" style="display: none;">
+
+        </section>
+
+        <div class="striped-line"></div>
+
+        <section id="contact">
+
+            <h3>Fale</h3>
+            <h2>Conosco</h2>
+                
+                <div class="contact-container">
+                    <div class="square square2">
+                        <p id="p-italic">Nos contate</p>
+                        <p id="p-top">Nossos Contatos</p>
+                        <div class="icons">
+                            <i class="fa-solid fa-envelope"></i>
+                            <p id="email-text"></p>
+                        </div>
+						<div class="icons">
+						    <i class="fa-brands fa-whatsapp"></i>
+						    <p id="telefone-text-unidade-1"></p>
+						</div>
+						<div class="icons">
+						    <i class="fa-brands fa-whatsapp"></i>
+						    <p id="telefone-text-unidade-2"></p>
+						</div>
+						<div class="icons">
+						    <i class="fa-solid fa-location-dot"></i>
+						    <p id="endereco-text-unidade-1"></p>
+						</div>
+						<div class="icons">
+						    <i class="fa-solid fa-location-dot"></i>
+						    <p id="endereco-text-unidade-2"></p>
+						</div>
+                    </div>
+                    <button id="editContactBtn-1" class="button-generic editContactBtn">Editar Contato Unidade 1</button>
+                    <button id="saveContactBtn-1" class="button-generic saveContactBtn">salvar</button>
+                    
+					<button id="editContactBtn-2" class="button-generic editContactBtn">Editar Contato Unidade 2</button>					
+					<button id="saveContactBtn-2" class="button-generic saveContactBtn">salvar</button>
+                </div>                
+        
+        </section>
+        <section class="map-container">
+
+            <div class="maps">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d234337.73703207538!2d-46.557856270466!3d-23.405317633732594!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sInstituto%20Federal%20de%20Educa%C3%A7%C3%A3o%2C%20Ci%C3%AAncia%20e%20Tecnologia%20de%20S%C3%A3o%20Paulo!5e0!3m2!1spt-BR!2sbr!4v1716739406273!5m2!1spt-BR!2sbr" width="400" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <p>Unidade 1</p>
+            </div>
+            <div class="maps">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d234337.73703207538!2d-46.557856270466!3d-23.405317633732594!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sInstituto%20Federal%20de%20Educa%C3%A7%C3%A3o%2C%20Ci%C3%AAncia%20e%20Tecnologia%20de%20S%C3%A3o%20Paulo!5e0!3m2!1spt-BR!2sbr!4v1716739406273!5m2!1spt-BR!2sbr" width="400" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <p>Unidade 2</p>
+            </div>
+
+        </section>
+        
+
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Barbearias Don' Vini. Todos os direitos reservados.</p>
+            <p>Por: RootingTI</p>
+        </div>
+    </footer>
+
+    <script src="public/assets/js/mobile-navbar.js"></script>
+    <script src="public/assets/js/gallery.js"></script>
+    <script src="public/assets/js/index_main_admin.js"></script>
+    <script src="public/assets/js/contatos.js"></script>
+</body> 
+
+
+</html>

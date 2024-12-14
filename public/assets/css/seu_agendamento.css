@@ -1,0 +1,606 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    overflow: auto; 
+}
+
+main {
+    flex: 1;
+}
+
+
+/* Menu */
+
+a:hover {
+    opacity: 0.8;
+}
+
+.logo {
+    height: 11vh;
+    user-select: none;
+    margin-right: 30%;
+    /* Ajuste para deixar a logo mais à esquerda */
+}
+
+.login-button {
+    color: whitesmoke;
+    background-color: #f8c66f;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+/* Estilos gerais do menu */
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-family: 'Noto Sans', sans-serif;
+    background: #1c1a18f3;
+    height: 12vh;
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+/* Logo */
+.logo {
+    height: 11vh;
+    user-select: none;
+}
+
+/* Estilo da lista de navegação */
+.nav-list {
+    display: flex;
+    list-style: none;
+}
+
+.nav-list li {
+    letter-spacing: 3px;
+    margin-left: 32px; /* Espaço entre os itens do menu */
+
+}
+
+.nav-list li:first-child a {
+    color: #f8c66f;
+    text-decoration: none; 
+}
+
+.nav-list li:first-child a:hover {
+    opacity: 0.8;
+    text-decoration: none; 
+}
+
+
+
+
+
+
+@media (max-width: 768px) {
+    /* Ajuste para exibição em dispositivos móveis */
+    .nav-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-list li {
+        margin-left: 0;
+        margin-bottom: 10px; /* Espaço entre os itens do menu em telas menores */
+    }
+    .login-button {
+        color: #f8c66f;
+        background: none;
+    }
+}
+
+
+
+/* Tabelas */
+
+
+.heading {
+    font-size: 2.5rem;
+    font-weight: 500;
+    text-align: center;
+    font-style: italic;
+    color: #ffc154;
+    margin-bottom: 30px;
+    margin-top: 110px; 
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+.table-container {
+    padding: 0 10%;
+    margin: 40px auto 0;
+}
+
+
+.table thead {
+    background-color: #1c1a18f3;
+}
+
+.table thead tr th {
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.35px;
+    color: #ffc154;
+    opacity: 1;
+    padding: 12px;
+    vertical-align: top;
+    border: 1px solid transparent;
+}
+
+.table tbody tr td {
+    font-size: 1rem;
+    letter-spacing: 0.35px;
+    font-weight: normal;
+    color: #1c1a18f3;
+    padding: 8px;
+    text-align: center;
+}
+
+.table {
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 0.35px;
+    color: #ffc154;
+}
+
+
+
+.btn { 
+    width: 130px;
+    text-decoration: none;
+    line-height: 35px;
+    display: inline-block;
+    border-radius: 30px;
+    font-weight: medium;
+    color: #ffffff;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    font-size: 14px;
+    opacity: 1;
+    background-color: #f8c66f;
+    cursor: pointer;
+}
+
+.button-container {
+    margin-left: 30px;
+}
+
+
+.btn-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Opcional: Alinha os botões ao centro */
+    gap: 10px; /* Espaço entre os botões */
+    margin-top: 20px;
+}
+
+
+.btn:hover { 
+    opacity: 0.5;
+}
+
+
+.delete {
+    width: 130px;
+    text-decoration: none;
+    line-height: 35px;
+    display: inline-block;
+    border-radius: 30px;
+    font-weight: medium;
+    color: #ffffff;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    font-size: 14px;
+    opacity: 1;
+    background-color: rgb(255, 62, 62);
+}
+
+.delete:hover { 
+    opacity: 0.5;
+}
+
+
+
+/* Primeiro link */
+
+.table tbody tr:nth-of-type(1) .btn {
+    background-color:#f8c66f;
+}
+
+
+/* Segundo link */
+.table tbody tr:nth-of-type(2) .btn:hover {
+    opacity: 0.5;
+}
+
+.table tbody tr:nth-of-type(3) .btn:hover {
+    opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+    .table thead {
+        display: none;
+    }
+
+    .table,
+    .table tbody,
+    .table tr,
+    .table td {
+        display: block;
+        width: 100%;
+    }
+
+    .table tr {
+        margin-bottom: 15px;
+        border: 1px solid #1c1a18f3;
+    }
+
+    .table tbody tr td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+
+    .table td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px;
+        font-weight: 600;
+        font-size: 1rem;
+        text-align: left;
+    }
+    .login-button {
+        color: #f8c66f;
+        background: none;
+    }
+
+}
+
+.footer-table {
+    position: relative;
+    height: 45px;
+    background: #1c1a18f3;
+    padding: 0 10%;
+    margin: 10px auto 0;
+}
+
+/*Labels*/
+
+.label-input {
+    display: flex;
+    flex-direction: column; /* Alinha os itens na vertical */
+    align-items: flex-start; /* Alinha o texto à esquerda */
+    margin: 10px 0; /* Espaçamento entre os campos */
+    position: relative;
+}
+
+.label-input span {
+    font-size: 16px; /* Tamanho da fonte do rótulo */
+    font-weight: bold; /* Deixa o texto do rótulo em negrito */
+    color: #333; /* Cor do texto mais escura para melhor contraste */
+    margin-bottom: 5px; /* Espaço entre o rótulo e o campo */
+}
+
+.label-input select,
+.label-input input {
+    height: 40px; /* Altura dos campos */
+    width: 100%; /* Largura total */
+    border: 1px solid #ddd; /* Borda mais clara e discreta */
+    border-radius: 5px; /* Bordas arredondadas */
+    padding: 8px; /* Espaçamento interno */
+    font-size: 14px; /* Tamanho do texto nos campos */
+    background-color: #fff; /* Fundo branco para um visual limpo */
+    color: #1c1a18; /* Cor do texto nos campos */
+    outline: none; /* Remove o destaque azul ao focar */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Transição suave */
+}
+
+.label-input select:focus,
+.label-input input:focus {
+    border: 1px solid #007BFF; /* Cor de borda ao focar (azul moderno) */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2); /* Efeito de sombra ao focar */
+}
+
+.label-input select {
+    background-color: #fff; /* Fundo branco */
+    border: 1px solid #ddd; /* Borda cinza clara */
+    color: #1c1a18; /* Cor do texto */
+    appearance: none; /* Remove a aparência padrão */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24"><path fill="%23333" d="M7 10l5 5 5-5z"/></svg>') no-repeat right 10px center, #fff; /* Ícone e fundo branco */
+    background-size: 10px; /* Ajusta o tamanho do ícone */
+    padding-right: 30px; /* Espaço para o ícone */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Transição suave */
+}
+
+
+/*Confirmações*/
+
+.container {
+    display: flex;  
+    justify-content: center; 
+    align-items: center; 
+    height: 160vh; 
+    background-color: #ecf0f1; 
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.content {
+    background-color: #fff;
+    border-radius: 15px; 
+    width: 50%; 
+    height: 60%; 
+    justify-content: space-between; 
+    align-items: center; 
+    position: relative; 
+}
+
+.first-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.second-column {
+    width: 100%; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+}
+
+.title {
+    font-size: 28px; 
+    font-weight: bold; 
+}
+
+.title-second {
+    color: #f8c66f; 
+}
+
+.description {
+    font-size: 14px; 
+    font-weight: 300; 
+    line-height: 30px; 
+}
+
+.description-second {
+    color: #7f8c8d; 
+}
+
+.btn1 {
+    border-radius: 15px; 
+    text-transform: uppercase; 
+    color: #fff; 
+    font-size: 10px; 
+    padding: 10px 50px; 
+    cursor: pointer; 
+    font-weight: bold; 
+    width: 150px; 
+    align-self: center; 
+    border: none; 
+    margin-top: 1rem; 
+}
+
+.btn-second {
+    background-color: #f8c66f; 
+    border: 1px solid #f8c66f;
+    transition: background-color .5s;
+}
+
+.btn-second:hover {
+    background-color: #fff; 
+    border: 1px solid #f8c66f; 
+    color: #f8c66f; 
+}
+
+.cancel-btn {
+    background-color: #e74c3c; 
+    border: 1px solid #e74c3c;
+    transition: background-color .5s;
+}
+
+.cancel-btn:hover {
+    background-color: #fff;
+    border: 1px solid #e74c3c;
+    color: #e74c3c;
+}
+
+.btn-fig{
+    position: absolute;
+    right: 0;
+    z-index: 100;
+}
+
+.space_icon{
+    margin: 10px;
+}
+
+.form {
+    display: flex; /* deixa os itens em uma mesma linha - um ao lado do outro */
+    flex-direction: column; /* direciona o fluxo desses itens para uma coluna */
+    width: 55%; /* aumenta a largura do formulário */
+}
+
+.label-input {
+    background-color: #ecf0f1; /* cor de fundo dos campos do formulário */
+    display: flex; /* deixar um ao lado do outro */
+    align-items: center; /* deixar a imafem centralizada com o nome */
+    margin: 8px; /* espaçamento entre os campos do formulário */
+    position: relative;
+}
+
+.form input {
+    height: 45px; /* altura dos imputs */
+    width: 100%; /* largura dos imputs */
+    border: none; /* retirar a borda */
+    background-color: #ecf0f1; /* cor de fundo dos imputs */
+    padding: 8px;
+}
+
+/*VERSÃO MOBILE*/
+@media screen and (max-width: 1040px) {
+    .content {
+        width: 100%;
+        height: 100%;
+    }
+
+    .first-content {
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    .second-column {
+        width: 100%;
+    }
+    
+}
+
+@media screen and (max-width: 740px) {
+    .form {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .form {
+        width: 100%;
+    }
+}
+
+
+/*Footer*/
+
+.footer-content {
+    width: 100%;
+    height: 100px;
+    background: #1C1A18;
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 2% 5%;
+    color: #fdfdfd;
+}
+
+@media screen and (max-width: 700px) {
+    .footer-content {
+        flex-direction: column;
+    }
+}
+
+/* Estilo para o menu hambúrguer */
+.mobile-menu {
+    display: none; /* Esconde por padrão */
+    cursor: pointer;
+    z-index: 1000;
+}
+
+/* Exibição do menu hambúrguer para telas menores */
+@media (max-width: 991px) {
+    .mobile-menu {
+        display: block;
+    }
+
+    .nav-list {
+        position: absolute;
+        top: 12vh; /* Abaixo do menu */
+        right: 0;
+        background: #1c1a18f3;
+        width: 100%;
+        height: 0;
+        overflow: hidden;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-list.active {
+        height: 88vh; /* Expande para exibir os links */
+    }
+
+    .nav-list li {
+        margin: 15px 0; /* Espaçamento entre os itens no menu responsivo */
+    }
+    .login-button {
+        color: #f8c66f;
+        background: none;
+    }
+
+    
+}
+
+/* Animações do menu mobile */
+.mobile-menu.active .line1 {
+    transform: rotate(-45deg) translate(-8px, 8px);
+}
+
+.mobile-menu.active .line2 {
+    opacity: 0;
+}
+
+.mobile-menu.active .line3 {
+    transform: rotate(45deg) translate(-5px, -7px);
+}
+.login-item {
+    position: relative; /* Posicionar o submenu corretamente */
+    display: flex; /* Alinha o botão e o submenu */
+    flex-direction: column; 
+    align-items: center; 
+}
+
+.login-submenu {
+    display: none; 
+    position: absolute; /* Posicionado em relação ao pai (login-item) */
+    top: 100%; /* Coloca o submenu logo abaixo do botão "Entrar" */
+    left: 50%; /* Posiciona à esquerda do centro */
+    transform: translateX(-50%); /* Centraliza o submenu horizontalmente */
+    background-color: #ffc154; 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 1; 
+    max-width: 100vw; 
+}
+
+.login-submenu a {
+    display: block; 
+    padding: 5px; 
+    color: #1C1A18; 
+    text-decoration: none; 
+}
+
+.login-submenu a:hover {
+    background-color: #f8c66f; 
+}
+
+.login-item:hover .login-submenu {
+    display: block; 
+}

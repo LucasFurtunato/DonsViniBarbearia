@@ -1,0 +1,382 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Noto Sans', sans-serif;
+    background-color: #ecf0f1;
+}
+
+a {
+    color: #ffc154;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+p::selection, h2::selection, h3::selection, a::selection {
+    background: #ffc154;
+    color: #f1faee;
+}
+
+/*Menu*/
+
+a:hover {
+    opacity: 0.8;
+}
+
+.logo {
+    height: 11vh;
+    user-select: none;
+}
+
+.login-button {
+    color: whitesmoke;
+    background-color: #f8c66f;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-family: 'Noto Sans', sans-serif;
+    background: #1c1a18f3;
+    height: 12vh;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    z-index: 9999;
+}
+
+.nav-list li {
+    letter-spacing: 3px;
+    margin-left: 32px;
+}
+
+.mobile-menu {
+    display: none; 
+    cursor: pointer;
+}
+
+.mobile-menu div {
+    width: 32px;
+    height: 2px;
+    background: #fff;
+    margin: 8px;
+    transition: 0.3s;
+}
+
+@media (max-width: 999px) {
+    body {
+        overflow-x: hidden;
+    }
+    .nav-list {
+        position: absolute;
+        top: 12vh;
+        right: 0;
+        width: 100vw;
+        height: 92vh;
+        background: #1c1a18f3;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in;
+    }
+
+    .nav-list li {
+        margin-left: 0;
+        opacity: 0;
+    }
+
+    .mobile-menu {
+        display: block;
+    }
+
+    .login-button {
+        color: #f8c66f;
+        background: none;
+    }
+}
+
+.nav-list.active {
+    transform: translateX(0);
+}
+
+@keyframes navLinkFade {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.mobile-menu.active .line1 {
+    transform: rotate(-45deg) translate(-8px, 8px);
+}
+
+.mobile-menu.active .line2 {
+    opacity: 0;
+}
+
+.mobile-menu.active .line3 {
+    transform: rotate(45deg) translate(-5px, -7px);
+}
+
+/* Formulário */
+
+.container {
+    display: flex;  
+    justify-content: center; 
+    align-items: center; 
+    min-height: calc(100vh - 180px); /* centraliza os itens das divs de conteúdo */
+    background-color: #ecf0f1; 
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.content {
+    background-color: #fff;
+    border-radius: 15px; 
+    width: 50%; 
+    align-items: center; 
+    position: relative; 
+    padding-bottom: 10px;
+}
+
+.first-content {
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.second-column {
+    width: 100%; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+}
+
+.title {
+    font-size: 28px; 
+    font-weight: bold; 
+    margin-top: 20px; 
+}
+
+.title-second {
+    color: #f8c66f; 
+    text-align: center;
+}
+
+.description {
+    font-size: 14px; 
+    font-weight: 300; 
+    line-height: 30px; 
+}
+
+.description-second {
+    color: #7f8c8d; 
+    text-align: center;
+}
+
+.form {
+    display: flex; 
+    flex-direction: column;
+    width: 55%; 
+}
+
+.form input {
+    height: 45px; 
+    width: 100%; 
+    border: none; 
+    background-color: #ecf0f1; 
+    padding: 8px;
+}
+
+
+.label-input {
+    background-color: #ecf0f1; 
+    display: flex; 
+    align-items: center; 
+    margin: 8px; 
+    position: relative;
+}
+
+.btn {
+    border-radius: 15px; 
+    text-transform: uppercase; 
+    color: #fff; 
+    font-size: 10px; 
+    padding: 10px 50px; 
+    cursor: pointer; 
+    font-weight: bold; 
+    width: 150px; 
+    align-self: center; 
+    border: none; 
+    margin-top: 1rem; 
+}
+
+.btn-password{
+    position: absolute;
+    right: 0;
+    z-index: 100;
+}
+
+
+.btn-second {
+    background-color: #f8c66f; 
+    border: 1px solid #f8c66f; 
+    transition: background-color .5s;
+}
+
+.btn-second:hover {
+    background-color: #fff; 
+    border: 1px solid #f8c66f; 
+    color: #f8c66f; 
+}
+
+/* Estilo para o campo select */
+.form select {
+    height: 30px; 
+    width: 100%; 
+    border: none; 
+    background-color: #ecf0f1; 
+    font-size: 14px; 
+    padding: 0 10px; 
+    color: #7f8c8d; 
+}
+
+/* Para manter o estilo do label consistente */
+.label-input select {
+    background-color: #ecf0f1; 
+    display: flex;
+    align-items: center;
+    margin: 8px; 
+    position: relative;
+}
+
+.btn-fig{
+    position: absolute;
+    right: 0;
+    z-index: 100;
+    margin-right: 10px;
+}
+
+/*VERSÃO MOBILE*/
+@media screen and (max-width: 1040px) {
+    .content {
+        width: 100%;
+        height: 100%;
+    }
+
+    .first-content {
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    .second-column {
+        width: 100%;
+    }
+    
+    .form {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 740px) {
+    .form {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .form {
+        width: 100%;
+    }
+}
+
+/*Footer*/
+
+.footer-content {
+    width: 100%;
+    height: 100px;
+    background: #1C1A18;
+    margin-top: -5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 2% 5%;
+    color: #fdfdfd;
+}
+
+@media screen and (max-width: 700px) {
+    .footer-content {
+        flex-direction: column;
+    }
+}
+
+.space_icon{
+    margin: 10px;
+}
+
+.cancel-btn {
+    background-color: #e74c3c; 
+    border: 1px solid #e74c3c;
+    transition: background-color .5s;
+}
+
+.cancel-btn:hover {
+    background-color: #fff;
+    border: 1px solid #e74c3c;
+    color: #e74c3c;
+}
+.login-item {
+    position: relative; /* Posicionar o submenu corretamente */
+    display: flex; /* Alinha o botão e o submenu */
+    flex-direction: column; 
+    align-items: center; 
+}
+
+.login-submenu {
+    display: none; 
+    position: absolute; /* Posicionado em relação ao pai (login-item) */
+    top: 100%; /* Coloca o submenu logo abaixo do botão "Entrar" */
+    left: 50%; /* Posiciona à esquerda do centro */
+    transform: translateX(-50%); /* Centraliza o submenu horizontalmente */
+    background-color: #ffc154; 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 1; 
+    max-width: 100vw; 
+}
+
+.login-submenu a {
+    display: block; 
+    padding: 5px; 
+    color: #1C1A18; 
+    text-decoration: none; 
+}
+
+.login-submenu a:hover {
+    background-color: #f8c66f; 
+}
+
+.login-item:hover .login-submenu {
+    display: block; 
+}
