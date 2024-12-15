@@ -1,7 +1,6 @@
-Options -Indexes
 
 <FilesMatch "\.php$">
-    SetEnvIf Referer "^https?://donsvinibarbearia.hostdeprojetosdoifsp.gru.br" allowed
+    SetEnvIf Referer "^https?://donsvinibarbearia.hostdeprojetosdoifsp.gru.br/" allowed
     Order Deny,Allow
     Deny from all
     Allow from env=allowed
