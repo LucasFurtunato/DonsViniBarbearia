@@ -14,7 +14,7 @@ class Galeria {
 	private $localizacao;
 	private $imagem;
 
-	private $tableName  = "hostdeprojetos_donvinibarbearia.galeria";
+	private $tableName  = "ifhostgru_donvinibarbearia.galeria";
 	private $fieldsName = "galeriaId, localizacao, imagem";
 	private $fieldKey   = "galeriaId";
 	private $dbquery     = null;

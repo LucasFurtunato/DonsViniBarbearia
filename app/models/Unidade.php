@@ -19,7 +19,7 @@ class Unidade {
 	private $cidade;
 	private $uf;
 
-	private $tableName  = "hostdeprojetos_donvinibarbearia.unidade";
+	private $tableName  = "ifhostgru_donvinibarbearia.unidade";
 	private $fieldsName = "unidadeId, cep, logradouro, numero, complemento, bairro, cidade, uf";
 	private $fieldKey   = "unidadeId";
 	private $dbquery     = null;

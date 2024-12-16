@@ -14,7 +14,7 @@ class TxtServicos {
     private $texto1;
     private $texto2;
 
-    private $tableName  = "hostdeprojetos_donvinibarbearia.txtServicos";
+    private $tableName  = "ifhostgru_donvinibarbearia.txtServicos";
     private $fieldsName = "txtServicosId, localizacao, texto1, texto2";
     private $fieldKey   = "txtServicosId";
     private $dbquery    = null;
