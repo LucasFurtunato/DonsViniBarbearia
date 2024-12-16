@@ -1,4 +1,10 @@
 $(document).ready(function () {
+	let suEmail = $("#email-text").text();
+	let suTelefone1 = $("#telefone-text-unidade-1").text();
+	let suEndereco1 = $("#endereco-text-unidade-1").text();
+	let suTelefone2 = $("#telefone-text-unidade-2").text();
+	let suEndereco2 = $("#endereco-text-unidade-2").text();
+	
 	$.ajax({
 	    url: "app/controllers/CtrlEmpresa.php",
 	    method: "GET",
@@ -9,6 +15,12 @@ $(document).ready(function () {
 				$(`#email-text`).text(contato.email);
 				$(`#telefone-text-unidade-${contato.Idempresa}`).text(`Unidade ${contato.Idempresa}: ` + contato.telefone);
 				$(`#endereco-text-unidade-${contato.Idempresa}`).text(`Unidade ${contato.Idempresa}: ` + contato.endereco);
+				
+				suEmail = $("#email-text").text();
+				suTelefone1 = $("#telefone-text-unidade-1").text();
+				suEndereco1 = $("#endereco-text-unidade-1").text();
+				suTelefone2 = $("#telefone-text-unidade-2").text();
+				suEndereco2 = $("#endereco-text-unidade-2").text();
 			});
 	    },
 	    error: function (error) {
@@ -38,15 +50,11 @@ $(document).ready(function () {
 	$("#saveContactBtn-1").hide();
 	$("#saveContactBtn-2").hide();
 	
-	let suEmail = $("#email-text").text();
-	let suTelefone1 = $("#telefone-text-unidade-1").text();
-	let suEndereco1 = $("#endereco-text-unidade-1").text();
-	let suTelefone2 = $("#telefone-text-unidade-2").text();
-	let suEndereco2 = $("#endereco-text-unidade-2").text();
-	
     $("#editContactBtn-1").click(function () {
 		$("#editContactBtn-2").show();
 		$("#saveContactBtn-2").hide();
+		
+		
 		
 		$("#email-text").text(suEmail);
 		$("#telefone-text-unidade-2").text(suTelefone2);

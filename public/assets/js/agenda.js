@@ -2,18 +2,24 @@ $(document).ready(function() {
     var type = null;
      
     $.get('../controllers/VfyLogin.php', function(dados) {
-        var objRetorno = JSON.parse(dados)
+        var objRetorno = JSON.parse(dados);
 
         if (objRetorno.usrType == "funcionario") {
             $("#login-button").text(objRetorno.name);
-            $("#btnadm").attr("href", "../../index.html")
-            $("#link-img").attr("href", "../../index.html")
-            type = objRetorno.usrType;
+			$("#btnadm").attr("href", "../../index.html");
+			$("#link-img").attr("href", "../../index.html");
+			$("#cf").show();
+			$("#cf").attr("href", "alterar_perfil_adminfun.html");
+			$("#pr").hide();
+			$("#dd").hide();
+			type = objRetorno.usrType;
         } else if (objRetorno.usrType == "gerente") {
-            $("#login-button").text(objRetorno.name);
-            type = objRetorno.usrType;
-            $("#btnadm").attr("href", "../../index_main_admin.html")
-            $("#link-img").attr("href", "../../index_main_admin.html")
+			$("#login-button").text(objRetorno.name);
+			$("#btnadm").attr("href", "../../index_main_admin.html");
+			$("#link-img").attr("href", "../../index_main_admin.html");
+			$("#pr").show();
+			$("#dd").show();
+			type = objRetorno.usrType;
         } else {
             window.location.href = '../../index.html';
         }

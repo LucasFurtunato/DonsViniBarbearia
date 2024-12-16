@@ -35,8 +35,8 @@ a:hover {
 }
 
 .login-button {
-    cursor: pointer;
-    color: #fff;
+    color: whitesmoke;
+    background-color: #f8c66f;
     padding: 8px;
     border-radius: 5px;
 }
@@ -87,22 +87,7 @@ nav {
 
 
 
-#login-button {
-    cursor: pointer;
-    color:  #ffffff;
-    background-color: #f8c66f;
-    padding: 8px 16px;
-    border-radius: 5px;
-    border: 1px solid #f8c66f;
-    text-decoration: none;
-}
 
-/* Efeito ao passar o mouse sobre os botões */
-.login-button:hover {
-    opacity: 0.8;
-    background-color: #f8c66f;
-     color: #ffffff;/* Cor do texto quando o mouse está sobre o botão */
-}
 
 @media (max-width: 768px) {
     /* Ajuste para exibição em dispositivos móveis */
@@ -114,6 +99,10 @@ nav {
     .nav-list li {
         margin-left: 0;
         margin-bottom: 10px; /* Espaço entre os itens do menu em telas menores */
+    }
+    .login-button {
+        color: #f8c66f;
+        background: none;
     }
 }
 
@@ -286,6 +275,10 @@ nav {
         font-weight: 600;
         font-size: 1rem;
         text-align: left;
+    }
+    .login-button {
+        color: #f8c66f;
+        background: none;
     }
 
 }
@@ -556,6 +549,12 @@ nav {
     .nav-list li {
         margin: 15px 0; /* Espaçamento entre os itens no menu responsivo */
     }
+    .login-button {
+        color: #f8c66f;
+        background: none;
+    }
+
+    
 }
 
 /* Animações do menu mobile */
@@ -569,4 +568,39 @@ nav {
 
 .mobile-menu.active .line3 {
     transform: rotate(45deg) translate(-5px, -7px);
+}
+.login-item {
+    position: relative; /* Posicionar o submenu corretamente */
+    display: flex; /* Alinha o botão e o submenu */
+    flex-direction: column; 
+    align-items: center; 
+}
+
+.login-submenu {
+    display: none; 
+    position: absolute; /* Posicionado em relação ao pai (login-item) */
+    top: 100%; /* Coloca o submenu logo abaixo do botão "Entrar" */
+    left: 50%; /* Posiciona à esquerda do centro */
+    transform: translateX(-50%); /* Centraliza o submenu horizontalmente */
+    background-color: #ffc154; 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 1; 
+    max-width: 100vw; 
+}
+
+.login-submenu a {
+    display: block; 
+    padding: 5px; 
+    color: #1C1A18; 
+    text-decoration: none; 
+}
+
+.login-submenu a:hover {
+    background-color: #f8c66f; 
+}
+
+.login-item:hover .login-submenu {
+    display: block; 
 }

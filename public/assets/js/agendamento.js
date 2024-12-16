@@ -1,10 +1,12 @@
 
 $(document).ready(function() {
+	var objUser = null;
+	
 	$.get( '../controllers/VfyLogin.php', function(dados) {
-	    var objRetorno = JSON.parse(dados)
+	   	objUser = JSON.parse(dados)
 
-	    if (objRetorno.usrType == "cliente"){
-	        $("#login-button").text(objRetorno.name);
+	    if (objUser.usrType == "cliente"){
+	        $("#login-button").text(objUser.name);
 	    } else {
 			window.location.href = '../../index.html';
 		}
@@ -44,6 +46,18 @@ $(document).ready(function() {
 
 	    if (dataSelecionada) {
 	        $('#horario li').removeClass('disabled'); // Habilita os horários
+			
+			// Verifica se o cliente já tem agendamento no mesmo dia
+			const clienteId = objUser.idCliente;
+			const agendamentoClienteDia = agendamentos.find(agendamento =>
+			    agendamento.dia === dataSelecionada && agendamento.clienteId === clienteId
+			);
+
+			if (agendamentoClienteDia) {
+			    alert("Você já possui um agendamento nesta data. Por favor, escolha outra.");
+			    $(this).val(''); // Reseta a data selecionada
+			    return;
+			}
 
 	        // Filtra os agendamentos para o dia e unidade selecionados
 	        const horariosIndisponiveis = agendamentos
@@ -62,47 +76,6 @@ $(document).ready(function() {
 	        });
 	    }
 	});
-
-
-	
-	// Função para desabilitar as datas
-	function desabilitarDatas() {
-	    $('#data').on('change', function () {
-	        const dataSelecionada = $(this).val();  // A data selecionada pelo usuário
-
-	        // Verifica se todos os horários do dia estão ocupados
-	        if (verificarDiaDisponivel(dataSelecionada)) {
-	            alert("Todos os horários para essa data estão ocupados.");
-	            // Desabilitar a data selecionada
-	            $(this).val('');  // Limpar o campo de data
-	        }
-	    });
-	}
-
-	function verificarDiaDisponivel(dataSelecionada) {
-	    const horariosDisponiveis = [
-	        "09:00:00", "09:30:00", "10:00:00", "10:30:00", "11:00:00", "11:30:00", 
-	        "12:00:00", "12:30:00", "13:00:00", "13:30:00", "14:00:00", "14:30:00", 
-	        "15:00:00", "15:30:00", "16:00:00", "16:30:00", "17:00:00", "17:30:00"
-	    ];
-
-	    // Filtrar os agendamentos para o dia e unidade selecionados
-	    const agendamentosDia = agendamentos.filter(agendamento => 
-	        agendamento.dia === dataSelecionada && 
-	        parseInt(agendamento.unidadeId) === parseInt(unidade) // Comparação de unidadeId
-	    );
-	    
-	    // Obter os horários já ocupados para esse dia e unidade
-	    const horariosOcupados = agendamentosDia.map(agendamento => agendamento.horario);
-	    
-	    // Verificar se todos os horários estão ocupados
-	    const todosOcupados = horariosDisponiveis.every(horario => horariosOcupados.includes(horario));
-
-	    return todosOcupados;
-	}
-
-	
-	
 	
 	// Evento de clique nos horários
 	$('#horario li').on('click', function () {
@@ -267,7 +240,17 @@ $(document).ready(function() {
 		let preco = totalPrice;
 		let dia = $('#data').val();
 		let horario = $('#horario li.selected').data('time');
+		const clienteId = objUser.idCliente;
 
+		// Verifique se o cliente já tem agendamento no mesmo dia
+		const agendamentoClienteDia = agendamentos.find(agendamento =>
+		    agendamento.dia === dia && agendamento.clienteId === clienteId
+		);
+
+		if (agendamentoClienteDia) {
+		    alert("Você já possui um agendamento nesta data.");
+		    return;
+		}
 		// Verifique se o funcionário foi selecionado
 		if (!preco) {
 		    alert("Por favor, selecione algum serviço que precisa ser feito");
@@ -298,8 +281,7 @@ $(document).ready(function() {
 		    url: "../controllers/CtrlAgendamentos.php",
 		    method: "POST",
 		    data: data,
-		    success: function(response) {
-				console.log(response);
+		    success: function(response) {	
 		        var objRetorno = JSON.parse(response);
 				
 				if (objRetorno.status === "true") {
@@ -318,4 +300,3 @@ $(document).ready(function() {
 
 	
 });
-
