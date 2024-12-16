@@ -30,11 +30,13 @@ $('#btn-password-2').click(function() {
 //Verificar se o campo de senha está preenchido
 
 $(document).ready(function() {
-	$.get( '../controllers/VfyLogin.php', function(dados) {
-	    var objRetorno = JSON.parse(dados)
+	var objUser = null;
 	
-	    if (objRetorno.usrType == "cliente"){
-	        $("#login-button").text(objRetorno.name);
+	$.get( '../controllers/VfyLogin.php', function(dados) {
+	    objUser = JSON.parse(dados)
+	
+	    if (objUser.usrType == "cliente"){
+	        $("#login-button").text(objUser.name);
 	    } else {
 			window.location.href = '../../index.html';
 		}
@@ -376,6 +378,18 @@ $(document).ready(function() {
 			horario: horario
 		};
 		
+		const clienteId = objUser.idCliente;
+
+		// Verifique se o cliente já tem agendamento no mesmo dia
+		const agendamentoClienteDia = agendamentos.find(agendamento =>
+		    agendamento.dia === dia && agendamento.clienteId === clienteId
+		);
+
+		if (agendamentoClienteDia) {
+		    alert("Você já possui um agendamento nesta data.");
+		    return;
+		}
+		
 		$.ajax({
 		    url: "../controllers/CtrlAgendamentos.php",
 		    method: "PUT",
@@ -444,6 +458,18 @@ $(document).ready(function() {
 	    const dataSelecionada = $(this).val();
 
 	    if (dataSelecionada) {
+			
+			// Verifica se o cliente já tem agendamento no mesmo dia
+			const clienteId = objUser.idCliente;
+			const agendamentoClienteDia = agendamentos.find(agendamento =>
+			    agendamento.dia === dataSelecionada && agendamento.clienteId === clienteId
+			);
+
+			if (agendamentoClienteDia) {
+			    alert("Você já possui um agendamento nesta data. Por favor, escolha outra.");
+			    $(this).val(''); // Reseta a data selecionada
+			    return;
+			}
 	        // Filtra os agendamentos para o dia e unidade selecionados
 	        const horariosIndisponiveis = agendamentos
 	            .filter(agendamento => 
