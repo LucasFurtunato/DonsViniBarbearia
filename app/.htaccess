@@ -1,5 +1,5 @@
 <FilesMatch "\.php$">
-    SetEnvIf Referer "^https?://donvinibarbearia.ifhost.gru.br/" allowed
+    SetEnvIf Referer "^https?://donsvinibarbearia.hostdeprojetosdoifsp.gru.br/" allowed
     Order Deny,Allow
     Deny from all
     Allow from env=allowed

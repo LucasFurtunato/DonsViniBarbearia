@@ -18,7 +18,7 @@ class Cliente {
 	private $token;
 	private $email_verified;
 
-	private $tableName  = "ifhostgru_donvinibarbearia.cliente";
+	private $tableName  = "hostdeprojetos_donvinibarbearia.cliente";
 	private $fieldsName = "clienteId, nome, email, senha, token, email_verified";
 	private $fieldKey   = "clienteId";
 	private $dbquery     = null;
